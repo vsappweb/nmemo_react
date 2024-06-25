@@ -1,0 +1,93 @@
+.postMemo {
+    width: 100%;
+    border-radius: 10px;
+    border: 3px double var(--cText);
+    -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
+    box-shadow: 0px 0px 16px -8px var(--cText);
+    background-color: rgba(179, 179, 179, 0.8);
+}
+
+.postMemoWrapper {
+    padding: 10px;
+}
+
+.postMemoTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.postMemoTopLeft {
+    display: flex;
+    align-items: center;
+}
+
+.postMemoProfileImg {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.postMemoPersonnelnumber {
+    font-size: 15px;
+    font-weight: 500;
+    margin: 0 10px;
+}
+
+.postMemoTopRight {
+    display: flex;}
+
+.postMemoTitle {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--cBadgeNtf);
+    margin: 0 10px;
+}
+
+.postMemoDate {
+    font-size: 12px;
+}
+
+.postMemoDelete{
+    cursor: pointer;
+}
+
+.postMemoCenter {
+    margin: 20px 0 0 0;
+}
+
+.postMemoImg {
+    margin-top: 20px;
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+}
+
+.postMemoBottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.postMemoBottomLeft{
+    display: flex;
+    align-items: center;
+}
+.likeIcon{
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.postMemoLikeCounter{
+    font-size: 15px;
+    margin-left: 5px;
+    margin-right: 10px;
+}
+.postMemoCommentText{
+    cursor: pointer;
+    border-bottom: 1px dashed gray;
+    font-size: 15px;
+}

@@ -1,0 +1,252 @@
+
+.topbarContainer {
+  height: 50px;
+  width: 100%;
+  background-color: var(--main);
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.topbarLeft {
+  flex: 3;
+}
+
+.topbarLogo {
+  margin-left: 20px;
+}
+
+.logoText {
+  font-size: 24px;
+  margin-left: 5px;
+  font-weight: bold;
+  color: var(--logoIcons);
+  cursor: pointer;
+}
+
+.topbarCenter {
+  flex: 6.5;
+  display: flex;
+  justify-content: center;
+  text-transform: uppercase;
+  color: var(--logoIcons);
+}
+
+.topbarRight {
+  flex: 2.5;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 25px;
+}
+
+
+
+.topbarIcons {
+  display: flex;
+}
+
+.topbarIconItem {
+  margin-right: 15px;
+  cursor: pointer;
+  position: relative;
+}
+
+.topbarIconBadge {
+  width: 13px;
+  height: 13px;
+  background-color: var(--cBadgeNtf);
+  border-radius: 50%;
+  color: var(--logoIcons);
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+}
+
+
+.topbarUserItems {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+
+.topbarMenuContainer {
+  position: relative;
+
+}
+
+.topbarMenuDropdown {
+  position: absolute;
+  color: var(--cText);
+  top: 55px;
+  right: -15px;
+  background-color: var(--bg);
+  border-radius: 15px;
+  border: 4px double var(--cText);
+  padding: 10px 10px;
+  width: 150px;
+  z-index: 10;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+}
+
+.topbarMenuDropdown::before {
+  content: '';
+  position: absolute;
+  top: -13px;
+  right: 20px;
+  height: 20px;
+  width: 20px;
+  background: var(--bg);
+  border-top: 4px double var(--cText);
+  border-left: 4px double var(--cText);
+  transform: rotate(45deg);
+}
+
+.topbarMenuDropdown.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition: var(--speed) ease;
+}
+
+.topbarMenuDropdown.inactive {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: var(--speed) ease;
+}
+
+.topbarMenuDropdownPersonnelnumber {
+  text-align: center;
+  font-size: 16px;
+}
+
+.topbarMenuDropdownPersonnelnumber span {
+  opacity: .7;
+  font-size: 14px;
+}
+
+.topbarMenuDropdown ul {
+  padding-left: 0;
+}
+
+.topbarMenuDropdown ul li {
+  padding: 10px 0;
+  border-top: 1px solid var(--cText);
+}
+
+.topbarMenuDropdown ul li:hover a {
+  color: var(--main);
+  cursor: pointer;
+}
+
+.topbarMenuDropdown ul li:hover img {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.topbarMenuDropdownItem {
+  display: flex;
+  margin: 10px auto;
+  align-items: center;
+}
+
+.topbarMenuDropdownItem Link {
+  max-width: 100px;
+  margin-left: 10px;
+  transition: var(--speed);
+}
+
+
+
+.changeWals {
+  /* width: 100vw; */
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 5;
+  background-color: rgba(99, 2, 2, .7);
+  /* transform: translateX(-100%); */
+  position: absolute;
+}
+
+.changeWalsDropdown {
+  z-index: 7;
+  top: 0;
+  bottom: 0;
+}
+
+.changeWalsDropdownInner {
+  border: 4px double var(--cText);
+  background-color: var(--bg);
+  border-radius: 5px;
+  padding: 10px 20px;
+  max-width: 200px;
+  max-height: 300px;
+  margin: 10% auto;
+  overflow: auto;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+}
+
+.changeWalsDropdown.active {
+  opacity: 1;
+  visibility: visible;
+  transition: var(--speed) ease;
+}
+
+.changeWalsDropdown.inactive {
+  opacity: 0;
+  visibility: hidden;
+  /* transform: translateY(-20px); */
+  transition: var(--speed) ease;
+}
+
+.changeWalsDropdown ul {
+  padding-left: 0;
+}
+
+.changeWalsDropdown ul li {
+  padding: 10px 0;
+  border-top: 1px solid var(--cText);
+}
+
+.changeWalsDropdown ul li:hover a {
+  color: var(--main);
+  cursor: pointer;
+}
+
+.changeWalsDropdown ul li:hover img {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.changeWalsDropdownItem {
+  display: flex;
+  margin: 10px auto;
+  align-items: center;
+}
+
+.topbarIconItems{
+  display: flex;
+  align-items: center;
+}
+
+.topbarIconLang{
+  width: 30px;
+}

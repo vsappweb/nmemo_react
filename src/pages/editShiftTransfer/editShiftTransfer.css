@@ -1,0 +1,175 @@
+.editShiftTransfer {
+    display: flex;
+    color: var(--cText);
+}
+
+.editShiftTransferRight {
+    flex: 9;
+    padding: 20px;
+}
+
+.editShiftTransferRightSorting {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.editShiftTransferRightSortingInput {
+    width: 130px;
+    border-bottom: 1px groove var(--cText);
+    padding: 5px 15px;
+    color: var(--cBadgeNtf);
+    border-radius: 3px;
+}
+
+.nMemoCenter {
+    flex: 5.5;
+    padding: 20px;
+}
+
+.editShiftTransferRightContent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.editShiftTransferPostsList {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.editShiftTransferItemsList{
+    margin-bottom: 10px;
+}
+.editShiftTransferItemsItem{
+    border: 1px solid var(--main);
+    border-radius: 5px;
+    padding: 3px;
+    margin-bottom: 3px;
+}
+
+.editShiftTransferShowHideBtn{
+    padding: 15px;
+    width: 200px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0 auto;
+    border-bottom: 2px groove var(--cText);
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.editShiftTransferListWrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-top: 2px solid var(--main);
+    border-bottom: 2px solid var(--main);
+}
+
+.editShiftTransferItemsListContainer,
+.editShiftTransferFormWrapper {
+    width: 50%;
+    padding: 0 10px 0 10px;
+}
+
+.editShiftTransferItemBtns {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0 10px;
+}
+
+.editShiftTransferItemEdit{
+    cursor: pointer;
+    color: var(--bgMsgOwn);
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+.editShiftTransferItemEdit:hover{
+    color: var(--bgMsgOwn);
+    transform: scale(1.1);
+}
+.editShiftTransferItemEdit:active{
+    transform: scale(0.9);
+}
+
+.editShiftTransferItemDelete{
+    cursor: pointer;
+    color: var(--cBadgeNtf);
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+.editShiftTransferItemDelete:hover{
+    color: var(--cBadgeNtf);
+    transform: scale(1.1);
+}
+.editShiftTransferItemDelete:active{
+    transform: scale(0.9);
+}
+
+.shiftTransferItemForm{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    gap: 5px;
+}
+
+.editShiftTransferItemBtnsTop{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0 10px;
+}
+
+.shiftTransferItemFormBtns{
+    display: flex;
+    width: 70px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.editShiftTransferItemNumber{
+    color: var(--main);
+    font-size: 12px;
+    border: 1px groove var(--main);
+    border-radius: 50%;
+    padding: 2px 5px;
+    margin-right: 5px;
+}
+
+.shiftTransferItemBtn{
+    border-bottom: 2px groove var(--cText);
+    border-radius: 5px;
+    padding: 5px 5px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.shiftTransferItemItem{
+    width: 100%;
+}
+
+.shiftTransferItemInput{
+    resize: none;
+    width: 100%;
+    height: 70px;
+}

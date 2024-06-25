@@ -1,0 +1,45 @@
+.events {
+    display: flex;
+    color: var(--cText);
+}
+.eventsRight{
+    flex: 9;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.rbc-event{
+    cursor: pointer;
+    border-radius: 5px;
+    border: 2px solid var(--cText);
+    background-color: transparent;
+}
+
+.rbc-row-segment .rbc-event-content{
+    white-space: wrap;
+    background-color: transparent;
+    color: var(--cText);
+    font-weight: 500;
+}
+
+/* Remove weekends in month view
+.rbc-month-header > :first-child,
+.rbc-month-header > :last-child{
+  display: none;
+}
+
+.rbc-row-segment {
+    flex-basis: 20% !important;
+    max-width: 20% !important;
+}
+
+.rbc-month-row > .rbc-row-bg > :first-child,
+.rbc-month-row > .rbc-row-bg > :last-child {
+  display: none;
+}
+
+.rbc-row-content > .rbc-row > .rbc-date-cell:first-child,
+.rbc-row-content > .rbc-row > .rbc-date-cell:last-child {
+  display:none;
+} */

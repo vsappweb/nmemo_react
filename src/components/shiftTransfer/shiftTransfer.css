@@ -1,0 +1,163 @@
+/* .shiftTransfer {
+    width: 100%;
+    height: 80dvh;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    margin-bottom: 25px;
+    padding: 10px;
+    border: 3px solid var(--main);
+    overflow: auto;
+}
+
+.shiftTransferWrapper {
+    padding: 10px;
+}
+
+.shiftTransferTop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+}
+
+
+.shiftTransferInput {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 3px;
+    border: 2px solid var(--cText);
+}
+
+
+.shiftTransferInputOperator{
+    width: 60px;
+    overflow: hidden;
+    color: var(--cText);
+}
+
+.shiftTransferInput:focus {
+    outline: none;
+}
+
+.shiftTransferOperatorBox{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.shiftTransferHr {
+    margin: 0px 20px;
+    border: 1px solid var(--main);
+}
+
+.shiftTransferForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.shiftTransferOption {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.shiftTransferIcon {
+    font-size: 18px;
+    margin-right: 3px;
+}
+
+.shiftTransferOptionText {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.shiftTransferButton {
+    border: none;
+    padding: 7px;
+    border-radius: 5px;
+    background-color: var(--bgSendBtn);
+    font-weight: 500;
+    margin-right: 20px;
+    cursor: pointer;
+    color: var(--cSendBtn);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.shiftTransferChoice{
+    color: var(--cText);
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.shiftTransferImgContainer{
+    padding: 0 20px 10px 20px;
+    position: relative;
+}
+.shiftTransferImg{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.shiftTransferCancel{
+    position: absolute;
+    top: 0;
+    right: 20px;
+    cursor: pointer;
+    opacity: 0.7;
+    border: 3px solid var(--cBadgeNtf);
+    border-radius: 50%;
+    color: var(--cSendBtn);
+}
+
+.shiftTransferTitle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: normal;
+    margin: 0px 30px 10px 30px;
+}
+
+.shiftTransferItem{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+
+}
+
+.shiftTransferBox{
+    display: flex;
+    width: 100%;
+    max-height: 50px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 15px;
+    gap: 5px;
+
+}
+
+.shiftTransferItemTitle{
+    width: 340px;
+    font-size: 14px;
+    font-weight: normal;
+   
+
+}
+
+.shiftTransferList{
+    display: flex;
+    align-items: center;
+} */

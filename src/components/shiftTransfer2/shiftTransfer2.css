@@ -1,0 +1,229 @@
+.shiftTransfer {
+    width: 100%;
+    max-height: 80dvh;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    /* margin-bottom: 25px; */
+    padding: 10px;
+    border: 3px solid var(--main);
+    overflow: auto;
+}
+
+.shiftTransferDateTime{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+.shiftTransferDateTimeItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--main);
+}
+
+.shiftTransferWeekNum{
+    font-size: 16px;
+}
+.shiftTransferDateTimeItem span{
+    font-size: 16px;
+    color: var(--cText);
+}
+
+.shiftTransferHr {
+    margin: 0px 20px;
+    border: 1px solid var(--main);
+}
+
+.shiftTransferForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.shiftTransferButton {
+    padding: 7px;
+    border-radius: 5px;
+    background-color: var(--bgSendBtn);
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--cSendBtn);
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid var(--cText);
+}
+
+.shiftTransferChoice {
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 2px;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.shiftTransferItemNumber{
+    color: var(--main);
+    font-size: 12px;
+    border: 1px groove var(--main);
+    border-radius: 50%;
+    padding: 2px 5px;
+    margin-right: 5px;
+}
+
+.shiftTransferItemTitle {
+    width: 80%;
+    font-size: 14px;
+    font-weight: normal;
+    padding-right: 15px;
+}
+
+
+.shiftTransferItem {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    border: 1px solid var(--main);
+    border-bottom: none;
+}
+
+.shiftTransferMessage {
+    border-bottom: 1px solid var(--main);
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+}
+
+.shiftTransferItemMessage {
+    width: 60%;
+    border-top: 2px solid transparent;
+    border-bottom: 2px solid var(--main);
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    color: var(--cText);
+    margin: 0 auto 5px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.shiftTransferItemMessage:hover {
+    border-top: 2px solid var(--main);
+}
+.shiftTransferItemMessage:active {
+    transform: scale(0.9);
+}
+
+.shiftTransferDescription {
+    width: 100%;
+    height: 60px;
+    max-height: 100px;
+    resize: none;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shiftTransferRadioBtnBorder {
+    position: relative;
+    /* border: 1px solid var(--main); */
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--main);
+}
+
+.shiftTransferRadioBtn {
+    display: none;
+    clip-path: polygon(0 0)
+}
+
+.shiftTransferRadioIconGreen, .shiftTransferRadioIconRed, .shiftTransferRadioIconOrange {
+	font-size: 24px;
+	position: absolute;
+	right: -8px;
+	top: -8px;
+	transition: linear 0.3s;
+}
+
+.shiftTransferRadioBtn:checked + .shiftTransferRadioIconGreen {
+	transform: scale(1.7);
+    color: green;
+}
+.shiftTransferRadioBtn:checked + .shiftTransferRadioIconRed {
+	transform: scale(1.7) translateX(-85%);
+    color: red;
+}
+.shiftTransferRadioBtn:checked + .shiftTransferRadioIconOrange {
+	transform: scale(1.7) translateX(-180%);
+    color: orangered;
+}
+
+
+
+.shiftTransferContainer {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.shiftTransferLabelPersonnelnumber {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.shiftTransferTextPersonnelnumber {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.shiftTransferInputPersonnelnumber {
+    width: 60px;
+    margin-right: 25px;
+}
+
+.shiftTransferRadioEditBtn {
+    display: none;
+    font-size: 16px;
+    position: absolute;
+    left:  25px;
+    top: -11px;
+    cursor: pointer;
+    border: 2px solid var(--main);
+    border-radius: 5px;
+    color: var(--main);
+    padding: 2px 5px;
+    transition: linear 0.3s;
+}
+
+.editNotOkBtn{
+    left: -7px;
+}
+
+.editNVTBtn{
+    left: -40px;
+}
+
+.shiftTransferRadioEditBtn:hover {
+    transform: scale(1.1);
+}
+.shiftTransferRadioEditBtn:active {
+    transform: scale(0.9);
+}

@@ -1,0 +1,108 @@
+.share {
+    width: 100%;
+    border-radius: 10px;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+}
+
+.shareWrapper {
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.shareTop {
+    display: flex;
+    align-items: center;
+}
+
+
+.shareInput {
+    border: none;
+    width: 90%;
+    padding: 10px;
+    border-radius: 10px 10px 10px 0;
+}
+
+.shareInput:focus {
+    outline: none;
+}
+
+.shareHr {
+    margin: 20px;
+}
+
+.shareBottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.shareOptions {
+    display: flex;
+    margin-left: 20px;
+}
+
+.shareOption {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+.shareIcon {
+    font-size: 18px;
+    margin-right: 10px;
+    color: var(--bgMsg);
+}
+.shareEmoji{
+    display: flex;
+    align-items: center;
+}
+.shareEmojiPicker{
+    margin-top: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.shareOptionText {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.shareButton {
+    border: none;
+    padding: 7px;
+    border-radius: 5px;
+    background-color: var(--bgSendBtn);
+    font-weight: 500;
+    margin-right: 20px;
+    cursor: pointer;
+    color: var(--cSendBtn);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px groove var(--cText);
+}
+
+.shareImgContainer{
+    padding: 0 20px 10px 20px;
+    position: relative;
+}
+.shareImg{
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.shareCancel{
+    position: absolute;
+    top: 0;
+    right: 20px;
+    cursor: pointer;
+    opacity: 0.7;
+    border: 3px solid var(--cBadgeNtf);
+    border-radius: 50%;
+    color: var(--cSendBtn);
+}

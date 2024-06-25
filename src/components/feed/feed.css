@@ -1,0 +1,27 @@
+.feed {
+    flex: 5.5;
+}
+
+.feedWrapper {
+    padding: 20px;
+}
+
+.feedEventsInformationContent,
+.feedTlToLineInformationContent {
+    width: 100%;
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 800;
+    color: yellow;
+    border-radius: 5px;
+    background-color: green;
+}
+
+.feedTlToLineInformationContent {
+    background-color: rgba(109, 63, 63, 0.192);
+}
