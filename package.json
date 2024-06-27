@@ -47,5 +47,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://nmemo-api.onrender.com/api"
+  "proxy": "https://nmemo-api.onrender.com"
 }
