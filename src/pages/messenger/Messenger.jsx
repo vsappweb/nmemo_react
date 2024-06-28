@@ -12,6 +12,7 @@ import { Group } from "@mui/icons-material";
 
 export default function Messenger() {
     const API = process.env.REACT_APP_SERVER_API
+    const SOCKET = process.env.REACT_APP_SOCKET
     const [conversations, setConversations] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
@@ -41,7 +42,7 @@ export default function Messenger() {
 
 
     useEffect(() => {
-        socket.current = io("ws://localhost:8900");
+        socket.current = io(`${SOCKET}`);
         socket.current.on("getMessage", (data) => {
             setArrivalMessage({
                 sender: data.senderId,
@@ -49,7 +50,7 @@ export default function Messenger() {
                 createdAt: Date.now(),
             });
         });
-    }, []);
+    }, [SOCKET]);
 
     useEffect(() => {
         arrivalMessage &&

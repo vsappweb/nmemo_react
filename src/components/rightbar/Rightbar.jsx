@@ -13,6 +13,7 @@ import UserRole from "../userRole/UserRole"
 
 export default function Rightbar({ user }) {
     const API = process.env.REACT_APP_SERVER_API
+    const SOCKET = process.env.REACT_APP_SOCKET
     const date = new Date();
     const [friends, setFriends] = useState([]);
     const { user: currentUser, dispatch } = useContext(AuthContext);
@@ -55,14 +56,14 @@ export default function Rightbar({ user }) {
     }, [API]);
 
     useEffect(() => {
-        socket.current = io("ws://localhost:8900");
+        socket.current = io(`${SOCKET}`);
         socket.current.emit("sendUser", currentUser._id);
         socket.current.on("getUsers", (users) => {
             setOnlineUsers(
                 currentUser.followings.filter((f) => users.some((u) => u.userId === f))
             );
         });
-    }, [currentUser._id, currentUser.followings]);
+    }, [currentUser._id, currentUser.followings, SOCKET]);
 
     useEffect(() => {
         const getFriends = async () => {
