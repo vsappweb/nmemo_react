@@ -6,11 +6,13 @@ module.exports = function(app) {
   }
 
   try {
+    console.log('*****\nSetting up proxy\n*****');
     app.use(
        '/api',
       createProxyMiddleware({
-        target: 'http://localhost:8801',
+        target: 'http://localhost:8800',
         changeOrigin: true,
+        followRedirects: true, // allow redirects
       })
     );
   } catch (error) {

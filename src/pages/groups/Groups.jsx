@@ -8,21 +8,23 @@ import { AuthContext } from "../../context/AuthContext";
 import AllUsers from '../../components/allUsers/AllUsers';
 import { Link } from "react-router-dom";
 
+
 export default function Groups() {
+  const API = process.env.REACT_APP_SERVER_API
   const [allUsers, setUsers] = useState([]);
   const { user } = useContext(AuthContext);
 
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const res = await axios.get("/users/usersList");
+        const res = await axios.get(`${API}/users/usersList`);
         setUsers(res.data);
       } catch (err) {
         console.log(err);
       }
     };
     getUsers()
-  }, []);
+  }, [API]);
 
 
 
