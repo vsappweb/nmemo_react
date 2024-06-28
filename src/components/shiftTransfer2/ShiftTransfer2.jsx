@@ -12,6 +12,7 @@ import  DateTimeShift  from "../dateTimeShift/DateTimeShift";
 
 
 export default function ShiftTransfer2(shiftTransfer) {
+    const API = process.env.REACT_APP_SERVER_API
     const date = new Date();
     const { user } = useContext(AuthContext);
     const [allShiftsTransfer, setAllShiftsTransfer] = useState([]);
@@ -141,7 +142,7 @@ export default function ShiftTransfer2(shiftTransfer) {
     useEffect(() => {
         const fetchAllShiftsTransfer = async () => {
             try {
-                const res = await axios.get("/shiftTransfersItems/allShiftTransfersItems");
+                const res = await axios.get(`${API}/shiftTransfersItems/allShiftTransfersItems`);
                 setAllShiftsTransfer(res.data);
                 // console.log(res.data);
             } catch (err) {
@@ -149,7 +150,7 @@ export default function ShiftTransfer2(shiftTransfer) {
             }
         };
         fetchAllShiftsTransfer();
-    }, []);
+    }, [API]);
 
 
     // when click on submit button this function will be called to update database and get new values from database
@@ -174,7 +175,7 @@ export default function ShiftTransfer2(shiftTransfer) {
             // console.log(newShiftTransfer);
 
             // console.log(shiftTransfer);
-            axios.post("/shiftTransfers", shiftTransfer);
+            axios.post(`${API}/shiftTransfers`, shiftTransfer);
             console.log("shift transfer has been successfully posted");
             setTimeout(() => {
                 deleteAll();

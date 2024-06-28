@@ -9,6 +9,7 @@ import DateTimeShift from '../../components/dateTimeShift/DateTimeShift'
 
 
 export default function RightbarMonitoring() {
+    const API = process.env.REACT_APP_SERVER_API
     let [allUsers, setAllUsers] = useState([]);
     let [showConfirmationMemo, setShowConfirmationMemo] = useState(false);
     let [showConfirmationShift, setShowConfirmationShift] = useState(false);
@@ -19,7 +20,7 @@ export default function RightbarMonitoring() {
         const getUsrsers = async () => {
 
             try {
-                const res = await axios.get("/users/usersList");
+                const res = await axios.get(`${API}/users/usersList`);
                 setAllUsers(res.data);
             } catch (err) {
                 console.log(err);
@@ -27,13 +28,13 @@ export default function RightbarMonitoring() {
         }
         getUsrsers();
 
-    }, []);
+    }, [API]);
 
     useEffect(() => {
         let interval;
         const getConfirmationMemo = async () => {
             try {
-                const res = await axios.get("/memos/allMemos");
+                const res = await axios.get(`${API}/memos/allMemos`);
                 setShowConfirmationMemo(res.data);
             } catch (err) {
                 console.log(err);
@@ -46,13 +47,13 @@ export default function RightbarMonitoring() {
         }
         interval = setInterval(getConfirmationMemo, 60000);
         return () => clearInterval(interval);
-    }, []);
+    }, [API]);
 
     useEffect(() => {
         let interval;
         const getConfirmationShift = async () => {
             try {
-                const res = await axios.get("/shiftTransfers/allShiftTransfers");
+                const res = await axios.get(`${API}/shiftTransfers/allShiftTransfers`);
                 setShowConfirmationShift(res.data);
             } catch (err) {
                 console.log(err);
@@ -65,7 +66,7 @@ export default function RightbarMonitoring() {
         }
         interval = setInterval(getConfirmationShift, 60000);
         return () => clearInterval(interval);
-    }, []);
+    }, [API]);
 
     // sort events by date and time
     const compare = (a, b) => {

@@ -10,6 +10,7 @@ import axios from "axios";
 
 
 export default function EditProfile() {
+  const API = process.env.REACT_APP_SERVER_API;
   const { user } = useContext(AuthContext);
   const userId = useRef();
   const email = useRef();
@@ -54,7 +55,7 @@ export default function EditProfile() {
   const getEditUser = async (userId) => {
     try {
       console.log(userId.current.value)
-      const res = await axios.get(`/users?userId=${userId.current.value}`)
+      const res = await axios.get(`${API}/users?userId=${userId.current.value}`)
       console.log(res.data)
       setEditUser(res.data)
       document.getElementById("editProfileForm").reset();
@@ -66,7 +67,7 @@ export default function EditProfile() {
   const getEditUserRem = async (userIdRem) => {
     try {
       console.log(userIdRem.current.value)
-      const res = await axios.get(`/users?userId=${userIdRem.current.value}`)
+      const res = await axios.get(`${API}/users?userId=${userIdRem.current.value}`)
       console.log(res.data)
       setRemoveUser(res.data)
       console.log(editUser.username)
@@ -77,7 +78,7 @@ export default function EditProfile() {
   const getEditUserIsAdmin = async (userIsAdmin) => {
     try {
       console.log(userIsAdmin.current.value)
-      const res = await axios.get(`/users?userId=${userIsAdmin.current.value}`)
+      const res = await axios.get(`${API}/users?userId=${userIsAdmin.current.value}`)
       console.log(res.data)
       setIsAdminUser(res.data)
       setIsChecked(res.data.isAdmin)
@@ -126,9 +127,9 @@ export default function EditProfile() {
       // console.log("test 3",userId.current.value)
       // console.log("test 3",personnelnumber.current.value)
       // console.log("test 3",user)
-      await axios.post("/upload", dataCoverPicture);
-      await axios.post("/upload", dataProfilePicture);
-      await axios.put("/users/" + userId.current.value, user);
+      await axios.post(`${API}/upload`, dataCoverPicture);
+      await axios.post(`${API}/upload`, dataProfilePicture);
+      await axios.put(`${API}/users/` + userId.current.value, user);
       // navigate("/")
       // localStorage.clear();
       window.location.reload();
@@ -151,7 +152,7 @@ export default function EditProfile() {
       try {
         console.log(changePassword)
         console.log(changePasswordAgain)
-        await axios.put("/users/" + changePasswordUserId.current.value, user);
+        await axios.put(`${API}/users/` + changePasswordUserId.current.value, user);
         window.location.reload();
       } catch (err) {
         console.log(err)
@@ -177,7 +178,7 @@ export default function EditProfile() {
       try {
         console.log("test start")
         console.log(user)
-        await axios.post("/auth/register", user);
+        await axios.post(`${API}/auth/register`, user);
         console.log("test end")
         window.location.reload();
       } catch (err) {
@@ -209,7 +210,7 @@ export default function EditProfile() {
       console.log(userIdRem.current.value)
       console.log(user)
 
-      await axios.put(`/users/` + userIdRem.current.value, user);
+      await axios.put(`${API}/users/` + userIdRem.current.value, user);
       window.location.reload();
     } catch (err) {
       console.log(err)
@@ -225,7 +226,7 @@ export default function EditProfile() {
       userId: userIdDel.current.value
     };
     try {
-      await axios.delete("/users/" + userIdDel.current.value, user);
+      await axios.delete(`${API}/users/` + userIdDel.current.value, user);
       window.location.reload();
     } catch (err) {
       console.log(err)
@@ -240,7 +241,7 @@ export default function EditProfile() {
     try {
       console.log(userIsAdminCheck.current.value)
 
-      await axios.put("/users/" + userIsAdmin.current.value, user);
+      await axios.put(`${API}/users/` + userIsAdmin.current.value, user);
       // window.location.reload();
     } catch (err) {
       console.log(err)

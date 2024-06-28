@@ -7,6 +7,7 @@ import axios from "axios"
 import Picker from "emoji-picker-react";
 
 export default function Memo() {
+    const API = process.env.REACT_APP_SERVER_API
     let [allPreparedTexts, setPreparedTexts] = useState([]);
     const [getPreparedText, setGetPreparedText] = useState({});
     const [date] = useState(new Date());
@@ -23,14 +24,14 @@ export default function Memo() {
     useEffect(() => {
         const getPreparedTexts = async () => {
             try {
-                const res = await axios.get("/preparedTexts/allPreparedTexts");
+                const res = await axios.get(`${API}/preparedTexts/allPreparedTexts`);
                 setPreparedTexts(res.data);
             } catch (err) {
                 console.log(err);
             }
         };
         getPreparedTexts();
-    }, []);
+    }, [API]);
 
 
     // emoji picker
@@ -71,7 +72,7 @@ export default function Memo() {
     // delete preparedText
     const handlePreparedTextDelete = (preparedText) => {
         try {
-            axios.delete(`/preparedTexts/${preparedText._id}`)
+            axios.delete(`${API}/preparedTexts/${preparedText._id}`)
             window.location.reload();
         } catch (err) {
             console.log(err)
@@ -95,7 +96,7 @@ export default function Memo() {
             data.append("file", file);
             newMemo.img = fileName;
             try {
-                await axios.post("/upload", data);
+                await axios.post(`${API}/upload`, data);
                 window.location.reload();
             } catch (err) {
                 console.log(err);
@@ -104,7 +105,7 @@ export default function Memo() {
 
 
         try {
-            await axios.post("/memos", newMemo);
+            await axios.post(`${API}/memos`, newMemo);
             window.location.reload();
         } catch (err) {
 
@@ -120,7 +121,7 @@ export default function Memo() {
         };
         try {
             console.log(preparedText)
-            await axios.post("/preparedTexts", preparedText);
+            await axios.post(`${API}/preparedTexts`, preparedText);
             window.location.reload();
         } catch (err) {
             console.log(err)
@@ -136,7 +137,7 @@ export default function Memo() {
         try {
             console.log(preparedText)
             console.log(getPreparedText._id)
-            await axios.put(`/preparedTexts/${getPreparedText._id}`, preparedText);
+            await axios.put(`${API}/preparedTexts/${getPreparedText._id}`, preparedText);
             window.location.reload();
         } catch (err) {
             console.log(err)
@@ -172,10 +173,10 @@ export default function Memo() {
                                                 <p className="memoChoisePreparedTextItemTitle" onClick={() => handlePreparedTextsText(preparedText)}>{preparedText.title}</p>
                                             </div>
                                             {user.role === 0 || user.isAdmin ? <div className="memoChoisePreparedTextItemDo">
-                                                <div className="EditBtn">
+                                                <div className="editBtn">
                                                     <Edit className="preparedTextEdit" onClick={() => handlePreparedTextGet(preparedText)} />
                                                 </div>
-                                                <div className="DeleteBtn">
+                                                <div className="deleteBtn">
                                                     <HighlightOff className="preparedTextDelete" onClick={() => handlePreparedTextDelete(preparedText)} />
                                                 </div>
                                             </div> : <></>}

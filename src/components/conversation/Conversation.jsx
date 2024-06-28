@@ -5,6 +5,7 @@ import { HighlightOff } from "@mui/icons-material";
 import axios from 'axios';
 
 export default function Conversation({ conversation, currentUser }) {
+  const API = process.env.REACT_APP_SERVER_API
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -15,19 +16,19 @@ export default function Conversation({ conversation, currentUser }) {
     const getUser = async () => {
       try {
         // console.log(friendId+"   tetstest")
-        const res = await axios("/users?userId=" + friendId);
+        const res = await axios(`${API}/users?userId=` + friendId);
         setUser(res.data);
       } catch (err) {
         console.log(err);
       }
     }
     getUser();
-  }, [currentUser, conversation]);
+  }, [currentUser, conversation, API]);
 
 
   const conversationDeleteHandler = () => {
     try {
-        axios.delete("/conversations/" + conversation._id)
+        axios.delete(`${API}/conversations/` + conversation._id)
         window.location.reload();
     } catch (err) {
         console.log(err)

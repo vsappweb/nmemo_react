@@ -7,6 +7,7 @@ import axios from "axios"
 
 
 export default function TlToLine() {
+    const API = process.env.REACT_APP_SERVER_API
     const [date] = useState(new Date());
     const desc = useRef();
     const forWho = useRef();
@@ -39,7 +40,7 @@ export default function TlToLine() {
             data.append("file", file);
             newtlToLine.img = fileName;
             try {
-                await axios.post("/upload", data);
+                await axios.post(`${API}/upload`, data);
                 window.location.reload();
             } catch (err) {
                 console.log(err);
@@ -48,7 +49,7 @@ export default function TlToLine() {
 
 
         try {
-            await axios.post("/tlToLines", newtlToLine);
+            await axios.post(`${API}/tlToLines`, newtlToLine);
             window.location.reload();
         } catch (err) {
 
@@ -59,14 +60,14 @@ export default function TlToLine() {
     useEffect(() => {
         const getUsers = async () => {
             try {
-                const res = await axios.get("/users/usersList");
+                const res = await axios.get(`${API}/users/usersList`);
                 setUsers(res.data);
             } catch (err) {
                 console.log(err);
             }
         };
         getUsers()
-    }, []);
+    }, [API]);
 
     // sort users by role (operators and wals)
     const roles = (a, b) => {

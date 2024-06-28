@@ -5,19 +5,20 @@ import AvatarUser from "../avatarUser/AvatarUser"
 import axios from "axios"
 
 export default function Message({ message, own }) {
+    const API = process.env.REACT_APP_SERVER_API
     const [user, setUser] = useState([])
 
     useEffect(() => {
         const getUser = async () => {
             try {
-                const res = await axios.get("/users?userId=" + message.sender);
+                const res = await axios.get(`${API}/users?userId=` + message.sender);
                 setUser(res.data)
             } catch (err) {
                 console.log(err)
             }
         };
         getUser()
-    }, [message]);
+    }, [message, API]);
 
     return (
         <div className={own ? "message own" : "message"}>

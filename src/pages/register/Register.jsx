@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"  //import {useHistory} from "reac
 import { Link } from "react-router-dom"
 
 export default function Register() {
-    const API = process.env.REACT_APP_SERVER_API
+    const API = process.env.REACT_APP_SERVER_API;
     const email = useRef();
     const personnelnumber = useRef();
     const password = useRef();

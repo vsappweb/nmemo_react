@@ -11,6 +11,7 @@ import RightbarMonitoring from '../../components/rightbarMonitoring/RightbarMoni
 
 
 export default function NMemo() {
+  const API = process.env.REACT_APP_SERVER_API;
   const [postsMemo, setPostsMemo] = useState([]);
   const { user } = useContext(AuthContext)
   let [allMemos, setAllMemos] = useState([]);
@@ -21,7 +22,7 @@ export default function NMemo() {
     let interval;
     const fetchData = async () => {
       try {
-        const res = await axios.get("/memos/allMemos");
+        const res = await axios.get(`${API}/memos/allMemos`);
         setAllMemos(res.data);
       } catch (err) {
         console.error(err);
@@ -37,7 +38,7 @@ export default function NMemo() {
     interval = setInterval(fetchData, 10000); //set your time here. repeat every 10 seconds
 
     return () => clearInterval(interval);
-  }, []);
+  }, [API]);
 
   // // sort users by role (operators and wals)
   // const sort = (a, b) => {
@@ -58,13 +59,13 @@ export default function NMemo() {
 
   useEffect(() => {
     const fetchPostsMemo = async () => {
-      const res = await axios.get("/memos/profile/" + user.personnelnumber)
+      const res = await axios.get(`${API}/memos/profile/` + user.personnelnumber)
       setPostsMemo(res.data.sort((m1, m2) => {
         return new Date(m2.createdAt) - new Date(m1.createdAt);
       }));
     };
     fetchPostsMemo();
-  }, [user.personnelnumber])
+  }, [user.personnelnumber, API]);
 
 
   const compare = (a, b) => {

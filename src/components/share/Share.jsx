@@ -7,6 +7,7 @@ import axios from "axios"
 import Picker from "emoji-picker-react"
 
 export default function Share() {
+    const API = process.env.REACT_APP_SERVER_API
     const { user } = useContext(AuthContext);
     const desc = useRef();
     const [file, setFile] = useState(null);
@@ -34,7 +35,7 @@ export default function Share() {
             data.append("file", file);
             newPost.img = fileName;
             try {
-                await axios.post("/upload", data);
+                await axios.post(`${API}/upload`, data);
                 window.location.reload();
             } catch (err) {
                 console.log(err);
@@ -43,7 +44,7 @@ export default function Share() {
 
 
         try {
-            await axios.post("/posts", newPost);
+            await axios.post(`${API}/posts`, newPost);
             window.location.reload();
         } catch (err) {
 

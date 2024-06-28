@@ -5,6 +5,7 @@ import { HighlightOff, Edit, CleaningServices } from "@mui/icons-material";
 import DateTime from '../dateTime/DateTime';
 
 export default function EditCalendar() {
+  const API = process.env.REACT_APP_SERVER_API
   let [allEvents, setEvents] = useState([]);
   const [getEvent, setGetEvent] = useState({});
   const [isChecked, setIsChecked] = useState(false);
@@ -22,14 +23,14 @@ export default function EditCalendar() {
   useEffect(() => {
     const getEvents = async () => {
       try {
-        const res = await axios.get("/events/allEvents");
+        const res = await axios.get(`${API}/events/allEvents`);
         setEvents(res.data);
       } catch (err) {
         console.log(err);
       }
     };
     getEvents();
-  }, []);
+  }, [API]);
 
   // create event in database 
   const handleClickCreate = async (e) => {
@@ -45,7 +46,7 @@ export default function EditCalendar() {
       console.log(event)
       console.log(getEvent._id)
       console.log(allDay.current.value)
-      await axios.post("/events", event);
+      await axios.post(`${API}/events`, event);
       window.location.reload();
     } catch (err) {
       console.log(err)
@@ -65,7 +66,7 @@ export default function EditCalendar() {
     try {
       console.log(event)
       console.log(getEvent._id)
-      await axios.put(`/events/${getEvent._id}`, event);
+      await axios.put(`${API}/events/${getEvent._id}`, event);
       window.location.reload();
     } catch (err) {
       console.log(err)
@@ -76,7 +77,7 @@ export default function EditCalendar() {
   // delete event by id from database
   const eventDeleteHandler = (event) => {
     try {
-      axios.delete(`/events/${event._id}`)
+      axios.delete(`${API}/events/${event._id}`)
       window.location.reload();
     } catch (err) {
       console.log(err)

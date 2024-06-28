@@ -8,6 +8,7 @@ import { Link } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Post({ post }) {
+    const API = process.env.REACT_APP_SERVER_API
     const [like, setLike] = useState(post.likes.length);
     const [love, setLove] = useState(post.loves.length);
     const [isLiked, setIsLiked] = useState(false);
@@ -29,15 +30,15 @@ export default function Post({ post }) {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`/users?userId=${post.userId}`)
+            const res = await axios.get(`${API}/users?userId=${post.userId}`)
             setUser(res.data)
         };
         fetchUser();
-    }, [post.userId]);
+    }, [post.userId, API]);
 
     const postDeleteHandler = () => {
         try {
-            axios.delete("/posts/" + post._id)
+            axios.delete(`${API}/posts/` + post._id)
             window.location.reload();
         } catch (err) {
             console.log(err)
@@ -47,7 +48,7 @@ export default function Post({ post }) {
 
     const likeHandler = () => {
         try {
-            axios.put("/posts/" + post._id + "/like", { userId: currentUser._id })
+            axios.put(`${API}/posts/` + post._id + "/like", { userId: currentUser._id })
         } catch (err) {
         }
         setLike(isLiked ? like - 1 : like + 1)
@@ -56,7 +57,7 @@ export default function Post({ post }) {
 
     const loveHandler = () => {
         try {
-            axios.put("/posts/" + post._id + "/love", { userId: currentUser._id })
+            axios.put(`${API}/posts/` + post._id + "/love", { userId: currentUser._id })
         } catch (err) {
         }
         setLove(isLoved ? love - 1 : love + 1)

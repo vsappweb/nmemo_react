@@ -9,6 +9,7 @@ import { Link } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
 
 export default function PostShiftTransfer({ shiftTransfer }) {
+    const API = process.env.REACT_APP_SERVER_API
     const [user, setUser] = useState({});
     const { user: currentUser } = useContext(AuthContext);
     const [allUsers, setUsers] = useState([]);
@@ -18,28 +19,28 @@ export default function PostShiftTransfer({ shiftTransfer }) {
     useEffect(() => {
         const getUsers = async () => {
             try {
-                const res = await axios.get("/users/usersList");
+                const res = await axios.get(`${API}/users/usersList`);
                 setUsers(res.data);
             } catch (err) {
                 console.log(err);
             }
         };
         getUsers()
-    }, []);
+    }, [API]);
 
 
 
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`/users?userId=${shiftTransfer.userId}`)
+            const res = await axios.get(`${API}/users?userId=${shiftTransfer.userId}`)
             setUser(res.data)
         };
         fetchUser();
-    }, [shiftTransfer.userId]);
+    }, [shiftTransfer.userId, API]);
 
     const shiftTransferDeleteHandler = () => {
         try {
-            axios.delete("/shiftTransfers/" + shiftTransfer._id)
+            axios.delete(`${API}/shiftTransfers/` + shiftTransfer._id)
             window.location.reload();
         } catch (err) {
             console.log(err)

@@ -9,6 +9,7 @@ import Rightbar from '../../components/rightbar/Rightbar'
 import { HighlightOff } from "@mui/icons-material";
 
 export default function SendTlToLine() {
+  const API = process.env.REACT_APP_SERVER_API
   const date = new Date();
   let [allTlToLines, setTlToLines] = useState([]);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
@@ -31,7 +32,7 @@ export default function SendTlToLine() {
     let interval;
     const fetchData = async () => {
       try {
-        const res = await axios.get("/tlToLines/allTlToLines");
+        const res = await axios.get(`${API}/tlToLines/allTlToLines`);
         setTlToLines(res.data);
       } catch (err) {
         console.error(err);
@@ -47,12 +48,12 @@ export default function SendTlToLine() {
     interval = setInterval(fetchData, 10000);
     return () => clearInterval(interval);
 
-  }, []);
+  }, [API]);
 
 
   const eventDeleteHandler = (toLines) => {
     try {
-      axios.delete(`/tlToLines/${toLines._id}`)
+      axios.delete(`${API}/tlToLines/${toLines._id}`)
       window.location.reload();
     } catch (err) {
       console.log(err)

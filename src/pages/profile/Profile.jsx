@@ -9,6 +9,7 @@ import { useParams } from "react-router";
 import AvatarUser from "../../components/avatarUser/AvatarUser";
 
 export default function Profile() {
+    const API = process.env.REACT_APP_SERVER_API
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
     const [user, setUser] = useState({});
     const personnelnumber = useParams().personnelnumber;
@@ -16,11 +17,11 @@ export default function Profile() {
     useEffect(() => {
         const fetchUser = async () => {
 
-            const res = await axios.get(`/users?personnelnumber=${personnelnumber}`)
+            const res = await axios.get(`${API}/users?personnelnumber=${personnelnumber}`)
             setUser(res.data)
         };
         fetchUser();
-    }, [personnelnumber]);
+    }, [personnelnumber, API]);
 
 
     return (

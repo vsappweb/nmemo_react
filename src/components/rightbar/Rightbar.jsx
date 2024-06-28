@@ -12,6 +12,7 @@ import UserRole from "../userRole/UserRole"
 
 
 export default function Rightbar({ user }) {
+    const API = process.env.REACT_APP_SERVER_API
     const date = new Date();
     const [friends, setFriends] = useState([]);
     const { user: currentUser, dispatch } = useContext(AuthContext);
@@ -24,25 +25,34 @@ export default function Rightbar({ user }) {
 
     // get all events from database 
     useEffect(() => {
-        let interval;
+        let intervalId;
         const fetchData = async () => {
             try {
-                const res = await axios.get("/events/allEvents");
-                setEvents(res.data);
+                const res = await axios.get(`${API}/events/allEvents`);
+                if (res && res.data) {
+                    setEvents(res.data);
+                }
             } catch (err) {
                 console.error(err);
             }
         };
 
-        let result = fetchData()
+        const startInterval = () => {
+            intervalId = setInterval(fetchData, 5000);
+        };
 
-        if (!result) {
-            interval = setInterval(fetchData, 5000);
-        }
+        const stopInterval = () => {
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+        };
 
-        // interval = setInterval(fetchData, 5000); //set your time here. repeat every 5 seconds
-        return () => clearInterval(interval);
-    }, []);
+        startInterval();
+
+        return () => {
+            stopInterval();
+        };
+    }, [API]);
 
     useEffect(() => {
         socket.current = io("ws://localhost:8900");
@@ -60,14 +70,14 @@ export default function Rightbar({ user }) {
                 return;
             }
             try {
-                const friendList = await axios.get(`/users/friends/${user?._id}`);
+                const friendList = await axios.get(`${API}/users/friends/${user?._id}`);
                 setFriends(friendList?.data);
             } catch (err) {
                 console.error("Failed to get friends:", err);
             }
         }
         getFriends();
-    }, [user]);
+    }, [user, API]);
 
 
     // useEffect(() => {
@@ -99,10 +109,10 @@ export default function Rightbar({ user }) {
     const handleClick = async () => {
         try {
             if (followed) {
-                await axios.put(`/users/${user._id}/unfollow`, { userId: currentUser._id, });
+                await axios.put(`${API}/users/${user._id}/unfollow`, { userId: currentUser._id, });
                 dispatch({ type: "UNFOLLOW", payload: user._id });
             } else {
-                await axios.put(`/users/${user._id}/follow`, { userId: currentUser._id, });
+                await axios.put(`${API}/users/${user._id}/follow`, { userId: currentUser._id, });
                 dispatch({ type: "FOLLOW", payload: user._id })
             }
         } catch (err) {

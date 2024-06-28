@@ -8,6 +8,7 @@ import { Link } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
 
 export default function PostTlToLine({ tlToLine }) {
+    const API = process.env.REACT_APP_SERVER_API
     // const [like, setLike] = useState(tlToLine.likes.length);
     const [isReaded, setIReaded] = useState(tlToLine.isRead.length);
     // const [isLiked, setIsLiked] = useState(false);
@@ -28,15 +29,15 @@ export default function PostTlToLine({ tlToLine }) {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`/users?userId=${tlToLine.userId}`)
+            const res = await axios.get(`${API}/users?userId=${tlToLine.userId}`)
             setUser(res.data)
         };
         fetchUser();
-    }, [tlToLine.userId]);
+    }, [tlToLine.userId, API]);
 
     const tlToLineDeleteHandler = () => {
         try {
-            axios.delete("/tlToLines/" + tlToLine._id)
+            axios.delete(`${API}/tlToLines/` + tlToLine._id)
             window.location.reload();
         } catch (err) {
             console.log(err)
@@ -55,7 +56,7 @@ export default function PostTlToLine({ tlToLine }) {
 
     const isReadHandler = () => {
         try {
-            axios.put("/tlToLines/" + tlToLine._id + "/isRead", { userId: currentUser._id })
+            axios.put(`${API}/tlToLines/` + tlToLine._id + "/isRead", { userId: currentUser._id })
         } catch (err) {
         }
         setIReaded(isIReadd ? isReaded - 1 : isReaded + 1)

@@ -8,6 +8,7 @@ import { Link } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
 
 export default function PostMemo({ memo }) {
+    const API = process.env.REACT_APP_SERVER_API
     const [like, setLike] = useState(memo.likes.length);
     const [love, setLove] = useState(memo.loves.length);
     const [isLiked, setIsLiked] = useState(false);
@@ -28,15 +29,15 @@ export default function PostMemo({ memo }) {
 
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`/users?userId=${memo.userId}`)
+            const res = await axios.get(`${API}/users?userId=${memo.userId}`)
             setUser(res.data)
         };
         fetchUser();
-    }, [memo.userId]);
+    }, [memo.userId, API]);
 
     const memoDeleteHandler = () => {
         try {
-            axios.delete("/memos/" + memo._id)
+            axios.delete(`${API}/memos/` + memo._id)
             window.location.reload();
         } catch (err) {
             console.log(err)
@@ -46,7 +47,7 @@ export default function PostMemo({ memo }) {
 
     const likeHandler = () => {
         try {
-            axios.put("/memos/" + memo._id + "/like", { userId: currentUser._id })
+            axios.put(`${API}/memos/` + memo._id + "/like", { userId: currentUser._id })
         } catch (err) {
         }
         setLike(isLiked ? like - 1 : like + 1)
@@ -55,7 +56,7 @@ export default function PostMemo({ memo }) {
 
     const loveHandler = () => {
         try {
-            axios.put("/memos/" + memo._id + "/love", { userId: currentUser._id })
+            axios.put(`${API}/memos/` + memo._id + "/love", { userId: currentUser._id })
         } catch (err) {
         }
         setLove(isLoved ? love - 1 : love + 1)

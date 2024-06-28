@@ -13,6 +13,7 @@ import { renderToString } from 'react-dom/server'
 import DateTimeShift from '../../components/dateTimeShift/DateTimeShift'
 
 export default function EditShiftTransfer() {
+  const API = process.env.REACT_APP_SERVER_API
   let [postsShiftTransfer, setPostsShiftTransfer] = useState([]);
   const { user } = useContext(AuthContext)
   let [allShiftsTransfers, setAllShiftsTransfers] = useState([]);
@@ -29,7 +30,7 @@ export default function EditShiftTransfer() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("/shiftTransfers/allShiftTransfers");
+        const res = await axios.get(`${API}/shiftTransfers/allShiftTransfers`);
         setAllShiftsTransfers(res.data);
         console.log(res.data);
       } catch (err) {
@@ -37,13 +38,13 @@ export default function EditShiftTransfer() {
       }
     };
     fetchData();
-  }, []);
+  }, [API]);
 
   useEffect(() => {
     let interval;
     const fetchData = async () => {
       try {
-        const res = await axios.get("/shiftTransfersItems/allShiftTransfersItems");
+        const res = await axios.get(`${API}/shiftTransfersItems/allShiftTransfersItems`);
         setAllShiftTransferItems(res.data);
         console.log(res.data);
       } catch (err) {
@@ -56,21 +57,21 @@ export default function EditShiftTransfer() {
     }
     interval = setInterval(fetchData, 60000);
     return () => clearInterval(interval);
-  }, []);
+  }, [API]);
 
   useEffect(() => {
     const fetchPostsShiftTransfer = async () => {
-      const res = await axios.get("/shiftTransfers/profile/" + user.personnelnumber)
+      const res = await axios.get(`${API}/shiftTransfers/profile/` + user.personnelnumber)
       setPostsShiftTransfer(res.data.sort((st1, st2) => {
         return new Date(st2.createdAt) - new Date(st1.createdAt);
       }));
     };
     fetchPostsShiftTransfer();
-  }, [user.personnelnumber])
+  }, [user.personnelnumber, API])
 
   const deleteShiftTransfer = async (id) => {
     try {
-      await axios.delete(`/shiftTransfers/${id}`);
+      await axios.delete(`${API}/shiftTransfers/${id}`);
       window.location.reload();
     } catch (err) {
       console.error(err);
@@ -94,7 +95,7 @@ export default function EditShiftTransfer() {
   // delete shift transfer item
   const handleShTrItemDelete = async (stItems) => {
     try {
-      await axios.delete(`/shiftTransfersItems/${stItems._id}`);
+      await axios.delete(`${API}/shiftTransfersItems/${stItems._id}`);
       window.location.reload();
     } catch (err) {
       console.error(err);
@@ -119,7 +120,7 @@ export default function EditShiftTransfer() {
     };
     try {
       console.log(newItem)
-      await axios.post("/shiftTransfersItems", newItem);
+      await axios.post(`${API}/shiftTransfersItems`, newItem);
       window.location.reload();
     } catch (err) {
       console.log(err)
@@ -133,7 +134,7 @@ export default function EditShiftTransfer() {
       title: item.current.value,
     };
     try {
-      await axios.put(`/shiftTransfersItems/${getShTrItem._id}`, newItem);
+      await axios.put(`${API}/shiftTransfersItems/${getShTrItem._id}`, newItem);
       window.location.reload();
     } catch (err) {
       console.log(err)

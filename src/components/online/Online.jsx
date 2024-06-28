@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import AvatarUser from "../avatarUser/AvatarUser";
 
 export default function Online({ onlineUsers, currentId }) {
+    const API = process.env.REACT_APP_SERVER_API
     const [friends, setFriends] = useState([]);
     const [onlineFriends, setOnlineFriends] = useState([]);
 
@@ -12,11 +13,11 @@ export default function Online({ onlineUsers, currentId }) {
     //TODO Show all online friends, not just followers
     useEffect(() => {
         const getFriends = async () => {
-            const res = await axios.get("/users/friends/" + currentId);
+            const res = await axios.get(`${API}/users/friends/` + currentId);
             setFriends(res.data);
         };
         getFriends();
-    }, [currentId]);
+    }, [currentId, API]);
 
     useEffect(() => {
         setOnlineFriends(friends.filter((f) => onlineUsers.includes(f._id)));

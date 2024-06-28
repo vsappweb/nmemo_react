@@ -9,6 +9,7 @@ import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
 export default function Topbar() {
+    const API = process.env.REACT_APP_SERVER_API;
     const { user, dispatch } = useContext(AuthContext);
     // const { user: currentUser, dispatch } = useContext(AuthContext);
     const navigate = useNavigate()
@@ -47,14 +48,14 @@ export default function Topbar() {
     useEffect(() => {
         const getUsers = async () => {
             try {
-                const res = await axios.get("/users/usersList");
+                const res = await axios.get(`${API}/users/usersList`);
                 setUsers(res.data);
             } catch (err) {
                 console.log(err);
             }
         };
         getUsers()
-    }, []);
+    }, [API]);
 
     const handleClickChangeWals = async (changeWals) => {
         const cleanFollow = {
@@ -62,27 +63,27 @@ export default function Topbar() {
             followings: [],
         };
         try {
-            await axios.put(`/users/${user._id}`, cleanFollow);
-            await axios.put(`/users/${changeWals._id}/follow`, { userId: user._id });
+            await axios.put(`${API}/users/${user._id}`, cleanFollow);
+            await axios.put(`${API}/users/${changeWals._id}/follow`, { userId: user._id });
             dispatch({ type: "FOLLOW", payload: user._id })
             // window.location.reload();
         } catch (err) {
             console.log(err)
-            await axios.put(`/users/${changeWals._id}/unfollow`, { userId: user._id });
+            await axios.put(`${API}/users/${changeWals._id}/unfollow`, { userId: user._id });
             dispatch({ type: "UNFOLLOW", payload: user._id });
-            await axios.put(`/users/${changeWals._id}/follow`, { userId: user._id });
+            await axios.put(`${API}/users/${changeWals._id}/follow`, { userId: user._id });
             dispatch({ type: "FOLLOW", payload: user._id })
             // window.location.reload();
         }
         try {
-            await axios.put(`/users/${user._id}/follow`, { userId: changeWals._id });
+            await axios.put(`${API}/users/${user._id}/follow`, { userId: changeWals._id });
             dispatch({ type: "FOLLOW", payload: changeWals._id })
             window.location.reload();
         } catch (err) {
             console.log(err)
-            await axios.put(`/users/${user._id}/unfollow`, { userId: changeWals._id });
+            await axios.put(`${API}/users/${user._id}/unfollow`, { userId: changeWals._id });
             dispatch({ type: "UNFOLLOW", payload: changeWals._id });
-            await axios.put(`/users/${user._id}/follow`, { userId: changeWals._id });
+            await axios.put(`${API}/users/${user._id}/follow`, { userId: changeWals._id });
             dispatch({ type: "FOLLOW", payload: changeWals._id })
             window.location.reload();
         }

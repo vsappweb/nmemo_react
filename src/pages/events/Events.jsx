@@ -9,6 +9,7 @@ import axios from 'axios';
 import DateTime from '../../components/dateTime/DateTime';
 
 export default function Events() {
+  const API = process.env.REACT_APP_SERVER_API;
   const [allEvents, setEvents] = useState([]);
 
   moment.updateLocale('nl', {
@@ -24,14 +25,14 @@ export default function Events() {
   useEffect(() => {
     const getEvents = async () => {
       try {
-        const res = await axios.get("/events/allEvents");
+        const res = await axios.get(`${API}/events/allEvents`);
         setEvents(res.data);
       } catch (err) {
         console.log(err);
       }
     };
     getEvents()
-  }, []);
+  }, [API]);
 
   const events = Object.values(allEvents).map((event) => {
     return (

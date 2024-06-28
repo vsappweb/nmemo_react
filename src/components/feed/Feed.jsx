@@ -15,6 +15,7 @@ import { AuthContext } from "../../context/AuthContext";
 import DateTimeShift from "../dateTimeShift/DateTimeShift";
 
 export default function Feed({ personnelnumber, shiftTransfer }) {
+    const API = process.env.REACT_APP_SERVER_API
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
     const date = new Date();
     const [posts, setPosts] = useState([]);
@@ -74,7 +75,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
         let interval;
         const fetchData = async () => {
             try {
-                const res = await axios.get("/tlToLines/allTlToLines");
+                const res = await axios.get(`${API}/tlToLines/allTlToLines`);
                 setTlToLines(res.data);
                 console.log("test refresh")
             } catch (err) {
@@ -90,12 +91,12 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
 
         interval = setInterval(fetchData, 10000); //set your time here. repeat every 5 seconds
         return () => clearInterval(interval);
-    }, []);
+    }, [API]);
 
     // delete tlToLine from database
     const eventDeleteHandler = (toLines) => {
         try {
-            axios.delete(`/tlToLines/${toLines._id}`)
+            axios.delete(`${API}/tlToLines/${toLines._id}`)
             window.location.reload();
         } catch (err) {
             console.log(err)
@@ -116,13 +117,13 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     // }, [personnelnumber, user._id])
     useEffect(() => {
         const fetchPostsShiftTransfer = async () => {
-            const res = await axios.get("/shiftTransfers/profile/" + user.personnelnumber)
+            const res = await axios.get(`${API}/shiftTransfers/profile/` + user.personnelnumber)
             setPostsShiftTransfer(res.data.sort((st1, st2) => {
                 return new Date(st2.createdAt) - new Date(st1.createdAt);
             }));
         };
         fetchPostsShiftTransfer();
-    }, [user.personnelnumber])
+    }, [user.personnelnumber, API])
 
 
     // useEffect(() => {
@@ -140,33 +141,33 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     useEffect(() => {
         const fetchPostsMemo = async () => {
             const res = personnelnumber
-                ? await axios.get("/memos/profile/" + personnelnumber)
-                : await axios.get("memos/timeline/" + user._id);
+                ? await axios.get(`${API}/memos/profile/` + personnelnumber)
+                : await axios.get(`${API}/memos/timeline/` + user._id);
             setPostsMemo(res.data.sort((m1, m2) => {
                 return new Date(m2.createdAt) - new Date(m1.createdAt);
             }));
         };
         fetchPostsMemo();
-    }, [personnelnumber, user._id])
+    }, [personnelnumber, user._id, API])
 
 
     useEffect(() => {
         const fetchPosts = async () => {
             const res = personnelnumber
-                ? await axios.get("/posts/profile/" + personnelnumber)
-                : await axios.get("posts/timeline/" + user._id);
+                ? await axios.get(`${API}/posts/profile/` + personnelnumber)
+                : await axios.get(`${API}/posts/timeline/` + user._id);
             setPosts(res.data.sort((p1, p2) => {
                 return new Date(p2.createdAt) - new Date(p1.createdAt);
             }));
         };
         fetchPosts();
-    }, [personnelnumber, user._id])
+    }, [personnelnumber, user._id, API])
 
     useEffect(() => {
         let interval;
         const whatShift = async () => {
             try {
-                console.log(hideShiftTransferForm);
+                // console.log(hideShiftTransferForm);
                 if (postsShiftTransfer) {
                     Object.values(postsShiftTransfer).forEach((postsShiftTransfer) => {
                         if (postsShiftTransfer.shift === shiftNow && postsShiftTransfer.date === date.toLocaleDateString('nl-NL')) {

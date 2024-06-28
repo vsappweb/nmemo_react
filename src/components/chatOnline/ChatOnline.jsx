@@ -4,16 +4,17 @@ import axios from "axios";
 import AvatarUser from "../avatarUser/AvatarUser";
 
 export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
+    const API = process.env.REACT_APP_SERVER_API
     const [friends, setFriends] = useState([]);
     const [onlineFriends, setOnlineFriends] = useState([]);
 
     useEffect(() => {
         const getFriends = async () => {
-            const res = await axios.get("/users/friends/" + currentId);
+            const res = await axios.get(`${API}/users/friends/` + currentId);
             setFriends(res.data);
         };
         getFriends();
-    }, [currentId]);
+    }, [currentId, API]);
 
     useEffect(() => {
         setOnlineFriends(friends.filter((f) => onlineUsers.includes(f._id)));
@@ -21,7 +22,7 @@ export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
 
     const handleClick = async (user) => {
         try {
-            const res = await axios.get(`/conversations/find/${currentId}/${user._id}`)
+            const res = await axios.get(`${API}/conversations/find/${currentId}/${user._id}`)
             console.log(user.username)
             setCurrentChat(res.data);
         } catch (err) {

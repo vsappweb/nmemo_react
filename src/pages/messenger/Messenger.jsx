@@ -11,6 +11,7 @@ import AllUsers from "../../components/allUsers/AllUsers"
 import { Group } from "@mui/icons-material";
 
 export default function Messenger() {
+    const API = process.env.REACT_APP_SERVER_API
     const [conversations, setConversations] = useState([]);
     const [currentChat, setCurrentChat] = useState(null);
     const [messages, setMessages] = useState([]);
@@ -69,7 +70,7 @@ export default function Messenger() {
     useEffect(() => {
         const getConversations = async () => {
             try {
-                const res = await axios.get("/conversations/" + user._id);
+                const res = await axios.get(`${API}/conversations/` + user._id);
                 setConversations(res.data);
 
             } catch (err) {
@@ -77,21 +78,21 @@ export default function Messenger() {
             }
         }
         getConversations()
-    }, [user._id])
+    }, [user._id, API])
 
 
 
     useEffect(() => {
         const getMessages = async () => {
             try {
-                const res = await axios.get("/messages/" + currentChat?._id);
+                const res = await axios.get(`${API}/messages/` + currentChat?._id);
                 setMessages(res.data)
             } catch (err) {
                 console.log(err)
             }
         };
         getMessages()
-    }, [currentChat]);
+    }, [currentChat, API]);
 
     const handleClickNewConversation = async (newReceiver) => {
         const newConversation = {
@@ -99,7 +100,7 @@ export default function Messenger() {
             receiverId: newReceiver._id,
         };
         try {
-            await axios.post("/conversations", newConversation);
+            await axios.post(`${API}/conversations`, newConversation);
             window.location.reload();
         } catch (err) {
             console.log(err)
@@ -126,7 +127,7 @@ export default function Messenger() {
         });
 
         try {
-            const res = await axios.post("/messages", message);
+            const res = await axios.post(`${API}/messages`, message);
             setMessages([...messages, res.data])
             setNewMessage("")
         } catch (err) {
@@ -141,14 +142,14 @@ export default function Messenger() {
     useEffect(() => {
         const getUsers = async () => {
             try {
-                const res = await axios.get("/users/usersList");
+                const res = await axios.get(`${API}/users/usersList`);
                 setUsers(res.data);
             } catch (err) {
                 console.log(err);
             }
         };
         getUsers()
-    }, []);
+    }, [API]);
 
     return (
         <>
