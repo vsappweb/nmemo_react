@@ -1,3 +1,4 @@
+import ErrorPage from "./pages/errorPage/ErrorPage";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
@@ -26,6 +27,7 @@ function App() {
 
     <Router>
       <Routes>
+        <Route path='*' element={<ErrorPage />} />
         <Route path="/" element={user ? <Home /> : <Login />} />
         <Route path="login/*" element={user ? <Navigate to="/" /> : <Login />} />
         <Route path="register/*" element={user ? <Navigate to="/" /> : <Register />} />
@@ -34,8 +36,8 @@ function App() {
         <Route path="editProfile/:personnelnumber/*" element={<EditProfile />} />
         <Route path="editEvents/:personnelnumber/*" element={<EditEvents />} />
         <Route path="editShiftTransfer/:personnelnumber/*" element={<EditShiftTransfer />} />
-        <Route path="events/:personnelnumber/*" element={<Events />} /> 
-        <Route path="orders/:personnelnumber/*" element={<Orders />} /> 
+        <Route path="events/:personnelnumber/*" element={<Events />} />
+        <Route path="orders/:personnelnumber/*" element={<Orders />} />
         <Route path="safety/:personnelnumber/*" element={<Safety />} />
         <Route path="logistics/:personnelnumber/*" element={<Logistics />} />
         <Route path="groups/:personnelnumber/*" element={<Groups />} />
