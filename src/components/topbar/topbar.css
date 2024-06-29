@@ -94,7 +94,7 @@
   position: absolute;
   color: var(--cText);
   top: 55px;
-  right: -15px;
+  right: -5px;
   background-color: var(--bg);
   border-radius: 15px;
   border: 4px double var(--cText);
@@ -272,6 +272,12 @@
     }
     .topbarRight{ 
       margin-right: 0px;
+    }
+    .topbarMenuDropdown {
+      right: 5px;
+    }
+    .topbarMenuDropdown::before {
+      right: 12px;
     }
 }
 

@@ -1,5 +1,5 @@
 import "./sidebar.css";
-import { MenuOpen, Chat, RateReview, Rule, Settings, WorkOutline, Event, LocalShipping, HealthAndSafety, ForwardToInbox } from "@mui/icons-material";
+import { Chat, RateReview, Rule, Settings, WorkOutline, Event, LocalShipping, HealthAndSafety, ForwardToInbox } from "@mui/icons-material";
 import AllUsers from "../allUsers/AllUsers";
 import { Link } from "react-router-dom";
 
@@ -38,13 +38,18 @@ export default function Sidebar() {
     const showSidebar = () => {
         document.querySelector(".sidebar").classList.toggle("active");
         document.querySelector(".sidebarBurger").classList.toggle("active");
+        document.querySelector(".sidebarBurgerLineOne").classList.toggle("active");
+        document.querySelector(".sidebarBurgerLineTwo").classList.toggle("active");
+        document.querySelector(".sidebarBurgerLineThree").classList.toggle("active");
     }
 
 
     return (
         <>
-            <div className="sidebarBurger">
-                <MenuOpen onClick={() => { showSidebar() }} />
+            <div className="sidebarBurger" onClick={() => { showSidebar() }} >
+                <div className="sidebarBurgerLineOne"></div>
+                <div className="sidebarBurgerLineTwo"></div>
+                <div className="sidebarBurgerLineThree"></div>
             </div>
             <div className="sidebar">
                 <div className="sidebarWrapper">

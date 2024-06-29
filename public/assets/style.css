@@ -145,6 +145,14 @@ body {
 }
 
 
+button .epr_3vd53t{
+    box-shadow: none !important;
+}
+.buttonepr-emoji-category-content .epr_btn{
+    box-shadow: none !important;
+}
+
+
 .underDevelopmentContainer{
     display: flex;
     flex-direction: column;
@@ -246,10 +254,3 @@ body {
     width: 60%;
     font-size: 14px;
 }
-
-
-/* @media screen and (max-width: 460px) {
-    body{
-        padding: 0 5px;
-    }
-} */

@@ -108,7 +108,7 @@
         border: var(--main);
         -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
         box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
-        z-index: 999;
+        z-index: 200;
     }
     .sidebarBurger.active{
         margin-top: 20px;
@@ -132,6 +132,24 @@
         box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
         transition: all 0.3s ease;
     }
+    .sidebarBurgerLineOne, .sidebarBurgerLineTwo, .sidebarBurgerLineThree{
+        width: 20px;
+        height: 2px;
+        background-color: white;
+        margin: 3px 0;
+        transition: 0.4s;
+        z-index: 999;
+      }
+      
+      .sidebarBurgerLineOne.active {
+        transform: translate(0, 5px) rotate(-45deg);
+      }
+      
+      .sidebarBurgerLineTwo.active {opacity: 0;}
+      
+      .sidebarBurgerLineThree.active {
+        transform: translate(0, -5px) rotate(45deg);
+      }
 }
 
 @media screen and (max-width: 460px) {

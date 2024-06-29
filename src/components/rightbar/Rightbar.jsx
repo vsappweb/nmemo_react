@@ -5,7 +5,7 @@ import axios from "axios";
 import { io } from "socket.io-client"
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { MenuOpen, Add, Remove } from "@mui/icons-material";
+import { Add, Remove } from "@mui/icons-material";
 import AvatarUser from "../avatarUser/AvatarUser";
 import UserRole from "../userRole/UserRole"
 
@@ -125,6 +125,9 @@ export default function Rightbar({ user }) {
     const showRightbar = () => {
         document.querySelector(".rightbar").classList.toggle("active");
         document.querySelector(".rightbarBurger").classList.toggle("active");
+        document.querySelector(".rightbarBurgerLineOne").classList.toggle("active");
+        document.querySelector(".rightbarBurgerLineTwo").classList.toggle("active");
+        document.querySelector(".rightbarBurgerLineThree").classList.toggle("active");
     }
 
     const HomeRightbar = () => {
@@ -148,7 +151,7 @@ export default function Rightbar({ user }) {
                 </ul>
                 <hr className="sidebarHr" />
                 <h4 className="rightbarTitle">Here you can submit a report for your team leader</h4>
-                
+
                 <hr className="sidebarHr" />
                 {/* <h4 className="rightbarTitle">Main page nMemo</h4>
                 <p className="rightbarTitle">Rightbar</p> */}
@@ -217,14 +220,16 @@ export default function Rightbar({ user }) {
     }
     return (
         <>
-        <div className="rightbarBurger">
-        <MenuOpen className="rightbarBurgerIcon" onClick={() => {showRightbar()}}/>
-                    </div>
-        <div className="rightbar">
-            <div className="rightbarWrapper">
-                {user ? <ProfileRightbar /> : <HomeRightbar />}
+            <div className="rightbarBurger" onClick={() => { showRightbar() }} >
+                <div className="rightbarBurgerLineOne"></div>
+                <div className="rightbarBurgerLineTwo"></div>
+                <div className="rightbarBurgerLineThree"></div>
             </div>
-        </div>
+            <div className="rightbar">
+                <div className="rightbarWrapper">
+                    {user ? <ProfileRightbar /> : <HomeRightbar />}
+                </div>
+            </div>
         </>
     )
 }

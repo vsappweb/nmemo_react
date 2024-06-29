@@ -144,3 +144,7 @@
     text-align: left;
     color: var(--cText);
 }
+
+@media screen and (max-width: 600px) {
+
+}
