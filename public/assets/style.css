@@ -49,6 +49,12 @@ textarea {
     font-family: inherit;
 }
 
+input,
+textarea {
+    outline: none;
+    background-color: var(--bg);
+}
+
 
 input::-ms-clear {
     display: none;
@@ -239,4 +245,11 @@ body {
     border-radius: 5px;
     width: 60%;
     font-size: 14px;
+}
+
+
+@media screen and (max-width: 460px) {
+    body{
+        padding: 0 5px;
+    }
 }

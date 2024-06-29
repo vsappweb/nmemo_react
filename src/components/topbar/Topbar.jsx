@@ -146,7 +146,9 @@ export default function Topbar() {
             <div className="topbarLeft">
                 <div className="topbarLogo" style={{ color: "white" }}>
                     <Link to="/" style={{ textDecoration: "none" }}>
-                        <ChatBubbleOutline />
+                        <div className="logoIcon">
+                            <ChatBubbleOutline />
+                        </div>
                         <span className="logoText">nMemo</span>
                     </Link>
                 </div>
@@ -175,12 +177,12 @@ export default function Topbar() {
                 </div> */}
                 <div className="topbarUserItems">
                     {chooseLang && <div className="topbarIconLangItemMain" onClick={(e) => handleLang(e)}>
-                    <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1ec-1f1e7.png
+                        <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1ec-1f1e7.png
 " alt="ENG" />
                     </div>}
                     {changeLang && <div className="topbarIconItems">
-                    <div className="topbarIconLangItemMain" ref={nl} onClick={(e) => handleLang(e)}>
-                        <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1f3-1f1f1.png
+                        <div className="topbarIconLangItemMain" ref={nl} onClick={(e) => handleLang(e)}>
+                            <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1f3-1f1f1.png
 " alt="NL" /></div>
                         <div className="topbarIconLangItem" ref={eng} onClick={(e) => handleLang(e)}>
                             <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1ec-1f1e7.png

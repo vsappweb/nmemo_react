@@ -1,0 +1,67 @@
+{
+    "name": "nMemo PWA",
+    "short_name": "nMemo PWA",
+    "description": "A program to support the control of technical and general information",
+    "theme_color": "#6c757d",
+    "background_color": "#6c757d",
+    "display": "standalone",
+    "orientation": "portrait",
+    "scope": ".",
+    "id": "/overeem",
+    "start_url": ".",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "ico/apple-touch-icon-72x72.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "ico/apple-touch-icon-96x96.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "ico/apple-touch-icon-128x128.png",
+            "sizes": "128x128",
+            "type": "image/png"
+        },
+        {
+            "src": "ico/apple-touch-icon-144x144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "ico/apple-touch-icon-152x152.png",
+            "sizes": "152x152",
+            "type": "image/png"
+        },
+        {
+            "src": "ico/apple-touch-icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "maskable"
+        },
+        {
+            "src": "ico/apple-touch-icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png",
+            "purpose": "any"
+        },
+        {
+            "src": "ico/apple-touch-icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "splash_pages": null,
+    "lang": "en",
+    "categories": [
+        "productivity"
+    ],
+    "display_override": [
+        "window-control-overlay",
+        "standalone",
+        "browser"
+    ]
+}

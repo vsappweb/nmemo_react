@@ -2,6 +2,10 @@
     flex: 3;
 }
 
+.rightbarBurger {
+    display: none;
+}
+
 .rightbarWrapper {
     padding: 20px 20px 0 0;
     text-align: center;
@@ -27,18 +31,21 @@
     list-style: none;
 }
 
-.rightbarInfo{
+.rightbarInfo {
     margin-bottom: 30px;
 }
-.rightbarInfoItem{
+
+.rightbarInfoItem {
     margin-bottom: 10px;
 }
-.rightbarInfoKey{
+
+.rightbarInfoKey {
     font-weight: 500;
     margin-right: 15px;
     color: #555;
 }
-.rightbarInfoValue{
+
+.rightbarInfoValue {
     font-weight: 300;
 }
 
@@ -65,4 +72,59 @@
 
 .rightbarFollow:focus {
     outline: none;
+}
+
+@media screen and (max-width: 600px) {
+    .rightbar {
+        display: none;
+        transition: all 0.3s ease;
+    }
+
+    .rightbar.active {
+        display: block;
+        position: absolute;
+        width: 200px;
+        height: 80lvh;
+        right: 10px;
+        background-color: var(--bgMsg);
+        border-radius: 5px 0px 0px 5px;
+        margin: 50px 0px;
+        padding: 5px;
+        font-size: 12px;
+        color: white;
+        border: var(--main);
+        -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
+        box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
+        z-index: 999;
+    }
+
+    .rightbarBurger.active {
+        margin-top: 20px;
+        height: (80lvh + 30px);
+    }
+
+    .rightbarBurger {
+        display: block;
+        position: sticky;
+        width: 30px;
+        height: 85lvh;
+        right: 10px;
+        background-color: var(--main);
+        border-radius: 10px 0px 0px 10px;
+        margin-top: 20px;
+        margin-bottom: 50px;
+        padding: 5px;
+        font-size: 12px;
+        color: white;
+        border: var(--main);
+        -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
+        box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
+        transition: all 0.3s ease;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .rightbarBurger {
+        width: 25px;
+    }
 }

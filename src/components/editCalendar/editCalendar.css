@@ -1,7 +1,7 @@
 input, textarea {
     border-bottom: .5px groove var(--cText);
     padding: 5px 15px;
-    color: var(--cBadgeNtf);
+    /* color: var(--cBadgeNtf); */
     border-radius: 3px;
 }
 

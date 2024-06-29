@@ -23,13 +23,13 @@ export default function Login() {
             <div className="loginWrapper">
                 <div className="loginCenter">
                     <form className="loginBox" onSubmit={handleClick}>
-                        <input className="loginInput" type="email" required placeholder="Email" ref={email} />
+                        <input className="loginInput" type="email" required placeholder="Your Login" ref={email} />
                         <input className="loginInput" type="password" required minLength="6" placeholder="Password" ref={password} />
                         <button className="loginButton" disabled={isFetching}>{isFetching ? <CircularProgress color="inherit" size="25px" /> : "Log In"}</button>
-                        <span className="loginForgot">Forgot Password?</span>
-                        {/* <Link to={`/register`} style={{ textDecoration: "none" }}>
+                        {/* <span className="loginForgot">Forgot Password?</span> */}
+                        <Link to={`/register`} style={{ textDecoration: "none" }}>
                             <button className="loginRegisterButton">{isFetching ? <CircularProgress color="inherit" size="25px" /> : "Create a New Account"}</button>
-                        </Link> */}
+                        </Link>
                     </form>
 
                 </div>

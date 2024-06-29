@@ -16,6 +16,13 @@
 
 .topbarLogo {
   margin-left: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.logoIcon {
+  display: inline-block;
+  cursor: pointer;
 }
 
 .logoText {
@@ -249,4 +256,28 @@
 
 .topbarIconLang{
   width: 30px;
+}
+
+@media screen and (max-width: 600px) {
+    .logoText,
+    .logoIcon{
+       font-size: 18px;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .topbarLogo{
+      margin-left: 5px;
+    }
+    .topbarRight{ 
+      margin-right: 0px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+  .logoText,
+  .logoIcon{
+     font-size: 16px;
+  }
 }

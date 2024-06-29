@@ -76,3 +76,13 @@
     width: 60%;
     align-self: center;
 }
+
+@media (max-width: 600px) {
+    .login{
+        width: 90vw !important;
+        margin: 0 auto;
+    }
+    .loginBox{
+        justify-content: space-evenly !important;
+    }
+  }

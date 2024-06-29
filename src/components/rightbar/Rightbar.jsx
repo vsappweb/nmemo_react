@@ -5,7 +5,7 @@ import axios from "axios";
 import { io } from "socket.io-client"
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { Add, Remove } from "@mui/icons-material";
+import { MenuOpen, Add, Remove } from "@mui/icons-material";
 import AvatarUser from "../avatarUser/AvatarUser";
 import UserRole from "../userRole/UserRole"
 
@@ -122,6 +122,11 @@ export default function Rightbar({ user }) {
         setFollowed(!followed);
     }
 
+    const showRightbar = () => {
+        document.querySelector(".rightbar").classList.toggle("active");
+        document.querySelector(".rightbarBurger").classList.toggle("active");
+    }
+
     const HomeRightbar = () => {
         return (
             <>
@@ -211,10 +216,15 @@ export default function Rightbar({ user }) {
         )
     }
     return (
+        <>
+        <div className="rightbarBurger">
+        <MenuOpen className="rightbarBurgerIcon" onClick={() => {showRightbar()}}/>
+                    </div>
         <div className="rightbar">
             <div className="rightbarWrapper">
                 {user ? <ProfileRightbar /> : <HomeRightbar />}
             </div>
         </div>
+        </>
     )
 }

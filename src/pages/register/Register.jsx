@@ -56,10 +56,10 @@ export default function Register() {
             <div className="loginWrapper">
                 <div className="loginCenter">
                     <form className="loginBox" onSubmit={handleClick}>
-                        <input className="loginInput" ref={personnelnumber} placeholder="Personnelnumber" type="text" />
-                        <input className="loginInput" ref={email} placeholder="Email" type="email" />
-                        <input className="loginInput" ref={password} placeholder="Password" type="password" minLength="6" />
-                        <input className="loginInput" ref={passwordAgain} placeholder="Password Again" type="password" minLength="6" />
+                        <input className="loginInput" ref={personnelnumber} placeholder="Personnelnumber" type="text" required/>
+                        <input className="loginInput" ref={email} placeholder="Email" type="email" required/>
+                        <input className="loginInput" ref={password} placeholder="Password" type="password" minLength="6" required/>
+                        <input className="loginInput" ref={passwordAgain} placeholder="Password Again" type="password" minLength="6" required/>
                         <fieldset className="loginBorder">
                             <legend className="loginTitle">Select a group:</legend>
                             <select className="loginInput" ref={role}>
