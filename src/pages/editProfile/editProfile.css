@@ -133,3 +133,9 @@ input{
     margin: 0 auto;
     border-bottom: 2px groove var(--cText);
 }
+
+@media screen and (max-width: 900px) {
+    .editProfileRight{
+        flex-wrap: wrap;
+    }
+}

@@ -5,6 +5,7 @@ import axios from "axios";
 import AllUsers from "../allUsers/AllUsers";
 import { renderToString } from 'react-dom/server'
 import DateTimeShift from '../../components/dateTimeShift/DateTimeShift'
+import { MenuOpen } from "@mui/icons-material";
 
 
 
@@ -135,12 +136,24 @@ export default function RightbarMonitoring() {
             </>
         )
     }
+
+
+    const showRightbarMonitoring = () => {
+        document.querySelector(".rightbarMonitoring").classList.toggle("active");
+        document.querySelector(".rightbarMonitoringBurger").classList.toggle("active");
+    }
+
     return (
-        <div className="rightbarMonitoring">
-            <div className="rightbarMonitoringWrapper">
-                <MemoRightbar />
-                <ShiftTransferRightbar />
+        <>
+            <div className="rightbarMonitoringBurger">
+                <MenuOpen onClick={() => { showRightbarMonitoring() }} />
             </div>
-        </div>
+            <div className="rightbarMonitoring">
+                <div className="rightbarMonitoringWrapper">
+                    <MemoRightbar />
+                    <ShiftTransferRightbar />
+                </div>
+            </div>
+        </>
     )
 }

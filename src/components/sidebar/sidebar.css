@@ -118,7 +118,7 @@
         display: block;
         position: sticky;
         width: 30px;
-        height: 85lvh;
+        height: 35px;
         left: 10px;
         background-color: var(--bgMsg);
         border-radius: 0px 10px 10px 0px;

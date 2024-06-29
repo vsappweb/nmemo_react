@@ -107,7 +107,7 @@
         display: block;
         position: sticky;
         width: 30px;
-        height: 85lvh;
+        height: 35px;
         right: 10px;
         background-color: var(--main);
         border-radius: 10px 0px 0px 10px;

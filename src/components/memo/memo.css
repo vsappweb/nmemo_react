@@ -253,3 +253,12 @@
 .preparedTextFormBtn:active{
     transform: scale(0.9);
 }
+
+
+@media screen and (max-width: 530px) {
+    .memoBottom{
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+}
