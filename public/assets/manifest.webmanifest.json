@@ -6,9 +6,9 @@
     "background_color": "#6c757d",
     "display": "standalone",
     "orientation": "portrait",
-    "scope": "/",
+    "scope": "https://nmemo.vercel.app",
     "id": "/overeem",
-    "start_url": "/",
+    "start_url": "https://nmemo.vercel.app",
     "prefer_related_applications": false,
     "icons": [
         {
