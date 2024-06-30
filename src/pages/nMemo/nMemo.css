@@ -24,8 +24,9 @@
     gap: 20px;
 }
 
-/* 
-        */
+.nMemoPostsList{
+    width: 100%;
+}
 .nMemoViev {
     list-style: none;
     position: relative;

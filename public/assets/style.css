@@ -159,6 +159,7 @@ button .epr_3vd53t{
     align-items: center;
     justify-content: center;
     width: 100%;
+    margin-top: 25%;
 }
 
 .underDevelopment{
@@ -251,6 +252,5 @@ button .epr_3vd53t{
     border-bottom: 1px groove var(--cText);
     padding: 2px 10px;
     border-radius: 5px;
-    width: 60%;
     font-size: 14px;
 }

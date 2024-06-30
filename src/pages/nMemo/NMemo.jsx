@@ -4,6 +4,7 @@ import Topbar from '../../components/topbar/Topbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import Rightbar from '../../components/rightbar/Rightbar'
 import Memo from '../../components/memo/Memo'
+import MemoToLine from '../../components/memoToLine/MemoToLine'
 import PostMemo from "../../components/postMemo/PostMemo";
 import axios from "axios"
 import { AuthContext } from "../../context/AuthContext";
@@ -108,6 +109,8 @@ export default function NMemo() {
             </div>}
           </> : <></>} */}
 
+{user.role === 1 && <MemoToLine />}
+
           {hideMemos && (
             <div className="nMemoCenterWrapper">
               <Memo />
@@ -127,8 +130,8 @@ export default function NMemo() {
                 </li>
               )))}
 
-            {user.role === 3 &&
-              <ul>
+            {(user.role === 3 || user.role === 1) &&
+              <ul className="nMemoPostsList">
                 {postsMemo.map((m) => (
                   <li key={m._id} style={{ marginBottom: "15px" }}>
                     <PostMemo memo={m} />

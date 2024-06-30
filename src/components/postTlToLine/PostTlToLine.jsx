@@ -1,6 +1,6 @@
 import "./postTlToLine.css";
 import AvatarUser from "../avatarUser/AvatarUser";
-import { AddComment, HighlightOff, FavoriteBorder, MarkEmailRead, MarkEmailUnread } from "@mui/icons-material";
+import { HighlightOff, MoreVert, Edit, DoNotTouch, MarkEmailRead, MarkEmailUnread } from "@mui/icons-material";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "timeago.js"
@@ -16,6 +16,7 @@ export default function PostTlToLine({ tlToLine }) {
     const [user, setUser] = useState({});
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const { user: currentUser } = useContext(AuthContext);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     
     // useEffect(() => {
@@ -79,9 +80,27 @@ export default function PostTlToLine({ tlToLine }) {
                     </div>
                     <div className="postTlToLineTopRight">
                         <span className="postTlToLineTitle">{tlToLine?.title}</span>
-                        {/* <MoreVert /> */}
+                        {isMenuOpen && <div className="postTopEditDel">
+
+{tlToLine.userId === currentUser._id ?
+    <div className="editDeleteBtns">
+        <div className="notActiveBtn">
+            <Edit onClick={() => setIsMenuOpen(!isMenuOpen)} />
+        </div>
+        <div className="deleteBtn">
+            <HighlightOff onClick={tlToLineDeleteHandler} />
+        </div>
+    </div>
+    :
+    <div className="deleteBtn">
+        <DoNotTouch onClick={() => setIsMenuOpen(!isMenuOpen)} />
+    </div>
+}
+</div>}
+<MoreVert className="postMenu" style={{ cursor: "pointer" }} onClick={() => setIsMenuOpen(!isMenuOpen)} />
+                        {/* <MoreVert />
                         {tlToLine.userId === currentUser._id ? <HighlightOff className="postTlToLineDelete" onClick={tlToLineDeleteHandler} />
-                        :<AddComment />}
+                        :<AddComment />} */}
                     </div>
                 </div>
                 <div className="postTlToLineCenter">

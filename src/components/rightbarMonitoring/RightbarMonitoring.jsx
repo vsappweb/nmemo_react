@@ -141,12 +141,17 @@ export default function RightbarMonitoring() {
     const showRightbarMonitoring = () => {
         document.querySelector(".rightbarMonitoring").classList.toggle("active");
         document.querySelector(".rightbarMonitoringBurger").classList.toggle("active");
+        document.querySelector(".rightbarMonitoringBurgerLineOne").classList.toggle("active");
+        document.querySelector(".rightbarMonitoringBurgerLineTwo").classList.toggle("active");
+        document.querySelector(".rightbarMonitoringBurgerLineThree").classList.toggle("active");
     }
 
     return (
         <>
-            <div className="rightbarMonitoringBurger">
-                <MenuOpen onClick={() => { showRightbarMonitoring() }} />
+            <div className="rightbarMonitoringBurger" onClick={() => { showRightbarMonitoring() }} >
+                <div className="rightbarMonitoringBurgerLineOne"></div>
+                <div className="rightbarMonitoringBurgerLineTwo"></div>
+                <div className="rightbarMonitoringBurgerLineThree"></div>
             </div>
             <div className="rightbarMonitoring">
                 <div className="rightbarMonitoringWrapper">

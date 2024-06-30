@@ -97,6 +97,24 @@
         box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
         transition: all 0.3s ease;
     }
+    .rightbarMonitoringBurgerLineOne, .rightbarMonitoringBurgerLineTwo, .rightbarMonitoringBurgerLineThree{
+        width: 15px;
+        height: 2px;
+        background-color: white;
+        margin: 3px 0;
+        transition: 0.4s;
+        z-index: 999;
+      }
+      
+      .rightbarMonitoringBurgerLineOne.active {
+        transform: translate(0, 5px) rotate(-45deg);
+      }
+      
+      .rightbarMonitoringBurgerLineTwo.active {opacity: 0;}
+      
+      .rightbarMonitoringBurgerLineThree.active {
+        transform: translate(0, -5px) rotate(45deg);
+      }
 }
 
 @media screen and (max-width: 460px) {

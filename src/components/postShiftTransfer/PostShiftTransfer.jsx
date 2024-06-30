@@ -1,7 +1,7 @@
 import "./postShiftTransfer.css";
 import AvatarUser from "../avatarUser/AvatarUser";
 import AllUsers from "../allUsers/AllUsers";
-import { AddComment, HighlightOff } from "@mui/icons-material";
+import { HighlightOff, MoreVert, Edit, DoNotTouch } from "@mui/icons-material";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "timeago.js"
@@ -13,6 +13,7 @@ export default function PostShiftTransfer({ shiftTransfer }) {
     const [user, setUser] = useState({});
     const { user: currentUser } = useContext(AuthContext);
     const [allUsers, setUsers] = useState([]);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 
 
@@ -80,10 +81,27 @@ export default function PostShiftTransfer({ shiftTransfer }) {
                                 </Link>
                             )
                         })}
+                        {isMenuOpen && <div className="postTopEditDel">
+                        {shiftTransfer.userId === currentUser._id ?
+    <div className="editDeleteBtns">
+        <div className="notActiveBtn">
+            <Edit onClick={() => setIsMenuOpen(!isMenuOpen)} />
+        </div>
+        <div className="deleteBtn">
+            <HighlightOff onClick={shiftTransferDeleteHandler} />
+        </div>
+    </div>
+    :
+    <div className="deleteBtn">
+        <DoNotTouch onClick={() => setIsMenuOpen(!isMenuOpen)} />
+    </div>
+}
+</div>}
+<MoreVert className="postMenu" style={{ cursor: "pointer" }} onClick={() => setIsMenuOpen(!isMenuOpen)} />
                         {/* <span className="postShiftTransferOperator">{shiftTransfer?.operator}</span> */}
                         {/* <MoreVert /> */}
-                        {shiftTransfer.userId === currentUser._id ? <HighlightOff className="postShiftTransferDelete" onClick={shiftTransferDeleteHandler} />
-                            : <AddComment className="postShiftTransferDelete" />}
+                        {/* {shiftTransfer.userId === currentUser._id ? <HighlightOff className="postShiftTransferDelete" onClick={shiftTransferDeleteHandler} /> 
+                            : <AddComment className="postShiftTransferDelete" />}*/}
                     </div>
                 </div>
                 <div className="postShiftTransferCenter" style={{ color: "red" }}>

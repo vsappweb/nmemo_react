@@ -1,6 +1,6 @@
 import "./postMemo.css";
 import AvatarUser from "../avatarUser/AvatarUser";
-import { AddComment, HighlightOff, FavoriteBorder, ThumbUpOffAlt } from "@mui/icons-material";
+import { HighlightOff, Edit, DoNotTouch, MoreVert } from "@mui/icons-material";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "timeago.js"
@@ -16,6 +16,7 @@ export default function PostMemo({ memo }) {
     const [user, setUser] = useState({});
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const { user: currentUser } = useContext(AuthContext);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     
     useEffect(() => {
@@ -79,9 +80,27 @@ export default function PostMemo({ memo }) {
                     </div>
                     <div className="postMemoTopRight">
                         <span className="postMemoTitle">{memo?.title}</span>
-                        {/* <MoreVert /> */}
+                        {isMenuOpen && <div className="postTopEditDel">
+
+{memo.userId === currentUser._id ?
+    <div className="editDeleteBtns">
+        <div className="notActiveBtn">
+            <Edit onClick={() => setIsMenuOpen(!isMenuOpen)} />
+        </div>
+        <div className="deleteBtn">
+            <HighlightOff onClick={memoDeleteHandler} />
+        </div>
+    </div>
+    :
+    <div className="deleteBtn">
+        <DoNotTouch onClick={() => setIsMenuOpen(!isMenuOpen)} />
+    </div>
+}
+</div>}
+<MoreVert className="postMenu" style={{ cursor: "pointer" }} onClick={() => setIsMenuOpen(!isMenuOpen)} />
+                        {/* <MoreVert />
                         {memo.userId === currentUser._id ? <HighlightOff className="postMemoDelete" onClick={memoDeleteHandler} />
-                        :<AddComment />}
+                        :<AddComment />} */}
                     </div>
                 </div>
                 <div className="postMemoCenter">

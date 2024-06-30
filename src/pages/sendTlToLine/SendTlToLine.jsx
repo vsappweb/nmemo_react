@@ -66,6 +66,7 @@ export default function SendTlToLine() {
       <div className='sendTlToLine'>
         <Sidebar />
         <div className="sendTlToLineRight">
+          
           <TlToLine />
           <ul className="feedTlToLineList">
             {Object.values(allTlToLines).map((toLines) => {

@@ -122,7 +122,7 @@
         transition: all 0.3s ease;
     }
     .rightbarBurgerLineOne, .rightbarBurgerLineTwo, .rightbarBurgerLineThree{
-        width: 20px;
+        width: 15px;
         height: 2px;
         background-color: white;
         margin: 3px 0;

@@ -2,11 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { renderToString } from 'react-dom/server'
 import Post from "../post/Post";
 import PostMemo from "../postMemo/PostMemo";
-import PostShiftTransfer from "../postShiftTransfer/PostShiftTransfer";
+// import PostShiftTransfer from "../postShiftTransfer/PostShiftTransfer";
 import Share from "../share/Share";
 // import Memo from "../memo/Memo";
 // import ShiftTransfer from "../shiftTransfer/ShiftTransfer";
-import TlToLine from "../tlToLine/TlToLine";
+// import MemoToLine from "../memoToLine/MemoToLine";
 // import PostTlToLine from "../postTlToLine/PostTlToLine";
 import ShiftTransfer2 from "../shiftTransfer2/ShiftTransfer2";
 import "./feed.css";
@@ -17,7 +17,7 @@ import DateTimeShift from "../dateTimeShift/DateTimeShift";
 export default function Feed({ personnelnumber, shiftTransfer }) {
     const API = process.env.REACT_APP_SERVER_API
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
-    const date = new Date();
+    let date = new Date();
     const [posts, setPosts] = useState([]);
     // const [postTlToLines, setPostTlToLines] = useState([]);
     const [postsMemo, setPostsMemo] = useState([]);
@@ -25,6 +25,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     const { user } = useContext(AuthContext)
     // let [allEvents, setEvents] = useState([]);
     let [allTlToLines, setTlToLines] = useState([]);
+    let [allMemoToLines, setMemoToLines] = useState([]);
     const [hideShiftTransferForm, setHideShiftTransferForm] = useState(true);
 
 
@@ -93,8 +94,33 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
         return () => clearInterval(interval);
     }, [API]);
 
+    // get all tlToLines from database
+    useEffect(() => {
+        let interval;
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(`${API}/memos/allMemos`);
+                setMemoToLines(res.data);
+                console.log("test refresh")
+                console.log(res.data);
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        let result = fetchData()
+
+        if (!result) {
+            interval = setInterval(fetchData, 10000);
+        }
+
+        interval = setInterval(fetchData, 10000); //set your time here. repeat every 5 seconds
+        return () => clearInterval(interval);
+    }, [API]);
+
+
     // delete tlToLine from database
-    const eventDeleteHandler = (toLines) => {
+    const toLineDeleteHandler = (toLines) => {
         try {
             axios.delete(`${API}/tlToLines/${toLines._id}`)
             window.location.reload();
@@ -229,7 +255,17 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     //     return () => clearInterval(interval);
     // }, [postsShiftTransfer]);
 
+    // sort users by line
+    const lines = (a, b) => {
+        return (b.line) - (a.line);
+    }
 
+    allMemoToLines = Object.values(allMemoToLines).sort(lines);
+
+    // filter for current user
+    allMemoToLines = Object.values(allMemoToLines).filter((mTl) => {
+        return mTl.line === user.personnelnumber;
+    });
 
 
     return (
@@ -263,8 +299,8 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                                         {/* <p className="feedTlToLineInformationTitle">{toLines.title}</p> */}
                                         <p className="feedTlToLineInformationDesc">{toLines.desc}</p>
                                         {toLines?.img && <img className="postMemoImg" src={PF + toLines?.img} alt='' />}
-                                        <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer}</p>
-                                        {/* <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer < time && eventDeleteHandler(toLines)}</p> */}
+                                        {/* <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer}</p> */}
+                                        <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer < time && toLineDeleteHandler(toLines)}</p>
                                     </div>
                                     :
                                     toLines.line === "forAll" ?
@@ -284,7 +320,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                     })}
                 </ul>
 
-                {/* {user.role === 2 && <TlToLine />} */}
+                {/* {user.role === 1 && <MemoToLine />} */}
 
                 {user.role === 3 && <>
                     {hideShiftTransferForm && <ShiftTransfer2 />}
@@ -294,7 +330,23 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                 {/* {postsShiftTransfer.slice(0, 1).map((st) => (
                     <PostShiftTransfer key={st._id} shiftTransfer={st} />
                 ))} */}
+
                 {(!personnelnumber || personnelnumber === user.personnelnumber) && <Share />}
+
+
+                <ul className="feedTlToLineList">
+                    {Object.values(allMemoToLines).map((mTl) => (
+                        <li className="feedTlToLineInformation" key={mTl._id}>
+                            {mTl?.line === user.personnelnumber ?
+                                <PostMemo memo={mTl} /> :
+                                <p>{user.personnelnumber}{mTl.line}</p>
+                            }
+                        </li>
+                    ))}
+                </ul>
+
+
+
                 {postsMemo.slice(0, 1).map((m) => (
                     <PostMemo key={m._id} memo={m} />
                 ))}
