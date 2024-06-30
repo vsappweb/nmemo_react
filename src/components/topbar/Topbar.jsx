@@ -145,9 +145,10 @@ export default function Topbar() {
 
             <div className="topbarLeft">
                 <div className="topbarLogo" style={{ color: "white" }}>
-                    <Link to="/" style={{ textDecoration: "none" }}>
+                    <Link className="logoLink" to="/" style={{ textDecoration: "none" }}>
                         <div className="logoIcon">
-                            <ChatBubbleOutline />
+                     
+                            <img className="logoIconImg" src="../../../assets/ico/logo.svg" alt="Logo nMemo" />
                         </div>
                         <span className="logoText">nMemo</span>
                     </Link>
