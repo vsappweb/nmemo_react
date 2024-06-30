@@ -38,3 +38,33 @@
 .profileRightBottom{
     display: flex;
 }
+
+@media screen and (max-width: 768px) {
+    .profileCover{
+        height: 220px;
+    }
+
+    .profileCoverImg{
+        height: 150px;
+    }
+
+    .profileUser{
+        top: 50px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .profileCover{
+        height: 120px;
+    }
+
+    .profileCoverImg{
+        height: 50px;
+    }
+
+    .profileUser{
+        width: 100px;
+        height: 100px;
+        top: 0px;
+    }
+}

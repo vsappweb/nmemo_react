@@ -96,6 +96,7 @@
         -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
         box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
         z-index: 999;
+        overflow: auto;
     }
 
     .rightbarBurger.active {
@@ -116,7 +117,8 @@
         padding: 5px;
         font-size: 12px;
         color: white;
-        border: var(--main);
+        border: 2px solid var(--bg);
+        border-right: none;
         -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
         box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
         transition: all 0.3s ease;
@@ -138,6 +140,12 @@
       
       .rightbarBurgerLineThree.active {
         transform: translate(0, -5px) rotate(45deg);
+      }
+      .rightbarWrapper{
+          padding: 0;
+      }
+      .rightbarFollow{
+          margin-top: 10px;
       }
 }
 

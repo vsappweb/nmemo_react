@@ -17,7 +17,7 @@ import DateTimeShift from "../dateTimeShift/DateTimeShift";
 export default function Feed({ personnelnumber, shiftTransfer }) {
     const API = process.env.REACT_APP_SERVER_API
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
-    let date = new Date();
+    const date = new Date();
     const [posts, setPosts] = useState([]);
     // const [postTlToLines, setPostTlToLines] = useState([]);
     const [postsMemo, setPostsMemo] = useState([]);
@@ -72,6 +72,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
 
 
     // get all tlToLines from database
+    
     useEffect(() => {
         let interval;
         const fetchData = async () => {
@@ -338,7 +339,11 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                     {Object.values(allMemoToLines).map((mTl) => (
                         <li className="feedTlToLineInformation" key={mTl._id}>
                             {mTl?.line === user.personnelnumber ?
-                                <PostMemo memo={mTl} /> :
+                            <>  
+                                <PostMemo memo={mTl} />
+                                <p>{user.personnelnumber}{mTl.line}</p> 
+                            </>
+                            :
                                 <p>{user.personnelnumber}{mTl.line}</p>
                             }
                         </li>
