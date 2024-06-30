@@ -25,6 +25,7 @@
     font-size: 14px;
     font-weight: 500;
     color: var(--main);
+    text-transform: capitalize;
 }
 
 .shiftTransferWeekNum{

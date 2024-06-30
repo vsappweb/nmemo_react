@@ -72,7 +72,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
 
 
     // get all tlToLines from database
-    
+
     useEffect(() => {
         let interval;
         const fetchData = async () => {
@@ -339,12 +339,11 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                     {Object.values(allMemoToLines).map((mTl) => (
                         <li className="feedTlToLineInformation" key={mTl._id}>
                             {mTl?.line === user.personnelnumber ?
-                            <>  
-                                <PostMemo memo={mTl} />
-                                <p>{user.personnelnumber}{mTl.line}</p> 
-                            </>
-                            :
-                                <p>{user.personnelnumber}{mTl.line}</p>
+                                <>
+                                    <PostMemo memo={mTl} />
+                                </>
+                                :
+                                <></>
                             }
                         </li>
                     ))}
