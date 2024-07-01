@@ -141,6 +141,7 @@ body {
     max-width: 1220px;
     margin: 0 auto;
     /* padding: 0 10px; */
+    background-color: var(--bg);
     overflow: auto;
 }
 
