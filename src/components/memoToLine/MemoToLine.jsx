@@ -24,6 +24,10 @@ export default function MemoToLine() {
     // create tlToLine in database
     const submitHandler = async (e) => {
         e.preventDefault()
+        if (forWho.current.value === "empty") {
+            desc.current.setCustomValidity("What line do you want to send it to?");
+            console.log("empty")
+          } else {
         const newtlToLine = {
             userId: user._id,
             line: forWho.current.value,
@@ -53,6 +57,7 @@ export default function MemoToLine() {
         } catch (err) {
 
         }
+    }
     }
 
     // get all users from database
@@ -88,7 +93,7 @@ export default function MemoToLine() {
                     <h1 className="tlToLineTitle">Send information to</h1>
                     <label htmlFor="tlToLinechooseBox">
                         <select className="input" name="tlToLinechooseBox" ref={forWho} >
-                            {/* <option value="forAll">ALL</option> */}
+                            <option value="empty">What line?</option>
                             {Object.values(allUsers).map((userReciver) => {
                                 return (
                                     <option className="allUsersWrapper" value={userReciver.personnelnumber} style={{ marginBottom: "15px" }} key={userReciver._id}>

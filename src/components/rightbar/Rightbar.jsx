@@ -156,7 +156,7 @@ export default function Rightbar({ user }) {
                 {/* <h4 className="rightbarTitle">Main page nMemo</h4>
                 <p className="rightbarTitle">Rightbar</p> */}
                 {/* //TODO Show all online friends, not just followers */}
-                <Online onlineUsers={onlineUsers} currentId={currentUser._id} />
+                {/* <Online onlineUsers={onlineUsers} currentId={currentUser._id} /> */}
             </>
 
 
@@ -165,13 +165,13 @@ export default function Rightbar({ user }) {
     const ProfileRightbar = () => {
         return (
             <>
-                {(user.role === 404 || user.personnelnumber !== currentUser.personnelnumber) && (
+                {/* {(user.role === 404 || user.personnelnumber !== currentUser.personnelnumber) && (
                     <button className="rightbarFollow" onClick={handleClick}>
-                        {/* //FIXME The button does not work correctly */}
+                        //FIXME The button does not work correctly 
                         {followed ? "Unfollow" : "Follow"}
                         {followed ? <Remove /> : <Add />}
                     </button>
-                )}
+                )} */}
                 <h4 className="rightbarTitle">User Information</h4>
                 {user.role !== 404 ? <div className="rightbarInfo">
                     <div className="rightbarInfoItem">

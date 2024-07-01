@@ -2,7 +2,7 @@ import "./topbar.css";
 import AvatarUser from "../avatarUser/AvatarUser";
 import AllUsers from "../allUsers/AllUsers";
 import UserRole from "../userRole/UserRole"
-import { Person, ChatBubbleOutline, Logout, Settings, Tune } from "@mui/icons-material";
+import { Person, Info, Logout, Settings } from "@mui/icons-material";
 import { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
@@ -215,6 +215,9 @@ export default function Topbar() {
                             <h3 className="topbarMenuDropdownPersonnelnumber">{user.username || user.personnelnumber}<br />
                                 <UserRole user={user} /></h3>
                             <ul>
+                                <Link to={`/license`} style={{ textDecoration: "none" }}>
+                                    <DropdownItem img={<img className="logoIconImg" src="../../../assets/ico/chat.svg" alt="Logo nMemo" />} text={"nMemo about"} />
+                                </Link>
                                 <Link to={`/profile/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
                                     <DropdownItem img={<Person />} text={"My Profile"} />
                                 </Link>
@@ -224,13 +227,13 @@ export default function Topbar() {
                                 {user.role === 0 || user?.isAdmin ? <Link to={`/editEvents/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
                                     <DropdownItem img={<Settings />} text={"Edit Events"} />
                                 </Link> : <></>}
-                                <Link to={`/editShiftTransfer/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
+                                {user.role !== 1 && <Link to={`/editShiftTransfer/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
                                     <DropdownItem img={<Settings />} text={"Shift Transfer"} />
-                                </Link>
-                                {user.role === 1 ? <Link onClick={() => { setOpenWals(!openWals) }} style={{ textDecoration: "none" }}>
+                                </Link>}
+                                {/* {user.role === 1 ? <Link onClick={() => { setOpenWals(!openWals) }} style={{ textDecoration: "none" }}>
                                     <DropdownItem img={<Tune />} text={"Join the line"} style={{ textAlign: "center" }} />
                                 </Link>
-                                    : <></>}
+                                    : <></>} */}
                                 <Link onClick={logout} reloadDocument to="/" style={{ textDecoration: "none" }}>
                                     <DropdownItem img={<Logout />} text={"Logout"} />
                                 </Link>

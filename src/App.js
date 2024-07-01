@@ -13,6 +13,7 @@ import Logistics from "./pages/logistics/Logistics";
 import NMemo from "./pages/nMemo/NMemo";
 import SendTlToLine from "./pages/sendTlToLine/SendTlToLine";
 import Groups from "./pages/groups/Groups";
+import License from "./pages/license/License";
 
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import { useContext } from "react";
@@ -43,6 +44,7 @@ function App() {
         <Route path="groups/:personnelnumber/*" element={<Groups />} />
         <Route path="nMemo/:personnelnumber/*" element={<NMemo />} />
         <Route path="sendTlToLine/:personnelnumber/*" element={<SendTlToLine />} />
+        <Route path="license/*" element={<License />} />
       </Routes>
     </Router>
 

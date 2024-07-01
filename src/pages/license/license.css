@@ -1,0 +1,28 @@
+.safety {
+    display: flex;
+    color: var(--cText);
+}
+.safetyRight{
+    flex: 9;
+    display: flex;
+    gap: 15px;
+}
+
+.main__license {
+	padding: 0 25px;
+	font-family: 'Roboto Mono', monospace;
+	font-size: 16px;
+	text-align: left;
+	color: var(--cText);
+}
+
+.main__license-text {
+	margin-bottom: 20px;
+}
+
+.main__license-line {
+	width: 220px;
+	height: 2px;
+	margin: 10px auto 20px;
+	background-color: var(--cText);
+}
