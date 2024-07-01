@@ -7,3 +7,52 @@
     display: flex;
     gap: 15px;
 }
+
+.main__inform-line {
+	width: 220px;
+	height: 2px;
+	margin: 30px auto 20px;
+	background-color: var(--cText);
+}
+
+.main__inform-title {
+	padding: 0 25px;
+	font-family: 'Roboto Mono', monospace;
+	font-size: 24px;
+	text-align: center;
+	margin-bottom: 15px;
+	color: rgb(138, 19, 19);
+}
+
+.main__inform-text {
+	padding: 0 25px;
+	font-family: 'Roboto Mono', monospace;
+	font-size: 18px;
+	text-align: left;
+	color: var(--cText);
+	margin-bottom: 20px;
+}
+
+.main__inform-text span {
+	font-weight: 700;
+}
+
+.main__inform-btn {
+	display: block;
+	margin: 0 auto;
+	text-transform: uppercase;
+	font-family: 'Roboto Mono', monospace;
+	color: var(--cText);
+	font-size: 22px;
+	font-weight: 700;
+	text-align: center;
+	border: 3px solid var(--borderLine);
+	border-radius: 5px;
+	padding: 7px 25px;
+	width: 220px;
+	background-image: url(../../../../client/public/assets/ico/alert-fill.svg);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: left;
+
+}

@@ -42,7 +42,7 @@ export default function Register() {
                 console.log(user)
                 await axios.post(`${API}/auth/register`, user);
                 console.log("test end")
-                //history("/login")  //history.push("/login")
+                history("/login")  //history.push("/login")
             } catch (err) {
                 console.log(err)
             }
