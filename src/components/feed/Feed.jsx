@@ -21,7 +21,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     const [posts, setPosts] = useState([]);
     // const [postTlToLines, setPostTlToLines] = useState([]);
     const [postsMemo, setPostsMemo] = useState([]);
-    const [postsShiftTransfer, setPostsShiftTransfer] = useState([]);
+    let [postsShiftTransfer, setPostsShiftTransfer] = useState([]);
     const { user } = useContext(AuthContext)
     // let [allEvents, setEvents] = useState([]);
     let [allTlToLines, setTlToLines] = useState([]);
@@ -79,7 +79,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
             try {
                 const res = await axios.get(`${API}/tlToLines/allTlToLines`);
                 setTlToLines(res.data);
-                console.log("test refresh")
+                // console.log("test refresh")
             } catch (err) {
                 console.error(err);
             }
@@ -102,8 +102,8 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
             try {
                 const res = await axios.get(`${API}/memos/allMemos`);
                 setMemoToLines(res.data);
-                console.log("test refresh")
-                console.log(res.data);
+                // console.log("test refresh")
+                // console.log(res.data);
             } catch (err) {
                 console.error(err);
             }
@@ -190,6 +190,20 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
         fetchPosts();
     }, [personnelnumber, user._id, API])
 
+
+    // sort users by line
+    const shiftNowIs = (a, b) => {
+        return (a.createdAt) - (b.createdAt);
+    }
+
+    postsShiftTransfer = Object.values(postsShiftTransfer).sort(shiftNowIs);
+
+    // filter for current user
+    postsShiftTransfer = Object.values(postsShiftTransfer).slice(0, 1).filter((shtni) => {
+        // console.log("test filter", shtni.line, shtni.date, shtni.shift);
+        return shtni.line === user.username;
+    });
+
     useEffect(() => {
         let interval;
         const whatShift = async () => {
@@ -198,8 +212,10 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                 if (postsShiftTransfer) {
                     Object.values(postsShiftTransfer).forEach((postsShiftTransfer) => {
                         if (postsShiftTransfer.shift === shiftNow && postsShiftTransfer.date === date.toLocaleDateString('nl-NL')) {
+                            // console.log("hide shift transfer form");
                             setHideShiftTransferForm(false);
                         } else if (postsShiftTransfer.shift !== shiftNow && postsShiftTransfer.date === date.toLocaleDateString('nl-NL')) {
+                            // console.log("show shift transfer form",postsShiftTransfer.shift, shiftNow, postsShiftTransfer.date, date.toLocaleDateString('nl-NL'));
                             setHideShiftTransferForm(true);
                         }
                     });
@@ -212,6 +228,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
         if (!result) {
             interval = setInterval(whatShift, 10000);
         }
+        interval = setInterval(whatShift, 10000);
         return () => clearInterval(interval);
     }, [postsShiftTransfer, shiftNow, date]);
 
@@ -268,7 +285,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
         return mTl.line === user.personnelnumber;
     });
 
-
+    
     return (
         <div className='feed'>
             <div className="feedWrapper">
