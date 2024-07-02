@@ -8,14 +8,14 @@
     gap: 15px;
 }
 
-.main__inform-line {
+.safetyInformLine {
 	width: 220px;
 	height: 2px;
 	margin: 30px auto 20px;
 	background-color: var(--cText);
 }
 
-.main__inform-title {
+.safetyInformTitle {
 	padding: 0 25px;
 	font-family: 'Roboto Mono', monospace;
 	font-size: 24px;
@@ -24,7 +24,7 @@
 	color: rgb(138, 19, 19);
 }
 
-.main__inform-text {
+.safetyInformText {
 	padding: 0 25px;
 	font-family: 'Roboto Mono', monospace;
 	font-size: 18px;
@@ -33,11 +33,11 @@
 	margin-bottom: 20px;
 }
 
-.main__inform-text span {
+.safetyInformText span {
 	font-weight: 700;
 }
 
-.main__inform-btn {
+.safetyInformBtn {
 	display: block;
 	margin: 0 auto;
 	text-transform: uppercase;
