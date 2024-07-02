@@ -4,7 +4,7 @@ import Topbar from '../../components/topbar/Topbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 
 export default function Safety() {
-  const [openForm, setOpenForm] = useState(true)
+  const [openForm, setOpenForm] = useState(false)
 
   const openFormHandler = () => {
     setOpenForm(!openForm)
