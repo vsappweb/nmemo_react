@@ -317,8 +317,8 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                                         {/* <p className="feedTlToLineInformationTitle">{toLines.title}</p> */}
                                         <p className="feedTlToLineInformationDesc">{toLines.desc}</p>
                                         {toLines?.img && <img className="postMemoImg" src={PF + toLines?.img} alt='' />}
-                                        {/* <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer}</p> */}
-                                        <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer < time && toLineDeleteHandler(toLines)}</p>
+                                        <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer}</p>
+                                        {/* <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer < time && toLineDeleteHandler(toLines)}</p> */}
                                     </div>
                                     :
                                     toLines.line === "forAll" ?
