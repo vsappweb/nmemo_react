@@ -101,7 +101,7 @@ input, textarea {
 
 .editEventsBorderRight{
     width:90%;
-    height: calc(100dvh - 80px);
+    max-height: calc(100dvh - 80px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -182,4 +182,15 @@ input, textarea {
 .rbc-event.rbc-selected {
     background-color: transparent;
     color: var(--cBadgeNtf);
+}
+
+@media screen and (max-width: 500px) {
+    .editEventsLeft {
+        padding: 10px 0px;
+    }
+    .editEventsBorderRight {
+
+        margin: 10px auto 5px 0;
+    }
+
 }

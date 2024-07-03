@@ -36,6 +36,7 @@ input{
     text-transform: uppercase;
     font-weight: normal;
     margin: 20px 10px 10px 10px;
+    text-align: center;
 }
 
 .editProfileForm{

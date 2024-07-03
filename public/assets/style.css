@@ -52,7 +52,6 @@ textarea {
 input,
 textarea {
     outline: none;
-    background-color: var(--bg);
 }
 
 

@@ -69,6 +69,9 @@ export default function Sidebar() {
                         <Link to={`/orders/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
                             <SidebarListItem img={<WorkOutline />} text={"Orders/Products"} />
                         </Link>
+                        <Link to={`https://orig.in.net`} style={{ textDecoration: "none" }}>
+                            <SidebarListItem img={<img className="logoIconImg" src="../../../assets/ico/nfactor.png" alt="Logo nFactor" style={{width:"30px"}} />} text={"nFactor"} />
+                        </Link>
                         <hr className="sidebarHr" />
                         {(user.role === 3 || user.role === 1) && <Link to={`/nMemo/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
                             <SidebarListItem img={<RateReview />} text={"Leave memo IATF"} />

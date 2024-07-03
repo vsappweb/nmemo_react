@@ -34,3 +34,9 @@
     gap: 10px;
     justify-content: space-between;
 }
+
+@media screen and (max-width: 550px) {
+    .sendTlToLineRight{
+        padding: 20px 0px;
+    }
+}

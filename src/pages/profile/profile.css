@@ -3,7 +3,7 @@
     color: var(--cText);
 }
 .profileRight{
-    flex: 9;
+    flex: 9 1;
 }
 
 .profileCover{

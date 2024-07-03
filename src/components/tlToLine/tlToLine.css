@@ -305,3 +305,16 @@
 .preparedTextFormBtn:active{
     transform: scale(0.9);
 }
+
+@media screen and (max-width: 500px) {
+    .tlToLineBottom {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+    .tlToLinechooseBoxCapton,
+    .tlToLineOptions {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+}
