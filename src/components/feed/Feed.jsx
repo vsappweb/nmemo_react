@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { renderToString } from 'react-dom/server'
 import Post from "../post/Post";
 import PostMemo from "../postMemo/PostMemo";
@@ -13,10 +13,14 @@ import "./feed.css";
 import axios from "axios"
 import { AuthContext } from "../../context/AuthContext";
 import DateTimeShift from "../dateTimeShift/DateTimeShift";
+import { Edit, DoneOutline, EmojiEmotions } from "@mui/icons-material"
+import Picker from "emoji-picker-react";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Feed({ personnelnumber, shiftTransfer }) {
     const API = process.env.REACT_APP_SERVER_API
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
+    const desc = useRef();
     const date = new Date();
     const [posts, setPosts] = useState([]);
     // const [postTlToLines, setPostTlToLines] = useState([]);
@@ -27,6 +31,34 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     let [allTlToLines, setTlToLines] = useState([]);
     let [allMemoToLines, setMemoToLines] = useState([]);
     const [hideShiftTransferForm, setHideShiftTransferForm] = useState(true);
+    const [text, setText] = useState("");
+    const [open, setOpen] = useState(false);
+    const [openAnswer, setOpenAnswer] = useState(false);
+
+
+    // emoji picker
+    const handleEmoji = e => {
+        setText((prev) => prev + e.emoji);
+        setOpen(false);
+    }
+
+    const handleOpen = () => {
+        setOpenAnswer(!openAnswer);
+    }
+
+
+    const handleAnswer = async (toLines) => {
+        const newAnswer = {
+            answer: text,
+        }
+        try {
+            console.log(newAnswer)
+            await axios.put(`${API}/tlToLines/${toLines._id}`, newAnswer);
+            setOpenAnswer(false);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
 
     // get all events from database 
@@ -43,9 +75,8 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     let mm = addZero(date.getMinutes());
     let ss = addZero(date.getSeconds());
 
-
-    let time = date.toLocaleDateString('nl-NL') + "T" + hh + ":" + mm + ":" + ss;
-
+    //atention changed format of date to fr-CA not nl-NL
+    let time = date.toLocaleDateString('fr-CA') + "T" + hh + ":" + mm + ":" + ss;
 
 
     // // get all events from database 
@@ -233,45 +264,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     }, [postsShiftTransfer, shiftNow, date]);
 
 
-    // useEffect(() => {
-    //     // TODO: fix this in the future when we have more than one shift transfer 
-    //     let interval;
-    //     const whatShift = async () => {
-    //         try {
-    //             // if (postsShiftTransfer && Object.values(postsShiftTransfer).length > 0) {
-    //             //     console.log(postsShiftTransfer._id);
-    //             Object.values(postsShiftTransfer).forEach((postsShiftTransfer) => {
-    //                 if (
-    //                     postsShiftTransfer.shift === shiftNow && postsShiftTransfer.date === date.toLocaleDateString('nl-NL')
-    //                 ) {
-    //                     console.log(postsShiftTransfer._id);
-    //                     setHideShiftTransferForm(true);
-    //                     console.log("hide");
-    //                     console.log(shiftNow);
-    //                 }
-    //                 if (
-    //                     postsShiftTransfer?.shift !== shiftNow &&
-    //                     postsShiftTransfer?.date === date?.toLocaleDateString('nl-NL')
-    //                 ) {
-    //                     setHideShiftTransferForm(false);
-    //                     console.log("show");
-    //                     console.log(shiftNow);
-    //                 }
-    //             });
-    //             // }
-    //         } catch (err) {
-    //             console.error(err);
-    //         }
-    //     };
 
-    //     let result = whatShift()
-
-    //     if (!result) {
-    //         interval = setInterval(whatShift, 10000);
-    //     }
-    //     interval = setInterval(whatShift, 10000); //set your time here. repeat every 10 seconds
-    //     return () => clearInterval(interval);
-    // }, [postsShiftTransfer]);
 
     // sort users by line
     const lines = (a, b) => {
@@ -285,7 +278,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
         return mTl.line === user.personnelnumber;
     });
 
-    
+
     return (
         <div className='feed'>
             <div className="feedWrapper">
@@ -317,8 +310,37 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                                         {/* <p className="feedTlToLineInformationTitle">{toLines.title}</p> */}
                                         <p className="feedTlToLineInformationDesc">{toLines.desc}</p>
                                         {toLines?.img && <img className="postMemoImg" src={PF + toLines?.img} alt='' />}
-                                        <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer}</p>
-                                        {/* <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer < time && toLineDeleteHandler(toLines)}</p> */}
+                                        {/* module for fast answer to line */}
+                                        {(toLines?.reqRes && !toLines?.answer) && <button className="feedTlToLineInformationBtn tlToLineButton" onClick={() => handleOpen()} style={{ display: openAnswer ? "none" : "block" }}>Please answer</button>}
+                                        {openAnswer && <>
+                                            <div className="tlToLineInputContainer">
+                                                <textarea style={{ height: "60px" }} className="tlToLineInput" placeholder={"Please answer me " + user.username || user.personnelnumber + "?"} ref={desc} value={text} defaultValue={"" || toLines?.answer} onChange={(e) => setText(e.target.value)} />
+                                            </div>
+                                            <div className="feedTlToLineInformationAnswerContainer">
+                                                <div className="memoEmoji">
+                                                    <EmojiEmotions className="memoIcon" onClick={() => setOpen((prev) => !prev)} />
+                                                    <span className="memoOptionText" onClick={() => setOpen((prev) => !prev)}>{open ? "Hide" : "Show"} emojis</span>
+                                                </div>
+                                                <button className="tlToLineButton" onClick={() => handleAnswer(toLines)}>Send
+                                                    <DoneOutline />
+                                                </button>
+                                            </div>
+                                        </>}
+                                        <div className="memoEmojiPicker" style={{ display: openAnswer ? "block" : "none" }}>
+                                            {open && (<Picker suggestedEmojisMode={["recent"]} style={{ width: "100%" }} reactionsDefaultOpen={true} searchDisabled={true} onEmojiClick={handleEmoji} />)}
+                                        </div>
+                                        <div className="feedTlToLineInformationEditContainer" style={{ display: (openAnswer || toLines?.answer) ? "flex" : "none" }}>
+                                            {toLines?.answer &&
+                                                <>
+                                                    <p className="feedTlToLineInformationAnswer">Answer: <span>{toLines?.answer}</span></p>
+                                                    <div className="editBtn">
+                                                        <Edit onClick={() => setOpenAnswer(!openAnswer)} />
+                                                    </div>
+                                                </>
+                                            }
+                                        </div>
+                                        {/* <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer} {time}</p> */}
+                                        <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer} {toLines?.timer < time && toLineDeleteHandler(toLines)}</p>
                                     </div>
                                     :
                                     toLines.line === "forAll" ?
@@ -327,8 +349,16 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                                             {/* <p className="feedTlToLineInformationTitle">{toLines.title}</p> */}
                                             <p className="feedTlToLineInformationDesc">{toLines.desc}</p>
                                             {toLines?.img && <img className="postMemoImg" src={PF + toLines?.img} alt='' />}
-                                            <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer}</p>
-                                            {/* <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer < time && eventDeleteHandler(toLines)}</p> */}
+                                            {/* <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer}</p> */}
+
+
+
+
+
+
+
+
+                                            <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer}{toLines?.timer < time && toLineDeleteHandler(toLines)}</p>
                                         </div>
                                         :
                                         <></>
@@ -375,6 +405,6 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                     <Post key={p._id} post={p} />
                 ))}
             </div>
-        </div>
+        </div >
     );
 }

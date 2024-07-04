@@ -133,7 +133,9 @@ export default function Rightbar({ user }) {
     const HomeRightbar = () => {
         return (
             <>
+             <Link to={`/events/${currentUser.personnelnumber}`} style={{ textDecoration: "none" }}>
                 <h4 className="rightbarTitle">Here you can view the events on the agenda</h4>
+             </Link>
                 <ul className="feedEventsList">
                     {Object.values(allEvents).map((event) => {
                         return (

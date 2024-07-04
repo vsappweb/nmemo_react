@@ -306,6 +306,23 @@
     transform: scale(0.9);
 }
 
+.tlToLineReqRes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 5px;
+}
+
+.tlToLineRequestResponse{
+    font-size: 14px;
+    font-weight: 400;
+    text-transform: capitalize;
+    text-align: center;
+    padding-left: 10px;
+}
+
+
 @media screen and (max-width: 500px) {
     .tlToLineBottom {
         flex-wrap: wrap;

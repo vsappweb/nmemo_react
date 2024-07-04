@@ -17,13 +17,41 @@
     gap: 10px;
     font-size: 16px;
     font-weight: 800;
-    color: yellow;
+    /* color: yellow; */
     border-radius: 5px;
     background-color: green;
 }
 
 .feedTlToLineInformationContent {
     background-color: rgba(109, 63, 63, 0.192);
+}
+
+.feedTlToLineInformationAnswerContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.feedTlToLineInformationAnswer {
+    font-size: 16px;
+    font-weight: 400;
+    color: orangered;
+    font-style:oblique;
+}
+.feedTlToLineInformationAnswer span {
+    font-style:normal;
+}
+
+.feedTlToLineInformationEditContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.feedTlToLineInformationBtn {
+    box-shadow: inset 0px 0px 7px 2px #FF080C;
+    -webkit-box-shadow: inset 0px 0px 7px 2px #FF080C;
+    -moz-box-shadow: inset 0px 0px 7px 2px #FF080C;
+    cursor: pointer;
 }
 
 @media screen and (max-width: 768px) {

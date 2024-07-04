@@ -1,9 +1,10 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import "./tlToLine.css";
 import AvatarUser from "../avatarUser/AvatarUser";
-import { AttachFile, DoneOutline, Cancel } from "@mui/icons-material"
+import { AttachFile, DoneOutline, Cancel, EmojiEmotions } from "@mui/icons-material"
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios"
+import Picker from "emoji-picker-react";
 
 
 export default function TlToLine() {
@@ -12,14 +13,17 @@ export default function TlToLine() {
     const desc = useRef();
     const forWho = useRef();
     const endTime = useRef();
+    const reqRes = useRef();
     const [file, setFile] = useState(null);
     const [text, setText] = useState("");
+    const [open, setOpen] = useState(false);
     let [allUsers, setUsers] = useState([]);
     const { user } = useContext(AuthContext);
+    const [isChecked, setIsChecked] = useState(false);
 
-    // window.setTimeout(function () {
-    //     window.location.reload();
-    // }, 30000);
+    const handleOnChange = () => {
+        setIsChecked(!isChecked);
+    };
 
     // create tlToLine in database
     const submitHandler = async (e) => {
@@ -29,7 +33,8 @@ export default function TlToLine() {
             title: "ntlToLine " + date.toLocaleDateString('nl-NL'),
             desc: desc.current.value,
             line: forWho.current.value,
-            timer: endTime.current.value
+            timer: endTime.current.value,
+            reqRes: reqRes.current.value
         };
         if (file) {
             const data = new FormData();
@@ -69,6 +74,14 @@ export default function TlToLine() {
         getUsers()
     }, [API]);
 
+
+
+    // emoji picker
+    const handleEmoji = e => {
+        setText((prev) => prev + e.emoji);
+        setOpen(false);
+    }
+
     // sort users by role (operators and wals)
     const roles = (a, b) => {
         return (b.role) - (a.role);
@@ -99,6 +112,10 @@ export default function TlToLine() {
                             })}
                         </select>
                     </label>
+                    <label htmlFor="tlToLineReqRes" className="tlToLineReqRes">
+                        <p className="tlToLineRequestResponse">Response <br /> request</p>
+                        <input type="checkbox" id="tlToLineReqRes" name="reqRes" ref={reqRes} defaultValue={isChecked ? "true" : "false"} checked={isChecked} onChange={handleOnChange} />
+                    </label>
                 </div>
                 <div className="tlToLineTop">
                     <div className="tlToLineTopMiniSidebar">
@@ -124,6 +141,12 @@ export default function TlToLine() {
                             <span className="tlToLineOptionText">Add file</span>
                             <input style={{ display: "none" }} type="file" id="filetlToLine" accept=".png, .jpeg, .jpg" onChange={(e) => setFile(e.target.files[0])} />
                         </label>
+                        <div className="memoOption">
+                            <div className="memoEmoji">
+                                <EmojiEmotions className="memoIcon" onClick={() => setOpen((prev) => !prev)} />
+                                <span className="memoOptionText" onClick={() => setOpen((prev) => !prev)}>{open ? "Hide" : "Show"} emojis</span>
+                            </div>
+                        </div>
                         <label className="tlToLineOption" htmlFor="tlToLineTimer">
                             <span className="tlToLineOptionText">End time </span>
                             <input type="datetime-local" ref={endTime} id="tlToLineTimer" />
@@ -133,6 +156,9 @@ export default function TlToLine() {
                         <DoneOutline />
                     </button>
                 </form>
+                <div className="memoEmojiPicker">
+                    {open && (<Picker suggestedEmojisMode={["recent"]} style={{ width: "100%" }} reactionsDefaultOpen={true} searchDisabled={true} onEmojiClick={handleEmoji} />)}
+                </div>
             </div>
         </div >
     )

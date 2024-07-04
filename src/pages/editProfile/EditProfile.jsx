@@ -450,7 +450,7 @@ export default function EditProfile() {
                 <span style={{ textAlign: "center" }}>User data will be deleted</span>
                 <form className="editProfileForm" onSubmit={handleClickDelete}>
                   <label className="editProfileFormItem" htmlFor="delUserId" style={{ color: "red" }} >
-                    <p className="editProfileFormText" style={{ color: "red" }} >User ID:</p> <input className="editProfileInput" id="delUserId" ref={userIdDel} placeholder="userId" type="text" required disabled />
+                    <p className="editProfileFormText" style={{ color: "red" }} >User ID:</p><input className="editProfileInput" id="delUserId" ref={userIdDel} placeholder="userId" type="text" required disabled />
                   </label>
                   <button className="editProfileBtn" type="Submit" style={{ color: "red" }} disabled>DELETE</button>
                 </form>

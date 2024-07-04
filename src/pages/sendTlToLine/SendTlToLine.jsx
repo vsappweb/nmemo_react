@@ -77,10 +77,11 @@ export default function SendTlToLine() {
                   </div> */}
 
                   <div className="feedTlToLineInformationContent">
-                    <p className="feedTlToLineInformationHeader">{toLines.line}</p>
+                    <p className="feedTlToLineInformationHeader">{toLines.line} <sup style={{ display: toLines?.reqRes ? "inline" : "none", fontStyle: "italic", fontSize: "10px", color: "red" }}>message with a question</sup></p>
                     {/* <p className="feedTlToLineInformationTitle">{toLines?.title}</p> */}
                     <p className="feedTlToLineInformationDesc">{toLines?.desc}</p>
                     {toLines?.img && <img className="postMemoImg" src={PF + toLines?.img} alt='' />}
+                    {toLines?.answer && <p className="feedTlToLineInformationAnswer">Answer: <span>{toLines?.answer}</span></p>}
                     <div className="sendTlToLineInformationBox">
                       <p className="feedTlToLineInformationDesc">{time}</p>
                       <p className="feedTlToLineInformationDesc">{toLines?.timer}</p>
