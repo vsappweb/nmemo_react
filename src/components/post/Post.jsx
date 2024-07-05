@@ -87,8 +87,8 @@ export default function Post({ post }) {
                                     <div className="notActiveBtn">
                                         <Edit onClick={() => setIsMenuOpen(!isMenuOpen)} />
                                     </div>
-                                    <div className="deleteBtn">
-                                        <HighlightOff onClick={postDeleteHandler} />
+                                    <div className="deleteBtn" onClick={postDeleteHandler} >
+                                        <HighlightOff />
                                     </div>
                                 </div>
                                 :

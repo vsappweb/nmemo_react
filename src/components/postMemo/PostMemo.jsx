@@ -87,8 +87,8 @@ export default function PostMemo({ memo }) {
         <div className="notActiveBtn">
             <Edit onClick={() => setIsMenuOpen(!isMenuOpen)} />
         </div>
-        <div className="deleteBtn">
-            <HighlightOff onClick={memoDeleteHandler} />
+        <div className="deleteBtn" onClick={memoDeleteHandler} >
+            <HighlightOff />
         </div>
     </div>
     :

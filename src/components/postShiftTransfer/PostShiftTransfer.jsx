@@ -87,8 +87,8 @@ export default function PostShiftTransfer({ shiftTransfer }) {
         <div className="notActiveBtn">
             <Edit onClick={() => setIsMenuOpen(!isMenuOpen)} />
         </div>
-        <div className="deleteBtn">
-            <HighlightOff onClick={shiftTransferDeleteHandler} />
+        <div className="deleteBtn" onClick={shiftTransferDeleteHandler} >
+            <HighlightOff />
         </div>
     </div>
     :

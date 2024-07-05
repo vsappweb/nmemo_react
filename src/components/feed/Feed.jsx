@@ -52,8 +52,9 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
             answer: text,
         }
         try {
-            console.log(newAnswer)
+            // console.log(newAnswer)
             await axios.put(`${API}/tlToLines/${toLines._id}`, newAnswer);
+            document.getElementById("feedTlToLineInformationBtn").style.display = "none";
             setOpenAnswer(false);
         } catch (err) {
             console.log(err);
@@ -311,7 +312,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                                         <p className="feedTlToLineInformationDesc">{toLines.desc}</p>
                                         {toLines?.img && <img className="postMemoImg" src={PF + toLines?.img} alt='' />}
                                         {/* module for fast answer to line */}
-                                        {(toLines?.reqRes && !toLines?.answer) && <button className="feedTlToLineInformationBtn tlToLineButton" onClick={() => handleOpen()} style={{ display: openAnswer ? "none" : "block" }}>Please answer</button>}
+                                        {(toLines?.reqRes && !toLines?.answer) && <button className="feedTlToLineInformationBtn tlToLineButton" id="feedTlToLineInformationBtn" onClick={() => handleOpen()} style={{ display: openAnswer ? "none" : "block" }}>Please answer</button>}
                                         {openAnswer && <>
                                             <div className="tlToLineInputContainer">
                                                 <textarea style={{ height: "60px" }} className="tlToLineInput" placeholder={"Please answer me " + user.username || user.personnelnumber + "?"} ref={desc} value={text} defaultValue={"" || toLines?.answer} onChange={(e) => setText(e.target.value)} />
