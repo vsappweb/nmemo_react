@@ -2,7 +2,7 @@ import "./topbar.css";
 import AvatarUser from "../avatarUser/AvatarUser";
 import AllUsers from "../allUsers/AllUsers";
 import UserRole from "../userRole/UserRole"
-import { Person, Info, Logout, Settings } from "@mui/icons-material";
+import { Person, Logout, Settings } from "@mui/icons-material";
 import { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
