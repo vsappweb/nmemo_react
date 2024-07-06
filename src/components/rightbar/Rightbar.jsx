@@ -21,6 +21,7 @@ export default function Rightbar({ user }) {
     const [onlineUsers, setOnlineUsers] = useState([])
     let [allEvents, setEvents] = useState([]);
     const socket = useRef()
+   
 
 
 
@@ -151,14 +152,19 @@ export default function Rightbar({ user }) {
                         )
                     })}
                 </ul>
-                <hr className="sidebarHr" />
+               
+                {(currentUser.role === 1 || currentUser.role === 3) && <> 
+                    <hr className="sidebarHr" />
                 <h4 className="rightbarTitle">Here you can submit a report for your team leader</h4>
+
+                </>
+                }
 
                 <hr className="sidebarHr" />
                 {/* <h4 className="rightbarTitle">Main page nMemo</h4>
                 <p className="rightbarTitle">Rightbar</p> */}
                 {/* //TODO Show all online friends, not just followers */}
-                {/* <Online onlineUsers={onlineUsers} currentId={currentUser._id} /> */}
+                {(currentUser.role === 2 || currentUser.role === 0) && <Online onlineUsers={onlineUsers} currentId={currentUser._id} />}
             </>
 
 
@@ -167,13 +173,12 @@ export default function Rightbar({ user }) {
     const ProfileRightbar = () => {
         return (
             <>
-                {/* {(user.role === 404 || user.personnelnumber !== currentUser.personnelnumber) && (
+                {(user.role === 0 || currentUser.role === 2) &&  
                     <button className="rightbarFollow" onClick={handleClick}>
-                        //FIXME The button does not work correctly 
-                        {followed ? "Unfollow" : "Follow"}
-                        {followed ? <Remove /> : <Add />}
-                    </button>
-                )} */}
+                        {/* //FIXME The button does not work correctly  */}
+                        {/* {followed ? "Add for online control" : ""} */}
+                        {followed ? <Add />: <Remove /> }
+                    </button>}
                 <h4 className="rightbarTitle">User Information</h4>
                 {user.role !== 404 ? <div className="rightbarInfo">
                     <div className="rightbarInfoItem">
@@ -193,7 +198,9 @@ export default function Rightbar({ user }) {
                         <UserRole user={user} />
                     </div>
                 </div> : <span>No information</span>}
-                <h4 className="rightbarTitle">Your Line (Wals)</h4>
+               {user.role === 2 && 
+               <>
+               <h4 className="rightbarTitle">You can see online</h4>
                 <div className="rightbarFollowings">
                     {friends?.map((friend) => {
                         return (
@@ -216,7 +223,8 @@ export default function Rightbar({ user }) {
                         )
                     })}
                 </div>
-                <h4 className="rightbarTitle">Your Team leaders</h4>
+                </>}
+                {/* <h4 className="rightbarTitle">Your Team leaders</h4> */}
             </>
         )
     }
@@ -227,7 +235,7 @@ export default function Rightbar({ user }) {
                 <div className="rightbarBurgerLineTwo"></div>
                 <div className="rightbarBurgerLineThree"></div>
             </div>
-            <div className="rightbar">
+            <div className="rightbar" >
                 <div className="rightbarWrapper">
                     {user ? <ProfileRightbar /> : <HomeRightbar />}
                 </div>

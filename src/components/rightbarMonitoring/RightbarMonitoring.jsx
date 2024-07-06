@@ -74,7 +74,7 @@ export default function RightbarMonitoring() {
         return new Date(a.role) - new Date(b.role);
     }
     allUsers = Object.values(allUsers).sort(compare)
-    allUsers = Object.values(allUsers).filter(user => user.role === 2 || user.role === 3)
+    allUsers = Object.values(allUsers).filter(user => user.role === 3)
 
     // TODO: filter for today problem night shifts when changed date
     showConfirmationShift = Object.values(showConfirmationShift).filter(shift => (shift.date === new Date().toLocaleDateString('nl-NL')) && (shift.shift === shiftNow));
@@ -91,7 +91,7 @@ export default function RightbarMonitoring() {
                 </div>
                 <ul>
                     {Object.values(allUsers).map((u) => (
-                        <li className="allUsersWrapperRightbarMonitoring" style={{ marginBottom: "15px" }} key={u._id}>
+                        <li className="allUsersWrapperRightbarMonitoring" key={u._id} style={{ marginBottom: "15px" }}>
                             <AllUsers user={u} />
                             {Object.values(showConfirmationShift).map((sc) => (
                                 sc.userId === u._id &&

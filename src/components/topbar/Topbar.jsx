@@ -216,7 +216,7 @@ export default function Topbar() {
                                 <UserRole user={user} /></h3>
                             <ul>
                                 <Link to={`/license`} style={{ textDecoration: "none" }}>
-                                    <DropdownItem img={<img className="logoIconImg" src="../../../assets/ico/chat.svg" alt="Logo nMemo" />} text={"nMemo about"} />
+                                    <DropdownItem img={<img className="logoIconImg" src="../../../assets/ico/chat.svg" alt="Logo nMemo" />} text={"nMemo ά 0.2"} />
                                 </Link>
                                 <Link to={`/profile/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
                                     <DropdownItem img={<Person />} text={"My Profile"} />

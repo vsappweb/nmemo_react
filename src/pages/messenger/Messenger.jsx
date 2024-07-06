@@ -152,10 +152,23 @@ export default function Messenger() {
         getUsers()
     }, [API]);
 
+    const showchatMenu = () => {
+        document.querySelector(".chatMenu").classList.toggle("active");
+        document.querySelector(".chatMenuBurger").classList.toggle("active");
+        document.querySelector(".chatMenuBurgerLineOne").classList.toggle("active");
+        document.querySelector(".chatMenuBurgerLineTwo").classList.toggle("active");
+        document.querySelector(".chatMenuBurgerLineThree").classList.toggle("active");
+    }
+
     return (
         <>
             <Topbar />
             <div className="messenger">
+            <div className="chatMenuBurger" onClick={() => { showchatMenu() }} >
+                <div className="chatMenuBurgerLineOne"></div>
+                <div className="chatMenuBurgerLineTwo"></div>
+                <div className="chatMenuBurgerLineThree"></div>
+            </div>
                 <div className="chatMenu">
                     <div className="chatMenuWrapper">
                         <div className="chatMenuAddNew" >
@@ -216,8 +229,8 @@ export default function Messenger() {
                                 {/* //TODO add the name of the user you are chatting with */}
                                 <div className="chatBoxTop">
                                     {messages.map((m) => (
-                                        <div ref={scrollRef}>
-                                            <Message message={m} own={m.sender === user._id} key={m._id} />
+                                        <div ref={scrollRef} key={m._id}>
+                                            <Message message={m} own={m.sender === user._id} />
                                         </div>
                                     ))}
                                 </div>
@@ -236,11 +249,11 @@ export default function Messenger() {
                             <span className="noConversationText">Open a conversation to start a chat.</span>)}
                     </div>
                 </div>
-                <div className="chatOnline">
+              {(user.role === 2 || user.role === 0) &&  <div className="chatOnline" style={{ display: "none" }}>
                     <div className="chatOnlineWrapper">
                         <ChatOnline onlineUsers={onlineUsers} currentId={user._id} setCurrentChat={setCurrentChat} />
                     </div>
-                </div>
+                </div>}
             </div >
         </>
     )

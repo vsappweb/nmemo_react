@@ -8,7 +8,7 @@ import Sidebar from '../../components/sidebar/Sidebar'
 import Rightbar from '../../components/rightbar/Rightbar'
 import RightbarMonitoring from '../../components/rightbarMonitoring/RightbarMonitoring'
 import ShiftTransfer2 from '../../components/shiftTransfer2/ShiftTransfer2'
-import { Edit, HighlightOff, CleaningServices } from "@mui/icons-material"
+import { Edit, HighlightOff, CleaningServices, Lock, LockOpen, Label } from "@mui/icons-material"
 import { renderToString } from 'react-dom/server'
 import DateTimeShift from '../../components/dateTimeShift/DateTimeShift'
 
@@ -18,10 +18,18 @@ export default function EditShiftTransfer() {
   const { user } = useContext(AuthContext)
   let [allShiftsTransfers, setAllShiftsTransfers] = useState([]);
   let [allShiftTransferItems, setAllShiftTransferItems] = useState([]);
+  let [allShiftsTransfersSort, setAllShiftsTransfersSort] = useState([]);
   const [hideShiftTransferItemForm, setHideShiftTransferItemForm] = useState(false);
   const [hideShiftTransferSorting, setHideShiftTransferSorting] = useState(false);
+  const [hideShiftSorting, setHideShiftSorting] = useState(false);
   const [getShTrItem, setGetShTrItem] = useState({});
   const item = useRef();
+
+  const sortDay = useRef();
+  const sortWeek = useRef();
+  const sortMonth = useRef();
+  const sortType = useRef();
+  const sortValue = useRef();
 
   const shiftNow = renderToString(<DateTimeShift />)
 
@@ -32,7 +40,7 @@ export default function EditShiftTransfer() {
       try {
         const res = await axios.get(`${API}/shiftTransfers/allShiftTransfers`);
         setAllShiftsTransfers(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       } catch (err) {
         console.error(err);
       }
@@ -46,7 +54,7 @@ export default function EditShiftTransfer() {
       try {
         const res = await axios.get(`${API}/shiftTransfersItems/allShiftTransfersItems`);
         setAllShiftTransferItems(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       } catch (err) {
         console.error(err);
       }
@@ -80,6 +88,9 @@ export default function EditShiftTransfer() {
 
   const handleHideShiftTransferSorting = () => {
     setHideShiftTransferSorting(!hideShiftTransferSorting);
+    if (hideShiftTransferSorting) {
+      window.location.reload();
+    }
   }
   const handleHideShiftTransferItemForm = () => {
     setHideShiftTransferItemForm(!hideShiftTransferItemForm);
@@ -104,11 +115,13 @@ export default function EditShiftTransfer() {
 
 
   // sort shifts transfers by date and time
-  const oldToNew = (a, b) => {
-    return new Date(b.createdAt) - new Date(a.createdAt);
+  if (hideShiftTransferSorting === false) {
+    const oldToNew = (a, b) => {
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    }
+    allShiftsTransfers = Object.values(allShiftsTransfers).sort(oldToNew);
+    allShiftsTransfers = Object.values(allShiftsTransfers).filter(shift => (shift.date === new Date().toLocaleDateString('nl-NL')) && (shift.shift === shiftNow));
   }
-  allShiftsTransfers = Object.values(allShiftsTransfers).sort(oldToNew);
-  allShiftsTransfers = Object.values(allShiftsTransfers).filter(shift => (shift.date === new Date().toLocaleDateString('nl-NL')) && (shift.shift === shiftNow));
 
 
 
@@ -147,6 +160,86 @@ export default function EditShiftTransfer() {
   }
 
 
+  // Sorting by month
+  const handleSortMonth = async () => {
+    const monthSort = sortMonth.current.value;
+    console.log(new Date(monthSort).toLocaleDateString('nl-NL').split('-')[1] + "-" + new Date(monthSort).toLocaleDateString('nl-NL').split('-')[2])
+    const oldToNew = (a, b) => {
+      return new Date(a.createdAt) - new Date(b.createdAt);
+    }
+    allShiftsTransfers = Object.values(allShiftsTransfers).sort(oldToNew);
+    setAllShiftsTransfersSort(Object.values(allShiftsTransfers).filter(shift => (shift.date.split('-')[1] + "-" + shift.date.split('-')[2]) === (new Date(monthSort).toLocaleDateString('nl-NL').split('-')[1] + "-" + new Date(monthSort).toLocaleDateString('nl-NL').split('-')[2])));
+    console.log(allShiftsTransfersSort);
+  }
+
+  // Sorting by day
+  const handleSortDay = async () => {
+    const daySort = sortDay.current.value;
+    console.log(daySort)
+    console.log(new Date(daySort).toLocaleDateString('nl-NL'))
+    const oldToNew = (a, b) => {
+      return new Date(a.createdAt) - new Date(b.createdAt);
+    }
+    allShiftsTransfers = Object.values(allShiftsTransfers).sort(oldToNew);
+    setAllShiftsTransfersSort(Object.values(allShiftsTransfers).filter(shift => shift.date === new Date(daySort).toLocaleDateString('nl-NL')));
+  }
+
+  // Sorting by week
+  const handleSortWeek = async () => {
+    console.log(sortWeek.current.value.split('-W')[0])
+    const weekSort = sortWeek.current.value.split('W')[1];
+    console.log(weekSort)
+    const oldToNew = (a, b) => {
+      return new Date(b.weekNumber) - new Date(a.weekNumber);
+    }
+    allShiftsTransfers = Object.values(allShiftsTransfers).sort(oldToNew);
+    setAllShiftsTransfersSort(Object.values(allShiftsTransfers).filter(shift => (shift.weekNumber === weekSort) && (shift.date.split('-')[2] === sortWeek.current.value.split('-W')[0])));
+    console.log(allShiftsTransfersSort);
+  }
+
+  const handleSortByTypeAndValue = () => {
+    const typeSort = sortType.current.value;
+    const valueSort = sortValue.current.value;
+    console.log(typeSort)
+    console.log(valueSort)
+    if (typeSort === "wals") {
+      const wals = "Wals " + valueSort;
+      console.log(wals)
+      setAllShiftsTransfersSort(Object.values(allShiftsTransfers).filter(shift => shift.line === wals));
+      // document.getElementById("sortWals").disabled = true;
+    }
+    if (typeSort === "operators") {
+      const operator = valueSort;
+      console.log(operator)
+      setAllShiftsTransfersSort(Object.values(allShiftsTransfers).filter(shift => shift.operator === operator));
+      // document.getElementById("sortOperators").disabled = true;
+    }
+    if (typeSort === "shifts") {
+      const shift = valueSort;
+      console.log(shift)
+      setAllShiftsTransfersSort(Object.values(allShiftsTransfers).filter(shift => shift.shift === shift));
+      // document.getElementById("sortShifts").disabled = true;
+    }
+    if (typeSort === "clear") {
+      window.location.reload();
+    }
+    // document.getElementById("sortType").value = "";
+    // document.getElementById("sortValue").value = "";
+  }
+
+  const chooseSortOfShift = () => {
+    const typeSort = sortType.current.value;
+    if (typeSort === "shifts") {
+      setHideShiftSorting(!hideShiftSorting);
+    } else {
+      setHideShiftSorting(hideShiftSorting);
+    }
+  }
+
+  const handleSortClear = () => {
+    window.location.reload();
+  }
+
   return (
     <>
       <Topbar />
@@ -155,21 +248,56 @@ export default function EditShiftTransfer() {
         <div className="editShiftTransferRight">
 
           <div className="editShiftTransferRightContent">
-            {user.role === 0 || user.isAdmin ? <button className="editShiftTransferShowHideBtn" onClick={() => handleHideShiftTransferSorting(true)}>{hideShiftTransferSorting ? "Hide sorting panel" : "Show sorting panel"}</button> : null}
-            {user.role === 0 || user.isAdmin ? <button className="editShiftTransferShowHideBtn" onClick={() => handleHideShiftTransferItemForm(true)}>{hideShiftTransferItemForm ? "Hide Edit or Add Items" : "Show Edit or Add Items"}</button> : null}
+            {!hideShiftTransferItemForm &&
+              <>
+                {user.role === 0 || user.isAdmin ? <button className="editShiftTransferShowHideBtn" onClick={() => handleHideShiftTransferSorting(true)}>{hideShiftTransferSorting ? "Hide sorting panel" : "Show sorting panel"}</button> : null}
+              </>}
+            {!hideShiftTransferSorting &&
+              <>
+                {user.role === 0 || user.isAdmin ? <button className="editShiftTransferShowHideBtn" onClick={() => handleHideShiftTransferItemForm(true)}>{hideShiftTransferItemForm ? "Hide Edit or Add Items" : "Show Edit or Add Items"}</button> : null}
+              </>}
 
             {user.role === 0 || user.isAdmin ? <>
               {hideShiftTransferSorting && <div className="editShiftTransferRightSorting editShiftTransferListWrapper">
                 <h2 className="editShiftTransferRightSortingTitle">sort transfer shift</h2>
-                <input className="editShiftTransferRightSortingInput" type="date" placeholder="Date" />
-                <select className="editShiftTransferRightSortingInput" defaultValue="3" >
-                  <option className="editShiftTransferRightSortingInput" value="1">Operator</option>
-                  <option className="editShiftTransferRightSortingInput" value="2">Shift</option>
-                  <option className="editShiftTransferRightSortingInput" value="3">Wals</option>
-                  <option className="editShiftTransferRightSortingInput" value="4">Week</option>
-                </select>
-                <input className="editShiftTransferRightSortingInput" type="text" />
-                <button className="editProfileButtonGet" onClick={() => window.location.reload()} >sort</button>
+                <label className="editShiftTransferRightSortingLabel">
+                  <p className="editShiftTransferRightSortingText">Sort by month</p>
+                  <input className="editShiftTransferRightSortingInput" type="month" id='sortMonth' ref={sortMonth}
+                    onChange={() => handleSortMonth()} />
+                  <div className="notActiveBtn">
+                    <Lock />
+                  </div>
+                </label>
+                <label className="editShiftTransferRightSortingLabel">
+                  <p className="editShiftTransferRightSortingText">Sort by week</p>
+                  <input className="editShiftTransferRightSortingInput" type="week" id='sortWeek' ref={sortWeek} onChange={() => handleSortWeek()} disabled={hideShiftTransferItemForm} />
+                  <div className="notActiveBtn">
+                    <LockOpen />
+                  </div>
+                </label>
+                <label className="editShiftTransferRightSortingLabel">
+                  <p className="editShiftTransferRightSortingText">Sort by day</p>
+                  <input className="editShiftTransferRightSortingInput" type="date" id='sortDay' ref={sortDay} onChange={() => handleSortDay()} onfocus="(this.type='date')" />
+                  <div className="notActiveBtn">
+                    <LockOpen />
+                  </div>
+                </label>
+                <div className="sortingBox">
+                  <select className="editShiftTransferRightSortingInput" defaultValue="clear" ref={sortType} onClick={() => chooseSortOfShift(sortType)} >
+                    <option className="editShiftTransferRightSortingInput" value="clear">Clear All</option>
+                    <option className="editShiftTransferRightSortingInput" id='sortOperators' value="operators">Operator</option>
+                    <option className="editShiftTransferRightSortingInput" id='sortShifts' value="shifts">Shift</option>
+                    <option className="editShiftTransferRightSortingInput" id='sortWals' value="wals">Wals</option>
+                  </select>
+                  {hideShiftSorting && <select className="editShiftTransferRightSortingInput" defaultValue={shiftNow} ref={sortValue} >
+                    <option className="editShiftTransferRightSortingInput" id='morning' value="Morning">Morning</option>
+                    <option className="editShiftTransferRightSortingInput" id='afternoon' value="Afternoon">Afternoon</option>
+                    <option className="editShiftTransferRightSortingInput" id='night' value="Night">Night</option>
+                  </select>}
+                  {!hideShiftSorting && <input className="editShiftTransferRightSortingInput" type="text" id='sortType' ref={sortValue} style={{ width: "115px" }} />}
+                  <button className="editProfileButtonGet" id='sortValue' onClick={() => handleSortByTypeAndValue()} >Sort</button>
+                </div>
+                {/* <button className="editProfileButtonGet" onClick={() => handleSortClear()} >Sort Clear</button> */}
               </div>}
             </> : <></>}
 
@@ -219,14 +347,24 @@ export default function EditShiftTransfer() {
 
 
 
-            <ul className="editShiftTransferPostsList">
-              {(user.role === 2 || user.role === 0) &&
-                (Object.values(allShiftsTransfers).map((st => (
-                  <li className="nMemoViev" key={st._id}>
-                    <PostShiftTransfer shiftTransfer={st} />
-                  </li>
-                ))))}
-            </ul>
+            {hideShiftTransferSorting ?
+
+              <ul className="editShiftTransferPostsList">
+                {(user.role === 2 || user.role === 0) &&
+                  (Object.values(allShiftsTransfersSort).map((st => (
+                    <li className="nMemoViev" key={st._id}>
+                      <PostShiftTransfer shiftTransfer={st} />
+                    </li>
+                  ))))}
+              </ul> :
+              <ul className="editShiftTransferPostsList">
+                {(user.role === 2 || user.role === 0) &&
+                  (Object.values(allShiftsTransfers).map((st => (
+                    <li className="nMemoViev" key={st._id}>
+                      <PostShiftTransfer shiftTransfer={st} />
+                    </li>
+                  ))))}
+              </ul>}
 
             {user.role === 3 &&
               <ul>

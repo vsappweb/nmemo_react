@@ -26,7 +26,7 @@ export default function Online({ onlineUsers, currentId }) {
 
     return (
         <div className="chatOnline">
-            <h4 className="rightbarTitle">Here you can only see online users that you follow</h4>
+            <h4 className="rightbarTitle">Now online</h4>
             <hr className="sidebarHr" />
             {onlineFriends.map((o) => {
                 return (

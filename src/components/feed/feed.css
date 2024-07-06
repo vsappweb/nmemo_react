@@ -56,25 +56,25 @@
 
 @media screen and (max-width: 768px) {
     .feedWrapper {
-        padding-left: 5px;
+        padding-left: 15px;
         padding-right: 15px;
         transition: all 0.3s ease;
     }
 }
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
     .feedWrapper {
-        padding-right: 5px;
+        padding-right: 10px;
         transition: all 0.3s ease;
     }
-}
+} */
 
 @media screen and (max-width: 460px) {
     .feed{
         overflow: hidden;
     }
     .feedWrapper {
-        padding-left: 0px;
-        padding-right: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
         transition: all 0.3s ease;
     }
 }

@@ -184,13 +184,22 @@ input, textarea {
     color: var(--cBadgeNtf);
 }
 
+.rbc-toolbar button {
+    box-shadow: none;
+    border: 1px solid var(--cText);
+    border-radius: 5px;
+}
+
 @media screen and (max-width: 500px) {
     .editEventsLeft {
         padding: 10px 0px;
     }
-    .editEventsBorderRight {
 
-        margin: 10px auto 5px 0;
+    .rbc-toolbar .rbc-toolbar-label {
+        padding: 10px;
     }
 
+    .rbc-toolbar {
+        margin-bottom: 15px;
+    }
 }
