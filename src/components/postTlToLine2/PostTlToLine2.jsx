@@ -175,7 +175,7 @@ export default function PostTlToLine2({ toLines, allTlToLines, setTlToLines, ope
                             <div className="feedTlToLineInformationBtnBox">
                                 <div className="feedTlToLineInformationMarkBox" onClick={() => agreeHandler(toLines)}>
                                     <DoneAll id="feedTlToLineInformationBtnDone" style={{ color: isAgreed ? "green" : "grey" }} />
-                                    <p className="feedTlToLineInformationMark" style={{ color: isAgreed ? "green" : "grey" }}>{toLines.agrees.length} okey</p>
+                                    <p className="feedTlToLineInformationMark" style={{ color: isAgreed ? "green" : "grey" }}>{toLines.agrees.length > 0 && ` ${toLines.agrees.length}`} okey</p>
                                 </div>
                                 <div className="feedTlToLineInfoReqRes">
                                     <ArrowBack />
@@ -183,7 +183,7 @@ export default function PostTlToLine2({ toLines, allTlToLines, setTlToLines, ope
                                     <ArrowForward />
                                 </div>
                                 <div className="feedTlToLineInformationMarkBox" onClick={() => disagreeHandler(toLines)}>
-                                    <p className="feedTlToLineInformationMark" style={{ color: isDisagreed ? "red" : "grey" }}>not okey {toLines.disagrees.length}</p>
+                                    <p className="feedTlToLineInformationMark" style={{ color: isDisagreed ? "red" : "grey" }}>not okey{toLines.disagrees.length > 0 && ` ${toLines.disagrees.length}`}</p>
                                     <RemoveDone id="feedTlToLineInformationBtnNotDone" style={{ color: isDisagreed ? "red" : "grey" }} />
                                 </div>
                             </div>

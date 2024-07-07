@@ -108,8 +108,8 @@ export default function Post({ post }) {
                     <div className="postBottomLeft">
                         <ThumbUpOffAlt className="likeIcon" onClick={likeHandler} />
                         <span className="postLikeCounter">{like} people like it</span>
-                        <FavoriteBorder className="likeIcon" onClick={loveHandler} />
-                        <span className="postLikeCounter">{love} people love it</span>
+                        {/* <FavoriteBorder className="likeIcon" onClick={loveHandler} />
+                        <span className="postLikeCounter">{love} people love it</span> */}
                     </div>
                     {/* <div className="postBottomRight">
                         <span className="postCommentText">{post.comment} comments</span>
