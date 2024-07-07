@@ -8,7 +8,7 @@ import Sidebar from '../../components/sidebar/Sidebar'
 import Rightbar from '../../components/rightbar/Rightbar'
 import RightbarMonitoring from '../../components/rightbarMonitoring/RightbarMonitoring'
 import ShiftTransfer2 from '../../components/shiftTransfer2/ShiftTransfer2'
-import { Edit, HighlightOff, CleaningServices, Lock, LockOpen, Label } from "@mui/icons-material"
+import { Edit, HighlightOff, CleaningServices, Lock, LockOpen } from "@mui/icons-material"
 import { renderToString } from 'react-dom/server'
 import DateTimeShift from '../../components/dateTimeShift/DateTimeShift'
 
@@ -19,10 +19,14 @@ export default function EditShiftTransfer() {
   let [allShiftsTransfers, setAllShiftsTransfers] = useState([]);
   let [allShiftTransferItems, setAllShiftTransferItems] = useState([]);
   let [allShiftsTransfersSort, setAllShiftsTransfersSort] = useState([]);
+  let [allShiftsTransfersSecondQuery, setAllShiftsTransfersSecondQuery] = useState([]); //second query for sorting
   const [hideShiftTransferItemForm, setHideShiftTransferItemForm] = useState(false);
   const [hideShiftTransferSorting, setHideShiftTransferSorting] = useState(false);
   const [hideShiftSorting, setHideShiftSorting] = useState(false);
   const [getShTrItem, setGetShTrItem] = useState({});
+  const [lockMonth, setLockMonth] = useState(false);
+  const [lockWeek, setLockWeek] = useState(false);
+  const [lockDay, setLockDay] = useState(false);
   const item = useRef();
 
   const sortDay = useRef();
@@ -61,9 +65,9 @@ export default function EditShiftTransfer() {
     };
     let result = fetchData();
     if (!result) {
-      interval = setInterval(fetchData, 60000);
+      interval = setInterval(fetchData, 20000);
     }
-    interval = setInterval(fetchData, 60000);
+    interval = setInterval(fetchData, 20000);
     return () => clearInterval(interval);
   }, [API]);
 
@@ -77,14 +81,6 @@ export default function EditShiftTransfer() {
     fetchPostsShiftTransfer();
   }, [user.personnelnumber, API])
 
-  const deleteShiftTransfer = async (id) => {
-    try {
-      await axios.delete(`${API}/shiftTransfers/${id}`);
-      window.location.reload();
-    } catch (err) {
-      console.error(err);
-    }
-  }
 
   const handleHideShiftTransferSorting = () => {
     setHideShiftTransferSorting(!hideShiftTransferSorting);
@@ -169,7 +165,8 @@ export default function EditShiftTransfer() {
     }
     allShiftsTransfers = Object.values(allShiftsTransfers).sort(oldToNew);
     setAllShiftsTransfersSort(Object.values(allShiftsTransfers).filter(shift => (shift.date.split('-')[1] + "-" + shift.date.split('-')[2]) === (new Date(monthSort).toLocaleDateString('nl-NL').split('-')[1] + "-" + new Date(monthSort).toLocaleDateString('nl-NL').split('-')[2])));
-    console.log(allShiftsTransfersSort);
+    console.log("test");
+
   }
 
   // Sorting by day
@@ -182,6 +179,9 @@ export default function EditShiftTransfer() {
     }
     allShiftsTransfers = Object.values(allShiftsTransfers).sort(oldToNew);
     setAllShiftsTransfersSort(Object.values(allShiftsTransfers).filter(shift => shift.date === new Date(daySort).toLocaleDateString('nl-NL')));
+    if (lockMonth) {
+      setAllShiftsTransfersSecondQuery(Object.values(allShiftsTransfers).filter(shift => shift.date === new Date(daySort).toLocaleDateString('nl-NL')));
+    }
   }
 
   // Sorting by week
@@ -200,31 +200,39 @@ export default function EditShiftTransfer() {
   const handleSortByTypeAndValue = () => {
     const typeSort = sortType.current.value;
     const valueSort = sortValue.current.value;
-    console.log(typeSort)
-    console.log(valueSort)
-    if (typeSort === "wals") {
+    // sorting by type and value (wals -- months)
+    if (typeSort === "wals" && (lockMonth === false && lockWeek === false && lockDay === false)) {
       const wals = "Wals " + valueSort;
-      console.log(wals)
+      console.log(wals + " not lock")
       setAllShiftsTransfersSort(Object.values(allShiftsTransfers).filter(shift => shift.line === wals));
-      // document.getElementById("sortWals").disabled = true;
     }
-    if (typeSort === "operators") {
+    if (typeSort === "wals" && (lockMonth === true || lockWeek === true || lockDay === true)) {
+      const wals = "Wals " + valueSort;
+      console.log(wals + " lock")
+      setAllShiftsTransfersSecondQuery(Object.values(allShiftsTransfersSort).filter(shift => shift.line === wals));
+    }
+
+    // sorting by type and value (operators)
+    if (typeSort === "operators" && (lockMonth === false && lockWeek === false && lockDay === false)) {
       const operator = valueSort;
       console.log(operator)
       setAllShiftsTransfersSort(Object.values(allShiftsTransfers).filter(shift => shift.operator === operator));
-      // document.getElementById("sortOperators").disabled = true;
     }
-    if (typeSort === "shifts") {
-      const shift = valueSort;
-      console.log(shift)
-      setAllShiftsTransfersSort(Object.values(allShiftsTransfers).filter(shift => shift.shift === shift));
-      // document.getElementById("sortShifts").disabled = true;
+    if (typeSort === "operators" && (lockMonth === true || lockWeek === true || lockDay === true)) {
+      const operator = valueSort;
+      console.log(operator)
+      setAllShiftsTransfersSecondQuery(Object.values(allShiftsTransfersSort).filter(shift => shift.operator === operator));
     }
-    if (typeSort === "clear") {
-      window.location.reload();
+
+    // sorting by type and value (shifts)
+    if (typeSort === "shifts" && (lockMonth === false && lockWeek === false && lockDay === false)) {
+      const shiftValue = valueSort;
+      setAllShiftsTransfersSort(Object.values(allShiftsTransfers).filter(shift => shift.shift === shiftValue));
     }
-    // document.getElementById("sortType").value = "";
-    // document.getElementById("sortValue").value = "";
+    if (typeSort === "shifts" && (lockMonth === true || lockWeek === true || lockDay === true)) {
+      const shiftValue = valueSort;
+      setAllShiftsTransfersSecondQuery(Object.values(allShiftsTransfersSort).filter(shift => shift.shift === shiftValue));
+    }
   }
 
   const chooseSortOfShift = () => {
@@ -236,8 +244,74 @@ export default function EditShiftTransfer() {
     }
   }
 
-  const handleSortClear = () => {
-    window.location.reload();
+
+  const handleLockMonth = () => {
+    setLockMonth(!lockMonth);
+    if (lockMonth) {
+      document.getElementById("sortMonth").disabled = false;
+      document.getElementById("sortMonth").value = "";
+      document.getElementById("sortType").value = "";
+      document.getElementById("sortWeek").style.display = "flex";
+      document.getElementById("sortWeekTitle").style.display = "flex";
+      document.getElementById("sortWeekLockOpen").style.display = "flex";
+      document.getElementById("sortDay").style.display = "flex";
+      document.getElementById("sortDayTitle").style.display = "flex";
+      document.getElementById("sortDayLockOpen").style.display = "flex";
+    } else {
+      document.getElementById("sortMonth").disabled = true;
+      document.getElementById("sortWeek").style.display = "none";
+      document.getElementById("sortWeekTitle").style.display = "none";
+      document.getElementById("sortWeekLockOpen").style.display = "none";
+      document.getElementById("sortDay").style.display = "none";
+      document.getElementById("sortDayTitle").style.display = "none";
+      document.getElementById("sortDayLockOpen").style.display = "none";
+    }
+  }
+
+  const handleLockWeek = () => {
+    setLockWeek(!lockWeek);
+    if (lockWeek) {
+      document.getElementById("sortWeek").disabled = false;
+      document.getElementById("sortWeek").value = "";
+      document.getElementById("sortType").value = "";
+      document.getElementById("sortDay").style.display = "flex";
+      document.getElementById("sortDayTitle").style.display = "flex";
+      document.getElementById("sortDayLockOpen").style.display = "flex";
+      document.getElementById("sortMonth").style.display = "flex";
+      document.getElementById("sortMonthTitle").style.display = "flex";
+      document.getElementById("sortMonthLockOpen").style.display = "flex";
+    } else {
+      document.getElementById("sortWeek").disabled = true;
+      document.getElementById("sortDay").style.display = "none";
+      document.getElementById("sortDayTitle").style.display = "none";
+      document.getElementById("sortDayLockOpen").style.display = "none";
+      document.getElementById("sortMonth").style.display = "none";
+      document.getElementById("sortMonthTitle").style.display = "none";
+      document.getElementById("sortMonthLockOpen").style.display = "none";
+    }
+  }
+
+  const handleLockDay = () => {
+    setLockDay(!lockDay);
+    if (lockDay) {
+      document.getElementById("sortDay").disabled = false;
+      document.getElementById("sortDay").value = "";
+      document.getElementById("sortType").value = "";
+      document.getElementById("sortMonth").style.display = "flex";
+      document.getElementById("sortMonthTitle").style.display = "flex";
+      document.getElementById("sortMonthLockOpen").style.display = "flex";
+      document.getElementById("sortWeek").style.display = "flex";
+      document.getElementById("sortWeekTitle").style.display = "flex";
+      document.getElementById("sortWeekLockOpen").style.display = "flex";
+    } else {
+      document.getElementById("sortDay").disabled = true;
+      document.getElementById("sortMonth").style.display = "none";
+      document.getElementById("sortMonthTitle").style.display = "none";
+      document.getElementById("sortMonthLockOpen").style.display = "none";
+      document.getElementById("sortWeek").style.display = "none";
+      document.getElementById("sortWeekTitle").style.display = "none";
+      document.getElementById("sortWeekLockOpen").style.display = "none";
+    }
   }
 
   return (
@@ -261,30 +335,29 @@ export default function EditShiftTransfer() {
               {hideShiftTransferSorting && <div className="editShiftTransferRightSorting editShiftTransferListWrapper">
                 <h2 className="editShiftTransferRightSortingTitle">sort transfer shift</h2>
                 <label className="editShiftTransferRightSortingLabel">
-                  <p className="editShiftTransferRightSortingText">Sort by month</p>
+                  <p className="editShiftTransferRightSortingText" id='sortMonthTitle'>Sort by month</p>
                   <input className="editShiftTransferRightSortingInput" type="month" id='sortMonth' ref={sortMonth}
                     onChange={() => handleSortMonth()} />
-                  <div className="notActiveBtn">
-                    <Lock />
+                  <div className="ActiveBtn" onClick={() => handleLockMonth()}>
+                    {lockMonth ? <Lock /> : <LockOpen id='sortMonthLockOpen' />}
                   </div>
                 </label>
                 <label className="editShiftTransferRightSortingLabel">
-                  <p className="editShiftTransferRightSortingText">Sort by week</p>
+                  <p className="editShiftTransferRightSortingText" id='sortWeekTitle'>Sort by week</p>
                   <input className="editShiftTransferRightSortingInput" type="week" id='sortWeek' ref={sortWeek} onChange={() => handleSortWeek()} disabled={hideShiftTransferItemForm} />
-                  <div className="notActiveBtn">
-                    <LockOpen />
+                  <div className="ActiveBtn" onClick={() => handleLockWeek()}>
+                    {lockWeek ? <Lock /> : <LockOpen id='sortWeekLockOpen' />}
                   </div>
                 </label>
                 <label className="editShiftTransferRightSortingLabel">
-                  <p className="editShiftTransferRightSortingText">Sort by day</p>
+                  <p className="editShiftTransferRightSortingText" id='sortDayTitle'>Sort by day</p>
                   <input className="editShiftTransferRightSortingInput" type="date" id='sortDay' ref={sortDay} onChange={() => handleSortDay()} onfocus="(this.type='date')" />
-                  <div className="notActiveBtn">
-                    <LockOpen />
+                  <div className="ActiveBtn" onClick={() => handleLockDay()}>
+                    {lockDay ? <Lock /> : <LockOpen id='sortDayLockOpen' />}
                   </div>
                 </label>
                 <div className="sortingBox">
                   <select className="editShiftTransferRightSortingInput" defaultValue="clear" ref={sortType} onClick={() => chooseSortOfShift(sortType)} >
-                    <option className="editShiftTransferRightSortingInput" value="clear">Clear All</option>
                     <option className="editShiftTransferRightSortingInput" id='sortOperators' value="operators">Operator</option>
                     <option className="editShiftTransferRightSortingInput" id='sortShifts' value="shifts">Shift</option>
                     <option className="editShiftTransferRightSortingInput" id='sortWals' value="wals">Wals</option>
@@ -294,10 +367,9 @@ export default function EditShiftTransfer() {
                     <option className="editShiftTransferRightSortingInput" id='afternoon' value="Afternoon">Afternoon</option>
                     <option className="editShiftTransferRightSortingInput" id='night' value="Night">Night</option>
                   </select>}
-                  {!hideShiftSorting && <input className="editShiftTransferRightSortingInput" type="text" id='sortType' ref={sortValue} style={{ width: "115px" }} />}
+                  {!hideShiftSorting && <input className="editShiftTransferRightSortingInput" type="text" id='sortType' ref={sortValue} style={{ width: "115px" }} minLength={2} maxLength={4} />}
                   <button className="editProfileButtonGet" id='sortValue' onClick={() => handleSortByTypeAndValue()} >Sort</button>
                 </div>
-                {/* <button className="editProfileButtonGet" onClick={() => handleSortClear()} >Sort Clear</button> */}
               </div>}
             </> : <></>}
 
@@ -345,18 +417,29 @@ export default function EditShiftTransfer() {
             </div>
               : <></>}
 
-
-
             {hideShiftTransferSorting ?
-
-              <ul className="editShiftTransferPostsList">
-                {(user.role === 2 || user.role === 0) &&
-                  (Object.values(allShiftsTransfersSort).map((st => (
-                    <li className="nMemoViev" key={st._id}>
-                      <PostShiftTransfer shiftTransfer={st} />
-                    </li>
-                  ))))}
-              </ul> :
+              <>
+                {(lockMonth || lockWeek || lockDay) ?
+                  <ul className="editShiftTransferPostsList">
+                    {/* <li className="nMemoViev">No posts1</li> */}
+                    {(user.role === 2 || user.role === 0) &&
+                      (Object.values(allShiftsTransfersSecondQuery).map((st => (
+                        <li className="nMemoViev" key={st._id}>
+                          <PostShiftTransfer shiftTransfer={st} />
+                        </li>
+                      ))))}
+                  </ul> :
+                  <ul className="editShiftTransferPostsList">
+                    {/* <li className="nMemoViev">No posts2</li> */}
+                    {(user.role === 2 || user.role === 0) &&
+                      (Object.values(allShiftsTransfersSort).map((st => (
+                        <li className="nMemoViev" key={st._id}>
+                          <PostShiftTransfer shiftTransfer={st} />
+                        </li>
+                      ))))}
+                  </ul>
+                }
+              </> :
               <ul className="editShiftTransferPostsList">
                 {(user.role === 2 || user.role === 0) &&
                   (Object.values(allShiftsTransfers).map((st => (
@@ -364,7 +447,8 @@ export default function EditShiftTransfer() {
                       <PostShiftTransfer shiftTransfer={st} />
                     </li>
                   ))))}
-              </ul>}
+              </ul>
+            }
 
             {user.role === 3 &&
               <ul>

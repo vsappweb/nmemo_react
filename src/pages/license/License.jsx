@@ -42,6 +42,11 @@ export default function License() {
               </div>
               <div className="License">
                 <p className="LicenseText">
+                Ideas and inspiration
+                </p>
+              </div>
+              <div className="License">
+                <p className="LicenseText">
                   Icon designer:
                   Arturo (Wibawa) <br />
                   Akar Icons Pack <br />

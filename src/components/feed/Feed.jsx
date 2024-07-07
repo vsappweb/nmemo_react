@@ -7,7 +7,7 @@ import Share from "../share/Share";
 // import Memo from "../memo/Memo";
 // import ShiftTransfer from "../shiftTransfer/ShiftTransfer";
 // import MemoToLine from "../memoToLine/MemoToLine";
-// import PostTlToLine from "../postTlToLine/PostTlToLine";
+import PostTlToLine2 from "../postTlToLine2/PostTlToLine2";
 import ShiftTransfer2 from "../shiftTransfer2/ShiftTransfer2";
 import "./feed.css";
 import axios from "axios"
@@ -21,7 +21,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     const API = process.env.REACT_APP_SERVER_API
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
     const desc = useRef();
-    const date = new Date();
+    let date = new Date();
     const [posts, setPosts] = useState([]);
     // const [postTlToLines, setPostTlToLines] = useState([]);
     const [postsMemo, setPostsMemo] = useState([]);
@@ -80,31 +80,6 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     let time = date.toLocaleDateString('fr-CA') + "T" + hh + ":" + mm + ":" + ss;
 
 
-    // // get all events from database 
-    // useEffect(() => {
-    //     let interval;
-    //     const fetchData = async () => {
-    //         try {
-    //             const res = await axios.get("/events/allEvents");
-    //             setEvents(res.data);
-    //         } catch (err) {
-    //             console.error(err);
-    //         }
-    //     };
-
-    //     let result = fetchData()
-
-    //     if (!result) {
-    //         interval = setInterval(fetchData, 10000);
-    //     }
-
-    //     interval = setInterval(fetchData, 10000);
-    //     return () => clearInterval(interval);
-    // }, []);
-
-
-    // get all tlToLines from database
-
     useEffect(() => {
         let interval;
         const fetchData = async () => {
@@ -162,18 +137,6 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
         }
     }
 
-
-    // useEffect(() => {
-    //     const fetchPostsShiftTransfer = async () => {
-    //         const res = personnelnumber
-    //             ? await axios.get("/shiftTransfers/profile/" + personnelnumber)
-    //             : await axios.get("shiftTransfers/timeline/" + user._id);
-    //         setPostsShiftTransfer(res.data.sort((st1, st2) => {
-    //             return new Date(st2.createdAt) - new Date(st1.createdAt);
-    //         }));
-    //     };
-    //     fetchPostsShiftTransfer();
-    // }, [personnelnumber, user._id])
     useEffect(() => {
         const fetchPostsShiftTransfer = async () => {
             const res = await axios.get(`${API}/shiftTransfers/profile/` + user.personnelnumber)
@@ -185,19 +148,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     }, [user.personnelnumber, API])
 
 
-    // useEffect(() => {
-    //     const fetchPostToLines = async () => {
-    //         const res = personnelnumber
-    //             ? await axios.get("/tlToLines/profile/" + personnelnumber)
-    //             : await axios.get("tlToLines/timeline/" + user._id);
-    //         setPostTlToLines(res.data.sort((m1, m2) => {
-    //             return new Date(m2.createdAt) - new Date(m1.createdAt);
-    //         }));
-    //     };
-    //     fetchPostToLines();
-    // }, [personnelnumber, user._id])
-
-    useEffect(() => {
+     useEffect(() => {
         const fetchPostsMemo = async () => {
             const res = personnelnumber
                 ? await axios.get(`${API}/memos/profile/` + personnelnumber)
@@ -300,7 +251,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                 </ul> */}
 
 
-                <ul className="feedTlToLineList">
+                <ul className="feedTlToLineList" style={{display:"none"}}>
                     {Object.values(allTlToLines).map((toLines) => {
                         return (
                             <li className="feedTlToLineInformation" key={toLines._id}>
@@ -370,6 +321,8 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                 </ul>
 
                 {/* {user.role === 1 && <MemoToLine />} */}
+
+                <PostTlToLine2 />
 
                 {user.role === 3 && <>
                     {hideShiftTransferForm && <ShiftTransfer2 />}

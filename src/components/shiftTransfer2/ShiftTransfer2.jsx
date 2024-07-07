@@ -315,7 +315,7 @@ export default function ShiftTransfer2(shiftTransfer) {
                 <div className="shiftTransferContainer">
                     <label className="shiftTransferLabelPersonnelnumber" htmlFor="personnelnumber">
                         <p className="shiftTransferTextPersonnelnumber">Operator</p>
-                        <input className="shiftTransferInputPersonnelnumber" id="personnelnumber" ref={operator} type="text" placeholder="0000" required />
+                        <input className="shiftTransferInputPersonnelnumber" id="personnelnumber" ref={operator} type="text" placeholder="0000" minLength={4} maxLength={4} required />
                     </label>
                     <button className="shiftTransferButton" type="submit">Make a shift transfer</button>
                 </div>

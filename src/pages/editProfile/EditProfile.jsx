@@ -6,6 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { AddAPhoto, Cancel, AddPhotoAlternate } from "@mui/icons-material"
 import RoleUser from "../../components/roleUser/RoleUser";
 import axios from "axios";
+import { useNavigate } from "react-router-dom"
 
 
 
@@ -17,6 +18,8 @@ export default function EditProfile() {
   const personnelnumber = useRef();
   const username = useRef();
   const usernameReg = useRef();
+  const lang = useRef();
+  const langReg = useRef();
   const role = useRef();
   const desc = useRef();
   const emailReg = useRef();
@@ -46,7 +49,7 @@ export default function EditProfile() {
   const [removeUser, setRemoveUser] = useState({})
   const [isAdminUser, setIsAdminUser] = useState({})
 
-
+  const navigate = useNavigate();
 
   const handleOnChange = () => {
     setIsChecked(!isChecked);
@@ -119,6 +122,7 @@ export default function EditProfile() {
       username: username.current.value,
       email: email.current.value,
       role: role.current.value,
+      language: lang.current.value,
       profilePicture: fileNameProfilePicture,
       coverPicture: fileNameCoverPicture,
       desc: desc.current.value
@@ -130,8 +134,11 @@ export default function EditProfile() {
       await axios.post(`${API}/upload`, dataCoverPicture);
       await axios.post(`${API}/upload`, dataProfilePicture);
       await axios.put(`${API}/users/` + userId.current.value, user);
-      // navigate("/")
-      // localStorage.clear();
+      // if (userId.current.value === user.userId) {
+      //   window.confirm('Please login again')
+      //   localStorage.clear();
+      //   navigate("/")
+      // }
       window.location.reload();
     } catch (err) {
       console.log(err)
@@ -174,6 +181,7 @@ export default function EditProfile() {
         email: emailReg.current.value,
         password: passwordReg.current.value,
         role: roleReg.current.value,
+        language: langReg.current.value,
       };
       try {
         console.log("test start")
@@ -242,7 +250,7 @@ export default function EditProfile() {
       console.log(userIsAdminCheck.current.value)
 
       await axios.put(`${API}/users/` + userIsAdmin.current.value, user);
-      // window.location.reload();
+      window.location.reload();
     } catch (err) {
       console.log(err)
     }
@@ -275,7 +283,10 @@ export default function EditProfile() {
                 <p className="editProfileFormText">Username:</p> <input className="editProfileInput" id="username" ref={username} placeholder="Your username" defaultValue={editUser._id !== undefined ? editUser.username : user.username} type="text" />
               </label>
               <label className="editProfileFormItem" htmlFor="email">
-                <p className="editProfileFormText">Email / Login:</p> <input className="editProfileInput" id="email" ref={email} placeholder="Your email" defaultValue={editUser._id !== undefined ? editUser.email : user.email} type="email" required />
+                <p className="editProfileFormText">Login:</p> <input className="editProfileInput" id="email" ref={email} placeholder="Login@0000" defaultValue={editUser._id !== undefined ? editUser.email : user.email} type="email" required />
+              </label>
+              <label className="editProfileFormItem" htmlFor="lang">
+                <p className="editProfileFormText">Language:</p> <input className="editProfileInput" id="lang" ref={lang} placeholder="NL EN PL RO UA" defaultValue={editUser._id !== undefined ? editUser.language : user.language} type="text" minLength={2} maxLength={2} pattern="[a-zA-Z]{2}" required />
               </label>
               <label className="editProfileFormItem" htmlFor="desc">
                 <p className="editProfileFormText">Description:</p> <input className="editProfileInput" id="desc" ref={desc} placeholder="Your description" defaultValue={editUser._id !== undefined ? editUser.desc : user.desc} type="text" />
@@ -387,7 +398,11 @@ export default function EditProfile() {
               </label>
 
               <label className="editProfileFormItem" htmlFor="email">
-                <p className="editProfileFormText">Email / Login:</p><input className="editProfileInput" ref={emailReg} placeholder="Email" type="email" required />
+                <p className="editProfileFormText"> Login:</p><input className="editProfileInput" ref={emailReg} placeholder="Login@0000" type="email" required />
+              </label>
+
+              <label className="editProfileFormItem" htmlFor="langReg">
+                <p className="editProfileFormText">Language:</p> <input className="editProfileInput" id="langReg" ref={langReg} placeholder="NL EN PL RO UA" type="text" minLength={2} maxLength={2} pattern="[a-zA-Z]{2}" required />
               </label>
 
               <label className="editProfileFormItem" htmlFor="password">
