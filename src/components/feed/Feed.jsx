@@ -15,7 +15,6 @@ import { AuthContext } from "../../context/AuthContext";
 import DateTimeShift from "../dateTimeShift/DateTimeShift";
 import { Edit, DoneOutline, EmojiEmotions } from "@mui/icons-material"
 import Picker from "emoji-picker-react";
-import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Feed({ personnelnumber, shiftTransfer }) {
     const API = process.env.REACT_APP_SERVER_API
@@ -47,19 +46,19 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     }
 
 
-    const handleAnswer = async (toLines) => {
-        const newAnswer = {
-            answer: text,
-        }
-        try {
-            // console.log(newAnswer)
-            await axios.put(`${API}/tlToLines/${toLines._id}`, newAnswer);
-            document.getElementById("feedTlToLineInformationBtn").style.display = "none";
-            setOpenAnswer(false);
-        } catch (err) {
-            console.log(err);
-        }
-    }
+    // const handleAnswer = async (toLines) => {
+    //     const newAnswer = {
+    //         answer: text,
+    //     }
+    //     try {
+    //         // console.log(newAnswer)
+    //         await axios.put(`${API}/tlToLines/${toLines._id}`, newAnswer);
+    //         document.getElementById("feedTlToLineInformationBtn").style.display = "none";
+    //         setOpenAnswer(!openAnswer);
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // }
 
 
     // get all events from database 
@@ -148,7 +147,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     }, [user.personnelnumber, API])
 
 
-     useEffect(() => {
+    useEffect(() => {
         const fetchPostsMemo = async () => {
             const res = personnelnumber
                 ? await axios.get(`${API}/memos/profile/` + personnelnumber)
@@ -251,7 +250,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                 </ul> */}
 
 
-                <ul className="feedTlToLineList" style={{display:"none"}}>
+                <ul className="feedTlToLineList" style={{ display: "none" }}>
                     {Object.values(allTlToLines).map((toLines) => {
                         return (
                             <li className="feedTlToLineInformation" key={toLines._id}>
@@ -273,9 +272,9 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                                                     <EmojiEmotions className="memoIcon" onClick={() => setOpen((prev) => !prev)} />
                                                     <span className="memoOptionText" onClick={() => setOpen((prev) => !prev)}>{open ? "Hide" : "Show"} emojis</span>
                                                 </div>
-                                                <button className="tlToLineButton" onClick={() => handleAnswer(toLines)}>Send
+                                                {/* <button className="tlToLineButton" onClick={() => handleAnswer(toLines)}>Send
                                                     <DoneOutline />
-                                                </button>
+                                                </button> */}
                                             </div>
                                         </>}
                                         <div className="memoEmojiPicker" style={{ display: openAnswer ? "block" : "none" }}>
@@ -322,7 +321,15 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
 
                 {/* {user.role === 1 && <MemoToLine />} */}
 
-                <PostTlToLine2 />
+                <ul className="feedTlToLineList">
+                    {Object.values(allTlToLines).map((toLines) => {
+                        return (
+                            <li className="feedTlToLineInformation" key={toLines._id}>
+                                <PostTlToLine2 toLines={toLines} allTlToLines={allTlToLines} setTlToLines={setTlToLines} openAnswer={openAnswer} setOpenAnswer={setOpenAnswer}/>
+                            </li>
+                        )
+                    })}
+                </ul>
 
                 {user.role === 3 && <>
                     {hideShiftTransferForm && <ShiftTransfer2 />}
@@ -342,6 +349,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                             {mTl?.line === user.personnelnumber ?
                                 <>
                                     <PostMemo memo={mTl} />
+                                    <p style={{ fontSize: "10px", writingMode: "vertical-rl" }}>Wals {mTl?.line}</p>
                                 </>
                                 :
                                 <></>

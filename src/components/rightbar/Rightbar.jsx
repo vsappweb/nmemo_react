@@ -197,6 +197,10 @@ export default function Rightbar({ user }) {
                         <span className="rightbarInfoKey">Role:</span>
                         <UserRole user={user} />
                     </div>
+                    <div className="rightbarInfoItem">
+                        <span className="rightbarInfoKey">Language:</span>
+                        <span className="rightbarInfoValue">{user?.language}</span>
+                    </div>
                 </div> : <span>No information</span>}
                {user.role === 2 && 
                <>

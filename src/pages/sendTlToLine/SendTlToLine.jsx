@@ -44,7 +44,7 @@ export default function SendTlToLine() {
     if (!result) {
       interval = setInterval(fetchData, 10000);
     }
-    
+
     interval = setInterval(fetchData, 10000);
     return () => clearInterval(interval);
 
@@ -66,7 +66,7 @@ export default function SendTlToLine() {
       <div className='sendTlToLine'>
         <Sidebar />
         <div className="sendTlToLineRight">
-          
+
           <TlToLine />
           <ul className="feedTlToLineList">
             {Object.values(allTlToLines).map((toLines) => {
@@ -82,6 +82,10 @@ export default function SendTlToLine() {
                     <p className="feedTlToLineInformationDesc">{toLines?.desc}</p>
                     {toLines?.img && <img className="postMemoImg" src={PF + toLines?.img} alt='' />}
                     {toLines?.answer && <p className="feedTlToLineInformationAnswer">Answer: <span>{toLines?.answer}</span></p>}
+                    {toLines.line === "forAll" && toLines.reqRes && <div className="feedTlToLineInformationAnswerContainer">
+                      {toLines?.agrees && toLines.agrees.length > "0" && <p className="feedTlToLineInformationAnswer" style={{ color: "green" }}>Okey: <span>{toLines?.agrees.length}</span></p>}
+                      {toLines?.disagrees && toLines.disagrees.length > "0" && <p className="feedTlToLineInformationAnswer" style={{ color: "red" }}>Not Okey: <span>{toLines?.disagrees.length}</span></p>}
+                    </div>}
                     <div className="sendTlToLineInformationBox">
                       <p className="feedTlToLineInformationDesc">{time}</p>
                       <p className="feedTlToLineInformationDesc">{toLines?.timer}</p>

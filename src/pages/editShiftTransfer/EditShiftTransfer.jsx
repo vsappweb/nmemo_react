@@ -351,7 +351,7 @@ export default function EditShiftTransfer() {
                 </label>
                 <label className="editShiftTransferRightSortingLabel">
                   <p className="editShiftTransferRightSortingText" id='sortDayTitle'>Sort by day</p>
-                  <input className="editShiftTransferRightSortingInput" type="date" id='sortDay' ref={sortDay} onChange={() => handleSortDay()} onfocus="(this.type='date')" />
+                  <input className="editShiftTransferRightSortingInput" type="date" id='sortDay' ref={sortDay} onChange={() => handleSortDay()} />
                   <div className="ActiveBtn" onClick={() => handleLockDay()}>
                     {lockDay ? <Lock /> : <LockOpen id='sortDayLockOpen' />}
                   </div>

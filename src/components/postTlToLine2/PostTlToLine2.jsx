@@ -1,17 +1,17 @@
 import "./postTlToLine2.css";
-import { Edit, DoneOutline, EmojiEmotions } from "@mui/icons-material"
+import { Edit, DoneOutline, EmojiEmotions, DoneAll, RemoveDone, ArrowBack, ArrowForward } from "@mui/icons-material"
 import Picker from "emoji-picker-react";
 import { useContext, useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
-export default function PostTlToLine2() {
+export default function PostTlToLine2({ toLines, allTlToLines, setTlToLines, openAnswer, setOpenAnswer }) {
     const API = process.env.REACT_APP_SERVER_API
     const PF = process.env.REACT_APP_PUBLIC_FOLDER
     const [open, setOpen] = useState(false);
-    const [openAnswer, setOpenAnswer] = useState(false);
-    let [allTlToLines, setTlToLines] = useState([]);
+    // const [openAnswer, setOpenAnswer] = useState(false);
     const [text, setText] = useState("");
+    // let [allTlToLines, setTlToLines] = useState([]);
     const date = new Date();
     const { user } = useContext(AuthContext)
     const desc = useRef();
@@ -25,6 +25,7 @@ export default function PostTlToLine2() {
 
     const handleOpen = () => {
         setOpenAnswer(!openAnswer);
+         document.getElementById("feedTlToLineInformationBtn").style.display = "none"
     }
 
 
@@ -35,8 +36,11 @@ export default function PostTlToLine2() {
         try {
             // console.log(newAnswer)
             await axios.put(`${API}/tlToLines/${toLines._id}`, newAnswer);
-            document.getElementById("feedTlToLineInformationBtn").style.display = "none";
-            setOpenAnswer(false);
+           
+                // document.getElementById("feedTlToLineInformationBtn").style.display = "none"
+            
+            setOpenAnswer(!openAnswer);
+            console.log(openAnswer)
         } catch (err) {
             console.log(err);
         }
@@ -55,31 +59,31 @@ export default function PostTlToLine2() {
     //atention changed format of date to fr-CA not nl-NL
     let time = date.toLocaleDateString('fr-CA') + "T" + hh + ":" + mm + ":" + ss;
 
+    // useEffect(() => {
+    //     let interval;
+    //     const fetchData = async () => {
+    //         try {
+    //             const res = await axios.get(`${API}/tlToLines/allTlToLines`);
+    //             setTlToLines(res.data);
+    //             // console.log("test refresh")
+    //         } catch (err) {
+    //             console.error(err);
+    //         }
+    //     };
 
-    useEffect(() => {
-        let interval;
-        const fetchData = async () => {
-            try {
-                const res = await axios.get(`${API}/tlToLines/allTlToLines`);
-                setTlToLines(res.data);
-                // console.log("test refresh")
-            } catch (err) {
-                console.error(err);
-            }
-        };
+    //     let result = fetchData()
 
-        let result = fetchData()
+    //     if (!result) {
+    //         interval = setInterval(fetchData, 10000);
+    //     }
 
-        if (!result) {
-            interval = setInterval(fetchData, 10000);
-        }
+    //     interval = setInterval(fetchData, 10000); //set your time here. repeat every 5 seconds
+    //     return () => clearInterval(interval);
+    // }, [API, setTlToLines]);
 
-        interval = setInterval(fetchData, 10000); //set your time here. repeat every 5 seconds
-        return () => clearInterval(interval);
-    }, [API]);
 
-       // delete tlToLine from database
-       const toLineDeleteHandler = (toLines) => {
+    // delete tlToLine from database
+    const toLineDeleteHandler = (toLines) => {
         try {
             axios.delete(`${API}/tlToLines/${toLines._id}`)
             window.location.reload();
@@ -88,76 +92,107 @@ export default function PostTlToLine2() {
         }
     }
 
+    const [agree, setAgree] = useState(toLines.agrees.length);
+    const [disagree, setDisagree] = useState(toLines.disagrees.length);
+    const [isAgreed, setIsAgreed] = useState(false);
+    const [isDisagreed, setIsDisagreed] = useState(false);
+    // const [user, setUser] = useState({});
+    const { user: currentUser } = useContext(AuthContext);
+
+    useEffect(() => {
+        setIsAgreed(toLines.agrees.includes(currentUser._id));
+    }, [currentUser._id, toLines.agrees]);
+
+    useEffect(() => {
+        setIsDisagreed(toLines.disagrees.includes(currentUser._id));
+    }, [currentUser._id, toLines.disagrees]);
+
+
+    const agreeHandler = (toLines) => {
+        try {
+            axios.put(`${API}/tlToLines/` + toLines._id + "/agree", { userId: currentUser._id })
+        } catch (err) {
+        }
+        setAgree(isAgreed ? agree - 1 : agree + 1)
+        setIsAgreed(!isAgreed)
+    }
+
+    const disagreeHandler = (toLines) => {
+        try {
+            axios.put(`${API}/tlToLines/` + toLines._id + "/disagree", { userId: currentUser._id })
+        } catch (err) {
+        }
+        setDisagree(isDisagreed ? disagree - 1 : disagree + 1)
+        setIsDisagreed(!isDisagreed)
+    }
+
     return (
         <>
-            <ul className="feedTlToLineList">
-                {Object.values(allTlToLines).map((toLines) => {
-                    return (
-                        <li className="feedTlToLineInformation" key={toLines._id}>
-                            {/* {toLines.line === user.personnelnumber && toLines.timer > time  ? */}
-                            {toLines.line === user.personnelnumber ?
-                                <div className="feedTlToLineInformationContent">
-                                    <p className="feedTlToLineInformationHeader">Privat:</p>
-                                    {/* <p className="feedTlToLineInformationTitle">{toLines.title}</p> */}
-                                    <p className="feedTlToLineInformationDesc">{toLines.desc}</p>
-                                    {toLines?.img && <img className="postMemoImg" src={PF + toLines?.img} alt='' />}
-                                    {/* module for fast answer to line */}
-                                    {(toLines?.reqRes && !toLines?.answer) && <button className="feedTlToLineInformationBtn tlToLineButton" id="feedTlToLineInformationBtn" onClick={() => handleOpen()} style={{ display: openAnswer ? "none" : "block" }}>Please answer</button>}
-                                    {openAnswer && <>
-                                        <div className="tlToLineInputContainer">
-                                            <textarea style={{ height: "60px" }} className="tlToLineInput" placeholder={"Please answer me " + user.username || user.personnelnumber + "?"} ref={desc} value={text} defaultValue={"" || toLines?.answer} onChange={(e) => setText(e.target.value)} />
-                                        </div>
-                                        <div className="feedTlToLineInformationAnswerContainer">
-                                            <div className="memoEmoji">
-                                                <EmojiEmotions className="memoIcon" onClick={() => setOpen((prev) => !prev)} />
-                                                <span className="memoOptionText" onClick={() => setOpen((prev) => !prev)}>{open ? "Hide" : "Show"} emojis</span>
-                                            </div>
-                                            <button className="tlToLineButton" onClick={() => handleAnswer(toLines)}>Send
-                                                <DoneOutline />
-                                            </button>
-                                        </div>
-                                    </>}
-                                    <div className="memoEmojiPicker" style={{ display: openAnswer ? "block" : "none" }}>
-                                        {open && (<Picker suggestedEmojisMode={["recent"]} style={{ width: "100%" }} reactionsDefaultOpen={true} searchDisabled={true} onEmojiClick={handleEmoji} />)}
-                                    </div>
-                                    <div className="feedTlToLineInformationEditContainer" style={{ display: (openAnswer || toLines?.answer) ? "flex" : "none" }}>
-                                        {toLines?.answer &&
-                                            <>
-                                                <p className="feedTlToLineInformationAnswer">Answer: <span>{toLines?.answer}</span></p>
-                                                <div className="editBtn">
-                                                    <Edit onClick={() => setOpenAnswer(!openAnswer)} />
-                                                </div>
-                                            </>
-                                        }
-                                    </div>
-                                    {/* <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer} {time}</p> */}
-                                    <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer} {toLines?.timer < time && toLineDeleteHandler(toLines)}</p>
+            {toLines.line === user.personnelnumber ?
+                <div className="feedTlToLineInformationContent">
+                    <p className="feedTlToLineInformationHeader">Privat:</p>
+                    <p className="feedTlToLineInformationDesc">{toLines.desc}</p>
+                    {toLines?.img && <img className="postMemoImg" src={PF + toLines?.img} alt='' />}
+                    {/* module for fast answer to line */}
+                    {(toLines?.reqRes && !toLines?.answer) && <button className="feedTlToLineInformationBtn tlToLineButton" id="feedTlToLineInformationBtn" onClick={() => handleOpen()} style={{ display: openAnswer ? "none" : "block" }}>Please answer</button>}
+                    {openAnswer && <>
+                        <div className="tlToLineInputContainer">
+                            <textarea style={{ height: "60px" }} className="tlToLineInput" placeholder={"Please answer me " + user.username || user.personnelnumber + "?"} ref={desc} value={text} defaultValue={"" || toLines?.answer} onChange={(e) => setText(e.target.value)} />
+                        </div>
+                        <div className="feedTlToLineInformationAnswerContainer">
+                            <div className="memoEmoji">
+                                <EmojiEmotions className="memoIcon" onClick={() => setOpen((prev) => !prev)} />
+                                <span className="memoOptionText" onClick={() => setOpen((prev) => !prev)}>{open ? "Hide" : "Show"} emojis</span>
+                            </div>
+                            <button className="tlToLineButton" onClick={() => handleAnswer(toLines)}>Send
+                                <DoneOutline />
+                            </button>
+                        </div>
+                    </>}
+                    <div className="memoEmojiPicker" style={{ display: openAnswer ? "block" : "none" }}>
+                        {open && (<Picker suggestedEmojisMode={["recent"]} style={{ width: "100%" }} reactionsDefaultOpen={true} searchDisabled={true} onEmojiClick={handleEmoji} />)}
+                    </div>
+                    <div className="feedTlToLineInformationEditContainer" style={{ display: (openAnswer || toLines?.answer) ? "flex" : "none" }}>
+                        {toLines?.answer &&
+                            <>
+                                <p className="feedTlToLineInformationAnswer">Answer: <span>{toLines?.answer}</span></p>
+                                <div className="editBtn">
+                                    <Edit onClick={() => setOpenAnswer(!openAnswer)} />
                                 </div>
-                                :
-                                toLines.line === "forAll" ?
-                                    <div className="feedTlToLineInformationContent">
-                                        <p className="feedTlToLineInformationHeader">Group:</p>
-                                        {/* <p className="feedTlToLineInformationTitle">{toLines.title}</p> */}
-                                        <p className="feedTlToLineInformationDesc">{toLines.desc}</p>
-                                        {toLines?.img && <img className="postMemoImg" src={PF + toLines?.img} alt='' />}
-                                        {/* <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer}</p> */}
-
-
-
-
-
-
-
-
-                                        <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer}{toLines?.timer < time && toLineDeleteHandler(toLines)}</p>
-                                    </div>
-                                    :
-                                    <></>
-                            }
-                        </li>
-                    )
-                })}
-            </ul>
+                            </>
+                        }
+                    </div>
+                    <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer} {toLines?.timer < time && toLineDeleteHandler(toLines)}</p>
+                </div>
+                :
+                toLines.line === "forAll" ?
+                    <div className="feedTlToLineInformationContent">
+                        <p className="feedTlToLineInformationHeader">Group:</p>
+                        <p className="feedTlToLineInformationDesc">{toLines.desc}</p>
+                        {toLines?.img && <img className="postMemoImg" src={PF + toLines?.img} alt='' />}
+                        
+                        {toLines?.reqRes &&
+                            <div className="feedTlToLineInformationBtnBox">
+                                <div className="feedTlToLineInformationMarkBox" onClick={() => agreeHandler(toLines)}>
+                                    <DoneAll id="feedTlToLineInformationBtnDone" style={{ color: isAgreed ? "green" : "grey" }} />
+                                    <p className="feedTlToLineInformationMark" style={{ color: isAgreed ? "green" : "grey" }}>{toLines.agrees.length} okey</p>
+                                </div>
+                                <div className="feedTlToLineInfoReqRes">
+                                    <ArrowBack />
+                                    <p>Your answer please</p>
+                                    <ArrowForward />
+                                </div>
+                                <div className="feedTlToLineInformationMarkBox" onClick={() => disagreeHandler(toLines)}>
+                                    <p className="feedTlToLineInformationMark" style={{ color: isDisagreed ? "red" : "grey" }}>not okey {toLines.disagrees.length}</p>
+                                    <RemoveDone id="feedTlToLineInformationBtnNotDone" style={{ color: isDisagreed ? "red" : "grey" }} />
+                                </div>
+                            </div>
+                        }
+                        <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer}{toLines?.timer < time && toLineDeleteHandler(toLines)}</p>
+                    </div>
+                    :
+                    <></>
+            }
         </>
     )
 }

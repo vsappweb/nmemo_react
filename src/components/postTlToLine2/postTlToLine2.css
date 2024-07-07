@@ -91,3 +91,39 @@
     border-bottom: 1px dashed gray;
     font-size: 15px;
 }
+
+.feedTlToLineInformationBtnBox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px 0;
+    width: 90%;
+}
+
+.feedTlToLineInfoReqRes{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 20px;
+    margin: 5px 0;
+    font-size: 14px;
+    font-style: oblique;
+    color: var(--cText);
+    text-align: center;
+}
+
+.feedTlToLineInformationMark{
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-align: center;
+}
+.feedTlToLineInformationMarkBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 600;
+}

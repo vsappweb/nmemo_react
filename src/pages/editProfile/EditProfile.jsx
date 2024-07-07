@@ -116,7 +116,7 @@ export default function EditProfile() {
       fileNameProfilePicture = ''
     }
 
-    const user = {
+    const userEdit = {
       userId: userId.current.value,
       personnelnumber: personnelnumber.current.value,
       username: username.current.value,
@@ -131,14 +131,15 @@ export default function EditProfile() {
       // console.log("test 3",userId.current.value)
       // console.log("test 3",personnelnumber.current.value)
       // console.log("test 3",user)
+      // console.log(userEdit, user._id, userId.current.value)
       await axios.post(`${API}/upload`, dataCoverPicture);
       await axios.post(`${API}/upload`, dataProfilePicture);
-      await axios.put(`${API}/users/` + userId.current.value, user);
-      // if (userId.current.value === user.userId) {
-      //   window.confirm('Please login again')
-      //   localStorage.clear();
-      //   navigate("/")
-      // }
+      await axios.put(`${API}/users/` + userId.current.value, userEdit);
+      if (userId.current.value === user._id) {
+        window.confirm('Please login again')
+        localStorage.clear();
+        navigate("/")
+      }
       window.location.reload();
     } catch (err) {
       console.log(err)
@@ -286,7 +287,22 @@ export default function EditProfile() {
                 <p className="editProfileFormText">Login:</p> <input className="editProfileInput" id="email" ref={email} placeholder="Login@0000" defaultValue={editUser._id !== undefined ? editUser.email : user.email} type="email" required />
               </label>
               <label className="editProfileFormItem" htmlFor="lang">
-                <p className="editProfileFormText">Language:</p> <input className="editProfileInput" id="lang" ref={lang} placeholder="NL EN PL RO UA" defaultValue={editUser._id !== undefined ? editUser.language : user.language} type="text" minLength={2} maxLength={2} pattern="[a-zA-Z]{2}" required />
+                <p className="editProfileFormText">Language:</p> 
+                {editUser?._id !== undefined ?
+                <select className="editProfileInput" id="lang" ref={lang}  defaultValue={editUser.language} required>
+                  <option value="NL">Nederlands</option>
+                  <option value="EN">English</option>
+                  <option value="PL">Polski</option>
+                  <option value="RO">Română</option>
+                  <option value="UA">Українська</option>
+                </select>:
+                <select className="editProfileInput" id="lang" ref={lang}  defaultValue={user.language} required>
+                  <option value="NL">Nederlands</option>
+                  <option value="EN">English</option>
+                  <option value="PL">Polski</option>
+                  <option value="RO">Română</option>
+                  <option value="UA">Українська</option>
+                </select>}
               </label>
               <label className="editProfileFormItem" htmlFor="desc">
                 <p className="editProfileFormText">Description:</p> <input className="editProfileInput" id="desc" ref={desc} placeholder="Your description" defaultValue={editUser._id !== undefined ? editUser.desc : user.desc} type="text" />
@@ -402,7 +418,13 @@ export default function EditProfile() {
               </label>
 
               <label className="editProfileFormItem" htmlFor="langReg">
-                <p className="editProfileFormText">Language:</p> <input className="editProfileInput" id="langReg" ref={langReg} placeholder="NL EN PL RO UA" type="text" minLength={2} maxLength={2} pattern="[a-zA-Z]{2}" required />
+                <p className="editProfileFormText">Language:</p> <select className="editProfileInput" id="langReg" ref={langReg} placeholder="NL EN PL RO UA" type="text" required >
+                  <option value="NL">Nederlands</option>
+                  <option value="EN">English</option>
+                  <option value="PL">Polski</option>
+                  <option value="RO">Română</option>
+                  <option value="UA">Українська</option>
+                </select>
               </label>
 
               <label className="editProfileFormItem" htmlFor="password">
