@@ -9,7 +9,7 @@ import { Add, Remove } from "@mui/icons-material";
 import AvatarUser from "../avatarUser/AvatarUser";
 import UserRole from "../userRole/UserRole"
 
-
+import { useTranslation } from "react-i18next";
 
 export default function Rightbar({ user }) {
     const API = process.env.REACT_APP_SERVER_API
@@ -22,7 +22,7 @@ export default function Rightbar({ user }) {
     let [allEvents, setEvents] = useState([]);
     const socket = useRef()
    
-
+    const { t } = useTranslation();
 
 
     // get all events from database 
@@ -135,7 +135,7 @@ export default function Rightbar({ user }) {
         return (
             <>
              <Link to={`/events/${currentUser.personnelnumber}`} style={{ textDecoration: "none" }}>
-                <h4 className="rightbarTitle">Here you can view the events on the agenda</h4>
+                <h4 className="rightbarTitle">{t("rightbar.Here_you_can_view_today's_agenda_events")}</h4>
              </Link>
                 <ul className="feedEventsList">
                     {Object.values(allEvents).map((event) => {

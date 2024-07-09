@@ -9,10 +9,14 @@ import { AuthContext } from "../../context/AuthContext";
 
 import SidebarSettings from "../sidebarSettings/SidebarSettings";
 
+import { useTranslation } from "react-i18next";
+
 export default function Sidebar() {
     const API = process.env.REACT_APP_SERVER_API
     const [allUsers, setUsers] = useState([]);
     const { user } = useContext(AuthContext);
+
+    const { t } = useTranslation();
 
     useEffect(() => {
         const getUsers = async () => {
@@ -55,13 +59,13 @@ export default function Sidebar() {
                 <div className="sidebarWrapper">
                     <ul className="sidebarList">
                         <Link to={`/events/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
-                            <SidebarListItem img={<Event />} text={"Agenda"} />
+                            <SidebarListItem img={<Event />} text={t("sidebar.Agenda")} />
                         </Link>
                         {/* <SidebarListItem img={<School />} text={"Courses"} />
                     <SidebarListItem img={<HelpOutline />} text={"Questions"} /> */}
                         <hr className="sidebarHr" />
-                        <Link to={`/safety/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
-                            <SidebarListItem img={<HealthAndSafety />} text={"Safety"} />
+                        <Link to={`/safety`} style={{ textDecoration: "none" }}>
+                            <SidebarListItem img={<HealthAndSafety />} text={t("sidebar.Safety")} />
                         </Link>
                         <Link to={`/logistics/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
                             <SidebarListItem img={<LocalShipping />} text={"Logistics"} />

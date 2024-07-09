@@ -173,17 +173,17 @@ export default function PostTlToLine2({ toLines, allTlToLines, setTlToLines, ope
                         
                         {toLines?.reqRes &&
                             <div className="feedTlToLineInformationBtnBox">
-                                <div className="feedTlToLineInformationMarkBox" onClick={() => agreeHandler(toLines)}>
+                                <div className="feedTlToLineInformationMarkBox" style={{ visibility: disagree < 1 ? "visible" : "hidden" }} onClick={() => agreeHandler(toLines)}>
                                     <DoneAll id="feedTlToLineInformationBtnDone" style={{ color: isAgreed ? "green" : "grey" }} />
                                     <p className="feedTlToLineInformationMark" style={{ color: isAgreed ? "green" : "grey" }}>{toLines.agrees.length > 0 && ` ${toLines.agrees.length}`} okey</p>
+                                    <ArrowBack />
                                 </div>
                                 <div className="feedTlToLineInfoReqRes">
-                                    <ArrowBack />
                                     <p>Your answer please</p>
-                                    <ArrowForward />
                                 </div>
-                                <div className="feedTlToLineInformationMarkBox" onClick={() => disagreeHandler(toLines)}>
-                                    <p className="feedTlToLineInformationMark" style={{ color: isDisagreed ? "red" : "grey" }}>not okey{toLines.disagrees.length > 0 && ` ${toLines.disagrees.length}`}</p>
+                                <div className="feedTlToLineInformationMarkBox" style={{ visibility: agree < 1  ? "visible" : "hidden" }} onClick={() => disagreeHandler(toLines)}>
+                                    <ArrowForward />
+                                     <p className="feedTlToLineInformationMark" style={{ color: isDisagreed ? "red" : "grey" }}>not okey{toLines.disagrees.length > 0 && ` ${toLines.disagrees.length}`}</p>
                                     <RemoveDone id="feedTlToLineInformationBtnNotDone" style={{ color: isDisagreed ? "red" : "grey" }} />
                                 </div>
                             </div>
