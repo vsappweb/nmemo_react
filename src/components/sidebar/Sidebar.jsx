@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Sidebar() {
     const API = process.env.REACT_APP_SERVER_API
+    const NEWS_BRIEF = process.env.REACT_APP_NEWS_BRIEF
     const [allUsers, setUsers] = useState([]);
     const { user } = useContext(AuthContext);
 
@@ -63,6 +64,9 @@ export default function Sidebar() {
                         </Link>
                         {/* <SidebarListItem img={<School />} text={"Courses"} />
                     <SidebarListItem img={<HelpOutline />} text={"Questions"} /> */}
+                        <Link to={NEWS_BRIEF} style={{ textDecoration: "none" }}>
+                            <SidebarListItem img={<Newspaper />} text={t("sidebar.news_brief")} />
+                        </Link>
                         <Link to={`/newsBrief/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
                             <SidebarListItem img={<Newspaper />} text={t("sidebar.news_brief")} />
                         </Link>
