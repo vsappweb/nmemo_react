@@ -2,23 +2,28 @@
     display: flex;
     color: var(--cText);
 }
-.ordersRight{
+
+.ordersRight {
     flex: 9;
     display: flex;
+    flex-direction: column;
     gap: 15px;
+    align-items: center;
+    padding: 10px 0 0 0;
 }
 
-.ordersProductionsFormulierenAanmelden{
+.ordersProductionsFormulierenAanmelden {
     padding: 0 10px;
     margin: 0 10px;
 }
-.ordersFormAanmelden{
+
+.ordersFormAanmelden {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.ordersFormAanmeldenTitle{
+.ordersFormAanmeldenTitle {
     font-size: 20px;
     line-height: normal;
     font-weight: bold;
@@ -26,18 +31,20 @@
     width: 100%;
 }
 
-.ordersFormAanmeldenLabel{
+.ordersFormAanmeldenLabel {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 5px;
 }
 
-.ordersFormAanmeldenColontitule{
+.ordersFormAanmeldenColontitule {
     display: none;
 }
-.ordersFormAanmeldenButton{   padding: 15px;
-    width: 200px;
+
+.ordersButton {
+    padding: 10px 20px;
+    max-width: 200px;
     border-radius: 5px;
     font-size: 12px;
     font-weight: bold;
@@ -46,8 +53,37 @@
     border-bottom: 2px groove var(--cText);
 }
 
+.orderRightProductForm {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
 
-  /* page {
+.orderRightProductFormLabel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.orderRightProductFormText {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.orderRightProductFormInput {
+    max-width: 60px;
+}
+
+.orderRightBtnContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+
+/* page {
     background: white;
     display: block;
     margin: 0 auto;
@@ -63,14 +99,15 @@
     @page {
         size: A5 landscape;
         margin: 0;
-      }
+    }
 
     .ordersSidebar,
     .ordersTopbar,
     .ordersFormAanmeldenButton {
         display: none;
     }
-    .ordersFormAanmelden{
+
+    .ordersFormAanmelden {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -81,22 +118,25 @@
         margin-top: 17mm;
         margin-bottom: 10mm;
     }
-    .ordersFormAanmeldenTitle{
+
+    .ordersFormAanmeldenTitle {
         font-size: 20px;
         line-height: normal;
         font-weight: bold;
         text-align: left;
         width: 100%;
     }
-    .ordersFormAanmeldenLabel{
+
+    .ordersFormAanmeldenLabel {
         font-size: 20px;
         line-height: normal;
         font-weight: bold;
         width: 95%;
         border-bottom: 2px solid black;
-        
+
     }
-    .ordersFormAanmeldenInput{
+
+    .ordersFormAanmeldenInput {
         width: 50%;
         color: black;
         font-size: 16px;
@@ -105,16 +145,19 @@
         font-weight: normal;
         border: none;
     }
-    .ordersFormAanmeldenColontitule{
+
+    .ordersFormAanmeldenColontitule {
         display: flex;
         justify-content: space-between;
     }
-    .ordersFormAanmeldenColontituleText{
+
+    .ordersFormAanmeldenColontituleText {
         font-size: 10px;
         line-height: normal;
         font-weight: normal
     }
-    .ordersFormAanmeldenColontituleDate{
+
+    .ordersFormAanmeldenColontituleDate {
         font-size: 14px;
         line-height: normal;
         font-weight: normal

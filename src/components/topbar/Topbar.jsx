@@ -20,7 +20,7 @@ export default function Topbar() {
     const [allUsers, setUsers] = useState([]);
     const [followed, setFollowed] = useState(user.followings.includes(user?._id));
     const [changeLang, setChangeLang] = useState(false);
-    const [chooseLang, setChooseLang] = useState(true);
+    const [chooseLang, setChooseLang] = useState("en");
 
     let menuRef = useRef();
     let changeWalsRef = useRef();
@@ -30,13 +30,13 @@ export default function Topbar() {
     const changeLanguage = (language) => {
         i18n.changeLanguage(language);
         console.log(language);
-        if (language === "ua") {
-            setChooseLang(false);
-            setChangeLang(true);
-        } else {
-            setChooseLang(true);
-            setChangeLang(false);
-        }
+        // if (language === "ua") {
+            setChooseLang(language);
+            setChangeLang(!changeLang);
+        // } else {
+        //     setChooseLang(true);
+        //     setChangeLang(false);
+        // }
     };
 
 
@@ -119,14 +119,14 @@ export default function Topbar() {
         );
     }
 
-    const handleLang = (e) => {
+    const handleLang = () => {
         setChangeLang(!changeLang);
         setChooseLang(!chooseLang);
     }
 
-    const handleLangSelect = (lang) => {
+    // const handleLangSelect = (lang) => {
 
-    }
+    // }
 
     return (
 
@@ -193,27 +193,32 @@ export default function Topbar() {
                     </div>
                 </div> */}
                 <div className="topbarUserItems">
-                    {chooseLang && <div className="topbarIconLangItemMain" onClick={(e) => handleLang(e)}>
+                    {(chooseLang === "en") && <div className="topbarIconLangItemMain" onClick={() => handleLang()}>
                         <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1ec-1f1e7.png" alt="ENG" />
                     </div>}
+                    {(chooseLang === "ua") && <div className="topbarIconLangItemMain" onClick={() => handleLang()}>
+                        <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1fa-1f1e6.png" alt="UA" />
+                    </div>}
                     {changeLang &&
-                        <ul className="topbarIconItems">
-                            <li className="topbarIconLangItemMain" onClick={() => changeLanguage("en")}>
-                                <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1f3-1f1f1.png" alt="NL" />
-                            </li>
-                            <li className="topbarIconLangItem" onClick={() => changeLanguage("en")}>
-                                <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1ec-1f1e7.png" alt="ENG" />
-                            </li>
-                            <li className="topbarIconLangItem" onClick={() => changeLanguage("en")}>
-                                <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1f5-1f1f1.png" alt="PL" />
-                            </li>
-                            <li className="topbarIconLangItem" onClick={() => changeLanguage("en")}>
-                                <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1f7-1f1f4.png" alt="RO" />
-                            </li>
-                            <li className="topbarIconLangItem" onClick={() => changeLanguage("ua")}>
-                                <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1fa-1f1e6.png" alt="UKR" />
-                            </li>
-                        </ul>
+                        <>
+                            <ul className="topbarIconItems">
+                                <li className="topbarIconLangItemMain" onClick={() => changeLanguage("en")}>
+                                    <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1f3-1f1f1.png" alt="NL" />
+                                </li>
+                                <li className="topbarIconLangItem" onClick={() => changeLanguage("en")}>
+                                    <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1ec-1f1e7.png" alt="ENG" />
+                                </li>
+                                <li className="topbarIconLangItem" onClick={() => changeLanguage("en")}>
+                                    <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1f5-1f1f1.png" alt="PL" />
+                                </li>
+                                <li className="topbarIconLangItem" onClick={() => changeLanguage("en")}>
+                                    <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1f7-1f1f4.png" alt="RO" />
+                                </li>
+                                <li className="topbarIconLangItem" onClick={() => changeLanguage("ua")}>
+                                    <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1fa-1f1e6.png" alt="UKR" />
+                                </li>
+                            </ul>
+                        </>
                     }
 
 

@@ -1,7 +1,19 @@
 {
   "sidebar": {
     "Agenda": "Agenda",
-    "Safety": "Safety"
+    "news_brief": "News brief",
+    "Safety": "Safety",
+    "Orders/Products": "Orders/Products",
+    "BM_GM": "BM/GM",
+    "Leave_memo_IATF": "Leave memo IATF",
+    "Send_info_to_Line": "Send info to Line",
+    "Check_Shift_Transfer": "Check Shift Transfer",
+    "Chats": "Chats",
+    "Agenda_setting": "Agenda setting",
+    "Edit_Profile": "Edit Profile",
+    "View_all_notes_IATF": "View all notes IATF",
+    "Groups": "Groups",
+    "Settings": "Settings"
   },
   "rightbar": {
     "Here_you_can_view_today's_agenda_events": "Here you can view today's agenda events"

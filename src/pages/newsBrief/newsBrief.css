@@ -1,0 +1,10 @@
+.newsBrief {
+    display: flex;
+    color: var(--cText);
+}
+.newsBriefRight{
+    flex: 9;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}

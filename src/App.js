@@ -9,7 +9,8 @@ import EditShiftTransfer from "./pages/editShiftTransfer/EditShiftTransfer";
 import Safety from "./pages/safety/Safety";
 import Events from "./pages/events/Events";
 import Orders from "./pages/orders/Orders";
-import Logistics from "./pages/logistics/Logistics";
+import NewsBrief from "./pages/newsBrief/NewsBrief";
+import BmGm from "./pages/bmGm/BmGm";
 import NMemo from "./pages/nMemo/NMemo";
 import SendTlToLine from "./pages/sendTlToLine/SendTlToLine";
 import Groups from "./pages/groups/Groups";
@@ -45,8 +46,9 @@ function App() {
           <Route path="editShiftTransfer/:personnelnumber/*" element={<EditShiftTransfer />} />
           <Route path="events/:personnelnumber/*" element={<Events />} />
           <Route path="orders/:personnelnumber/*" element={<Orders />} />
+          <Route path="newsBrief/:personnelnumber/*" element={<NewsBrief />} />
           <Route path="safety/*" element={<Safety />} />
-          <Route path="logistics/:personnelnumber/*" element={<Logistics />} />
+          <Route path="bmGm/:personnelnumber/*" element={<BmGm />} />
           <Route path="groups/:personnelnumber/*" element={<Groups />} />
           <Route path="nMemo/:personnelnumber/*" element={<NMemo />} />
           <Route path="sendTlToLine/:personnelnumber/*" element={<SendTlToLine />} />

@@ -1,9 +1,21 @@
 {
     "sidebar": {
-    "Agenda": "Порядок денний",
-    "Safety": "Безпека"
+        "Agenda": "Порядок денний",
+        "news_brief": "Новини",
+        "Safety": "Безпека",
+        "Orders/Products": "Замовлення/продукти",
+        "BM_GM": "BM/GM",
+        "Leave_memo_IATF": "Залишити пам'ятку IATF",
+        "Send_info_to_Line": "Надіслати інформацію на лінію",
+        "Check_Shift_Transfer": "Передача зміни",
+        "Chats": "Чати",
+        "Agenda_setting": "Налаштування порядку денного",
+        "Edit_Profile": "Редагувати профіль",
+        "View_all_notes_IATF": "Переглянути всі нотатки IATF",
+        "Groups": "Групи",
+        "Settings": "Налаштування"
     },
     "rightbar": {
-    "Here_you_can_view_today's_agenda_events": "Тут ви можете переглянути сьогоднішні заходи порядку денного"
+        "Here_you_can_view_today's_agenda_events": "Тут ви можете переглянути сьогоднішні заходи порядку денного"
     }
-   }
+}

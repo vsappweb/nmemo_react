@@ -1,0 +1,9 @@
+.bmGm {
+    display: flex;
+    color: var(--cText);
+}
+.bmGmRight{
+    flex: 9;
+    display: flex;
+    gap: 15px;
+}

@@ -6,6 +6,8 @@ import Sidebar from '../../components/sidebar/Sidebar'
 export default function Orders() {
   const date = new Date();
 
+  
+
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -24,12 +26,23 @@ export default function Orders() {
           <Sidebar />
         </div>
         <div className="ordersRight">
-          {/* <div className="underDevelopmentContainer">
-            <h2 className="underDevelopment">under development</h2>
-            <h3 className="underDevelopmentTitle">Page <span> orders</span></h3>
-            <h3 className="underDevelopmentSubtitle">coming soon</h3>
-          </div> */}
-          <div className="ordersProductionsFormulierenAanmelden">
+          <div className="orderRightProductSubmit">
+            <form className="orderRightProductForm" onSubmit={handleSubmit} >
+            <label className="orderRightProductFormLabel" htmlFor="productNumber">
+              <p className="orderRightProductFormText">Please enter your product:</p>
+              <input className="orderRightProductFormInput" type="text" id='productNumber' minLength={2} maxLength={4} placeholder="0000"/>
+            </label>
+            <button className="orderRightProductFormBtn ordersButton" type="submit" >Get product</button>
+            </form>
+          </div>
+          <div className="orderRightBtnContainer">
+            <button className="ordersButton" type="submit" onClick={() => { window.open('https://orig.in.net', '_blank', 'width=500,height=500,resizable=yes'); }}>Add quality warnings</button>
+            <button className="ordersButton" type="submit" onClick={() => { window.print(); }}>incompleet aantal</button>
+            <button className="ordersButton" type="submit" onClick={() => { window.print(); }}>werkinstruktie</button>
+          </div>
+
+
+          {/* <div className="ordersProductionsFormulierenAanmelden">
             <form className="ordersFormAanmelden" onSubmit={handleSubmit}>
               <h2 className="ordersFormAanmeldenTitle">Aanmelden vrijgave profiel</h2>
               <br />
@@ -63,9 +76,9 @@ export default function Orders() {
                 <p className="ordersFormAanmeldenColontituleText">\\datasrv\kam$\Primaire-processen\Productie\Formulieren\Aanmelden profiel vrijgave</p>
                 <p className="ordersFormAanmeldenColontituleDate">14-6-2024</p>
               </div>
-              <button className="ordersFormAanmeldenButton" type="submit" onClick={() => { window.print(); }}>afdruken/print</button>
+              <button className="ordersButton" type="submit" onClick={() => { window.print(); }}>afdruken/print</button>
             </form>
-          </div>
+          </div> */}
 
         </div>
       </div>

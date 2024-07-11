@@ -1,5 +1,5 @@
 import "./sidebar.css";
-import { Chat, RateReview, Rule, Settings, WorkOutline, Event, LocalShipping, HealthAndSafety, ForwardToInbox } from "@mui/icons-material";
+import { Chat, RateReview, Rule, Settings, WorkOutline, Event, Newspaper, HealthAndSafety, ForwardToInbox, Construction } from "@mui/icons-material";
 import AllUsers from "../allUsers/AllUsers";
 import { Link } from "react-router-dom";
 
@@ -63,39 +63,42 @@ export default function Sidebar() {
                         </Link>
                         {/* <SidebarListItem img={<School />} text={"Courses"} />
                     <SidebarListItem img={<HelpOutline />} text={"Questions"} /> */}
+                        <Link to={`/newsBrief/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
+                            <SidebarListItem img={<Newspaper />} text={t("sidebar.news_brief")} />
+                        </Link>
                         <hr className="sidebarHr" />
                         <Link to={`/safety`} style={{ textDecoration: "none" }}>
                             <SidebarListItem img={<HealthAndSafety />} text={t("sidebar.Safety")} />
                         </Link>
-                        <Link to={`/logistics/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
-                            <SidebarListItem img={<LocalShipping />} text={"Logistics"} />
-                        </Link>
                         <Link to={`/orders/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
-                            <SidebarListItem img={<WorkOutline />} text={"Orders/Products"} />
+                            <SidebarListItem img={<WorkOutline />} text={t("sidebar.Orders/Products")} />
+                        </Link>
+                        <Link to={`/bmGm/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
+                            <SidebarListItem img={<Construction />} text={t("sidebar.BM_GM")} />
                         </Link>
                         <Link to={`https://orig.in.net`} style={{ textDecoration: "none" }}>
                             <SidebarListItem img={<img className="logoIconImg" src="../../../assets/ico/nfactor.png" alt="Logo nFactor" style={{width:"30px"}} />} text={"nFactor"} />
                         </Link>
                         <hr className="sidebarHr" />
                         {(user.role === 3 || user.role === 1) && <Link to={`/nMemo/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
-                            <SidebarListItem img={<RateReview />} text={"Leave memo IATF"} />
+                            <SidebarListItem img={<RateReview />} text={t("sidebar.Leave_memo_IATF")} />
                         </Link>}
                         {user.role === 2 && <Link to={`/sendTlToLine/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
-                            <SidebarListItem img={<ForwardToInbox />} text={"Send info to Line"} />
+                            <SidebarListItem img={<ForwardToInbox />} text={t("sidebar.Send_info_to_Line")} />
                         </Link>}
                         {user.role === 3 && <Link to={`/editShiftTransfer/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
-                            <SidebarListItem img={<Rule />} text={"Check Shift Transfer"} imgSetting={<Settings />} />
+                            <SidebarListItem img={<Rule />} text={t("sidebar.Check_Shift_Transfer")} imgSetting={<Settings />} />
                         </Link>}
                         <hr className="sidebarHr" />
                         <Link to={`/messenger`} style={{ textDecoration: "none" }}>
-                            <SidebarListItem img={<Chat />} text={"Chats"} />
+                            <SidebarListItem img={<Chat />} text={t("sidebar.Chats")} />
                         </Link>
                         {/* <Link to={`/groups/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
-                        <SidebarListItem img={<Group />} text={"Groups"} />
+                        <SidebarListItem img={<Group />} text={t("sidebar.Groups")} />
                     </Link> */}
                         {user.role === 0 || user.isAdmin === true ?
                             <>
-                                <h5 className="sidebarSettingsTitle">Settings</h5>
+                                <h5 className="sidebarSettingsTitle">{t("sidebar.Settings")}</h5>
                                 <hr className="sidebarHr" />
                                 <SidebarSettings user={user} />
                             </>

@@ -27,7 +27,7 @@ export default function Rightbar({ user }) {
 
     // get all events from database 
     useEffect(() => {
-        let intervalId;
+        let interval;
         const fetchData = async () => {
             try {
                 const res = await axios.get(`${API}/events/allEvents`);
@@ -39,21 +39,30 @@ export default function Rightbar({ user }) {
             }
         };
 
-        const startInterval = () => {
-            intervalId = setInterval(fetchData, 5000);
-        };
+        let result = fetchData()
 
-        const stopInterval = () => {
-            if (intervalId) {
-                clearInterval(intervalId);
-            }
-        };
+        if (!result) {
+            interval = setInterval(fetchData, 60000);
+        }
 
-        startInterval();
+        interval = setInterval(fetchData, 60000); //set your time here. repeat every 5 seconds
+        return () => clearInterval(interval);
 
-        return () => {
-            stopInterval();
-        };
+        // const startInterval = () => {
+        //     intervalId = setInterval(fetchData, 5000);
+        // };
+
+        // const stopInterval = () => {
+        //     if (intervalId) {
+        //         clearInterval(intervalId);
+        //     }
+        // };
+
+        // startInterval();
+
+        // return () => {
+        //     stopInterval();
+        // };
     }, [API]);
 
     useEffect(() => {
@@ -152,7 +161,6 @@ export default function Rightbar({ user }) {
                         )
                     })}
                 </ul>
-               
                 {(currentUser.role === 1 || currentUser.role === 3) && <> 
                     <hr className="sidebarHr" />
                 <h4 className="rightbarTitle">Here you can submit a report for your team leader</h4>
