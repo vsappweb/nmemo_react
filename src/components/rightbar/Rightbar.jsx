@@ -173,6 +173,8 @@ export default function Rightbar({ user }) {
                 <p className="rightbarTitle">Rightbar</p> */}
                 {/* //TODO Show all online friends, not just followers */}
                 {(currentUser.role === 2 || currentUser.role === 0) && <Online onlineUsers={onlineUsers} currentId={currentUser._id} />}
+                <hr className="sidebarHr" />
+                <h4 className="rightbarTitle">Let op incomplete pallet, graag aanvullen</h4>
             </>
 
 
