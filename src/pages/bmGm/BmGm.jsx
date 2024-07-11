@@ -11,6 +11,8 @@ import axios from 'axios'
 export default function BmGm() {
   const [allGmTool, setAllGmTool] = useState([]);
   const API = process.env.REACT_APP_SERVER_API
+  const [showForm, setShowForm] = useState(false);
+  const [showSort, setShowSort] = useState(false);
 
 
 
@@ -37,9 +39,20 @@ export default function BmGm() {
       <div className='bmGm'>
         <Sidebar />
         <div className="bmGmRight">
-          <div className="bmGmFormContainer">
 
-            <GmToolsForm />
+          <div className="bmGmBtnContainer">
+            <button className="ordersButton" type="submit" onClick={() => setShowForm(!showForm)}>Add new issue</button>
+            <button className="ordersButton" type="submit" onClick={() => setShowSort(!showSort)}>Sorting</button>
+          </div>
+          {showSort && <div className="bmGmSortContainer">
+          <label className="bmGmSortLabel" htmlFor="productNumber">
+              <p className="bmGmSortText">Please enter tool number:</p>
+              <input className="bmGmSortInput" type="text" id='productNumber' placeholder="00-000-a-z"/>
+            </label>
+            <button className="ordersButton" type="submit" >Sort</button>
+          </div>}
+          <div className="bmGmFormContainer">
+            {showForm && <GmToolsForm />}
           </div>
           <div className="bmGmPostContainer">
             {Object.values(allGmTool).map((gmTool) => (

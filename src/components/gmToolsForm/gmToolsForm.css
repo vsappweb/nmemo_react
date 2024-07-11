@@ -1,23 +1,23 @@
 .gmToolsForm {
     width: 100%;
-    border-radius: 10px;
+    border-radius: 2px;
     border: 3px double var(--cText);
     -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
     box-shadow: 0px 0px 16px -8px var(--cText);
-    -webkit-box-shadow: inset 0px 0px 21px 1px var(--cText);
-    box-shadow: inset 0px 0px 21px 1px var(--cText);
+    /* -webkit-box-shadow: inset 0px 0px 21px 1px var(--cText);
+    box-shadow: inset 0px 0px 21px 1px var(--cText); */
     margin-bottom: 25px;
 
 }
 
 .gmToolsFormWrapper {
-    padding:20px 10px;
+    padding:5px;
 }
 
 .gmToolsFormOptionsWrapper {
     padding: 10px;
-    width: 90%;
-    max-width: 500px;
+    width: 95%;
+    /* max-width: 500px; */
 }
 
 .gmToolsFormchooseBoxCapton {
@@ -67,12 +67,11 @@
 
 
 .gmToolsFormTextarea {
-    border: none;
-
+    border-top: 1px dashed var(--bgMsg);
+    border-bottom: 1px dashed var(--bgMsg);
     padding: 10px;
-    height: 100px;
+    height: 90px;
     resize: none;
-    border-radius: 10px 10px 10px 0;
 }
 
 .gmToolsFormInput:focus {
@@ -131,18 +130,6 @@
     transform: scale(0.9);
 }
 
-.gmToolsFormEmoji {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.gmToolsFormEmojiPicker {
-    margin-top: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 
 .gmToolsFormOptionText {
@@ -349,4 +336,8 @@
     align-items: center;
     gap: 10px;
     padding: 5px;
+}
+
+.gmToolsFormWrapper{
+    height: 30%;
 }

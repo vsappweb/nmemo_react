@@ -34,14 +34,14 @@ export default function PostGmTools({ gmTool }) {
 
 
     return (
-        <div className="post">
+        <div className="postGmTools">
             <div className="postWrapper">
                 <div className="postTop">
                     <div className="postTopLeft">
-                        <span className="postTitle">{gmTool?.toolNumber}</span>
+                        <span className="postGmToolsTitle" style={{color:"blue"}}>{gmTool?.toolNumber}</span>
                     </div>
                     <div className="postTopRight">
-                        <span className="postDate">{format(gmTool.createdAt)}</span>
+                        <span className="postDate">{gmTool.date} {format(gmTool.createdAt)}</span>
                         {isMenuOpen && <div className="postTopEditDel">
 
                             {gmTool?.userId === currentUser._id ?
@@ -63,12 +63,12 @@ export default function PostGmTools({ gmTool }) {
                     </div>
                 </div>
                 <div className="postCenter">
-                    <h3>Problem was:</h3>
+                    <h3 className="postGmToolsTitle" style={{color:"orangered"}}>Problem was:</h3>
                     <span className="postText">{gmTool?.problem}</span>
                     <br />
                     <br />
 
-                    <h3>How we fixed it:</h3>
+                    <h3 className="postGmToolsTitle" style={{color:"green"}}>How we fixed it:</h3>
                     <span className="postText">{gmTool?.howFixed}</span>
                     
                 </div>
