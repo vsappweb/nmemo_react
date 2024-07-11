@@ -31,6 +31,15 @@ export default function BmGm() {
     getGmTools()
   }, [API]);
 
+  const addProblem = () => {
+    setShowForm(!showForm)
+    setShowSort(false)
+  }
+  const sortTool = () => {
+    setShowSort(!showSort)
+    setShowForm(false)
+  }
+
 
 
   return (
@@ -41,8 +50,8 @@ export default function BmGm() {
         <div className="bmGmRight">
 
           <div className="bmGmBtnContainer">
-            <button className="ordersButton" type="submit" onClick={() => setShowForm(!showForm)}>Add new issue</button>
-            <button className="ordersButton" type="submit" onClick={() => setShowSort(!showSort)}>Sorting</button>
+            <button className="ordersButton" type="submit" onClick={() => addProblem()}>Add new issue</button>
+            <button className="ordersButton" type="submit" onClick={() => sortTool()}>Sorting</button>
           </div>
           {showSort && <div className="bmGmSortContainer">
           <label className="bmGmSortLabel" htmlFor="productNumber">
