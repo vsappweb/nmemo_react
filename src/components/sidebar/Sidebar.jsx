@@ -64,12 +64,12 @@ export default function Sidebar() {
                         </Link>
                         {/* <SidebarListItem img={<School />} text={"Courses"} />
                     <SidebarListItem img={<HelpOutline />} text={"Questions"} /> */}
-                        <Link to={NEWS_BRIEF} style={{ textDecoration: "none" }}>
+                        <Link to={NEWS_BRIEF} target="_blank" rel="noopener noreferrer" style={{ textDecoration: "none" }} >
                             <SidebarListItem img={<Newspaper />} text={t("sidebar.news_brief")} />
                         </Link>
-                        <Link to={`/newsBrief/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
+                        {/* <Link to={`/newsBrief/${user.personnelnumber}`} onClick={() => { window.open({NEWS_BRIEF}, '_blank', 'width=500,height=500,resizable=yes'); }} style={{ textDecoration: "none" }}>
                             <SidebarListItem img={<Newspaper />} text={t("sidebar.news_brief")} />
-                        </Link>
+                        </Link> */}
                         <hr className="sidebarHr" />
                         <Link to={`/safety`} style={{ textDecoration: "none" }}>
                             <SidebarListItem img={<HealthAndSafety />} text={t("sidebar.Safety")} />

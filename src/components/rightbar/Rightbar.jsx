@@ -20,9 +20,33 @@ export default function Rightbar({ user }) {
     const [followed, setFollowed] = useState(currentUser.followings.includes(user?._id));
     const [onlineUsers, setOnlineUsers] = useState([])
     let [allEvents, setEvents] = useState([]);
+    const [incompleet, setIncompleet] = useState([]);
     const socket = useRef()
    
     const { t } = useTranslation();
+
+    useEffect(() => {
+        let interval;
+        const fetchData  = async () => {
+            try {
+                const res = await axios.get(`${API}/incompleetAantals/allIncompleetAantal`);
+                if (res && res.data) {
+                    setIncompleet(res.data);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        let result = fetchData()
+
+        if (!result) {
+            interval = setInterval(fetchData, 60000);
+        }
+
+        interval = setInterval(fetchData, 60000); //set your time here. repeat every 5 seconds
+        return () => clearInterval(interval);
+        } , [API]);
 
 
     // get all events from database 
@@ -147,6 +171,7 @@ export default function Rightbar({ user }) {
                 <h4 className="rightbarTitle">{t("rightbar.Here_you_can_view_today's_agenda_events")}</h4>
              </Link>
                 <ul className="feedEventsList">
+                {/* {Object.values(allEvents).length === 0 && <p className="rightbarTitle">{t("rightbar.No_events")}</p>} */}
                     {Object.values(allEvents).map((event) => {
                         return (
                             <li className="feedEventsInformation" key={event._id}>
@@ -174,7 +199,16 @@ export default function Rightbar({ user }) {
                 {/* //TODO Show all online friends, not just followers */}
                 {(currentUser.role === 2 || currentUser.role === 0) && <Online onlineUsers={onlineUsers} currentId={currentUser._id} />}
                 <hr className="sidebarHr" />
-                <h4 className="rightbarTitle">Let op incomplete pallet, graag aanvullen</h4>
+                {Object.values(incompleet).length > 0 && <>
+                <h4 className="rightbarTitle" style={{ color: "red" }}>Let op incomplete pallet, graag aanvullen</h4>
+                {Object.values(incompleet).map((incomplete) => (
+                    <div className="rightbarInfoItem" key={incomplete._id}>
+                        <span className="rightbarInfoKey"style={{ color: "red" }}>{incomplete.lineId}</span>
+                        <span className="rightbarInfokey" style={{ color: "red" }}>{incomplete.productNumber}</span>
+                    </div>))}
+                    </>
+                    }
+
             </>
 
 
