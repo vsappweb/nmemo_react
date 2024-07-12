@@ -38,8 +38,8 @@ export default function Orders() {
     }
     try {
       console.log(incompleet)
-      await axios.post(`${API}/incompleetAantals`, incompleet);
       window.print();
+      await axios.post(`${API}/incompleetAantals`, incompleet);
       window.location.reload();
     } catch (err) {
 
@@ -62,7 +62,7 @@ export default function Orders() {
             <form className="orderRightProductForm" onSubmit={handleSubmit} >
               <label className="orderRightProductFormLabel" htmlFor="productNumber">
                 <p className="orderRightProductFormText">Please enter your product:</p>
-                <input className="orderRightProductFormInput" type="text" id='productNumber' ref={productnumber} minLength={2} maxLength={4} placeholder="0000" defaultValue={JSON.parse(localStorage.getItem('product'))} />
+                <input className="orderRightProductFormInput" type="text" id='productNumber' ref={productnumber} minLength={2} maxLength={4} placeholder="0000" defaultValue={JSON.parse(localStorage.getItem('product'))} required />
               </label>
               <button className="orderRightProductFormBtn ordersButton" type="submit" >Get product</button>
             </form>
@@ -72,23 +72,25 @@ export default function Orders() {
             <button className="ordersButton" type="submit" onClick={() => handleShowPrint()}>incompleet aantal</button>
             <button className="ordersButton" type="submit" >werkinstruktie</button>
           </div>}
-          {showPrint && <div className="orderIncompleetAantal">
+          {showPrint && 
+          <div className="orderIncompleetAantal" onSubmit={handlePrint}>
             <h3 className="orderIncompleetAantalTitles">Incompleet aantal</h3>
             <label className="orderRightProductFormLabel" htmlFor="operator">
               <p className="orderRightProductFormText">Operator:</p>
-              <input className="orderRightProductFormInput" type="text" id='operator' ref={operatorUser} minLength={4} maxLength={4} placeholder="0000" onChange={() => setOperator(operatorUser.current.value)} />
+              <input className="orderRightProductFormInput" type="text" id='operator' ref={operatorUser} minLength={4} maxLength={4} placeholder="0000"  onChange={() => setOperator(operatorUser.current.value)} required/>
             </label>
             <div className="incompleetAantalPaperForm">
               <p className="orderIncompleetAantalTitle">melding incomplete aantallen</p>
               <p className="orderIncompleetAantalTitle" style={{ fontSize: '22px', marginLeft: '60px' }}>incompleet<br /> aantal</p>
-              <p className="orderIncompleetAantalTitle" style={{ borderBottom: '1px solid black', width: '80%' }}>Datum: {date.toLocaleDateString('nl-NL')} / {user.personnelnumber} / {operator}</p>
+            <p className="orderIncompleetAantalTitle" style={{ borderBottom: '1px solid black', width: '80%' }}>Datum: {date.toLocaleDateString('nl-NL')} / {user.personnelnumber} / {JSON.parse(localStorage.getItem('product'))} / {operator}</p>
               <div className="ordersFormAanmeldenColontitule" >
                 <p className="ordersFormAanmeldenColontituleText">G:\Kwaliteitsdienst\Formulieren\incomplete aantallen .xlsx</p>
                 <p className="ordersFormAanmeldenColontituleDate">28-6-2016</p>
               </div>
             </div>
             <button className="ordersButton" type="submit" onClick={() => handlePrint()}>afdruken/print</button>
-          </div>}
+          </div>
+          }
 
 
           {/* <div className="ordersProductionsFormulierenAanmelden">

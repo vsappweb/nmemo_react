@@ -203,8 +203,8 @@ export default function Rightbar({ user }) {
                 <h4 className="rightbarTitle" style={{ color: "red" }}>Let op incomplete pallet, graag aanvullen</h4>
                 {Object.values(incompleet).map((incomplete) => (
                     <div className="rightbarInfoItem" key={incomplete._id}>
-                        <span className="rightbarInfoKey"style={{ color: "red" }}>{incomplete.lineId}</span>
-                        <span className="rightbarInfokey" style={{ color: "red" }}>{incomplete.productNumber}</span>
+                        <span className="rightbarInfoKey" style={{ color: "red" }}>Line: {incomplete.lineId}</span><br />
+                        <span className="rightbarInfoKey" style={{ color: "red" }}>Product: {incomplete.productNumber}</span>
                     </div>))}
                     </>
                     }
