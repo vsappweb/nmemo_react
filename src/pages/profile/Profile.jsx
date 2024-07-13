@@ -35,9 +35,11 @@ export default function Profile() {
                             user.role === 1 ? <img className="profileCoverImg" src={user.coverPicture ? PF + user.coverPicture : PF + "person/n_operator.jpg"} alt="" />
                                 : user.role === 3 ? <img className="profileCoverImg" src={user.coverPicture ? PF + user.coverPicture : PF + "person/n_wals.jpg"} alt="" />
                                     : user.role === 2 ? <img className="profileCoverImg" src={user.coverPicture ? PF + user.coverPicture : PF + "person/n_tl.jpg"} alt="" />
-                                        : user.role === 0 ? <img className="profileCoverImg" src={user.coverPicture ? PF + user.coverPicture : PF + "person/n_admin.jpg"} alt="" />
-                                            : user.role === 404 ? <img className="profileCoverImg" src={user.coverPicture ? PF + user.coverPicture : PF + "person/noCoverr.png"} alt="" />
-                                                : <img className="profileCoverImg" src={PF + "person/noCover.png"} alt="" />}
+                                        : user.role === 4 ? <img className="profileCoverImg" src={user.coverPicture ? PF + user.coverPicture : PF + "person/n_l.jpg"} alt="" />
+                                            : user.role === 5 ? <img className="profileCoverImg" src={user.coverPicture ? PF + user.coverPicture : PF + "person/n_me.jpg"} alt="" />
+                                                : user.role === 0 ? <img className="profileCoverImg" src={user.coverPicture ? PF + user.coverPicture : PF + "person/n_admin.jpg"} alt="" />
+                                                    : user.role === 404 ? <img className="profileCoverImg" src={user.coverPicture ? PF + user.coverPicture : PF + "person/noCoverr.png"} alt="" />
+                                                        : <img className="profileCoverImg" src={PF + "person/noCover.png"} alt="" />}
                             <div className="profileUser">
                                 <AvatarUser user={user} />
                             </div>
