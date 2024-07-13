@@ -21,7 +21,7 @@ export default function Orders() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    localStorage.setItem("product", JSON.stringify(productnumber.current.value));
+    sessionStorage.setItem("product", JSON.stringify(productnumber.current.value));
     setShowBtn(!showBtn)
   }
 
@@ -31,7 +31,7 @@ export default function Orders() {
 
   const handlePrint = async () => {
     const incompleet = {
-      productNumber: JSON.parse(localStorage.getItem('product')),
+      productNumber: JSON.parse(sessionStorage.getItem('product')),
       lineId: user.personnelnumber,
       operator: operatorUser.current.value,
       date: date.toLocaleDateString('nl-NL')
@@ -53,7 +53,7 @@ export default function Orders() {
       <div className="ordersTopbar">
         <Topbar />
       </div>
-      <div className='orders'>
+      <div className="orders">
         <div className="ordersSidebar">
           <Sidebar />
         </div>
@@ -62,7 +62,7 @@ export default function Orders() {
             <form className="orderRightProductForm" onSubmit={handleSubmit} >
               <label className="orderRightProductFormLabel" htmlFor="productNumber">
                 <p className="orderRightProductFormText">Please enter your product:</p>
-                <input className="orderRightProductFormInput" type="text" id='productNumber' ref={productnumber} minLength={2} maxLength={4} placeholder="0000" defaultValue={JSON.parse(localStorage.getItem('product'))} required />
+                <input className="orderRightProductFormInput" type="text" id='productNumber' ref={productnumber} minLength={2} maxLength={4} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
               </label>
               <button className="orderRightProductFormBtn ordersButton" type="submit" >Get product</button>
             </form>
@@ -80,9 +80,9 @@ export default function Orders() {
               <input className="orderRightProductFormInput" type="text" id='operator' ref={operatorUser} minLength={4} maxLength={4} placeholder="0000"  onChange={() => setOperator(operatorUser.current.value)} required/>
             </label>
             <div className="incompleetAantalPaperForm">
-              <p className="orderIncompleetAantalTitle">melding incomplete aantallen</p>
-              <p className="orderIncompleetAantalTitle" style={{ fontSize: '22px', marginLeft: '60px' }}>incompleet<br /> aantal</p>
-            <p className="orderIncompleetAantalTitle" style={{ borderBottom: '1px solid black', width: '80%' }}>Datum: {date.toLocaleDateString('nl-NL')} / {user.personnelnumber} / {JSON.parse(localStorage.getItem('product'))} / {operator}</p>
+              <p className="orderIncompleetAantalTitle firstLine">melding incomplete aantallen</p>
+              <p className="orderIncompleetAantalTitleBig secondLine" style={{ fontSize: '44px', fontWeight: 'bold', marginLeft: '120px' }}>incompleet<br /> aantal</p>
+            <p className="orderIncompleetAantalTitle thirdLine" style={{ borderBottom: '1px solid black', width: '80%'}}>Datum: {date.toLocaleDateString('nl-NL')} / {user.personnelnumber} / {JSON.parse(sessionStorage.getItem('product'))} / {operator}</p>
               <div className="ordersFormAanmeldenColontitule" >
                 <p className="ordersFormAanmeldenColontituleText">G:\Kwaliteitsdienst\Formulieren\incomplete aantallen .xlsx</p>
                 <p className="ordersFormAanmeldenColontituleDate">28-6-2016</p>
