@@ -1,0 +1,17 @@
+.stempel {
+    display: flex;
+    color: var(--cText);
+}
+
+.stempelFormLabel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.stempelFormBtn {
+    display: flex;
+    justify-content: center;
+}

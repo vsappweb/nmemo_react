@@ -4,6 +4,8 @@ import Topbar from '../../components/topbar/Topbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import GmToolsForm from '../../components/gmToolsForm/GmToolsForm'
 import PostGmTools from '../../components/postGmTools/PostGmTools'
+import ProductNumberGet from '../../components/productNumberGet/ProductNumberGet'
+import Stempel from '../../components/stempel/Stempel'
 
 
 import axios from 'axios'
@@ -12,6 +14,7 @@ export default function BmGm() {
   let [allGmTool, setAllGmTool] = useState([]);
   const API = process.env.REACT_APP_SERVER_API
   const [showForm, setShowForm] = useState(false);
+  const [showProductForm, setShowProductForm] = useState(false);
   const [showSort, setShowSort] = useState(false);
 
   const sortValue = useRef();
@@ -33,13 +36,21 @@ export default function BmGm() {
     getGmTools()
   }, [API]);
 
+  const setProduct =()=>{
+    setShowProductForm(!showProductForm)
+    setShowForm(false)
+    setShowSort(false)
+  }
+
   const addProblem = () => {
     setShowForm(!showForm)
     setShowSort(false)
+    setShowProductForm(false)
   }
   const sortTool = () => {
     setShowSort(!showSort)
     setShowForm(false)
+    setShowProductForm(false)
   }
 
 
@@ -64,13 +75,18 @@ export default function BmGm() {
         <div className="bmGmRight">
 
           <div className="bmGmBtnContainer">
+            <button className="ordersButton" type="submit" onClick={() => setProduct()}>Product</button>
             <button className="ordersButton" type="submit" onClick={() => addProblem()}>Add new issue</button>
             <button className="ordersButton" type="submit" onClick={() => sortTool()}>Sorting</button>
           </div>
+          {showProductForm && <div className="bmGmSortContainer" >
+            <ProductNumberGet />
+            <Stempel />
+          </div>}
           {showSort && <div className="bmGmSortContainer" >
-          <label className="bmGmSortLabel" htmlFor="productNumber">
+            <label className="bmGmSortLabel" htmlFor="productNumber">
               <p className="bmGmSortText">Please enter tool number:</p>
-              <input className="bmGmSortInput" type="text" id='productNumber' placeholder="00-000-a-z" ref={sortValue} required/>
+              <input className="bmGmSortInput" type="text" id='productNumber' placeholder="00-000-a-z" ref={sortValue} required />
             </label>
             <button className="ordersButton" type="submit" >Sort</button>
           </div>}

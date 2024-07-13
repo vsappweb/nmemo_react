@@ -47,7 +47,9 @@ export default function Memo() {
 
     // order
     const handleOrder = e => {
-        setText((prev) => prev + " not active :( ");
+        const product = sessionStorage.getItem('product')
+        const noProduct = " you have no product :( "
+        setText((prev) => prev + " " + (product  ? JSON.parse(sessionStorage.getItem('product')) : noProduct) + " ");
     }
 
     // preparedTexts text input
@@ -84,6 +86,7 @@ export default function Memo() {
         e.preventDefault()
         const newMemo = {
             userId: user._id,
+            product: JSON.parse(sessionStorage.getItem('product')) ? JSON.parse(sessionStorage.getItem('product')) : "" ,
             title: "nMemo " + date.toLocaleDateString('nl-NL'),
             desc: desc.current.value
         };

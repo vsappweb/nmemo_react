@@ -40,6 +40,7 @@ export default function EditShiftTransfer() {
 
 
   useEffect(() => {
+    let interval;
     const fetchData = async () => {
       try {
         const res = await axios.get(`${API}/shiftTransfers/allShiftTransfers`);
@@ -49,7 +50,12 @@ export default function EditShiftTransfer() {
         console.error(err);
       }
     };
-    fetchData();
+    let result = fetchData();
+    if (!result) {
+      interval = setInterval(fetchData, 60000);
+    }
+    interval = setInterval(fetchData, 60000);
+    return () => clearInterval(interval);
   }, [API]);
 
   useEffect(() => {
@@ -166,7 +172,8 @@ export default function EditShiftTransfer() {
     allShiftsTransfers = Object.values(allShiftsTransfers).sort(oldToNew);
     setAllShiftsTransfersSort(Object.values(allShiftsTransfers).filter(shift => (shift.date.split('-')[1] + "-" + shift.date.split('-')[2]) === (new Date(monthSort).toLocaleDateString('nl-NL').split('-')[1] + "-" + new Date(monthSort).toLocaleDateString('nl-NL').split('-')[2])));
     console.log("test");
-
+    document.getElementById("sortDay").value = "";
+    document.getElementById("sortWeek").value = "";
   }
 
   // Sorting by day
@@ -182,6 +189,8 @@ export default function EditShiftTransfer() {
     if (lockMonth) {
       setAllShiftsTransfersSecondQuery(Object.values(allShiftsTransfers).filter(shift => shift.date === new Date(daySort).toLocaleDateString('nl-NL')));
     }
+    document.getElementById("sortMonth").value = "";
+    document.getElementById("sortWeek").value = "";
   }
 
   // Sorting by week
@@ -195,6 +204,8 @@ export default function EditShiftTransfer() {
     allShiftsTransfers = Object.values(allShiftsTransfers).sort(oldToNew);
     setAllShiftsTransfersSort(Object.values(allShiftsTransfers).filter(shift => (shift.weekNumber === weekSort) && (shift.date.split('-')[2] === sortWeek.current.value.split('-W')[0])));
     console.log(allShiftsTransfersSort);
+    document.getElementById("sortMonth").value = "";
+    document.getElementById("sortDay").value = "";
   }
 
   const handleSortByTypeAndValue = () => {
@@ -238,9 +249,9 @@ export default function EditShiftTransfer() {
   const chooseSortOfShift = () => {
     const typeSort = sortType.current.value;
     if (typeSort === "shifts") {
-      setHideShiftSorting(!hideShiftSorting);
+      setHideShiftSorting(true);
     } else {
-      setHideShiftSorting(hideShiftSorting);
+      setHideShiftSorting(false);
     }
   }
 
@@ -386,8 +397,8 @@ export default function EditShiftTransfer() {
                               <div className="editShiftTransferItemEdit">
                                 <Edit className="shiftTransferItemEdit" onClick={() => handleShTrItemGet(stItems)} />
                               </div>
-                              <div className="editShiftTransferItemDelete">
-                                <HighlightOff className="shiftTransferItemDelete" onClick={() => handleShTrItemDelete(stItems)} />
+                              <div className="editShiftTransferItemDelete" onClick={() => handleShTrItemDelete(stItems)}>
+                                <HighlightOff className="shiftTransferItemDelete"/>
                               </div>
                             </div>
                           </div>

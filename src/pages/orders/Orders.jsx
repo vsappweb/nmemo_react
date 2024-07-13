@@ -3,6 +3,7 @@ import './orders.css'
 import Topbar from '../../components/topbar/Topbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import { AuthContext } from "../../context/AuthContext";
+import ProductNumberGet from '../../components/productNumberGet/ProductNumberGet';
 
 import axios from 'axios';
 
@@ -11,19 +12,17 @@ export default function Orders() {
   const date = new Date();
   const { user } = useContext(AuthContext);
   const [showPrint, setShowPrint] = useState(false)
-  const [showBtn, setShowBtn] = useState(false)
   const [operator, setOperator] = useState('')
-  const productnumber = useRef();
   const operatorUser = useRef();
 
 
 
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    sessionStorage.setItem("product", JSON.stringify(productnumber.current.value));
-    setShowBtn(!showBtn)
-  }
+  // useEffect(() => {
+  //   if (sessionStorage.getItem('product')) {
+  //     setShowBtn(!showBtn)
+  //   }
+  // },);
 
   const handleShowPrint = () => {
     setShowPrint(!showPrint)
@@ -59,37 +58,40 @@ export default function Orders() {
         </div>
         <div className="ordersRight">
           <div className="orderRightProductSubmit">
-            <form className="orderRightProductForm" onSubmit={handleSubmit} >
+            <ProductNumberGet />
+            {/* <form className="orderRightProductForm" onSubmit={handleSubmit} >
               <label className="orderRightProductFormLabel" htmlFor="productNumber">
                 <p className="orderRightProductFormText">Please enter your product:</p>
                 <input className="orderRightProductFormInput" type="text" id='productNumber' ref={productnumber} minLength={2} maxLength={4} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
               </label>
               <button className="orderRightProductFormBtn ordersButton" type="submit" >Get product</button>
-            </form>
+            </form> */}
           </div>
-          {showBtn && <div className="orderRightBtnContainer">
+         {sessionStorage.getItem('product') &&  
+         <div className="orderRightBtnContainer">
             <button className="ordersButton" type="submit" >Add quality warnings</button>
             <button className="ordersButton" type="submit" onClick={() => handleShowPrint()}>incompleet aantal</button>
             <button className="ordersButton" type="submit" >werkinstruktie</button>
-          </div>}
-          {showPrint && 
-          <div className="orderIncompleetAantal" onSubmit={handlePrint}>
-            <h3 className="orderIncompleetAantalTitles">Incompleet aantal</h3>
-            <label className="orderRightProductFormLabel" htmlFor="operator">
-              <p className="orderRightProductFormText">Operator:</p>
-              <input className="orderRightProductFormInput" type="text" id='operator' ref={operatorUser} minLength={4} maxLength={4} placeholder="0000"  onChange={() => setOperator(operatorUser.current.value)} required/>
-            </label>
-            <div className="incompleetAantalPaperForm">
-              <p className="orderIncompleetAantalTitle firstLine">melding incomplete aantallen</p>
-              <p className="orderIncompleetAantalTitleBig secondLine" style={{ fontSize: '44px', fontWeight: 'bold', marginLeft: '120px' }}>incompleet<br /> aantal</p>
-            <p className="orderIncompleetAantalTitle thirdLine" style={{ borderBottom: '1px solid black', width: '80%'}}>Datum: {date.toLocaleDateString('nl-NL')} / {user.personnelnumber} / {JSON.parse(sessionStorage.getItem('product'))} / {operator}</p>
-              <div className="ordersFormAanmeldenColontitule" >
-                <p className="ordersFormAanmeldenColontituleText">G:\Kwaliteitsdienst\Formulieren\incomplete aantallen .xlsx</p>
-                <p className="ordersFormAanmeldenColontituleDate">28-6-2016</p>
-              </div>
-            </div>
-            <button className="ordersButton" type="submit" onClick={() => handlePrint()}>afdruken/print</button>
           </div>
+          }
+          {showPrint &&
+            <div className="orderIncompleetAantal" onSubmit={handlePrint}>
+              <h3 className="orderIncompleetAantalTitles">Incompleet aantal</h3>
+              <label className="orderRightProductFormLabel" htmlFor="operator">
+                <p className="orderRightProductFormText">Operator:</p>
+                <input className="orderRightProductFormInput" type="text" id='operator' ref={operatorUser} minLength={4} maxLength={4} placeholder="0000" onChange={() => setOperator(operatorUser.current.value)} required />
+              </label>
+              <div className="incompleetAantalPaperForm">
+                <p className="orderIncompleetAantalTitle firstLine">melding incomplete aantallen</p>
+                <p className="orderIncompleetAantalTitleBig secondLine" style={{ fontSize: '44px', fontWeight: 'bold', marginLeft: '120px' }}>incompleet<br /> aantal</p>
+                <p className="orderIncompleetAantalTitle thirdLine" style={{ borderBottom: '1px solid black', width: '80%' }}>Datum: {date.toLocaleDateString('nl-NL')} / {user.personnelnumber} / {JSON.parse(sessionStorage.getItem('product'))} / {operator}</p>
+                <div className="ordersFormAanmeldenColontitule" >
+                  <p className="ordersFormAanmeldenColontituleText">G:\Kwaliteitsdienst\Formulieren\incomplete aantallen .xlsx</p>
+                  <p className="ordersFormAanmeldenColontituleDate">28-6-2016</p>
+                </div>
+              </div>
+              <button className="ordersButton" type="submit" onClick={() => handlePrint()}>afdruken/print</button>
+            </div>
           }
 
 
