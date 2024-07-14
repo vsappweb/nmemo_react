@@ -63,7 +63,7 @@ export default function PostGmTools({ gmTool }) {
                     </div>
                 </div>
                 <div className="postCenter">
-                    <h3 className="postGmToolsTitle" style={{color:"orangered"}}>Problem was:</h3>
+                    <h3 className="postGmToolsTitle" style={{color:"orangered"}}>Problem was: <span style={{color:"red", textDecoration:"underline", fontWeight:"bold"}}>{gmTool?.problems}</span></h3>
                     <span className="postText">{gmTool?.problem}</span>
                     <br />
                     <br />

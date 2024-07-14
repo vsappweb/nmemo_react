@@ -341,3 +341,9 @@
 .gmToolsFormWrapper{
     height: 30%;
 }
+
+.gmToolFormBox {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}

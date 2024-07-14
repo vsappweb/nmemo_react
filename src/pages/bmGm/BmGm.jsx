@@ -15,9 +15,14 @@ export default function BmGm() {
   const API = process.env.REACT_APP_SERVER_API
   const [showForm, setShowForm] = useState(false);
   const [showProductForm, setShowProductForm] = useState(false);
-  const [showSort, setShowSort] = useState(false);
+  const [showSort, setShowSort] = useState(true);
+
+  const bmGmSortTool = document.querySelector(".bmGmSortTool");
+
+  const tools = [];
 
   const sortValue = useRef();
+  const sortProblems = useRef();
 
 
 
@@ -36,7 +41,62 @@ export default function BmGm() {
     getGmTools()
   }, [API]);
 
-  const setProduct =()=>{
+  const fetchData = async () => {
+    try {
+      try {
+        const res = await axios.get(`${API}/gmTools/allGmTool`);
+        if (!res || !res.data) {
+          throw new Error('Invalid response from server');
+        }
+        Object.values(res.data).forEach((tool) => {
+          if (tool && tool.toolNumber) {
+            tools.push(tool.toolNumber);
+          }
+        });
+        console.log(Object.values(tools));
+      } catch (err) {
+        console.error(err);
+        throw err;
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  fetchData();
+
+  const getTool = (letter, tools) => {
+    return tools.filter(tool => {
+
+      const regex = new RegExp(letter, 'gi');
+      return tool.match(regex);
+    })
+  }
+
+
+  const showMyTool = () => {
+    console.log('sort.value >>>', sortValue.current.value);
+    const outTools = getTool(sortValue.current.value, tools);
+
+
+
+    const view = Object.values(outTools).map((tool, index) => {
+
+      const regex = new RegExp(sortValue.current.value, 'gi');
+      const replace = tool.replace(regex, 
+        `<span class="bmGmSortHighlight">${sortValue.current.value}</span>`,
+      );
+
+      return `<li key={index}>${replace}</li>`
+    }).slice(0, 5);
+
+    bmGmSortTool.innerHTML = sortValue.current.value ? view.join('') : `<li key={index}>input</li>`;
+    console.log(view)
+    console.log(outTools);
+  }
+
+
+
+  const setProduct = () => {
     setShowProductForm(!showProductForm)
     setShowForm(false)
     setShowSort(false)
@@ -54,16 +114,17 @@ export default function BmGm() {
   }
 
 
-  // const sortingTool = (e) => {
-  //   e.preventDefault();
-  //     const numberName = sortValue;
-  //     console.log(numberName)
-  //     // const oldToNew = (a, b) => {
-  //     //   return new Date(b.createdAt) - new Date(a.createdAt);
-  //     // }
-  //     // allGmTool = Object.values(allGmTool).sort(oldToNew);
-  //     setAllGmTool(Object.values(allGmTool).filter(tool => tool.toolNumber === numberName));
-  // }
+  const sortingTool = (e) => {
+    e.preventDefault();
+    const numberName = sortValue.current.value;
+    setAllGmTool(Object.values(allGmTool).filter(tool => tool.toolNumber === numberName));
+  }
+
+
+  const oldToNew = (a, b) => {
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  }
+  allGmTool = Object.values(allGmTool).sort(oldToNew);
 
 
 
@@ -83,13 +144,16 @@ export default function BmGm() {
             <ProductNumberGet />
             <Stempel />
           </div>}
-          {showSort && <div className="bmGmSortContainer" >
+          {showSort && <form className="bmGmSortContainer" onSubmit={sortingTool}>
             <label className="bmGmSortLabel" htmlFor="productNumber">
               <p className="bmGmSortText">Please enter tool number:</p>
-              <input className="bmGmSortInput" type="text" id='productNumber' placeholder="00-000-a-z" ref={sortValue} required />
+              <input className="bmGmSortInput" type="text" id='productNumber' placeholder="00-000-a-z" ref={sortValue} required onChange={showMyTool} />
+              <ul className="bmGmSortTool" >
+                <li><span>input</span></li>
+              </ul>
             </label>
             <button className="ordersButton" type="submit" >Sort</button>
-          </div>}
+          </form>}
           <div className="bmGmFormContainer">
             {showForm && <GmToolsForm />}
           </div>

@@ -82,22 +82,22 @@ export default function PostShiftTransfer({ shiftTransfer }) {
                             )
                         })}
                         {isMenuOpen && <div className="postTopEditDel">
-                        {shiftTransfer.userId === currentUser._id ?
-    <div className="editDeleteBtns">
-        <div className="notActiveBtn">
-            <Edit onClick={() => setIsMenuOpen(!isMenuOpen)} />
-        </div>
-        <div className="deleteBtn" onClick={shiftTransferDeleteHandler} >
-            <HighlightOff />
-        </div>
-    </div>
-    :
-    <div className="deleteBtn">
-        <DoNotTouch onClick={() => setIsMenuOpen(!isMenuOpen)} />
-    </div>
-}
-</div>}
-<MoreVert className="postMenu" style={{ cursor: "pointer" }} onClick={() => setIsMenuOpen(!isMenuOpen)} />
+                            {shiftTransfer.userId === currentUser._id ?
+                                <div className="editDeleteBtns">
+                                    <div className="notActiveBtn">
+                                        <Edit onClick={() => setIsMenuOpen(!isMenuOpen)} />
+                                    </div>
+                                    <div className="deleteBtn" onClick={shiftTransferDeleteHandler} >
+                                        <HighlightOff />
+                                    </div>
+                                </div>
+                                :
+                                <div className="deleteBtn">
+                                    <DoNotTouch onClick={() => setIsMenuOpen(!isMenuOpen)} />
+                                </div>
+                            }
+                        </div>}
+                        <MoreVert className="postMenu" style={{ cursor: "pointer" }} onClick={() => setIsMenuOpen(!isMenuOpen)} />
                         {/* <span className="postShiftTransferOperator">{shiftTransfer?.operator}</span> */}
                         {/* <MoreVert /> */}
                         {/* {shiftTransfer.userId === currentUser._id ? <HighlightOff className="postShiftTransferDelete" onClick={shiftTransferDeleteHandler} /> 
@@ -119,7 +119,7 @@ export default function PostShiftTransfer({ shiftTransfer }) {
                         })}
                     </ul>
                     {shiftTransfer?.message ? <p className="postShiftTransferComment">Comment: <span className="postShiftTransferText">{shiftTransfer?.message}</span></p> : null}
-                    
+
                 </div>
                 <div className="postShiftTransferBottom" style={{ display: "flex", flexDirection: "column" }}>
                     <div className="shiftTransferDateTime" style={{ textTransform: "capitalize" }}>
