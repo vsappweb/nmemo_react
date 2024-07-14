@@ -89,7 +89,7 @@ export default function BmGm() {
       return `<li key={index}>${replace}</li>`
     }).slice(0, 5);
 
-    bmGmSortTool.innerHTML = sortValue.current.value ? view.join('') : `<li key={index}>input</li>`;
+    bmGmSortTool.innerHTML = sortValue.current.value ? view.join('') : `<li key={index}>00-000-A-z</li>`;
     console.log(view)
     console.log(outTools);
   }
@@ -149,7 +149,7 @@ export default function BmGm() {
               <p className="bmGmSortText">Please enter tool number:</p>
               <input className="bmGmSortInput" type="text" id='productNumber' placeholder="00-000-a-z" ref={sortValue} required onChange={showMyTool} />
               <ul className="bmGmSortTool" >
-                <li><span>input</span></li>
+                <li><span>00-000-A-z</span></li>
               </ul>
             </label>
             <button className="ordersButton" type="submit" >Sort</button>

@@ -80,14 +80,14 @@ export default function GmToolsForm() {
                                 <h4 className="gmToolsFormItemTitle" style={{ color: "blue" }} > Tool number: </h4>
                                 <input id="gmToolsForm" type="text" placeholder="00-000-a-z" className="gmToolsFormInput" ref={toolNumber} />
                             </label>
-                            <label className="bmGmSortLabel" htmlFor="productProblems">
+                            <label className=" bmGmSortLabel" htmlFor="productProblems">
                                 <h4 className="gmToolsFormItemTitle" >Problems: </h4>
                                 <select className="editProfileInput" id="productProblems" ref={sortProblems} defaultValue={""} required >
                                     <option value="">What type of problem?</option>
                                     <option value="krassen">krassen</option>
                                     <option value="braamuorming">braamuorming</option>
                                     <option value="schilvers">schilvers</option>
-                                    <option value="clenk">clenk in het cleel</option>
+                                    <option value="clenk in het cleel">clenk in het cleel</option>
                                 </select>
                             </label>
                             </div>
