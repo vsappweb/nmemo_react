@@ -270,7 +270,7 @@ export default function EditProfile() {
           <div className="editProfileRightEdit">
             <h3 className="editProfileTitle" style={{ color: "blue" }} >{editUser._id === undefined ? `Edit your data ${user.username || user.personnelnumber}` : `Edit data for ${editUser.username || editUser.personnelnumber}`}</h3>
             {user?.role === 0 ? <span style={{ textAlign: "center" }}>Your ID: {user._id}</span> : <span style={{ display: "none" }}></span>}
-            <form className="editProfileForm" id="editProfileForm" onSubmit={handleClickEdit}>
+            <form className="editProfileForm" id="editProfileForm" autoComplete="off" onSubmit={handleClickEdit}>
               <label className="editProfileFormItem" htmlFor="userId">
                 <p className="editProfileFormText">User ID:</p> {user?.role === 0 ? <> <button className="editProfileButtonGet" onClick={() => getEditUser(userId)} >Get</button> <input className="editProfileInput" id="userId" ref={userId} placeholder="userId" type="text" defaultValue={editUser._id} required /></> :
                   <input className="editProfileInput" id="userId" ref={userId} placeholder="userId" defaultValue={user._id} type="text" readOnly required disabled />}
@@ -382,7 +382,7 @@ export default function EditProfile() {
             {/* Form for change password */}
 
             <h3 className="editProfileTitle" style={{ color: "deepblue" }} >Сhange password</h3>
-            <form className="editProfileForm" onSubmit={handleClickСhangePassword}>
+            <form className="editProfileForm" autoComplete="off" onSubmit={handleClickСhangePassword}>
               <label className="editProfileFormItem" htmlFor="changePasswordUserId">
                 <p className="editProfileFormText">User ID:</p> {user?.role === 0 ? <input className="editProfileInput" id="changePasswordUserId" ref={changePasswordUserId} placeholder="userId" type="text" required /> :
                   <input className="editProfileInput" id="changePasswordUserId" ref={changePasswordUserId} placeholder="userId" defaultValue={user._id} type="text" readOnly required disabled />}
@@ -404,7 +404,7 @@ export default function EditProfile() {
             {/* Form registration */}
 
             <h3 className="editProfileTitle" style={{ color: "green" }} >Form registration a new user</h3>
-            <form className="editProfileForm" onSubmit={handleClickRegister}>
+            <form className="editProfileForm" autoComplete="off" onSubmit={handleClickRegister}>
               <label className="editProfileFormItem" htmlFor="personnelnumber">
                 <p className="editProfileFormText">Personnelnumber:</p><input className="editProfileInput" ref={personnelnumberReg} placeholder="Personnelnumber" type="text" required />
               </label>
@@ -455,7 +455,7 @@ export default function EditProfile() {
 
             <h3 className="editProfileTitle" style={{ color: "orange" }}>Remove a user</h3>
             <span style={{ textAlign: "center", color: "orange" }}>User data will remain</span>
-            <form className="editProfileForm" onSubmit={handleClickRemove}>
+            <form className="editProfileForm" autoComplete="off" onSubmit={handleClickRemove}>
               <label className="editProfileFormItem" htmlFor="remUserId" style={{ color: "orange" }} >
                 <p className="editProfileFormText" style={{ color: "orange" }} >User ID:</p> <button className="editProfileButtonGet" onClick={() => getEditUserRem(userIdRem)} >Get</button><input className="editProfileInput" id="remUserId" ref={userIdRem} placeholder="userId" type="text" required />
               </label>
@@ -474,7 +474,7 @@ export default function EditProfile() {
               <>
                 <h3 className="editProfileTitle" style={{ color: "red" }} >Delete a user</h3>
                 <span style={{ textAlign: "center" }}>User data will be deleted</span>
-                <form className="editProfileForm" onSubmit={handleClickDelete}>
+                <form className="editProfileForm" autoComplete="off" onSubmit={handleClickDelete}>
                   <label className="editProfileFormItem" htmlFor="delUserId" style={{ color: "red" }} >
                     <p className="editProfileFormText" style={{ color: "red" }} >User ID:</p> <input className="editProfileInput" id="delUserId" ref={userIdDel} placeholder="userId" type="text" required />
                   </label>
@@ -485,7 +485,7 @@ export default function EditProfile() {
               <>
                 <h3 className="editProfileTitle" style={{ color: "red" }} >Delete a user</h3>
                 <span style={{ textAlign: "center" }}>User data will be deleted</span>
-                <form className="editProfileForm" onSubmit={handleClickDelete}>
+                <form className="editProfileForm" autoComplete="off" onSubmit={handleClickDelete}>
                   <label className="editProfileFormItem" htmlFor="delUserId" style={{ color: "red" }} >
                     <p className="editProfileFormText" style={{ color: "red" }} >User ID:</p><input className="editProfileInput" id="delUserId" ref={userIdDel} placeholder="userId" type="text" required disabled />
                   </label>
@@ -498,7 +498,7 @@ export default function EditProfile() {
             {/* //TODO: Add admin role to user */}
             <h3 className="editProfileTitle" style={{ color: "red" }} >Add admin role to user</h3>
             <span style={{ textAlign: "center" }}>The user will receive administrator rights</span>
-            <form className="editProfileForm" id="editProfileFormIsAdmin" onSubmit={handleClickAddAdmin}>
+            <form className="editProfileForm" id="editProfileFormIsAdmin" autoComplete="off" onSubmit={handleClickAddAdmin}>
               <label className="editProfileFormItem" htmlFor="isAdmin" style={{ color: "red" }} >
                 <p className="editProfileFormText" style={{ color: "red" }} >User ID:</p>
                 <button className="editProfileButtonGet" onClick={() => getEditUserIsAdmin(userIsAdmin)} >Get</button> <input className="editProfileInput" id="isAdmin" ref={userIsAdmin} placeholder="userId" type="text" />

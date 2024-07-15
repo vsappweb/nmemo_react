@@ -22,12 +22,12 @@ export default function Rightbar({ user }) {
     let [allEvents, setEvents] = useState([]);
     const [incompleet, setIncompleet] = useState([]);
     const socket = useRef()
-   
+
     const { t } = useTranslation();
 
     useEffect(() => {
         let interval;
-        const fetchData  = async () => {
+        const fetchData = async () => {
             try {
                 const res = await axios.get(`${API}/incompleetAantals/allIncompleetAantal`);
                 if (res && res.data) {
@@ -46,7 +46,7 @@ export default function Rightbar({ user }) {
 
         interval = setInterval(fetchData, 60000); //set your time here. repeat every 5 seconds
         return () => clearInterval(interval);
-        } , [API]);
+    }, [API]);
 
 
     // get all events from database 
@@ -167,11 +167,11 @@ export default function Rightbar({ user }) {
     const HomeRightbar = () => {
         return (
             <>
-             <Link to={`/events/${currentUser.personnelnumber}`} style={{ textDecoration: "none" }}>
-                <h4 className="rightbarTitle">{t("rightbar.Here_you_can_view_today's_agenda_events")}</h4>
-             </Link>
+                <Link to={`/events/${currentUser.personnelnumber}`} style={{ textDecoration: "none" }}>
+                    <h4 className="rightbarTitle">{t("rightbar.Here_you_can_view_today's_agenda_events")}</h4>
+                </Link>
                 <ul className="feedEventsList">
-                {/* {Object.values(allEvents).length === 0 && <p className="rightbarTitle">{t("rightbar.No_events")}</p>} */}
+                    {/* {Object.values(allEvents).length === 0 && <p className="rightbarTitle">{t("rightbar.No_events")}</p>} */}
                     {Object.values(allEvents).map((event) => {
                         return (
                             <li className="feedEventsInformation" key={event._id}>
@@ -186,9 +186,9 @@ export default function Rightbar({ user }) {
                         )
                     })}
                 </ul>
-                {(currentUser.role === 1 || currentUser.role === 3) && <> 
+                {(currentUser.role === 1 || currentUser.role === 3) && <>
                     <hr className="sidebarHr" />
-                <h4 className="rightbarTitle">Here you can submit a report for your team leader</h4>
+                    <h4 className="rightbarTitle">Here you can submit a report for your team leader</h4>
 
                 </>
                 }
@@ -199,16 +199,19 @@ export default function Rightbar({ user }) {
                 {/* //TODO Show all online friends, not just followers */}
                 {(currentUser.role === 2 || currentUser.role === 0) && <Online onlineUsers={onlineUsers} currentId={currentUser._id} />}
                 <hr className="sidebarHr" />
-                {Object.values(incompleet).length > 0 && <>
-                <h4 className="rightbarTitle" style={{ color: "red" }}>Let op incomplete pallet, graag aanvullen</h4>
-                {Object.values(incompleet).map((incomplete) => (
-                    <div className="rightbarInfoItem" key={incomplete._id}>
-                        <span className="rightbarInfoKey" style={{ color: "red" }}>Line: {incomplete.lineId}</span><br />
-                        <span className="rightbarInfoKey" style={{ color: "red" }}>Product: {incomplete.productNumber}</span>
-                    </div>))}
+                {(currentUser.role === 2 || currentUser.role === 0) &&
+                    <>
+                        {Object.values(incompleet).length > 0 && <>
+                            <h4 className="rightbarTitle" style={{ color: "red" }}>Let op incomplete pallet, graag aanvullen</h4>
+                            {Object.values(incompleet).map((incomplete) => (
+                                <div className="rightbarInfoItem" key={incomplete._id}>
+                                    <span className="rightbarInfoKey" style={{ color: "red" }}>Line: {incomplete.lineId}</span><br />
+                                    <span className="rightbarInfoKey" style={{ color: "red" }}>Product: {incomplete.productNumber}</span>
+                                </div>))}
+                        </>
+                        }
                     </>
-                    }
-
+                }
             </>
 
 
@@ -217,11 +220,11 @@ export default function Rightbar({ user }) {
     const ProfileRightbar = () => {
         return (
             <>
-                {(user.role === 0 || currentUser.role === 2) &&  
+                {(user.role === 0 || currentUser.role === 2) &&
                     <button className="rightbarFollow" onClick={handleClick}>
                         {/* //FIXME The button does not work correctly  */}
                         {/* {followed ? "Add for online control" : ""} */}
-                        {followed ? <Add />: <Remove /> }
+                        {followed ? <Add /> : <Remove />}
                     </button>}
                 <h4 className="rightbarTitle">User Information</h4>
                 {user.role !== 404 ? <div className="rightbarInfo">
@@ -246,32 +249,32 @@ export default function Rightbar({ user }) {
                         <span className="rightbarInfoValue">{user?.language}</span>
                     </div>
                 </div> : <span>No information</span>}
-               {user.role === 2 && 
-               <>
-               <h4 className="rightbarTitle">You can see online</h4>
-                <div className="rightbarFollowings">
-                    {friends?.map((friend) => {
-                        return (
-                            <Link to={"/profile/" + friend.personnelnumber} style={{ textDecoration: "none" }} key={friend._id}>
-                                <div className="rightbarFollowing">
-                                    {friend.role === 404 ?
-                                        <>
-                                        </>
-                                        :
-                                        <>
-                                            <div className="avatarFriend">
-                                                <AvatarUser user={friend} />
-                                            </div>
-                                            {/* <AvatarFriend friend={friend} /> */}
-                                            <span className="rightbarFollowingName">{friend.username || friend.personnelnumber}</span>
-                                        </>
-                                    }
-                                </div>
-                            </Link>
-                        )
-                    })}
-                </div>
-                </>}
+                {user.role === 2 &&
+                    <>
+                        <h4 className="rightbarTitle">You can see online</h4>
+                        <div className="rightbarFollowings">
+                            {friends?.map((friend) => {
+                                return (
+                                    <Link to={"/profile/" + friend.personnelnumber} style={{ textDecoration: "none" }} key={friend._id}>
+                                        <div className="rightbarFollowing">
+                                            {friend.role === 404 ?
+                                                <>
+                                                </>
+                                                :
+                                                <>
+                                                    <div className="avatarFriend">
+                                                        <AvatarUser user={friend} />
+                                                    </div>
+                                                    {/* <AvatarFriend friend={friend} /> */}
+                                                    <span className="rightbarFollowingName">{friend.username || friend.personnelnumber}</span>
+                                                </>
+                                            }
+                                        </div>
+                                    </Link>
+                                )
+                            })}
+                        </div>
+                    </>}
                 {/* <h4 className="rightbarTitle">Your Team leaders</h4> */}
             </>
         )

@@ -112,7 +112,7 @@ export default function EditCalendar() {
         {getEvent._id === undefined ? "" : <CleaningServices className="editEventsBtnClean" onClick={eventCleanHandler} />}
           <h1 className="editEventsTitle" >{getEvent._id === undefined ? "Create Event" : "Edit Event"}</h1>
           </div>
-          <form className="editEventsForm" onSubmit={getEvent._id === undefined ? handleClickCreate : handleClickEdit}>
+          <form className="editEventsForm" autoComplete="off" onSubmit={getEvent._id === undefined ? handleClickCreate : handleClickEdit}>
             <label className="editEventsFormItem" htmlFor="title">
               <p className="editEventsFormText">Title:</p>
               <input className="editEventsInput" type="text" placeholder="Name of the event" id="title" ref={title} defaultValue={"" || getEvent.title} required />

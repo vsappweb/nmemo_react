@@ -49,48 +49,54 @@ export default function Stempel() {
   return (
     <>
       {JSON.parse(sessionStorage.getItem('product')) === null ? <>
-        <form className="stempelForm" onSubmit={handleSubmit} >
-          <label className="stempelFormLabel" htmlFor="productNumber">
-            <p className="stempelFormText">Profiel/Product:</p>
-            <input className="stempelFormInput" type="text" id='productNumber' ref={product} minLength={4} maxLength={5} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
-          </label>
-          <label className="stempelFormLabel" htmlFor="productNumber">
-            <p className="stempelFormText">Product name:</p>
-            <input className="stempelFormInput" type="text" id='productNumber' ref={productName} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
-          </label>
-          <label className="stempelFormLabel" htmlFor="productNumber">
-            <p className="stempelFormText">Stempel:</p>
-            <input className="stempelFormInput" type="text" id='productNumber' ref={stempel} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
-          </label>
-          <label className="stempelFormLabel" htmlFor="productNumber">
-            <p className="stempelFormText">Unit:</p><Add />
-            <input className="stempelFormInput" type="text" id='productNumber' ref={unit} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
-          </label>
-          <div className="stempelFormBtn">
-            <button className="buttonBtn" type="submit" >add product</button>
-          </div>
-        </form>
+       
       </> :
         <div className="stempelContainer">
-          {Object.values(allStempels).filter(stemp => stemp.product === JSON.parse(sessionStorage.getItem('product'))).map(stempel => {
-            return (
-              <div className="stempelContainerItems" key={stempel._id}>
-                <div className="stempelContainerItem">
-                  <p className="stempelFormText">Profiel/Product:</p><p>{stempel.product}</p>
+          {Object.values(allStempels || {}).filter(stemp => stemp.product === JSON.parse(sessionStorage.getItem('product')))
+            .map(stempel => {
+              return (
+                <div className="stempelContainerItems" key={stempel._id}>
+                  <div className="stempelContainerItem">
+                    <p className="stempelFormText">Profiel/Product:</p><p>{stempel.product || ''}</p>
+                  </div>
+                  <div className="stempelContainerItem">
+                    <p className="stempelFormText">Product name:</p><p> {stempel.productName || ''}</p>
+                  </div>
+                  <div className="stempelContainerItem">
+                    <p className="stempelFormText">Stempel:</p><p> {stempel.stempel || ''}</p>
+                  </div>
+                  <div className="stempelContainerItem">
+                    <p className="stempelFormText">Units:</p><p> {stempel.units || ''}</p>
+                  </div>
                 </div>
-                <div className="stempelContainerItem">
-                <p className="stempelFormText">Product name:</p><p> {stempel.productName}</p>
-                </div>
-                <div className="stempelContainerItem">
-                <p className="stempelFormText">Stempel:</p><p> {stempel.stempel}</p>
-                </div>
-                <div className="stempelContainerItem">
-                <p className="stempelFormText">Units:</p><p> {stempel.units}</p>
-                </div>
+              )
+            })}
+            {Object.values(allStempels || {}).filter(stemp => stemp.product === JSON.parse(sessionStorage.getItem('product'))).length === 0 &&
+            <>
+              <p className="stempelFormText">No Stempels yet</p>
+              <form className="stempelForm" onSubmit={handleSubmit} >
+              <label className="stempelFormLabel" htmlFor="productNumber">
+                <p className="stempelFormText">Profiel/Product:</p>
+                <input className="stempelFormInput" type="text" id='productNumber' ref={product} minLength={4} maxLength={5} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
+              </label>
+              <label className="stempelFormLabel" htmlFor="productNumber">
+                <p className="stempelFormText">Product name:</p>
+                <input className="stempelFormInput" type="text" id='productNumber' ref={productName} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
+              </label>
+              <label className="stempelFormLabel" htmlFor="productNumber">
+                <p className="stempelFormText">Stempel:</p>
+                <input className="stempelFormInput" type="text" id='productNumber' ref={stempel} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
+              </label>
+              <label className="stempelFormLabel" htmlFor="productNumber">
+                <p className="stempelFormText">Unit:</p><Add />
+                <input className="stempelFormInput" type="text" id='productNumber' ref={unit} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
+              </label>
+              <div className="stempelFormBtn">
+                <button className="buttonBtn" type="submit" >add product</button>
               </div>
-            )
-          }
-          )}
+            </form>
+            </>
+            }
         </div>
       }
     </>

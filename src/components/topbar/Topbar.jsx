@@ -172,7 +172,7 @@ export default function Topbar() {
             </div>
             <div className="topbarCenter">
                 {user.username || user.personnelnumber}
-
+                {/* {JSON.parse(sessionStorage.getItem('product'))} */}
 
             </div>
             <div className="topbarRight">
@@ -231,7 +231,7 @@ export default function Topbar() {
 
                         <div className={`topbarMenuDropdown ${open ? 'active' : 'inactive'}`} >
                             <h3 className="topbarMenuDropdownPersonnelnumber">{user.username || user.personnelnumber}<br />
-                                <UserRole user={user} /></h3>
+                                <UserRole user={user} /> </h3>
                             <ul>
                                 <Link to={`/license`} style={{ textDecoration: "none" }}>
                                     <DropdownItem img={<img className="logoIconImg" src="../../../assets/ico/chat.svg" alt="Logo nMemo" />} text={"nMemo ά 0.2"} />

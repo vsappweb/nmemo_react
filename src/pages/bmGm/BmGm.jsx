@@ -14,8 +14,8 @@ export default function BmGm() {
   let [allGmTool, setAllGmTool] = useState([]);
   const API = process.env.REACT_APP_SERVER_API
   const [showForm, setShowForm] = useState(false);
-  const [showProductForm, setShowProductForm] = useState(false);
-  const [showSort, setShowSort] = useState(true);
+  const [showProductForm, setShowProductForm] = useState(true);
+  const [showSort, setShowSort] = useState(false);
 
   const bmGmSortTool = document.querySelector(".bmGmSortTool");
 

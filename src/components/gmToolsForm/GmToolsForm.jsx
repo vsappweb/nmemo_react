@@ -69,7 +69,7 @@ export default function GmToolsForm() {
                     <h1 className="gmToolsFormTitle">Tools and problems</h1>
                 </div>
                 <div className="gmToolsFormInner">
-                    <form className="gmToolsFormForm" onSubmit={submitHandler}>
+                    <form className="gmToolsFormForm" autoComplete="off" onSubmit={submitHandler}>
                         <div className="gmToolsFormOptionsWrapper">
                             <label htmlFor="gmToolsForm" className="gmToolsFormOption">
                                 <h4 className="gmToolsFormItemTitle" > Datum: {date.toLocaleDateString('nl-NL')}</h4>

@@ -237,7 +237,7 @@ export default function ShiftTransfer2(shiftTransfer) {
                 <p className="shiftTransferDateTimeItem">Date : <span>{date.toLocaleDateString('nl-NL')}</span></p>
 
             </div>
-            <form className="shiftTransferForm" onSubmit={submitHandler}>
+            <form className="shiftTransferForm" autoComplete="off" onSubmit={submitHandler}>
                 {Object.values(allShiftsTransfer).map((shiftTransfer, i) => {
                     return (
                         <div className="shiftTransferItem" key={shiftTransfer._id} ref={item}>

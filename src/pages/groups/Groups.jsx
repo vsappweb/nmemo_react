@@ -116,7 +116,7 @@ export default function Groups() {
               )
             })}
           </div>
-          <div className="groupsUser">
+          {/* <div className="groupsUser">
             <h3 className="groupsTitle">KD</h3>
             {Object.values(allUsers).map((user) => {
               return (
@@ -147,7 +147,7 @@ export default function Groups() {
                 </Link>
               )
             })}
-          </div>
+          </div> */}
 
           <div className="groupsUser ">
             <h3 className="groupsTitle">Admins</h3>
@@ -182,12 +182,12 @@ export default function Groups() {
               )
             })}
           </div>
-          <div className="groupsUser">
+          {/* <div className="groupsUser">
             <h3 className="groupsTitle">#####</h3>
             {Object.values(allUsers).map((user) => {
               return (
                 <Link to={"/profile/" + user.personnelnumber} style={{ textDecoration: "none" }} key={user._id} >
-                  {user.role === 5 ?
+                  {user.role === 007 ?
                     <>
                       <AllUsers user={user} />
                     </>
@@ -197,7 +197,7 @@ export default function Groups() {
                 </Link>
               )
             })}
-          </div>
+          </div> */}
           {/* <div className="underDevelopmentContainer">
             <h2 className="underDevelopment">under development</h2>
             <h3 className="underDevelopmentTitle">Page <span> groups</span> </h3>

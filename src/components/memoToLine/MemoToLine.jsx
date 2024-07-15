@@ -121,7 +121,7 @@ export default function MemoToLine() {
                         <Cancel className="tlToLineCancel" onClick={() => setFile(null)} />
                     </div>
                 )}
-                <form className="tlToLineBottom" onSubmit={submitHandler}>
+                <form className="tlToLineBottom" autoComplete="off" onSubmit={submitHandler}>
                     <div className="tlToLineOptions">
                         <label htmlFor="filetlToLine" className="tlToLineOption">
                             <AttachFile className="tlToLineIcon" />

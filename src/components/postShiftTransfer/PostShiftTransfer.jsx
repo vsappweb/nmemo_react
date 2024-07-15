@@ -1,7 +1,7 @@
 import "./postShiftTransfer.css";
 import AvatarUser from "../avatarUser/AvatarUser";
 import AllUsers from "../allUsers/AllUsers";
-import { HighlightOff, MoreVert, Edit, DoNotTouch } from "@mui/icons-material";
+import { HighlightOff, MoreVert, DoNotTouch } from "@mui/icons-material";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "timeago.js"
@@ -45,6 +45,7 @@ export default function PostShiftTransfer({ shiftTransfer }) {
     const shiftTransferDeleteHandler = () => {
         try {
             axios.delete(`${API}/shiftTransfers/` + shiftTransfer._id)
+            window.alert("Deleted")
             window.location.reload();
         } catch (err) {
             console.log(err)
@@ -87,15 +88,15 @@ export default function PostShiftTransfer({ shiftTransfer }) {
                         {isMenuOpen && <div className="postTopEditDel">
                             {shiftTransfer.userId === currentUser._id && shiftTransfer?.shift === shiftNow && shiftTransfer?.date === date.toLocaleDateString('nl-NL')  ?
                                 <div className="editDeleteBtns">
-                                    <div className="notActiveBtn">
+                                    {/* <div className="notActiveBtn">
                                         <Edit onClick={() => setIsMenuOpen(!isMenuOpen)} />
-                                    </div>
-                                    <div className="deleteBtn" onClick={shiftTransferDeleteHandler} >
+                                    </div> */}
+                                    <div className="deleteBtn" onClick={shiftTransferDeleteHandler} style={{marginLeft: "10px"}}>
                                         <HighlightOff />
                                     </div>
                                 </div>
                                 :
-                                <div className="deleteBtn">
+                                <div className="deleteBtn" style={{marginLeft: "10px"}}>
                                     <DoNotTouch onClick={() => setIsMenuOpen(!isMenuOpen)} />
                                 </div>
                             }
