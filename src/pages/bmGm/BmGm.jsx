@@ -14,10 +14,10 @@ export default function BmGm() {
   let [allGmTool, setAllGmTool] = useState([]);
   const API = process.env.REACT_APP_SERVER_API
   const [showForm, setShowForm] = useState(false);
-  const [showProductForm, setShowProductForm] = useState(true);
+  const [showProductForm, setShowProductForm] = useState(false);
   const [showSort, setShowSort] = useState(false);
 
-  const bmGmSortTool = document.querySelector(".bmGmSortTool");
+  
 
   const tools = [];
 
@@ -76,6 +76,7 @@ export default function BmGm() {
   const showMyTool = () => {
     console.log('sort.value >>>', sortValue.current.value);
     const outTools = getTool(sortValue.current.value, tools);
+    const bmGmSortTool = document.querySelector(".bmGmSortTool");
 
 
 
@@ -144,7 +145,7 @@ export default function BmGm() {
             <ProductNumberGet />
             <Stempel />
           </div>}
-          {showSort && <form className="bmGmSortContainer" onSubmit={sortingTool}>
+          {showSort && <form className="bmGmSortContainer" autoComplete="off" onSubmit={sortingTool}>
             <label className="bmGmSortLabel" htmlFor="productNumber">
               <p className="bmGmSortText">Please enter tool number:</p>
               <input className="bmGmSortInput" type="text" id='productNumber' placeholder="00-000-a-z" ref={sortValue} required onChange={showMyTool} />

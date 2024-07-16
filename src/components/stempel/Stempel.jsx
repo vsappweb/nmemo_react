@@ -56,9 +56,9 @@ export default function Stempel() {
             .map(stempel => {
               return (
                 <div className="stempelContainerItems" key={stempel._id}>
-                  <div className="stempelContainerItem">
+                  {/* <div className="stempelContainerItem">
                     <p className="stempelFormText">Profiel/Product:</p><p>{stempel.product || ''}</p>
-                  </div>
+                  </div> */}
                   <div className="stempelContainerItem">
                     <p className="stempelFormText">Product name:</p><p> {stempel.productName || ''}</p>
                   </div>
@@ -68,31 +68,32 @@ export default function Stempel() {
                   <div className="stempelContainerItem">
                     <p className="stempelFormText">Units:</p><p> {stempel.units || ''}</p>
                   </div>
+                  <button className="buttonBtn" type="submit" >edit stempels</button>
                 </div>
               )
             })}
             {Object.values(allStempels || {}).filter(stemp => stemp.product === JSON.parse(sessionStorage.getItem('product'))).length === 0 &&
             <>
-              <p className="stempelFormText">No Stempels yet</p>
+              <p className="stempelFormTitle">No tools yet</p>
               <form className="stempelForm" onSubmit={handleSubmit} >
               <label className="stempelFormLabel" htmlFor="productNumber">
                 <p className="stempelFormText">Profiel/Product:</p>
                 <input className="stempelFormInput" type="text" id='productNumber' ref={product} minLength={4} maxLength={5} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
               </label>
-              <label className="stempelFormLabel" htmlFor="productNumber">
+              <label className="stempelFormLabel" htmlFor="productName">
                 <p className="stempelFormText">Product name:</p>
-                <input className="stempelFormInput" type="text" id='productNumber' ref={productName} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
+                <input className="stempelFormInput" type="text" id='productName' ref={productName} placeholder="0000" defaultValue="product Name" required />
               </label>
-              <label className="stempelFormLabel" htmlFor="productNumber">
+              <label className="stempelFormLabel" htmlFor="stempel">
                 <p className="stempelFormText">Stempel:</p>
-                <input className="stempelFormInput" type="text" id='productNumber' ref={stempel} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
+                <input className="stempelFormInput" type="text" id='stempel' ref={stempel} placeholder="0000" defaultValue="stempel" required />
               </label>
-              <label className="stempelFormLabel" htmlFor="productNumber">
+              <label className="stempelFormLabel" htmlFor="unit">
                 <p className="stempelFormText">Unit:</p><Add />
-                <input className="stempelFormInput" type="text" id='productNumber' ref={unit} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
+                <input className="stempelFormInput" type="text" id='unit' ref={unit} placeholder="0000" defaultValue="unit" required />
               </label>
               <div className="stempelFormBtn">
-                <button className="buttonBtn" type="submit" >add product</button>
+                <button className="buttonBtn" type="submit" >add product tools</button>
               </div>
             </form>
             </>

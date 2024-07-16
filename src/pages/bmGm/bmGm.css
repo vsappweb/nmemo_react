@@ -55,3 +55,7 @@
 .bmGmSortHighlight {
     color: red;
 }
+
+.bmGmSortText {
+    font-weight: 500;
+}
