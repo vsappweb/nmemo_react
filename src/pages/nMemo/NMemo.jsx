@@ -135,6 +135,7 @@ export default function NMemo() {
                 {postsMemo.map((m) => (
                   <li key={m._id} style={{ marginBottom: "15px" }}>
                     <PostMemo memo={m} />
+                    {user.role === 1 && <p style={{ fontSize: "10px" }}>Wals {m?.line}</p>}
                   </li>
                 ))}
               </ul>

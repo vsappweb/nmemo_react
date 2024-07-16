@@ -224,11 +224,27 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
 
     allMemoToLines = Object.values(allMemoToLines).sort(lines);
 
+    // console.log(Object.values(allMemoToLines))
+    // sort users by line
+
     // filter for current user
     allMemoToLines = Object.values(allMemoToLines).filter((mTl) => {
         return mTl.line === user.personnelnumber;
     });
+    // console.log(Object.values(allMemoToLines))
 
+    //     const last = (a, b) => {
+    //         return (a.createdAt) - (b.createdAt);
+    //     }
+
+    // allMemoToLines = Object.values(allMemoToLines).sort(last);
+    // console.log('last>>>', Object.values(allMemoToLines))
+
+    const addDate = new Date()
+    const change = addDate.setDate(addDate.getDate() + 2)
+
+    console.log(`MemoToLine ${date.toLocaleDateString('nl-Nl')}`)
+    console.log(`MemoToLine ${new Date(change).toLocaleDateString('nl-Nl')}`)
 
     return (
         <div className='feed'>
@@ -325,7 +341,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                     {Object.values(allTlToLines).map((toLines) => {
                         return (
                             <li className="feedTlToLineInformation" key={toLines._id}>
-                                <PostTlToLine2 toLines={toLines} allTlToLines={allTlToLines} setTlToLines={setTlToLines} openAnswer={openAnswer} setOpenAnswer={setOpenAnswer}/>
+                                <PostTlToLine2 toLines={toLines} allTlToLines={allTlToLines} setTlToLines={setTlToLines} openAnswer={openAnswer} setOpenAnswer={setOpenAnswer} />
                             </li>
                         )
                     })}
@@ -346,7 +362,11 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                 <ul className="feedTlToLineList">
                     {Object.values(allMemoToLines).map((mTl) => (
                         <li className="feedTlToLineInformation" key={mTl._id}>
-                            {mTl?.line === user.personnelnumber ?
+                            {mTl?.line === user.personnelnumber
+                                && mTl?.createdAt.split('T')[0].split('-')[0] === date.toISOString().split('T')[0].split('-')[0]
+                                && mTl?.createdAt.split('T')[0].split('-')[1] === date.toISOString().split('T')[0].split('-')[1]
+                                && new Date(mTl.createdAt).getDate() + 2 >= date.getDate()
+                                ?
                                 <>
                                     <PostMemo memo={mTl} />
                                     <p style={{ fontSize: "10px", writingMode: "vertical-rl" }}>Wals {mTl?.line}</p>

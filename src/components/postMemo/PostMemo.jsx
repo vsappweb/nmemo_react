@@ -17,6 +17,7 @@ export default function PostMemo({ memo }) {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const { user: currentUser } = useContext(AuthContext);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const date = new Date();
 
     
     useEffect(() => {
@@ -82,11 +83,11 @@ export default function PostMemo({ memo }) {
                         <span className="postMemoTitle">{memo?.title}</span>
                         {isMenuOpen && <div className="postTopEditDel">
 
-{memo.userId === currentUser._id ?
+{memo.userId === currentUser._id && (memo?.title === `nMemo ${date.toLocaleDateString('nl-Nl')}` || memo?.title === `MemoToLine ${date.toLocaleDateString('nl-Nl')}`) ?
     <div className="editDeleteBtns">
-        <div className="notActiveBtn">
+        {/* <div className="notActiveBtn">
             <Edit onClick={() => setIsMenuOpen(!isMenuOpen)} />
-        </div>
+        </div> */}
         <div className="deleteBtn" onClick={memoDeleteHandler} >
             <HighlightOff />
         </div>

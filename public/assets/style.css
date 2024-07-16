@@ -59,7 +59,7 @@ input::-ms-clear {
     display: none;
 }
 
-button{
+button {
     background-color: inherit;
     color: inherit;
     cursor: pointer;
@@ -69,17 +69,19 @@ button{
     background-color: transparent;
     box-shadow: 1px 1px 5px 1px var(--cText);
 }
-button:hover{
-    filter:  brightness(100%);
+
+button:hover {
+    filter: brightness(100%);
     background-color: rgba(0, 0, 0, 0.2);
     transform: scale(1.025);
     -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
     box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
     color: inherit;
 }
-button:active{
+
+button:active {
     transform: scale(0.97);
-} 
+}
 
 
 button::-moz-focus-inner {
@@ -143,28 +145,28 @@ body {
     padding: 0 3px;
     background-color: var(--main);
     overflow: auto;
-
-        color: var(--cText);
+    font-weight: 500;
+    color: var(--cText);
 
 }
 
-.container{
+.container {
     max-width: 1220px;
     margin: 0 auto;
 }
 
 
-button .epr_3vd53t{
+button .epr_3vd53t {
     box-shadow: none !important;
 }
 
 
-.buttonepr-emoji-category-content .epr_btn{
+.buttonepr-emoji-category-content .epr_btn {
     box-shadow: none !important;
 }
 
 
-.underDevelopmentContainer{
+.underDevelopmentContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -173,7 +175,7 @@ button .epr_3vd53t{
     margin-top: 5px;
 }
 
-.underDevelopment{
+.underDevelopment {
     display: block;
     margin-bottom: 15px;
     text-align: center;
@@ -185,7 +187,7 @@ button .epr_3vd53t{
     text-shadow: 5px 5px 10px black;
 }
 
-.underDevelopmentTitle{
+.underDevelopmentTitle {
     display: block;
     margin-bottom: 15px;
     color: white;
@@ -196,14 +198,14 @@ button .epr_3vd53t{
     text-shadow: 5px 5px 10px black;
 }
 
-.underDevelopmentTitle span{
+.underDevelopmentTitle span {
     color: orangered;
     font-size: 22px;
     font-weight: 500;
     text-transform: capitalize;
 }
 
-.underDevelopmentSubtitle{
+.underDevelopmentSubtitle {
     display: block;
     color: blue;
     text-transform: uppercase;
@@ -214,59 +216,66 @@ button .epr_3vd53t{
 }
 
 
-.editBtn{
+.editBtn {
     cursor: pointer;
     color: var(--bgMsgOwn);
     font-size: 12px;
     transition: all 0.3s ease;
 }
-.editBtn:hover{
+
+.editBtn:hover {
     transform: scale(1.1);
 }
-.editBtn:active{
+
+.editBtn:active {
     transform: scale(0.9);
 }
-.deleteBtn{
+
+.deleteBtn {
     cursor: pointer;
     color: var(--cBadgeNtf);
     font-size: 12px;
     transition: all 0.3s ease;
 }
-.deleteBtn:hover{
+
+.deleteBtn:hover {
     transform: scale(1.1);
 }
-.deleteBtn:active{
+
+.deleteBtn:active {
     transform: scale(0.9);
 }
 
-.notActiveBtn{
+.notActiveBtn {
     cursor: pointer;
     color: var(--main);
     font-size: 12px;
     transition: all 0.3s ease;
 }
-.notActiveBtn:hover{
+
+.notActiveBtn:hover {
     transform: scale(0.5);
 }
-.notActiveBtn:active{
+
+.notActiveBtn:active {
     transform: scale(0.2);
 }
 
-.editDeleteBtns{
+.editDeleteBtns {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
 }
 
-.input{
+.input {
     border-bottom: 1px groove var(--cText);
     padding: 2px 10px;
     border-radius: 5px;
     font-size: 14px;
 }
 
-.buttonBtn{
+.buttonBtn {
     background-color: inherit;
     text-transform: uppercase;
     font-weight: 500;
@@ -278,14 +287,16 @@ button .epr_3vd53t{
     background-color: transparent;
     box-shadow: 1px 1px 5px 1px var(--cText);
 }
-.buttonBtn:hover{
-    filter:  brightness(100%);
+
+.buttonBtn:hover {
+    filter: brightness(100%);
     background-color: rgba(0, 0, 0, 0.2);
     transform: scale(1.025);
     -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
     box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
     color: inherit;
 }
-.buttonBtn:active{
+
+.buttonBtn:active {
     transform: scale(0.97);
-} 
+}
