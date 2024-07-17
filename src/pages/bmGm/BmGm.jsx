@@ -9,7 +9,6 @@ import Stempel from '../../components/stempel/Stempel'
 
 
 import axios from 'axios'
-import { JoinFullSharp } from '@mui/icons-material'
 
 export default function BmGm() {
   let [allGmTool, setAllGmTool] = useState([]);
@@ -19,14 +18,9 @@ export default function BmGm() {
   const [showSort, setShowSort] = useState(false);
 
   
-
   const tools = [];
 
   const sortValue = useRef();
-  const sortProblems = useRef();
-
-
-
 
 
   useEffect(() => {

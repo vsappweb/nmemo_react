@@ -152,6 +152,13 @@ export default function ShiftTransfer2(shiftTransfer) {
         fetchAllShiftsTransfer();
     }, [API]);
 
+    function handleKeyDown(e) {
+        if (e.key === 'Enter') {
+           // call action
+           submitHandler(e);
+       }
+     }
+
 
     // when click on submit button this function will be called to update database and get new values from database
     const submitHandler = (e) => {
@@ -315,7 +322,7 @@ export default function ShiftTransfer2(shiftTransfer) {
                 <div className="shiftTransferContainer">
                     <label className="shiftTransferLabelPersonnelnumber" htmlFor="personnelnumber">
                         <p className="shiftTransferTextPersonnelnumber">Operator</p>
-                        <input className="shiftTransferInputPersonnelnumber" id="personnelnumber" ref={operator} type="text" placeholder="0000" minLength={4} maxLength={4} required />
+                        <input className="shiftTransferInputPersonnelnumber" id="personnelnumber" ref={operator} type="text" placeholder="0000" minLength={4} maxLength={4} onKeyDown={handleKeyDown} required />
                     </label>
                     <button className="shiftTransferButton" type="submit">Make a shift transfer</button>
                 </div>

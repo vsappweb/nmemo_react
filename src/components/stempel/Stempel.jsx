@@ -10,10 +10,10 @@ export default function Stempel() {
   const product = useRef();
   const productName = useRef();
   const stempel = useRef();
-  const unit = useRef();
+  // const unit = useRef();
 
-// add unit https://sadam-bapunawar.medium.com/add-and-remove-form-fields-dynamically-using-react-and-react-hooks-3b033c3c0bf5
-  const [formValues, setFormValues] = useState([{ name: "" }])
+  // add unit https://sadam-bapunawar.medium.com/add-and-remove-form-fields-dynamically-using-react-and-react-hooks-3b033c3c0bf5
+  const [formValues, setFormValues] = useState([{}])
 
   let handleChange = (i, e) => {
     let newFormValues = [...formValues];
@@ -22,7 +22,7 @@ export default function Stempel() {
   }
 
   let addFormFields = () => {
-    setFormValues([...formValues, { name: "" }])
+    setFormValues([...formValues, {}])
   }
 
   let removeFormFields = (i) => {
@@ -30,7 +30,7 @@ export default function Stempel() {
     newFormValues.splice(i, 1);
     setFormValues(newFormValues)
   }
-//add unit https://sadam-bapunawar.medium.com/add-and-remove-form-fields-dynamically-using-react-and-react-hooks-3b033c3c0bf5
+  //add unit https://sadam-bapunawar.medium.com/add-and-remove-form-fields-dynamically-using-react-and-react-hooks-3b033c3c0bf5
 
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function Stempel() {
       product: product.current.value,
       productName: productName.current.value,
       stempel: stempel.current.value,
-      units: JSON.stringify(formValues), //units: unit.current.value,
+      units: formValues, //JSON.stringify(formValues), //units: unit.current.value,
       desc: "5",
     }
     try {
@@ -79,15 +79,26 @@ export default function Stempel() {
                   {/* <div className="stempelContainerItem">
                     <p className="stempelFormText">Profiel/Product:</p><p>{stempel.product || ''}</p>
                   </div> */}
+          
                   <div className="stempelContainerItem">
                     <p className="stempelFormText">Product name:</p><p> {stempel.productName || ''}</p>
                   </div>
                   <div className="stempelContainerItem">
                     <p className="stempelFormText">Stempel:</p><p> {stempel.stempel || ''}</p>
                   </div>
-                  <div className="stempelContainerItem">
-                    <p className="stempelFormText">Units:</p><p> {stempel.units || ''}</p>
-                  </div>
+          
+                  {/* <div className="stempelContainerItem"> */}
+                    {/* <p className="stempelFormText">Units:</p><p> {stempel.units || ''}</p> */}
+                    {Object.values(stempel.units).map((unit, index) => {
+                      return (
+                        <>
+                          <div className="stempelContainerItem"  key={index}>
+                            <p className="stempelFormText">Unit {index + 1}:</p><p>{unit.Unit || ''}</p>
+                          </div>
+                        </>
+                      )
+                    })}
+                  {/* </div> */}
                   <button className="buttonBtn" type="submit" >edit stempels</button>
                 </div>
               )
@@ -126,7 +137,7 @@ export default function Stempel() {
                             <Add />
                           </div>
                       }
-                      <input type="text" name="unit" defaultValue={element.name || ""} onChange={e => handleChange(index, e)} />
+                      <input type="text" name={`Unit`} defaultValue={element.unit || ""} onChange={e => handleChange(index, e)} />
                     </label>
                   </div>
                 ))}

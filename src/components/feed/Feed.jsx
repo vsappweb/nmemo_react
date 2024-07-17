@@ -240,11 +240,11 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     // allMemoToLines = Object.values(allMemoToLines).sort(last);
     // console.log('last>>>', Object.values(allMemoToLines))
 
-    const addDate = new Date()
-    const change = addDate.setDate(addDate.getDate() + 2)
+    // const addDate = new Date()
+    // const change = addDate.setDate(addDate.getDate() + 2)
 
-    console.log(`MemoToLine ${date.toLocaleDateString('nl-Nl')}`)
-    console.log(`MemoToLine ${new Date(change).toLocaleDateString('nl-Nl')}`)
+    // console.log(`MemoToLine ${date.toLocaleDateString('nl-Nl')}`)
+    // console.log(`MemoToLine ${new Date(change).toLocaleDateString('nl-Nl')}`)
 
     return (
         <div className='feed'>
@@ -365,7 +365,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                             {mTl?.line === user.personnelnumber
                                 && mTl?.createdAt.split('T')[0].split('-')[0] === date.toISOString().split('T')[0].split('-')[0]
                                 && mTl?.createdAt.split('T')[0].split('-')[1] === date.toISOString().split('T')[0].split('-')[1]
-                                && new Date(mTl.createdAt).getDate() + 2 >= date.getDate()
+                                && new Date(mTl.createdAt).getDate() + 1 >= date.getDate()
                                 ?
                                 <>
                                     <PostMemo memo={mTl} />

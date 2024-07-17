@@ -8,7 +8,7 @@ import { format } from "timeago.js"
 import { Link } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
 import { renderToString } from 'react-dom/server'
-import  DateTimeShift  from "../dateTimeShift/DateTimeShift";
+import DateTimeShift from "../dateTimeShift/DateTimeShift";
 
 export default function PostShiftTransfer({ shiftTransfer }) {
     const API = process.env.REACT_APP_SERVER_API
@@ -86,17 +86,17 @@ export default function PostShiftTransfer({ shiftTransfer }) {
                             )
                         })}
                         {isMenuOpen && <div className="postTopEditDel">
-                            {shiftTransfer.userId === currentUser._id && shiftTransfer?.shift === shiftNow && shiftTransfer?.date === date.toLocaleDateString('nl-NL')  ?
+                            {shiftTransfer.userId === currentUser._id && shiftTransfer?.shift === shiftNow && shiftTransfer?.date === date.toLocaleDateString('nl-NL') ?
                                 <div className="editDeleteBtns">
                                     {/* <div className="notActiveBtn">
                                         <Edit onClick={() => setIsMenuOpen(!isMenuOpen)} />
                                     </div> */}
-                                    <div className="deleteBtn" onClick={shiftTransferDeleteHandler} style={{marginLeft: "10px"}}>
+                                    <div className="deleteBtn" onClick={shiftTransferDeleteHandler} style={{ marginLeft: "10px" }}>
                                         <HighlightOff />
                                     </div>
                                 </div>
                                 :
-                                <div className="deleteBtn" style={{marginLeft: "10px"}}>
+                                <div className="deleteBtn" style={{ marginLeft: "10px" }}>
                                     <DoNotTouch onClick={() => setIsMenuOpen(!isMenuOpen)} />
                                 </div>
                             }

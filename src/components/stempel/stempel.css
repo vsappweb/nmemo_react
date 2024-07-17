@@ -27,6 +27,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px dashed var(--bgMsg);
 }
 .stempelFormTitle{
     font-size: 16px;
