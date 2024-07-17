@@ -9,12 +9,13 @@ import Stempel from '../../components/stempel/Stempel'
 
 
 import axios from 'axios'
+import { JoinFullSharp } from '@mui/icons-material'
 
 export default function BmGm() {
   let [allGmTool, setAllGmTool] = useState([]);
   const API = process.env.REACT_APP_SERVER_API
   const [showForm, setShowForm] = useState(false);
-  const [showProductForm, setShowProductForm] = useState(false);
+  const [showProductForm, setShowProductForm] = useState(JSON.parse(sessionStorage.getItem('setProduct'))?JSON.parse(sessionStorage.getItem('setProduct')):false);
   const [showSort, setShowSort] = useState(false);
 
   
@@ -98,7 +99,8 @@ export default function BmGm() {
 
 
   const setProduct = () => {
-    setShowProductForm(!showProductForm)
+    sessionStorage.setItem('setProduct', JSON.stringify(true));
+    setShowProductForm(JSON.parse(sessionStorage.getItem('setProduct')))
     setShowForm(false)
     setShowSort(false)
   }
@@ -106,12 +108,14 @@ export default function BmGm() {
   const addProblem = () => {
     setShowForm(!showForm)
     setShowSort(false)
-    setShowProductForm(false)
+    sessionStorage.removeItem('setProduct')? sessionStorage.removeItem('setProduct'):sessionStorage.setItem('setProduct', JSON.stringify(false));
+    setShowProductForm(JSON.parse(sessionStorage.getItem('setProduct')))
   }
   const sortTool = () => {
     setShowSort(!showSort)
     setShowForm(false)
-    setShowProductForm(false)
+    sessionStorage.removeItem('setProduct')? sessionStorage.removeItem('setProduct'):sessionStorage.setItem('setProduct', JSON.stringify(false));
+    setShowProductForm(JSON.parse(sessionStorage.getItem('setProduct')))
   }
 
 
