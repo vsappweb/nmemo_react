@@ -26,6 +26,8 @@ export default function PostTlToLine2({ toLines, allTlToLines, setTlToLines, ope
     const handleOpen = () => {
         setOpenAnswer(!openAnswer);
          document.getElementById("feedTlToLineInformationBtn").style.display = "none"
+         document.getElementById("feedTlToLineInformationBtn").style.visibility = "hidden"
+         console.log("d none")
     }
 
 
@@ -40,7 +42,7 @@ export default function PostTlToLine2({ toLines, allTlToLines, setTlToLines, ope
                 // document.getElementById("feedTlToLineInformationBtn").style.display = "none"
             
             setOpenAnswer(!openAnswer);
-            console.log(openAnswer)
+            // console.log(openAnswer)
         } catch (err) {
             console.log(err);
         }

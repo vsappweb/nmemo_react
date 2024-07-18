@@ -77,6 +77,9 @@ export default function NMemo() {
 
   allMemos = Object.values(allMemos).filter(memo => memo.title === `nMemo ${new Date().toLocaleDateString('nl-NL')}`);
 
+  const edit = allMemos[0];
+  // console.log('memo test222 >>>', edit);
+
   return (
     <>
       <Topbar />
@@ -109,17 +112,17 @@ export default function NMemo() {
             </div>}
           </> : <></>} */}
 
-{user.role === 1 && <MemoToLine />}
+          {user.role === 1 && <MemoToLine />}
 
           {hideMemos && (
             <div className="nMemoCenterWrapper">
-              <Memo />
+              <Memo edit={edit} />
             </div>
           )}
 
           {user.role === 3 && (
             <div className="nMemoCenterWrapper">
-              <Memo />
+              <Memo edit={edit} />
             </div>
           )}
           <div className="nMemoMessageContainer">

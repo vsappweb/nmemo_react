@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import axios from "axios"
 import Picker from "emoji-picker-react";
 
-export default function Memo() {
+export default function Memo({edit}) {
     const API = process.env.REACT_APP_SERVER_API
     let [allPreparedTexts, setPreparedTexts] = useState([]);
     const [getPreparedText, setGetPreparedText] = useState({});
@@ -18,7 +18,27 @@ export default function Memo() {
     const [open, setOpen] = useState(false);
     const [openPreparedTexts, setOpenPreparedTexts] = useState(false);
     const [text, setText] = useState("");
+    const [editMemo, setEditMemo] = useState({});
+    let hidePan = true;
 
+
+    
+    // console.log('memo test >>>', edit)
+
+    if (edit === undefined) {
+        hidePan = false
+    }
+    // useEffect(() => {
+    //     setEditMemo(edit)
+    // }, [edit, editMemo])
+    // console.log('hide pan>>>', hidePan)
+    // console.log('memo test >>>', edit?.userId)
+    // console.log('editMemo test >>>', editMemo?._id)
+    
+    const editMemoGetHandler = (edit) => {
+        setEditMemo(edit)
+        setText((prev) => prev + edit?.desc + " ");
+      }
 
     // get all PreparedTexts from database 
     useEffect(() => {
@@ -49,7 +69,7 @@ export default function Memo() {
     const handleOrder = e => {
         const product = sessionStorage.getItem('product')
         const noProduct = " you have no product :( "
-        setText((prev) => prev + " " + (product  ? JSON.parse(sessionStorage.getItem('product')) : noProduct) + " ");
+        setText((prev) => prev + " " + (product ? JSON.parse(sessionStorage.getItem('product')) : noProduct) + " ");
     }
 
     // preparedTexts text input
@@ -86,7 +106,7 @@ export default function Memo() {
         e.preventDefault()
         const newMemo = {
             userId: user._id,
-            product: JSON.parse(sessionStorage.getItem('product')) ? JSON.parse(sessionStorage.getItem('product')) : "" ,
+            product: JSON.parse(sessionStorage.getItem('product')) ? JSON.parse(sessionStorage.getItem('product')) : "",
             title: "nMemo " + date.toLocaleDateString('nl-NL'),
             desc: desc.current.value
         };
@@ -105,8 +125,6 @@ export default function Memo() {
                 console.log(err);
             }
         }
-
-
         try {
             await axios.post(`${API}/memos`, newMemo);
             window.location.reload();
@@ -114,6 +132,46 @@ export default function Memo() {
 
         }
     }
+
+
+    // edit memo in database
+    const editSubmitHandler = async (e) => {
+        e.preventDefault()
+        const newMemo = {
+            userId: user._id,
+            product: JSON.parse(sessionStorage.getItem('product')) ? JSON.parse(sessionStorage.getItem('product')) : "",
+            title: "nMemo " + date.toLocaleDateString('nl-NL'),
+            desc: desc.current.value
+        };
+        if (file) {
+            const data = new FormData();
+            const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+            const fileName = uniqueSuffix + file.name;
+            console.log(fileName)
+            data.append("name", fileName);
+            data.append("file", file);
+            newMemo.img = fileName;
+            try {
+                await axios.post(`${API}/upload`, data);
+                window.location.reload();
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        try {
+            await axios.put(`${API}/memos/${editMemo._id}`, newMemo);
+            window.location.reload();
+        } catch (err) {
+
+        }
+    }
+
+    // clear single event to edit
+  const eventCleanHandler = () => {
+    setEditMemo({})
+    setText("");
+    // document.getElementById("desc").value = {text};
+  }
 
 
     // create prepared text in database 
@@ -149,13 +207,10 @@ export default function Memo() {
 
 
 
-
-
-
     return (
         <div className="memo">
             <div className="memoWrapper">
-                    <h1 className="memoTitle">Memo {user.username || user.personnelnumber}</h1>
+                <h1 className="memoTitle">Memo {user.username || user.personnelnumber}</h1>
                 <div className="memoTop">
                     <div className="memoTopMiniSidebar">
                         <div className="avatarUser">
@@ -204,7 +259,7 @@ export default function Memo() {
                         <Cancel className="memoCancel" onClick={() => setFile(null)} />
                     </div>
                 )}
-                <form className="memoBottom" onSubmit={submitHandler}>
+                <form className="memoBottom" onSubmit={editMemo._id === undefined ? submitHandler : editSubmitHandler}>
                     <div className="memoOptions">
                         <label htmlFor="fileMemo" className="memoOption">
                             <PermMedia className="memoIcon" />
@@ -222,9 +277,15 @@ export default function Memo() {
                             </div>
                         </div>
                     </div>
-                    <button className="memoButton" type="submit">Leave Memo
-                        <DoneOutline />
+                    <button className="memoButton" type="submit">{editMemo._id === undefined ? "Leave Memo" : "Edit Memo"}
+                    {editMemo._id === undefined ? <DoneOutline />: <Edit />}
                     </button>
+                    {editMemo._id === undefined ? <>
+                    {hidePan && <div className="editBtn" onClick={() => editMemoGetHandler(edit)}>
+                        <Edit />
+                    </div>}
+                    </>
+                        : <CleaningServices className="editEventsBtnClean" onClick={eventCleanHandler} />}
                 </form>
                 <div className="memoEmojiPicker">
                     {open && (<Picker suggestedEmojisMode={["recent"]} style={{ width: "100%" }} reactionsDefaultOpen={true} searchDisabled={true} onEmojiClick={handleEmoji} />)}
