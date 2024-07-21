@@ -13,13 +13,13 @@ import "./feed.css";
 import axios from "axios"
 import { AuthContext } from "../../context/AuthContext";
 import DateTimeShift from "../dateTimeShift/DateTimeShift";
-import { Edit, DoneOutline, EmojiEmotions } from "@mui/icons-material"
-import Picker from "emoji-picker-react";
+// import { Edit, DoneOutline, EmojiEmotions } from "@mui/icons-material"
+// import Picker from "emoji-picker-react";
 
 export default function Feed({ personnelnumber, shiftTransfer }) {
     const API = process.env.REACT_APP_SERVER_API
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER
-    const desc = useRef();
+    // const PF = process.env.REACT_APP_PUBLIC_FOLDER
+    // const desc = useRef();
     let date = new Date();
     const [posts, setPosts] = useState([]);
     // const [postTlToLines, setPostTlToLines] = useState([]);

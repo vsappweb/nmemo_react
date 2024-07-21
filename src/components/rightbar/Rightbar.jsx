@@ -5,7 +5,7 @@ import axios from "axios";
 import { io } from "socket.io-client"
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import { Add, Remove } from "@mui/icons-material";
+import { Add, Remove, VisibilityOff } from "@mui/icons-material";
 import AvatarUser from "../avatarUser/AvatarUser";
 import UserRole from "../userRole/UserRole"
 
@@ -20,8 +20,8 @@ export default function Rightbar({ user }) {
     const [followed, setFollowed] = useState(currentUser.followings.includes(user?._id));
     const [onlineUsers, setOnlineUsers] = useState([])
     let [allEvents, setEvents] = useState([]);
-    const [incompleet, setIncompleet] = useState([]);
-    const socket = useRef()
+    let [incompleet, setIncompleet] = useState([]);
+    const socket = useRef();
 
     const { t } = useTranslation();
 
@@ -37,17 +37,13 @@ export default function Rightbar({ user }) {
                 console.error(err);
             }
         };
-
         let result = fetchData()
-
         if (!result) {
             interval = setInterval(fetchData, 60000);
         }
-
-        interval = setInterval(fetchData, 60000); //set your time here. repeat every 5 seconds
+        interval = setInterval(fetchData, 60000);
         return () => clearInterval(interval);
     }, [API]);
-
 
     // get all events from database 
     useEffect(() => {
@@ -62,31 +58,12 @@ export default function Rightbar({ user }) {
                 console.error(err);
             }
         };
-
         let result = fetchData()
-
         if (!result) {
             interval = setInterval(fetchData, 60000);
         }
-
-        interval = setInterval(fetchData, 60000); //set your time here. repeat every 5 seconds
+        interval = setInterval(fetchData, 60000);
         return () => clearInterval(interval);
-
-        // const startInterval = () => {
-        //     intervalId = setInterval(fetchData, 5000);
-        // };
-
-        // const stopInterval = () => {
-        //     if (intervalId) {
-        //         clearInterval(intervalId);
-        //     }
-        // };
-
-        // startInterval();
-
-        // return () => {
-        //     stopInterval();
-        // };
     }, [API]);
 
     useEffect(() => {
@@ -114,32 +91,19 @@ export default function Rightbar({ user }) {
         getFriends();
     }, [user, API]);
 
+    const handleIncompletePalletCheck = async (id) => {
+        const incompletePalletCheck = {
+            hide: "true",
+        }
+        try {
+            await axios.put(`${API}/incompleetAantals/${id}`, incompletePalletCheck);
+            window.location.reload();
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
-    // useEffect(() => {
-    //     const getFriends = async () => {
-    //         try {
-    //             //! Need to leave (`/users/friends/${user?._id}`) not (`/users/friends/${currentUser?._id}`) !!!
-    //             const friendList = await axios.get(`/users/friends/${user?._id}`);
-    //             setFriends(friendList?.data);
-    //         } catch (err) {
-    //             console.log("This is not an error, see the comment in the code");
-    //         }
-    //     }
-    //     getFriends();
-    // }, [user]);
-
-
-    // useEffect(() => {
-    //     const getFriends = async () => {
-    //         try {
-    //             const friendList = await axios.get(`/users/friends/${currentUser?._id}`);
-    //             setFriends(friendList?.data);
-    //         } catch (err) {
-    //             console.log(err, "Uups");
-    //         }
-    //     }
-    //     getFriends();
-    // }, [currentUser]);
+    incompleet = Object.values(incompleet).filter((incompleet) => incompleet.hide === false);
 
     const handleClick = async () => {
         try {
@@ -202,12 +166,20 @@ export default function Rightbar({ user }) {
                 {(currentUser.role === 2 || currentUser.role === 0) &&
                     <>
                         {Object.values(incompleet).length > 0 && <>
-                            <h4 className="rightbarTitle" style={{ color: "red" }}>Let op incomplete pallet, graag aanvullen</h4>
+                            <h4 className="rightbarTitle" style={{ color: "red" }}>Let op incomplete pallet,<br /> graag aanvullen</h4>
                             {Object.values(incompleet).map((incomplete) => (
-                                <div className="rightbarInfoItem" key={incomplete._id}>
-                                    <span className="rightbarInfoKey" style={{ color: "red" }}>Line: {incomplete.lineId}</span><br />
-                                    <span className="rightbarInfoKey" style={{ color: "red" }}>Product: {incomplete.productNumber}</span>
-                                </div>))}
+                                <>
+                                    {incomplete.hide === false ?
+                                        <>
+                                            <div className="rightbarInfoItems" key={incomplete._id}>
+                                                <div className="rightbarInfoBoxItem">
+                                                    <span className="rightbarInfoBoxItemKey">Line: {incomplete.lineId}</span><br />
+                                                    <span className="rightbarInfoBoxItemKey">Product: {incomplete.productNumber}</span>
+                                                </div>
+                                                <button className="rightbarInfoBtn" onClick={() => handleIncompletePalletCheck(incomplete._id)}><VisibilityOff /></button>
+                                            </div>
+                                        </> : <></>}
+                                </>))}
                         </>
                         }
                     </>

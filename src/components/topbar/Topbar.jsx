@@ -12,6 +12,7 @@ import i18n from "i18next";
 
 export default function Topbar() {
     const API = process.env.REACT_APP_SERVER_API;
+    const date = new Date();
     const { user, dispatch } = useContext(AuthContext);
     // const { user: currentUser, dispatch } = useContext(AuthContext);
     const navigate = useNavigate()
@@ -25,6 +26,37 @@ export default function Topbar() {
 
     let menuRef = useRef();
     let changeWalsRef = useRef();
+
+    // function addZero(i) {
+    //     if (i < 10) { i = "0" + i }
+    //     return i;
+    // }
+
+    // let hh = addZero(date.getHours());
+    // let mm = addZero(date.getMinutes());
+    // // let ss = addZero(date.getSeconds());
+
+    // //atention changed format of date to fr-CA not nl-NL
+    // let time = hh + ":" + mm;// + ":" + ss;
+
+    // console.log(time)
+
+    // useEffect(() => {
+    //     let interval;
+    //     const getTime = async () => {
+    //         if (time === "20:10") {
+    //             console.log("start")
+    //         } else if (time === "20:11") {
+    //             console.log("close")
+    //         }
+    //     }
+    //     let result = getTime()
+    //     if (!result) {
+    //         interval = setInterval(getTime, 60000);
+    //     }
+    //     interval = setInterval(getTime, 60000);
+    //     return () => clearInterval(interval);
+    // }, [time,])
 
 
 
@@ -134,9 +166,9 @@ export default function Topbar() {
     return (
         <div className='topbarContainer'>
             {isDataLoading ?
-            <div className="loadingCover">
-                <div className="loading">
-                    {/* <RotatingLines
+                <div className="loadingCover">
+                    <div className="loading">
+                        {/* <RotatingLines
                         visible={true}
                         height="196"
                         width="196"
@@ -147,7 +179,7 @@ export default function Topbar() {
                         wrapperStyle={{}}
                         wrapperClass=""
                     /> */}
-                    {/* <Watch
+                        {/* <Watch
                         visible={true}
                         height="196"
                         width="196"
@@ -157,7 +189,7 @@ export default function Topbar() {
                         wrapperStyle={{}}
                         wrapperClass=""
                     /> */}
-                    {/* <Triangle
+                        {/* <Triangle
                         visible={true}
                         height="196"
                         width="196"
@@ -166,19 +198,19 @@ export default function Topbar() {
                         wrapperStyle={{}}
                         wrapperClass="load"
                     /> */}
-                    {/* <InfinitySpin
+                        {/* <InfinitySpin
                         visible={true}
                         width="360"
                         color="var(--main)"
                         ariaLabel="infinity-spin-loading"
                     /> */}
-                    {/* <FallingLines
+                        {/* <FallingLines
                         color="var(--main)"
                         width="196"
                         visible={true}
                         ariaLabel="falling-circles-loading"
                     /> */}
-                    {/* <Blocks
+                        {/* <Blocks
                         height="196"
                         width="196"
                         color="#4fa94d"
@@ -187,17 +219,17 @@ export default function Topbar() {
                         wrapperClass="blocks-wrapper"
                         visible={true}
                     />*/}
-                    <BallTriangle
-                        height={196}
-                        width={196}
-                        radius={5}
-                        color="var(--main)"
-                        ariaLabel="ball-triangle-loading"
-                        wrapperStyle={{}}
-                        wrapperClass="loadingHero"
-                        visible={true}
-                    /> 
-                    {/* <Hourglass
+                        <BallTriangle
+                            height={196}
+                            width={196}
+                            radius={5}
+                            color="var(--main)"
+                            ariaLabel="ball-triangle-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="loadingHero"
+                            visible={true}
+                        />
+                        {/* <Hourglass
                         visible={true}
                         height="196"
                         width="196"
@@ -206,20 +238,20 @@ export default function Topbar() {
                         wrapperClass=""
                         colors={['var(--main)', 'var(--bg)']}
                     /> */}
-                    <div className="loadingTextContainer">
-                        <p className="loadingText">Loading</p>
-                        <ThreeDots
-                            visible={true}
-                            height="10"
-                            width="30"
-                            color="var(--main)"
-                            radius="9"
-                            ariaLabel="three-dots-loading"
-                            wrapperStyle={{}}
-                            wrapperClass="loadingTextThreeDots"
-                        />
+                        <div className="loadingTextContainer">
+                            <p className="loadingText">Loading</p>
+                            <ThreeDots
+                                visible={true}
+                                height="10"
+                                width="30"
+                                color="var(--main)"
+                                radius="9"
+                                ariaLabel="three-dots-loading"
+                                wrapperStyle={{}}
+                                wrapperClass="loadingTextThreeDots"
+                            />
+                        </div>
                     </div>
-                </div>
                 </div>
                 : <>
                     {/* <div className="container"> */}
