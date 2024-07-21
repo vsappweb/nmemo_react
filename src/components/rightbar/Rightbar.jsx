@@ -97,6 +97,7 @@ export default function Rightbar({ user }) {
         }
         try {
             await axios.put(`${API}/incompleetAantals/${id}`, incompletePalletCheck);
+            window.alert("Hidden");
             window.location.reload();
         } catch (err) {
             console.error(err);
