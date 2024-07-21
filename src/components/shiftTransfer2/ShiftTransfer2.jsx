@@ -7,7 +7,7 @@ import { DoNotDisturb, Close, TaskAlt } from "@mui/icons-material"
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios"
 import WeekNum from "../weekNum/WeekNum";
-import  DateTimeShift  from "../dateTimeShift/DateTimeShift";
+import DateTimeShift from "../dateTimeShift/DateTimeShift";
 
 
 
@@ -15,7 +15,7 @@ export default function ShiftTransfer2(shiftTransfer) {
     const API = process.env.REACT_APP_SERVER_API
     const date = new Date();
     const { user } = useContext(AuthContext);
-    const [allShiftsTransfer, setAllShiftsTransfer] = useState([]);
+    let [allShiftsTransfer, setAllShiftsTransfer] = useState([]);
     let [allShiftsTransferValues, setAllShiftsTransferValues] = useState([]);
 
     const [openMessage, setOpenMessage] = useState(false);
@@ -30,6 +30,12 @@ export default function ShiftTransfer2(shiftTransfer) {
     //  const [isChecked, setIsChecked] = useState(false);
     const weekNumber = renderToString(<WeekNum />)
     const shiftNow = renderToString(<DateTimeShift />)
+
+    // sort shifts items by date
+    const oldToNew = (a, b) => {
+        return new Date(a.createdAt) - new Date(b.createdAt);
+    }
+    allShiftsTransfer = Object.values(allShiftsTransfer).sort(oldToNew);
 
 
     // when click on radio button this function will be called to update database
@@ -154,10 +160,10 @@ export default function ShiftTransfer2(shiftTransfer) {
 
     function handleKeyDown(e) {
         if (e.key === 'Enter') {
-           // call action
-           submitHandler(e);
-       }
-     }
+            // call action
+            submitHandler(e);
+        }
+    }
 
 
     // when click on submit button this function will be called to update database and get new values from database
@@ -249,7 +255,7 @@ export default function ShiftTransfer2(shiftTransfer) {
                     return (
                         <div className="shiftTransferItem" key={shiftTransfer._id} ref={item}>
                             <div className="shiftTransferContainer">
-                            <p className="shiftTransferItemNumber" ref={itemNumber}>{i + 1}</p>
+                                <p className="shiftTransferItemNumber" ref={itemNumber}>{i + 1}</p>
                                 <h5 className="shiftTransferItemTitle" ref={title}>{shiftTransfer.title}</h5>
                                 <div className="shiftTransferChoice">
                                     <label className="shiftTransferRadioBtnBorder">

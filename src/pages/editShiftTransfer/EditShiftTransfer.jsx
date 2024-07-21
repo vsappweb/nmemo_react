@@ -325,6 +325,11 @@ export default function EditShiftTransfer() {
     }
   }
 
+  const oldToNew = (a, b) => {
+    return new Date(a.createdAt) - new Date(b.createdAt);
+  }
+  allShiftTransferItems = Object.values(allShiftTransferItems).sort(oldToNew);
+
   return (
     <>
       <Topbar />
