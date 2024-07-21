@@ -25,7 +25,7 @@ export default function SendTlToLine() {
   let ss = addZero(date.getSeconds());
 
 
-  let time = date.toLocaleDateString("fr-CA") + "T" + hh + ":" + mm + ":" + ss;
+  let time = date.toLocaleDateString("nl-NL") + " " + hh + ":" + mm + ":" + ss;
 
 
   useEffect(() => {

@@ -33,7 +33,7 @@ export default function TlToLine() {
             title: "ntlToLine " + date.toLocaleDateString('nl-NL'),
             desc: desc.current.value,
             line: forWho.current.value,
-            timer: endTime.current.value,
+            timer: new Date(endTime.current.value).toLocaleDateString('nl-NL')+' '+new Date(endTime.current.value).toLocaleTimeString('nl-NL'),
             reqRes: reqRes.current.value
         };
         if (file) {

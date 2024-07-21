@@ -59,7 +59,7 @@ export default function PostTlToLine2({ toLines, allTlToLines, setTlToLines, ope
     let ss = addZero(date.getSeconds());
 
     //atention changed format of date to fr-CA not nl-NL
-    let time = date.toLocaleDateString('fr-CA') + "T" + hh + ":" + mm + ":" + ss;
+    let time = date.toLocaleDateString('nl-NL') + " " + hh + ":" + mm + ":" + ss;
 
 
     // delete tlToLine from database
@@ -145,7 +145,7 @@ export default function PostTlToLine2({ toLines, allTlToLines, setTlToLines, ope
                     <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer} {toLines?.timer < time && toLineDeleteHandler(toLines)}</p>
                 </div>
                 :
-                toLines.line === "forAll" ?
+                toLines.line === "forAll" && user.role !== 2 ?
                     <div className="feedTlToLineInformationContent">
                         <p className="feedTlToLineInformationHeader">Group:</p>
                         <p className="feedTlToLineInformationDesc">{toLines.desc}</p>
