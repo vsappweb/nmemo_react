@@ -33,6 +33,7 @@ export default function Orders() {
       productNumber: JSON.parse(sessionStorage.getItem('product')),
       lineId: user.personnelnumber,
       operator: operatorUser.current.value,
+      hide: "false",
       date: date.toLocaleDateString('nl-NL')
     }
     try {

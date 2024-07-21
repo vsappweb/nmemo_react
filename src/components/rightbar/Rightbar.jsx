@@ -166,7 +166,7 @@ export default function Rightbar({ user }) {
                 {(currentUser.role === 2 || currentUser.role === 0) &&
                     <>
                         {Object.values(incompleet).length > 0 && <>
-                            <h4 className="rightbarTitle" style={{ color: "red" }}>Let op incomplete pallet,<br /> graag aanvullen</h4>
+                            <h4 className="rightbarTitle" style={{ color: "brown" }}>Let op incomplete pallet,<br /> graag aanvullen</h4>
                             {Object.values(incompleet).map((incomplete) => (
                                 <>
                                     {incomplete.hide === false ?
