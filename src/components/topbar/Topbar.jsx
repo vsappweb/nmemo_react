@@ -7,7 +7,7 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
-import { Hourglass, ThreeDots, } from "react-loader-spinner";
+import { Hourglass, ThreeDots, BallTriangle, Blocks, FallingLines, InfinitySpin, Triangle, Watch, RotatingLines } from "react-loader-spinner";
 import i18n from "i18next";
 
 export default function Topbar() {
@@ -135,26 +135,87 @@ export default function Topbar() {
         <div className='topbarContainer'>
             {isDataLoading ?
                 <div className="loading">
-                    <Hourglass
+                    {/* <RotatingLines
+                        visible={true}
+                        height="196"
+                        width="196"
+                        color="var(--main)"
+                        strokeWidth="5"
+                        animationDuration=".75"
+                        ariaLabel="rotating-lines-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    /> */}
+                    {/* <Watch
+                        visible={true}
+                        height="196"
+                        width="196"
+                        radius="48"
+                        color="var(--main)"
+                        ariaLabel="watch-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    /> */}
+                    <Triangle
+                        visible={true}
+                        height="196"
+                        width="196"
+                        color="var(--main)"
+                        ariaLabel="triangle-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="load"
+                    />
+                    {/* <InfinitySpin
+                        visible={true}
+                        width="360"
+                        color="var(--main)"
+                        ariaLabel="infinity-spin-loading"
+                    /> */}
+                    {/* <FallingLines
+                        color="var(--main)"
+                        width="196"
+                        visible={true}
+                        ariaLabel="falling-circles-loading"
+                    /> */}
+                    {/* <Blocks
+                        height="196"
+                        width="196"
+                        color="#4fa94d"
+                        ariaLabel="blocks-loading"
+                        wrapperStyle={{}}
+                        wrapperClass="blocks-wrapper"
+                        visible={true}
+                    />
+                    <BallTriangle
+                        height={196}
+                        width={196}
+                        radius={5}
+                        color="var(--main)"
+                        ariaLabel="ball-triangle-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                    /> */}
+                    {/* <Hourglass
                         visible={true}
                         height="196"
                         width="196"
                         ariaLabel="hourglass-loading"
                         wrapperStyle={{}}
                         wrapperClass=""
-                        colors={['var(--main)', 'var(--main)']}
-                    />
+                        colors={['var(--main)', 'var(--bg)']}
+                    /> */}
                     <div className="loadingTextContainer">
                         <p className="loadingText">Loading</p>
                         <ThreeDots
                             visible={true}
                             height="10"
                             width="30"
-                            color="var(--cText)"
+                            color="var(--main)"
                             radius="9"
                             ariaLabel="three-dots-loading"
                             wrapperStyle={{}}
-                            wrapperClass=""
+                            wrapperClass="loadingTextThreeDots"
                         />
                     </div>
                 </div>

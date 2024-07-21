@@ -137,6 +137,7 @@ h6 {
     --cMsgOwn: black;
     --cMsg: white;
     --bgChat: rgb(204, 201, 201);
+    --sandInClock: grey;
 }
 
 body {
@@ -326,7 +327,7 @@ button .epr_3vd53t {
     margin-right: 5px;
 }
 
-.juNRvt {
+.loadingTextThreeDots {
     display: flex;
     align-items: flex-end;
 }
