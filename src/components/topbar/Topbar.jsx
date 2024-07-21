@@ -156,7 +156,7 @@ export default function Topbar() {
                         wrapperStyle={{}}
                         wrapperClass=""
                     /> */}
-                    <Triangle
+                    {/* <Triangle
                         visible={true}
                         height="196"
                         width="196"
@@ -164,7 +164,7 @@ export default function Topbar() {
                         ariaLabel="triangle-loading"
                         wrapperStyle={{}}
                         wrapperClass="load"
-                    />
+                    /> */}
                     {/* <InfinitySpin
                         visible={true}
                         width="360"
@@ -185,7 +185,7 @@ export default function Topbar() {
                         wrapperStyle={{}}
                         wrapperClass="blocks-wrapper"
                         visible={true}
-                    />
+                    />*/}
                     <BallTriangle
                         height={196}
                         width={196}
@@ -193,9 +193,9 @@ export default function Topbar() {
                         color="var(--main)"
                         ariaLabel="ball-triangle-loading"
                         wrapperStyle={{}}
-                        wrapperClass=""
+                        wrapperClass="loadingHero"
                         visible={true}
-                    /> */}
+                    /> 
                     {/* <Hourglass
                         visible={true}
                         height="196"

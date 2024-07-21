@@ -310,6 +310,15 @@ button .epr_3vd53t {
     z-index: 999;
 }
 
+.loadingHero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(3px 6px 4px var(--cText));
+}
+
 .loadingTextContainer {
     display: flex;
     justify-content: center;
@@ -325,9 +334,11 @@ button .epr_3vd53t {
     letter-spacing: 2px;
     margin-top: 10px;
     margin-right: 5px;
+    text-shadow: 3px 6px 4px var(--cText);
 }
 
 .loadingTextThreeDots {
     display: flex;
     align-items: flex-end;
+    filter: drop-shadow(3px 6px 4px var(--cText));
 }

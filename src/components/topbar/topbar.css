@@ -270,14 +270,6 @@
   width: 30px;
 }
 
-.load {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  filter: drop-shadow(0 2px 5px var(--cText));
-}
 
 @media screen and (max-width: 600px) {
     .logoText,
