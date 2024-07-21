@@ -134,6 +134,7 @@ export default function Topbar() {
     return (
         <div className='topbarContainer'>
             {isDataLoading ?
+            <div className="loadingCover">
                 <div className="loading">
                     {/* <RotatingLines
                         visible={true}
@@ -219,7 +220,7 @@ export default function Topbar() {
                         />
                     </div>
                 </div>
-
+                </div>
                 : <>
                     {/* <div className="container"> */}
 
