@@ -300,3 +300,33 @@ button .epr_3vd53t {
 .buttonBtn:active {
     transform: scale(0.97);
 }
+
+.loading {
+    position: absolute;
+    top: 50lvh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+}
+
+.loadingTextContainer {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.loadingText {
+    color: var(--main);
+    font-size: 22px;
+    font-style: oblique;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-top: 10px;
+    margin-right: 5px;
+}
+
+.juNRvt {
+    display: flex;
+    align-items: flex-end;
+}

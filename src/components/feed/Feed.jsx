@@ -30,36 +30,9 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     let [allTlToLines, setTlToLines] = useState([]);
     let [allMemoToLines, setMemoToLines] = useState([]);
     const [hideShiftTransferForm, setHideShiftTransferForm] = useState(true);
-    const [text, setText] = useState("");
-    const [open, setOpen] = useState(false);
+    // const [text, setText] = useState("");
+    // const [open, setOpen] = useState(false);
     const [openAnswer, setOpenAnswer] = useState(false);
-
-
-    // emoji picker
-    const handleEmoji = e => {
-        setText((prev) => prev + e.emoji);
-        setOpen(false);
-    }
-
-    const handleOpen = () => {
-        setOpenAnswer(!openAnswer);
-    }
-
-
-    // const handleAnswer = async (toLines) => {
-    //     const newAnswer = {
-    //         answer: text,
-    //     }
-    //     try {
-    //         // console.log(newAnswer)
-    //         await axios.put(`${API}/tlToLines/${toLines._id}`, newAnswer);
-    //         document.getElementById("feedTlToLineInformationBtn").style.display = "none";
-    //         setOpenAnswer(!openAnswer);
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // }
-
 
     // get all events from database 
     const shiftNow = renderToString(<DateTimeShift />);
@@ -108,8 +81,6 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
             try {
                 const res = await axios.get(`${API}/memos/allMemos`);
                 setMemoToLines(res.data);
-                // console.log("test refresh")
-                // console.log(res.data);
             } catch (err) {
                 console.error(err);
             }
@@ -124,17 +95,6 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
         interval = setInterval(fetchData, 10000); //set your time here. repeat every 5 seconds
         return () => clearInterval(interval);
     }, [API]);
-
-
-    // delete tlToLine from database
-    const toLineDeleteHandler = (toLines) => {
-        try {
-            axios.delete(`${API}/tlToLines/${toLines._id}`)
-            window.location.reload();
-        } catch (err) {
-            console.log(err)
-        }
-    }
 
     useEffect(() => {
         const fetchPostsShiftTransfer = async () => {
@@ -182,7 +142,6 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
 
     // filter for current user
     postsShiftTransfer = Object.values(postsShiftTransfer).slice(0, 1).filter((shtni) => {
-        // console.log("test filter", shtni.line, shtni.date, shtni.shift);
         return shtni.line === user.username;
     });
 
@@ -214,9 +173,6 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
         return () => clearInterval(interval);
     }, [postsShiftTransfer, shiftNow, date]);
 
-
-
-
     // sort users by line
     const lines = (a, b) => {
         return (b.line) - (a.line);
@@ -224,118 +180,14 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
 
     allMemoToLines = Object.values(allMemoToLines).sort(lines);
 
-    // console.log(Object.values(allMemoToLines))
-    // sort users by line
-
     // filter for current user
     allMemoToLines = Object.values(allMemoToLines).filter((mTl) => {
         return mTl.line === user.personnelnumber;
     });
-    // console.log(Object.values(allMemoToLines))
-
-    //     const last = (a, b) => {
-    //         return (a.createdAt) - (b.createdAt);
-    //     }
-
-    // allMemoToLines = Object.values(allMemoToLines).sort(last);
-    // console.log('last>>>', Object.values(allMemoToLines))
-
-    // const addDate = new Date()
-    // const change = addDate.setDate(addDate.getDate() + 2)
-
-    // console.log(`MemoToLine ${date.toLocaleDateString('nl-Nl')}`)
-    // console.log(`MemoToLine ${new Date(change).toLocaleDateString('nl-Nl')}`)
 
     return (
         <div className='feed'>
             <div className="feedWrapper">
-                {/* <ul className="feedEventsList">
-                    {Object.values(allEvents).map((event) => {
-                        return (
-                            <li className="feedEventsInformation" key={event._id}>
-                                {event.start.split('T')[0] === date.toLocaleDateString('nl-NL') ?
-                                    <div className="feedEventsInformationContent">
-                                        <p className="feedEventsInformationHeader">Today:</p>
-                                        <p className="feedEventsInformationTitle">{event.title}</p>
-                                        <p className="feedEventsInformationDesc">{event.desc}</p>
-                                    </div>
-                                    : <></>}
-                            </li>
-                        )
-                    })}
-                </ul> */}
-
-
-                <ul className="feedTlToLineList" style={{ display: "none" }}>
-                    {Object.values(allTlToLines).map((toLines) => {
-                        return (
-                            <li className="feedTlToLineInformation" key={toLines._id}>
-                                {/* {toLines.line === user.personnelnumber && toLines.timer > time  ? */}
-                                {toLines.line === user.personnelnumber ?
-                                    <div className="feedTlToLineInformationContent">
-                                        <p className="feedTlToLineInformationHeader">Privat:</p>
-                                        {/* <p className="feedTlToLineInformationTitle">{toLines.title}</p> */}
-                                        <p className="feedTlToLineInformationDesc">{toLines.desc}</p>
-                                        {toLines?.img && <img className="postMemoImg" src={PF + toLines?.img} alt='' />}
-                                        {/* module for fast answer to line */}
-                                        {(toLines?.reqRes && !toLines?.answer) && <button className="feedTlToLineInformationBtn tlToLineButton" id="feedTlToLineInformationBtn" onClick={() => handleOpen()} style={{ display: openAnswer ? "none" : "block" }}>Please answer</button>}
-                                        {openAnswer && <>
-                                            <div className="tlToLineInputContainer">
-                                                <textarea style={{ height: "60px" }} className="tlToLineInput" placeholder={"Please answer me " + user.username || user.personnelnumber + "?"} ref={desc} value={text} defaultValue={"" || toLines?.answer} onChange={(e) => setText(e.target.value)} />
-                                            </div>
-                                            <div className="feedTlToLineInformationAnswerContainer">
-                                                <div className="memoEmoji">
-                                                    <EmojiEmotions className="memoIcon" onClick={() => setOpen((prev) => !prev)} />
-                                                    <span className="memoOptionText" onClick={() => setOpen((prev) => !prev)}>{open ? "Hide" : "Show"} emojis</span>
-                                                </div>
-                                                {/* <button className="tlToLineButton" onClick={() => handleAnswer(toLines)}>Send
-                                                    <DoneOutline />
-                                                </button> */}
-                                            </div>
-                                        </>}
-                                        <div className="memoEmojiPicker" style={{ display: openAnswer ? "block" : "none" }}>
-                                            {open && (<Picker suggestedEmojisMode={["recent"]} style={{ width: "100%" }} reactionsDefaultOpen={true} searchDisabled={true} onEmojiClick={handleEmoji} />)}
-                                        </div>
-                                        <div className="feedTlToLineInformationEditContainer" style={{ display: (openAnswer || toLines?.answer) ? "flex" : "none" }}>
-                                            {toLines?.answer &&
-                                                <>
-                                                    <p className="feedTlToLineInformationAnswer">Answer: <span>{toLines?.answer}</span></p>
-                                                    <div className="editBtn">
-                                                        <Edit onClick={() => setOpenAnswer(!openAnswer)} />
-                                                    </div>
-                                                </>
-                                            }
-                                        </div>
-                                        {/* <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer} {time}</p> */}
-                                        <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer} {toLines?.timer < time && toLineDeleteHandler(toLines)}</p>
-                                    </div>
-                                    :
-                                    toLines.line === "forAll" ?
-                                        <div className="feedTlToLineInformationContent">
-                                            <p className="feedTlToLineInformationHeader">Group:</p>
-                                            {/* <p className="feedTlToLineInformationTitle">{toLines.title}</p> */}
-                                            <p className="feedTlToLineInformationDesc">{toLines.desc}</p>
-                                            {toLines?.img && <img className="postMemoImg" src={PF + toLines?.img} alt='' />}
-                                            {/* <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer}</p> */}
-
-
-
-
-
-
-
-
-                                            <p className="feedTlToLineInformationDesc" style={{ fontSize: "10px" }}>The message is valid until {toLines?.timer}{toLines?.timer < time && toLineDeleteHandler(toLines)}</p>
-                                        </div>
-                                        :
-                                        <></>
-                                }
-                            </li>
-                        )
-                    })}
-                </ul>
-
-                {/* {user.role === 1 && <MemoToLine />} */}
 
                 <ul className="feedTlToLineList">
                     {Object.values(allTlToLines).map((toLines) => {
@@ -351,13 +203,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                     {hideShiftTransferForm && <ShiftTransfer2 />}
                 </>}
 
-                {/* <Memo /> */}
-                {/* {postsShiftTransfer.slice(0, 1).map((st) => (
-                    <PostShiftTransfer key={st._id} shiftTransfer={st} />
-                ))} */}
-
                 {(!personnelnumber || personnelnumber === user.personnelnumber) && <Share />}
-
 
                 <ul className="feedTlToLineList">
                     {Object.values(allMemoToLines).map((mTl) => (
@@ -377,8 +223,6 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                         </li>
                     ))}
                 </ul>
-
-
 
                 {postsMemo.slice(0, 1).map((m) => (
                     <PostMemo key={m._id} memo={m} />

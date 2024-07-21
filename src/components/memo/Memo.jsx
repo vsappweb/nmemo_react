@@ -22,18 +22,9 @@ export default function Memo({edit}) {
     let hidePan = true;
 
 
-    
-    // console.log('memo test >>>', edit)
-
     if (edit === undefined) {
         hidePan = false
     }
-    // useEffect(() => {
-    //     setEditMemo(edit)
-    // }, [edit, editMemo])
-    // console.log('hide pan>>>', hidePan)
-    // console.log('memo test >>>', edit?.userId)
-    // console.log('editMemo test >>>', editMemo?._id)
     
     const editMemoGetHandler = (edit) => {
         setEditMemo(edit)
@@ -166,11 +157,10 @@ export default function Memo({edit}) {
         }
     }
 
-    // clear single event to edit
+    // clear edit memo
   const eventCleanHandler = () => {
     setEditMemo({})
     setText("");
-    // document.getElementById("desc").value = {text};
   }
 
 

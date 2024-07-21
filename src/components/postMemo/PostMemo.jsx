@@ -1,6 +1,6 @@
 import "./postMemo.css";
 import AvatarUser from "../avatarUser/AvatarUser";
-import { HighlightOff, Edit, DoNotTouch, MoreVert } from "@mui/icons-material";
+import { HighlightOff, DoNotTouch, MoreVert, Edit } from "@mui/icons-material";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { format } from "timeago.js"
@@ -16,10 +16,13 @@ export default function PostMemo({ memo }) {
     const date = new Date();
 
 
+
+
     useEffect(() => {
         const fetchUser = async () => {
             const res = await axios.get(`${API}/users?userId=${memo.userId}`)
             setUser(res.data)
+            // console.log(Object.values(res.data))
         };
         fetchUser();
     }, [memo.userId, API]);
@@ -27,6 +30,7 @@ export default function PostMemo({ memo }) {
     const memoDeleteHandler = () => {
         try {
             axios.delete(`${API}/memos/` + memo._id)
+            window.alert("Deleted")
             window.location.reload();
         } catch (err) {
             console.log(err)
@@ -54,8 +58,8 @@ export default function PostMemo({ memo }) {
                             {memo.userId === currentUser._id && (memo?.title === `nMemo ${date.toLocaleDateString('nl-Nl')}` || memo?.title === `MemoToLine ${date.toLocaleDateString('nl-Nl')}`) ?
                                 <div className="editDeleteBtns">
                                     {/* <div className="editBtn">
-            <Edit onClick={() => setIsMenuOpen(!isMenuOpen)} />
-        </div> */}
+                                        <Edit />
+                                    </div> */}
                                     <div className="deleteBtn" onClick={memoDeleteHandler} >
                                         <HighlightOff />
                                     </div>

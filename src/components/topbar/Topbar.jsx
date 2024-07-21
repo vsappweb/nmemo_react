@@ -7,7 +7,7 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
-
+import { Hourglass, ThreeDots, } from "react-loader-spinner";
 import i18n from "i18next";
 
 export default function Topbar() {
@@ -21,6 +21,7 @@ export default function Topbar() {
     const [followed, setFollowed] = useState(user.followings.includes(user?._id));
     const [changeLang, setChangeLang] = useState(false);
     const [chooseLang, setChooseLang] = useState("en");
+    const [isDataLoading, setIsDataLoading] = useState(false);
 
     let menuRef = useRef();
     let changeWalsRef = useRef();
@@ -31,8 +32,8 @@ export default function Topbar() {
         i18n.changeLanguage(language);
         console.log(language);
         // if (language === "ua") {
-            setChooseLang(language);
-            setChangeLang(!changeLang);
+        setChooseLang(language);
+        setChangeLang(!changeLang);
         // } else {
         //     setChooseLang(true);
         //     setChangeLang(false);
@@ -60,8 +61,10 @@ export default function Topbar() {
     useEffect(() => {
         const getUsers = async () => {
             try {
+                setIsDataLoading(true);
                 const res = await axios.get(`${API}/users/usersList`);
                 setUsers(res.data);
+                setIsDataLoading(false);
             } catch (err) {
                 console.log(err);
             }
@@ -129,54 +132,80 @@ export default function Topbar() {
     // }
 
     return (
-
         <div className='topbarContainer'>
-            {/* <div className="container"> */}
-
-
-            {/* //TODO: Finish the popup to join the line */}
-            <div className={`changeWalsDropdown ${openWals ? 'active' : 'inactive'}`}  >
-                <div className="changeWals">
-                    <div className="changeWalsDropdownInner" ref={changeWalsRef}>
-                        <ul>
-                            {Object.values(allUsers).map((changeWals) => {
-
-                                return (
-                                    <div onClick={() => handleClickChangeWals(changeWals)} key={changeWals._id} >
-
-                                        {changeWals.role === 3 ?
-                                            <>
-                                                <AllUsers user={changeWals} />
-                                            </>
-                                            :
-                                            <>
-                                            </>}
-                                    </div>
-                                )
-                            })}
-                        </ul>
+            {isDataLoading ?
+                <div className="loading">
+                    <Hourglass
+                        visible={true}
+                        height="196"
+                        width="196"
+                        ariaLabel="hourglass-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        colors={['var(--main)', 'var(--main)']}
+                    />
+                    <div className="loadingTextContainer">
+                        <p className="loadingText">Loading</p>
+                        <ThreeDots
+                            visible={true}
+                            height="10"
+                            width="30"
+                            color="var(--cText)"
+                            radius="9"
+                            ariaLabel="three-dots-loading"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                        />
                     </div>
                 </div>
-            </div>
 
-            <div className="topbarLeft">
-                <div className="topbarLogo" style={{ color: "white" }}>
-                    <Link className="logoLink" to="/" style={{ textDecoration: "none" }}>
-                        <div className="logoIcon">
+                : <>
+                    {/* <div className="container"> */}
 
-                            <img className="logoIconImg" src="../../../assets/ico/logo.svg" alt="Logo nMemo" />
+
+                    {/* //TODO: Finish the popup to join the line */}
+                    <div className={`changeWalsDropdown ${openWals ? 'active' : 'inactive'}`}  >
+                        <div className="changeWals">
+                            <div className="changeWalsDropdownInner" ref={changeWalsRef}>
+                                <ul>
+                                    {Object.values(allUsers).map((changeWals) => {
+
+                                        return (
+                                            <div onClick={() => handleClickChangeWals(changeWals)} key={changeWals._id} >
+
+                                                {changeWals.role === 3 ?
+                                                    <>
+                                                        <AllUsers user={changeWals} />
+                                                    </>
+                                                    :
+                                                    <>
+                                                    </>}
+                                            </div>
+                                        )
+                                    })}
+                                </ul>
+                            </div>
                         </div>
-                        <span className="logoText">nMemo</span>
-                    </Link>
-                </div>
-            </div>
-            <div className="topbarCenter">
-                {user.username || user.personnelnumber}
-                {/* {JSON.parse(sessionStorage.getItem('product'))} */}
+                    </div>
 
-            </div>
-            <div className="topbarRight">
-                {/* <div className="topbarIcons">
+                    <div className="topbarLeft">
+                        <div className="topbarLogo" style={{ color: "white" }}>
+                            <Link className="logoLink" to="/" style={{ textDecoration: "none" }}>
+                                <div className="logoIcon">
+
+                                    <img className="logoIconImg" src="../../../assets/ico/logo.svg" alt="Logo nMemo" />
+                                </div>
+                                <span className="logoText">nMemo</span>
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="topbarCenter">
+                        {user.username || user.personnelnumber}
+                        {/* {JSON.parse(sessionStorage.getItem('product'))} */}
+
+                    </div>
+                    <div className="topbarRight">
+                        {/* <div className="topbarIcons">
                     <div className="topbarIconItem">
                         <Person htmlColor="white" />
                         <span className="topbarIconBadge">1</span>
@@ -192,77 +221,79 @@ export default function Topbar() {
                         <span className="topbarIconBadge">1</span>
                     </div>
                 </div> */}
-                <div className="topbarUserItems">
-                    {(chooseLang === "en") && <div className="topbarIconLangItemMain" onClick={() => handleLang()}>
-                        <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1ec-1f1e7.png" alt="ENG" />
-                    </div>}
-                    {(chooseLang === "ua") && <div className="topbarIconLangItemMain" onClick={() => handleLang()}>
-                        <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1fa-1f1e6.png" alt="UA" />
-                    </div>}
-                    {changeLang &&
-                        <>
-                            <ul className="topbarIconItems">
-                                <li className="topbarIconLangItemMain" onClick={() => changeLanguage("en")}>
-                                    <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1f3-1f1f1.png" alt="NL" />
-                                </li>
-                                <li className="topbarIconLangItem" onClick={() => changeLanguage("en")}>
-                                    <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1ec-1f1e7.png" alt="ENG" />
-                                </li>
-                                <li className="topbarIconLangItem" onClick={() => changeLanguage("en")}>
-                                    <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1f5-1f1f1.png" alt="PL" />
-                                </li>
-                                <li className="topbarIconLangItem" onClick={() => changeLanguage("en")}>
-                                    <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1f7-1f1f4.png" alt="RO" />
-                                </li>
-                                <li className="topbarIconLangItem" onClick={() => changeLanguage("ua")}>
-                                    <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1fa-1f1e6.png" alt="UKR" />
-                                </li>
-                            </ul>
-                        </>
-                    }
+                        <div className="topbarUserItems">
+                            {(chooseLang === "en") && <div className="topbarIconLangItemMain" onClick={() => handleLang()}>
+                                <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1ec-1f1e7.png" alt="ENG" />
+                            </div>}
+                            {(chooseLang === "ua") && <div className="topbarIconLangItemMain" onClick={() => handleLang()}>
+                                <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1fa-1f1e6.png" alt="UA" />
+                            </div>}
+                            {changeLang &&
+                                <>
+                                    <ul className="topbarIconItems">
+                                        <li className="topbarIconLangItemMain" onClick={() => changeLanguage("en")}>
+                                            <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1f3-1f1f1.png" alt="NL" />
+                                        </li>
+                                        <li className="topbarIconLangItem" onClick={() => changeLanguage("en")}>
+                                            <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1ec-1f1e7.png" alt="ENG" />
+                                        </li>
+                                        <li className="topbarIconLangItem" onClick={() => changeLanguage("en")}>
+                                            <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1f5-1f1f1.png" alt="PL" />
+                                        </li>
+                                        <li className="topbarIconLangItem" onClick={() => changeLanguage("en")}>
+                                            <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1f7-1f1f4.png" alt="RO" />
+                                        </li>
+                                        <li className="topbarIconLangItem" onClick={() => changeLanguage("ua")}>
+                                            <img className="topbarIconLang" src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple/img/apple/64/1f1fa-1f1e6.png" alt="UKR" />
+                                        </li>
+                                    </ul>
+                                </>
+                            }
 
 
-                    <div className='topbarMenuContainer' ref={menuRef}>
-                        <div className='topbarMenuBtn' onClick={() => { setOpen(!open) }}>
-                            <div className="avatarUser">
-                                <AvatarUser user={user} />
-                            </div>
-                        </div>
+                            <div className='topbarMenuContainer' ref={menuRef}>
+                                <div className='topbarMenuBtn' onClick={() => { setOpen(!open) }}>
+                                    <div className="avatarUser">
+                                        <AvatarUser user={user} />
+                                    </div>
+                                </div>
 
-                        <div className={`topbarMenuDropdown ${open ? 'active' : 'inactive'}`} >
-                            <h3 className="topbarMenuDropdownPersonnelnumber">{user.username || user.personnelnumber}<br />
-                                <UserRole user={user} /> </h3>
-                            <ul>
-                                <Link to={`/license`} style={{ textDecoration: "none" }}>
-                                    <DropdownItem img={<img className="logoIconImg" src="../../../assets/ico/chat.svg" alt="Logo nMemo" />} text={"nMemo ά 0.2"} />
-                                </Link>
-                                <Link to={`/profile/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
-                                    <DropdownItem img={<Person />} text={"My Profile"} />
-                                </Link>
-                                <Link to={`/editProfile/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
-                                    <DropdownItem img={<Settings />} text={"Edit Profile"} />
-                                </Link>
-                                {user.role === 0 || user?.isAdmin ? <Link to={`/editEvents/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
-                                    <DropdownItem img={<Settings />} text={"Edit Events"} />
-                                </Link> : <></>}
-                                {user.role !== 1 && <Link to={`/editShiftTransfer/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
-                                    <DropdownItem img={<Settings />} text={"Shift Transfer"} />
-                                </Link>}
-                                {/* {user.role === 1 ? <Link onClick={() => { setOpenWals(!openWals) }} style={{ textDecoration: "none" }}>
+                                <div className={`topbarMenuDropdown ${open ? 'active' : 'inactive'}`} >
+                                    <h3 className="topbarMenuDropdownPersonnelnumber">{user.username || user.personnelnumber}<br />
+                                        <UserRole user={user} /> </h3>
+                                    <ul>
+                                        <Link to={`/license`} style={{ textDecoration: "none" }}>
+                                            <DropdownItem img={<img className="logoIconImg" src="../../../assets/ico/chat.svg" alt="Logo nMemo" />} text={"nMemo ά 0.2"} />
+                                        </Link>
+                                        <Link to={`/profile/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
+                                            <DropdownItem img={<Person />} text={"My Profile"} />
+                                        </Link>
+                                        <Link to={`/editProfile/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
+                                            <DropdownItem img={<Settings />} text={"Edit Profile"} />
+                                        </Link>
+                                        {user.role === 0 || user?.isAdmin ? <Link to={`/editEvents/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
+                                            <DropdownItem img={<Settings />} text={"Edit Events"} />
+                                        </Link> : <></>}
+                                        {user.role !== 1 && <Link to={`/editShiftTransfer/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
+                                            <DropdownItem img={<Settings />} text={"Shift Transfer"} />
+                                        </Link>}
+                                        {/* {user.role === 1 ? <Link onClick={() => { setOpenWals(!openWals) }} style={{ textDecoration: "none" }}>
                                     <DropdownItem img={<Tune />} text={"Join the line"} style={{ textAlign: "center" }} />
                                 </Link>
                                     : <></>} */}
-                                <Link onClick={logout} reloadDocument to="/" style={{ textDecoration: "none" }}>
-                                    <DropdownItem img={<Logout />} text={"Logout"} />
-                                </Link>
-                            </ul>
-                        </div>
+                                        <Link onClick={logout} reloadDocument to="/" style={{ textDecoration: "none" }}>
+                                            <DropdownItem img={<Logout />} text={"Logout"} />
+                                        </Link>
+                                    </ul>
+                                </div>
 
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            {/* </div> */}
+                    {/* </div> */}
+                </>}
         </div>
     );
 }
+
 

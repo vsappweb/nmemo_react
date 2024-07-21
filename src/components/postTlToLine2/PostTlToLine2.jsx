@@ -25,9 +25,9 @@ export default function PostTlToLine2({ toLines, allTlToLines, setTlToLines, ope
 
     const handleOpen = () => {
         setOpenAnswer(!openAnswer);
-         document.getElementById("feedTlToLineInformationBtn").style.display = "none"
-         document.getElementById("feedTlToLineInformationBtn").style.visibility = "hidden"
-         console.log("d none")
+        document.getElementById("feedTlToLineInformationBtn").style.display = "none"
+        document.getElementById("feedTlToLineInformationBtn").style.visibility = "hidden"
+        console.log("d none")
     }
 
 
@@ -38,9 +38,9 @@ export default function PostTlToLine2({ toLines, allTlToLines, setTlToLines, ope
         try {
             // console.log(newAnswer)
             await axios.put(`${API}/tlToLines/${toLines._id}`, newAnswer);
-           
-                // document.getElementById("feedTlToLineInformationBtn").style.display = "none"
-            
+
+            // document.getElementById("feedTlToLineInformationBtn").style.display = "none"
+
             setOpenAnswer(!openAnswer);
             // console.log(openAnswer)
         } catch (err) {
@@ -60,28 +60,6 @@ export default function PostTlToLine2({ toLines, allTlToLines, setTlToLines, ope
 
     //atention changed format of date to fr-CA not nl-NL
     let time = date.toLocaleDateString('fr-CA') + "T" + hh + ":" + mm + ":" + ss;
-
-    // useEffect(() => {
-    //     let interval;
-    //     const fetchData = async () => {
-    //         try {
-    //             const res = await axios.get(`${API}/tlToLines/allTlToLines`);
-    //             setTlToLines(res.data);
-    //             // console.log("test refresh")
-    //         } catch (err) {
-    //             console.error(err);
-    //         }
-    //     };
-
-    //     let result = fetchData()
-
-    //     if (!result) {
-    //         interval = setInterval(fetchData, 10000);
-    //     }
-
-    //     interval = setInterval(fetchData, 10000); //set your time here. repeat every 5 seconds
-    //     return () => clearInterval(interval);
-    // }, [API, setTlToLines]);
 
 
     // delete tlToLine from database
@@ -172,7 +150,7 @@ export default function PostTlToLine2({ toLines, allTlToLines, setTlToLines, ope
                         <p className="feedTlToLineInformationHeader">Group:</p>
                         <p className="feedTlToLineInformationDesc">{toLines.desc}</p>
                         {toLines?.img && <img className="postMemoImg" src={PF + toLines?.img} alt='' />}
-                        
+
                         {toLines?.reqRes &&
                             <div className="feedTlToLineInformationBtnBox">
                                 <div className="feedTlToLineInformationMarkBox" style={{ visibility: disagree < 1 ? "visible" : "hidden" }} onClick={() => agreeHandler(toLines)}>
@@ -183,9 +161,9 @@ export default function PostTlToLine2({ toLines, allTlToLines, setTlToLines, ope
                                 <div className="feedTlToLineInfoReqRes">
                                     <p>Your answer please</p>
                                 </div>
-                                <div className="feedTlToLineInformationMarkBox" style={{ visibility: agree < 1  ? "visible" : "hidden" }} onClick={() => disagreeHandler(toLines)}>
+                                <div className="feedTlToLineInformationMarkBox" style={{ visibility: agree < 1 ? "visible" : "hidden" }} onClick={() => disagreeHandler(toLines)}>
                                     <ArrowForward />
-                                     <p className="feedTlToLineInformationMark" style={{ color: isDisagreed ? "red" : "grey" }}>not okey{toLines.disagrees.length > 0 && ` ${toLines.disagrees.length}`}</p>
+                                    <p className="feedTlToLineInformationMark" style={{ color: isDisagreed ? "red" : "grey" }}>not okey{toLines.disagrees.length > 0 && ` ${toLines.disagrees.length}`}</p>
                                     <RemoveDone id="feedTlToLineInformationBtnNotDone" style={{ color: isDisagreed ? "red" : "grey" }} />
                                 </div>
                             </div>
