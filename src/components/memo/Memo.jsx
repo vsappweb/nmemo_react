@@ -58,9 +58,9 @@ export default function Memo({edit}) {
 
     // order
     const handleOrder = e => {
-        const product = sessionStorage.getItem('product')
+        const product = localStorage.getItem('product')
         const noProduct = " you have no product :( "
-        setText((prev) => prev + " " + (product ? JSON.parse(sessionStorage.getItem('product')) : noProduct) + " ");
+        setText((prev) => prev + " " + (product ? JSON.parse(localStorage.getItem('product')) : noProduct) + " ");
     }
 
     // preparedTexts text input
@@ -97,7 +97,7 @@ export default function Memo({edit}) {
         e.preventDefault()
         const newMemo = {
             userId: user._id,
-            product: JSON.parse(sessionStorage.getItem('product')) ? JSON.parse(sessionStorage.getItem('product')) : "",
+            product: JSON.parse(localStorage.getItem('product')) ? JSON.parse(localStorage.getItem('product')) : "",
             title: "nMemo " + date.toLocaleDateString('nl-NL'),
             desc: desc.current.value
         };
@@ -130,7 +130,7 @@ export default function Memo({edit}) {
         e.preventDefault()
         const newMemo = {
             userId: user._id,
-            product: JSON.parse(sessionStorage.getItem('product')) ? JSON.parse(sessionStorage.getItem('product')) : "",
+            product: JSON.parse(localStorage.getItem('product')) ? JSON.parse(localStorage.getItem('product')) : "",
             title: "nMemo " + date.toLocaleDateString('nl-NL'),
             desc: desc.current.value
         };

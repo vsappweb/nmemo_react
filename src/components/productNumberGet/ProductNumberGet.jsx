@@ -7,28 +7,28 @@ export default function ProductNumberGet() {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    sessionStorage.setItem('product', JSON.stringify(productnumber.current.value));
+    localStorage.setItem('product', JSON.stringify(productnumber.current.value));
     window.location.reload();
   }
 
   const handleChange = (e) => {
     e.preventDefault()
-    sessionStorage.removeItem('product');
+    localStorage.removeItem('product');
     window.location.reload();
   }
 
   return (
     <>
-      {(sessionStorage.getItem('product') === null) ? 
+      {(localStorage.getItem('product') === null) ? 
       <form className="orderRightProductForm" autoComplete="off" onSubmit={handleSubmit} >
         <label className="orderRightProductFormLabel" htmlFor="productNumber">
           <p className="orderRightProductFormText">Please enter your product:</p>
-          <input className="orderRightProductFormInput" type="text" id='productNumber' ref={productnumber} minLength={2} maxLength={7} placeholder="" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
+          <input className="orderRightProductFormInput" type="text" id='productNumber' ref={productnumber} minLength={2} maxLength={7} placeholder="" defaultValue={JSON.parse(localStorage.getItem('product'))} required />
         </label>
         <button className="orderRightProductFormBtn ordersButton" type="submit" >Get product</button>
       </form>:
       <form className="orderRightProductForm" autoComplete="off" onSubmit={handleChange} >
-          <p className="orderRightProductFormText">{JSON.parse(sessionStorage.getItem('product'))}</p>
+          <p className="orderRightProductFormText">{JSON.parse(localStorage.getItem('product'))}</p>
         <button className="orderRightProductFormBtn ordersButton" type="submit" >Change product</button>
       </form>}
     </>

@@ -295,12 +295,12 @@ export default function Topbar() {
                     </div>
                     <div className="topbarCenter">
                         {user.username || user.personnelnumber}
-                        {JSON.parse(sessionStorage.getItem('product')) &&
+                        {JSON.parse(localStorage.getItem('product')) &&
                         <Link to={`/orders/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
                         <div className="topbarCenterProducts">
                             <WorkOutline />
                             <div className="topbarCenterProductsText">
-                            {JSON.parse(sessionStorage.getItem('product'))}
+                            {JSON.parse(localStorage.getItem('product'))}
                             </div>
                         </div>
                         </Link>}

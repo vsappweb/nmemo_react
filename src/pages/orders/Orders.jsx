@@ -19,7 +19,7 @@ export default function Orders() {
 
 
   // useEffect(() => {
-  //   if (sessionStorage.getItem('product')) {
+  //   if (localStorage.getItem('product')) {
   //     setShowBtn(!showBtn)
   //   }
   // },);
@@ -30,7 +30,7 @@ export default function Orders() {
 
   const handlePrint = async () => {
     const incompleet = {
-      productNumber: JSON.parse(sessionStorage.getItem('product')),
+      productNumber: JSON.parse(localStorage.getItem('product')),
       lineId: user.personnelnumber,
       operator: operatorUser.current.value,
       hide: "false",
@@ -63,12 +63,12 @@ export default function Orders() {
             {/* <form className="orderRightProductForm" onSubmit={handleSubmit} >
               <label className="orderRightProductFormLabel" htmlFor="productNumber">
                 <p className="orderRightProductFormText">Please enter your product:</p>
-                <input className="orderRightProductFormInput" type="text" id='productNumber' ref={productnumber} minLength={2} maxLength={4} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
+                <input className="orderRightProductFormInput" type="text" id='productNumber' ref={productnumber} minLength={2} maxLength={4} placeholder="0000" defaultValue={JSON.parse(localStorage.getItem('product'))} required />
               </label>
               <button className="orderRightProductFormBtn ordersButton" type="submit" >Get product</button>
             </form> */}
           </div>
-         {sessionStorage.getItem('product') &&  
+         {localStorage.getItem('product') &&  
          <div className="orderRightBtnContainer">
             <button className="ordersButton" type="submit" >Add quality warnings</button>
             <button className="ordersButton" type="submit" onClick={() => handleShowPrint()}>incompleet aantal</button>
@@ -85,7 +85,7 @@ export default function Orders() {
               <div className="incompleetAantalPaperForm">
                 <p className="orderIncompleetAantalTitle firstLine">melding incomplete aantallen</p>
                 <p className="orderIncompleetAantalTitleBig secondLine" style={{ fontSize: '44px', fontWeight: 'bold', marginLeft: '120px' }}>incompleet<br /> aantal</p>
-                <p className="orderIncompleetAantalTitle thirdLine" style={{ borderBottom: '1px solid black', width: '80%' }}>Datum: {date.toLocaleDateString('nl-NL')} / {user.personnelnumber} / {JSON.parse(sessionStorage.getItem('product'))} / {operator}</p>
+                <p className="orderIncompleetAantalTitle thirdLine" style={{ borderBottom: '1px solid black', width: '80%' }}>Datum: {date.toLocaleDateString('nl-NL')} / {user.personnelnumber} / {JSON.parse(localStorage.getItem('product'))} / {operator}</p>
                 <div className="ordersFormAanmeldenColontitule" >
                   <p className="ordersFormAanmeldenColontituleText">G:\Kwaliteitsdienst\Formulieren\incomplete aantallen .xlsx</p>
                   <p className="ordersFormAanmeldenColontituleDate">28-6-2016</p>

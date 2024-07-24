@@ -14,7 +14,7 @@ export default function BmGm() {
   let [allGmTool, setAllGmTool] = useState([]);
   const API = process.env.REACT_APP_SERVER_API
   const [showForm, setShowForm] = useState(false);
-  const [showProductForm, setShowProductForm] = useState(JSON.parse(sessionStorage.getItem('setProduct'))?JSON.parse(sessionStorage.getItem('setProduct')):false);
+  const [showProductForm, setShowProductForm] = useState(JSON.parse(localStorage.getItem('setProduct'))?JSON.parse(localStorage.getItem('setProduct')):false);
   const [showSort, setShowSort] = useState(false);
 
   
@@ -93,8 +93,8 @@ export default function BmGm() {
 
 
   const setProduct = () => {
-    sessionStorage.setItem('setProduct', JSON.stringify(true));
-    setShowProductForm(JSON.parse(sessionStorage.getItem('setProduct')))
+    localStorage.setItem('setProduct', JSON.stringify(true));
+    setShowProductForm(JSON.parse(localStorage.getItem('setProduct')))
     setShowForm(false)
     setShowSort(false)
   }
@@ -102,14 +102,14 @@ export default function BmGm() {
   const addProblem = () => {
     setShowForm(!showForm)
     setShowSort(false)
-    sessionStorage.removeItem('setProduct')? sessionStorage.removeItem('setProduct'):sessionStorage.setItem('setProduct', JSON.stringify(false));
-    setShowProductForm(JSON.parse(sessionStorage.getItem('setProduct')))
+    localStorage.removeItem('setProduct')? localStorage.removeItem('setProduct'):localStorage.setItem('setProduct', JSON.stringify(false));
+    setShowProductForm(JSON.parse(localStorage.getItem('setProduct')))
   }
   const sortTool = () => {
     setShowSort(!showSort)
     setShowForm(false)
-    sessionStorage.removeItem('setProduct')? sessionStorage.removeItem('setProduct'):sessionStorage.setItem('setProduct', JSON.stringify(false));
-    setShowProductForm(JSON.parse(sessionStorage.getItem('setProduct')))
+    localStorage.removeItem('setProduct')? localStorage.removeItem('setProduct'):localStorage.setItem('setProduct', JSON.stringify(false));
+    setShowProductForm(JSON.parse(localStorage.getItem('setProduct')))
   }
 
 

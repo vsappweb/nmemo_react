@@ -135,11 +135,11 @@ export default function Stempel() {
 
   return (
     <>
-      {JSON.parse(sessionStorage.getItem('product')) === null ? <>
+      {JSON.parse(localStorage.getItem('product')) === null ? <>
 
       </> :
         <div className="stempelContainer">
-          {allStempels && Object.values(allStempels).filter(stemp => stemp.product === JSON.parse(sessionStorage.getItem('product')))
+          {allStempels && Object.values(allStempels).filter(stemp => stemp.product === JSON.parse(localStorage.getItem('product')))
             .map((stempel, i) => {
               if (!stempel) return null;
               return (
@@ -189,13 +189,13 @@ export default function Stempel() {
                 </>
               )
             })}
-          {Object.values(allStempels || {}).filter(stemp => stemp.product === JSON.parse(sessionStorage.getItem('product'))).length === 0 &&
+          {Object.values(allStempels || {}).filter(stemp => stemp.product === JSON.parse(localStorage.getItem('product'))).length === 0 &&
             <>
               <p className="stempelFormTitle">No tools yet</p>
               <form className="stempelForm" onSubmit={handleSubmit} >
                 <label className="stempelFormLabel" htmlFor="productNumber">
                   <p className="stempelFormText">Profiel/Product:</p>
-                  <input className="stempelFormInput" type="text" id='productNumber' ref={product} minLength={4} maxLength={5} placeholder="0000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
+                  <input className="stempelFormInput" type="text" id='productNumber' ref={product} minLength={4} maxLength={5} placeholder="0000" defaultValue={JSON.parse(localStorage.getItem('product'))} required />
                 </label>
                 {formValues.map((element, index) => (
                   <div className="form-inline" key={index}>
