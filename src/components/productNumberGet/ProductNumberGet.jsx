@@ -23,7 +23,7 @@ export default function ProductNumberGet() {
       <form className="orderRightProductForm" autoComplete="off" onSubmit={handleSubmit} >
         <label className="orderRightProductFormLabel" htmlFor="productNumber">
           <p className="orderRightProductFormText">Please enter your product:</p>
-          <input className="orderRightProductFormInput" type="text" id='productNumber' ref={productnumber} minLength={2} maxLength={7} placeholder="0000000" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
+          <input className="orderRightProductFormInput" type="text" id='productNumber' ref={productnumber} minLength={2} maxLength={7} placeholder="" defaultValue={JSON.parse(sessionStorage.getItem('product'))} required />
         </label>
         <button className="orderRightProductFormBtn ordersButton" type="submit" >Get product</button>
       </form>:

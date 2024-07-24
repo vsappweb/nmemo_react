@@ -8,6 +8,8 @@ import { AuthContext } from "../../context/AuthContext";
 import { Add, Remove, VisibilityOff } from "@mui/icons-material";
 import AvatarUser from "../avatarUser/AvatarUser";
 import UserRole from "../userRole/UserRole"
+import ProductNumberGet from "../productNumberGet/ProductNumberGet";
+import DateTime from "../dateTime/DateTime";
 
 import { useTranslation } from "react-i18next";
 
@@ -146,14 +148,17 @@ export default function Rightbar({ user }) {
                                         <p className="feedEventsInformationTitle">{event.title}</p>
                                         <p className="feedEventsInformationDesc">{event.desc}</p>
                                     </div>
-                                    : <></>}
+                                    : <>
+                                    </>}
                             </li>
                         )
                     })}
                 </ul>
-                {(currentUser.role === 1 || currentUser.role === 3) && <>
+                {currentUser.role === 3 && <>
                     <hr className="sidebarHr" />
-                    <h4 className="rightbarTitle">Here you can submit a report for your team leader</h4>
+                    <div className="feedProductNumberGet">
+                    <ProductNumberGet />
+                </div>
 
                 </>
                 }

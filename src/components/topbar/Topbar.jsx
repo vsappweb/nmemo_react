@@ -2,7 +2,7 @@ import "./topbar.css";
 import AvatarUser from "../avatarUser/AvatarUser";
 import AllUsers from "../allUsers/AllUsers";
 import UserRole from "../userRole/UserRole"
-import { Person, Logout, Settings } from "@mui/icons-material";
+import { Person, Logout, Settings, WorkOutline } from "@mui/icons-material";
 import { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { AuthContext } from "../../context/AuthContext";
@@ -295,7 +295,15 @@ export default function Topbar() {
                     </div>
                     <div className="topbarCenter">
                         {user.username || user.personnelnumber}
-                        {/* {JSON.parse(sessionStorage.getItem('product'))} */}
+                        {JSON.parse(sessionStorage.getItem('product')) &&
+                        <Link to={`/orders/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
+                        <div className="topbarCenterProducts">
+                            <WorkOutline />
+                            <div className="topbarCenterProductsText">
+                            {JSON.parse(sessionStorage.getItem('product'))}
+                            </div>
+                        </div>
+                        </Link>}
 
                     </div>
                     <div className="topbarRight">

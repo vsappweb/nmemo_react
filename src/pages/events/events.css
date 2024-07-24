@@ -10,16 +10,20 @@
 }
 
 .rbc-event{
-    cursor: pointer;
-    border-radius: 5px;
-    border: 2px solid var(--cText);
-    background-color: transparent;
+  cursor: pointer;
+  border-radius: 3px;
+  border: 1px solid var(--cText);
+  background-color: transparent;
 }
-
-.rbc-row-segment .rbc-event-content{
+.rbc-event:hover{
+  transform: scale(1.3);
+}
+  
+  .rbc-row-segment .rbc-event-content{
     white-space: wrap;
     background-color: transparent;
     color: var(--cText);
+    font-size: 12px;
     font-weight: 500;
 }
 

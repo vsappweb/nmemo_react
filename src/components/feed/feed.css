@@ -54,6 +54,19 @@
     cursor: pointer;
 }
 
+.feedProductNumberGet {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--cText);
+    
+  /* background: repeating-linear-gradient(-60deg, #555 0, #555 1px, transparent 1px, transparent 5px); */
+}
+
+.feedProductNumberGet span {
+    font-style:normal;
+}
+
 @media screen and (max-width: 768px) {
     .feedWrapper {
         padding-left: 15px;

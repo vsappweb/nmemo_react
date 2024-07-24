@@ -39,7 +39,7 @@
     display: flex;}
 
 .postMemoTitle {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 800;
     color: var(--cBadgeNtf);
     margin: 0 10px;

@@ -15,6 +15,7 @@ import { AuthContext } from "../../context/AuthContext";
 import DateTimeShift from "../dateTimeShift/DateTimeShift";
 // import { Edit, DoneOutline, EmojiEmotions } from "@mui/icons-material"
 // import Picker from "emoji-picker-react";
+import ProductNumberGet from "../productNumberGet/ProductNumberGet";
 
 export default function Feed({ personnelnumber, shiftTransfer }) {
     const API = process.env.REACT_APP_SERVER_API
@@ -39,17 +40,17 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
 
 
 
-    function addZero(i) {
-        if (i < 10) { i = "0" + i }
-        return i;
-    }
+    // function addZero(i) {
+    //     if (i < 10) { i = "0" + i }
+    //     return i;
+    // }
 
-    let hh = addZero(date.getHours());
-    let mm = addZero(date.getMinutes());
-    let ss = addZero(date.getSeconds());
+    // let hh = addZero(date.getHours());
+    // let mm = addZero(date.getMinutes());
+    // let ss = addZero(date.getSeconds());
 
-    //atention changed format of date to fr-CA not nl-NL
-    let time = date.toLocaleDateString('fr-CA') + "T" + hh + ":" + mm + ":" + ss;
+    // //atention changed format of date to fr-CA not nl-NL
+    // let time = date.toLocaleDateString('fr-CA') + "T" + hh + ":" + mm + ":" + ss;
 
 
     useEffect(() => {
@@ -204,6 +205,7 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
                 </>}
 
                 {(!personnelnumber || personnelnumber === user.personnelnumber) && <Share />}
+               
 
                 <ul className="feedTlToLineList">
                     {Object.values(allMemoToLines).map((mTl) => (

@@ -49,12 +49,14 @@
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
-    margin: 0 auto;
+    /* margin: 0 auto; */
     border-bottom: 2px groove var(--cText);
 }
 
+
 .orderRightProductForm {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 10px;
@@ -62,13 +64,16 @@
 
 .orderRightProductFormLabel {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     gap: 10px;
 }
 
 .orderRightProductFormText {
     font-size: 16px;
     font-weight: bold;
+    text-align: center;
 }
 
 .orderRightProductFormInput {
@@ -77,7 +82,8 @@
 
 .orderRightBtnContainer {
     display: flex;
-    align-items: center;
+    align-items: stretch;
+    flex-wrap: wrap;
     justify-content: space-around;
     gap: 10px;
 }
@@ -122,6 +128,12 @@
     width: 148mm;
     height: 210mm; 
   } */
+
+  @media screen and (max-width: 600px) {
+    .orderRightBtnContainer {
+        flex-direction: column;
+    }
+  }
 
 @media print {
     @page {

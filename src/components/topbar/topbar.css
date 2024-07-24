@@ -47,6 +47,7 @@
 .topbarCenter {
   flex: 6.5;
   display: flex;
+  align-items: center;
   justify-content: center;
   text-transform: uppercase;
   color: var(--logoIcons);
@@ -268,6 +269,20 @@
 
 .topbarIconLang{
   width: 30px;
+}
+
+.topbarCenterProducts{
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+  margin-left: 15px;
+  font-size: 14px;
+  color: var(--bgChat);
+}
+
+.topbarCenterProductsText{
+  font-style: oblique;
+
 }
 
 
