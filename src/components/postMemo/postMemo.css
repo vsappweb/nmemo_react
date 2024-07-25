@@ -33,6 +33,7 @@
     font-size: 15px;
     font-weight: 500;
     margin: 0 10px;
+    text-align: center;
 }
 
 .postMemoTopRight {
@@ -43,10 +44,12 @@
     font-weight: 800;
     color: var(--cBadgeNtf);
     margin: 0 10px;
+    text-align: center;
 }
 
 .postMemoDate {
     font-size: 12px;
+    text-align: center;
 }
 
 .postMemoDelete{

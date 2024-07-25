@@ -117,6 +117,11 @@
     gap: 10px;
 }
 
+.react-pdf__Page__canvas{
+    width: 600px !important;
+    height: 400px !important;
+}
+
 /* page {
     background: white;
     display: block;

@@ -4,6 +4,8 @@ import Topbar from '../../components/topbar/Topbar'
 import Sidebar from '../../components/sidebar/Sidebar'
 import { AuthContext } from "../../context/AuthContext";
 import ProductNumberGet from '../../components/productNumberGet/ProductNumberGet';
+// import PDFcomp from '../../PDFcomp';
+import Pdf from '../../components/pdf/Pdf';
 
 import axios from 'axios';
 
@@ -68,12 +70,21 @@ export default function Orders() {
               <button className="orderRightProductFormBtn ordersButton" type="submit" >Get product</button>
             </form> */}
           </div>
-         {localStorage.getItem('product') &&  
-         <div className="orderRightBtnContainer">
-            <button className="ordersButton" type="submit" >Add quality warnings</button>
-            <button className="ordersButton" type="submit" onClick={() => handleShowPrint()}>incompleet aantal</button>
-            <button className="ordersButton" type="submit" >werkinstruktie</button>
-          </div>
+          {localStorage.getItem('product') &&
+            <>
+              {/* <object data={`file:///D:/ARTIKELMAP/50/5068/KD_Informatie/50.. kozijnprofielen klachten.pdf`} type="application/pdf">
+                <iframe src="file:///D://ARTIKELMAP/50/5068/KD_Informatie/50.. kozijnprofielen klachten.pdf" title="PDF Document"></iframe>
+              </object> */}
+              {/* <PDFcomp /> */}
+
+              <Pdf />
+
+              <div className="orderRightBtnContainer">
+                <button className="ordersButton" type="submit" >Add quality warnings</button>
+                <button className="ordersButton" type="submit" onClick={() => handleShowPrint()}>incompleet aantal</button>
+                <button className="ordersButton" type="submit" >werkinstruktie</button>
+              </div>
+            </>
           }
           {showPrint &&
             <div className="orderIncompleetAantal" onSubmit={handlePrint}>
