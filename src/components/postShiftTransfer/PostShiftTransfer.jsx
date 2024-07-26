@@ -81,6 +81,7 @@ export default function PostShiftTransfer({ shiftTransfer }) {
                                         </>
                                         :
                                         <>
+                                            {/* {shiftTransfer?.operator} */}
                                         </>}
                                 </Link>
                             )

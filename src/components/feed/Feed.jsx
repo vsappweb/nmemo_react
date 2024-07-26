@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { renderToString } from 'react-dom/server'
 import Post from "../post/Post";
 import PostMemo from "../postMemo/PostMemo";
@@ -15,7 +15,6 @@ import { AuthContext } from "../../context/AuthContext";
 import DateTimeShift from "../dateTimeShift/DateTimeShift";
 // import { Edit, DoneOutline, EmojiEmotions } from "@mui/icons-material"
 // import Picker from "emoji-picker-react";
-import ProductNumberGet from "../productNumberGet/ProductNumberGet";
 
 export default function Feed({ personnelnumber, shiftTransfer }) {
     const API = process.env.REACT_APP_SERVER_API

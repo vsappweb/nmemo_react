@@ -189,6 +189,14 @@
     gap: 10px;
 }
 
+.editShiftTransferContainer{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
 @media screen and (max-width: 600px) {
     .editShiftTransferItemsListContainer, .editShiftTransferFormWrapper {
         width: 100%;

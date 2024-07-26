@@ -8,12 +8,14 @@ import Sidebar from '../../components/sidebar/Sidebar'
 import Rightbar from '../../components/rightbar/Rightbar'
 import RightbarMonitoring from '../../components/rightbarMonitoring/RightbarMonitoring'
 import ShiftTransfer2 from '../../components/shiftTransfer2/ShiftTransfer2'
-import { Edit, HighlightOff, CleaningServices, Lock, LockOpen } from "@mui/icons-material"
+import { Edit, HighlightOff, CleaningServices, Lock, LockOpen, ExpandCircleDownOutlined } from "@mui/icons-material"
 import { renderToString } from 'react-dom/server'
 import DateTimeShift from '../../components/dateTimeShift/DateTimeShift'
+import { Link } from 'react-router-dom'
 
 export default function EditShiftTransfer() {
   const API = process.env.REACT_APP_SERVER_API
+  const date = new Date()
   let [postsShiftTransfer, setPostsShiftTransfer] = useState([]);
   const { user } = useContext(AuthContext)
   let [allShiftsTransfers, setAllShiftsTransfers] = useState([]);
@@ -27,6 +29,8 @@ export default function EditShiftTransfer() {
   const [lockMonth, setLockMonth] = useState(false);
   const [lockWeek, setLockWeek] = useState(false);
   const [lockDay, setLockDay] = useState(false);
+  const [hideShiftTransferForm, setHideShiftTransferForm] = useState(true);
+  const [expandMore, setExpandMore] = useState(7);
   const item = useRef();
 
   const sortDay = useRef();
@@ -330,6 +334,32 @@ export default function EditShiftTransfer() {
   }
   allShiftTransferItems = Object.values(allShiftTransferItems).sort(oldToNew);
 
+
+  useEffect(() => {
+    let interval;
+    const whatShift = async () => {
+        try {
+            if (postsShiftTransfer) {
+                Object.values(postsShiftTransfer).forEach((postsShiftTransfer) => {
+                    if (postsShiftTransfer.shift === shiftNow && postsShiftTransfer.date === date.toLocaleDateString('nl-NL')) {
+                        setHideShiftTransferForm(false);
+                    } else if (postsShiftTransfer.shift !== shiftNow && postsShiftTransfer.date === date.toLocaleDateString('nl-NL')) {
+                        setHideShiftTransferForm(true);
+                    }
+                });
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+    let result = whatShift();
+    if (!result) {
+        interval = setInterval(whatShift, 10000);
+    }
+    interval = setInterval(whatShift, 10000);
+    return () => clearInterval(interval);
+}, [postsShiftTransfer, shiftNow, date]);
+
   return (
     <>
       <Topbar />
@@ -403,7 +433,7 @@ export default function EditShiftTransfer() {
                                 <Edit className="shiftTransferItemEdit" onClick={() => handleShTrItemGet(stItems)} />
                               </div>
                               <div className="editShiftTransferItemDelete" onClick={() => handleShTrItemDelete(stItems)}>
-                                <HighlightOff className="shiftTransferItemDelete"/>
+                                <HighlightOff className="shiftTransferItemDelete" />
                               </div>
                             </div>
                           </div>
@@ -467,13 +497,28 @@ export default function EditShiftTransfer() {
             }
 
             {user.role === 3 &&
-              <ul>
-                {postsShiftTransfer.map((st) => (
-                  <li key={st._id}>
-                    <PostShiftTransfer key={st._id} shiftTransfer={st} />
-                  </li>
-                ))}
-              </ul>}
+              <>
+                <div className="editShiftTransferContainer">
+                 {hideShiftTransferForm && <Link to="/"  style={{ textDecoration: "none" }}>
+                    <button className="editShiftTransferShowHideBtn"> Make shiftTransfer now</button>
+                  </Link>}
+                  <ul>
+                    {postsShiftTransfer.slice(0, expandMore).map((st) => (
+                      <li key={st._id}>
+                        <PostShiftTransfer key={st._id} shiftTransfer={st} />
+                      </li>
+                    ))}
+                  </ul>
+                  {(postsShiftTransfer.length === expandMore || postsShiftTransfer.length < expandMore) ? 
+                  <>
+                  </>
+                  :
+                  <div className="editBtn" onClick={() =>setExpandMore(expandMore + 7)}>
+                  <ExpandCircleDownOutlined />  
+                  </div>}
+                </div>
+              </>
+            }
           </div>
         </div>
         {(user.role === 2 || user.role === 0) ? <RightbarMonitoring /> : <Rightbar />}

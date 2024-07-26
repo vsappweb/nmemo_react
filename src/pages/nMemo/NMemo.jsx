@@ -9,6 +9,7 @@ import PostMemo from "../../components/postMemo/PostMemo";
 import axios from "axios"
 import { AuthContext } from "../../context/AuthContext";
 import RightbarMonitoring from '../../components/rightbarMonitoring/RightbarMonitoring'
+import { ExpandCircleDownOutlined } from "@mui/icons-material"
 
 
 export default function NMemo() {
@@ -17,6 +18,7 @@ export default function NMemo() {
   const { user } = useContext(AuthContext)
   let [allMemos, setAllMemos] = useState([]);
   const [hideMemos, setHideMemos] = useState(false);
+  const [expandMore, setExpandMore] = useState(7);
 
 
   useEffect(() => {
@@ -135,15 +137,21 @@ export default function NMemo() {
 
             {(user.role === 3 || user.role === 1) &&
               <ul className="nMemoPostsList">
-                {postsMemo.map((m) => (
+                {postsMemo.slice(0, expandMore).map((m) => (
                   <li key={m._id} style={{ marginBottom: "15px" }}>
                     <PostMemo memo={m} />
                     {user.role === 1 && <p style={{ fontSize: "10px" }}>Wals {m?.line}</p>}
                   </li>
                 ))}
               </ul>
-
             }
+            {(postsMemo.length === expandMore || postsMemo.length < expandMore) ?
+              <>  </>
+              :
+              <div className="editBtn" onClick={() => setExpandMore(expandMore + 7)}>
+                <ExpandCircleDownOutlined />
+              </div>}
+          
           </div>
         </div>
         {(user.role === 2 || user.role === 0) ? <RightbarMonitoring /> : <Rightbar />}
