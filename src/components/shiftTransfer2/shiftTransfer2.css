@@ -198,6 +198,7 @@
 .shiftTransferInputPersonnelnumber {
     width: 60px;
     margin-right: 25px;
+    text-align: center;
 }
 
 .shiftTransferRadioEditBtn {
