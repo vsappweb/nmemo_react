@@ -6,7 +6,7 @@ import { AuthContext } from "../../context/AuthContext";
 import axios from "axios"
 import Picker from "emoji-picker-react";
 
-export default function Memo({edit}) {
+export default function Memo({ edit }) {
     const API = process.env.REACT_APP_SERVER_API
     let [allPreparedTexts, setPreparedTexts] = useState([]);
     const [getPreparedText, setGetPreparedText] = useState({});
@@ -21,15 +21,18 @@ export default function Memo({edit}) {
     const [editMemo, setEditMemo] = useState({});
     let hidePan = true;
 
+    edit = Object.values(edit).filter((edit) => edit.userId === user._id);
+    console.log(edit[0]) // console.log(edit.userId)
+    edit = edit[0]
 
     if (edit === undefined) {
         hidePan = false
     }
-    
+
     const editMemoGetHandler = (edit) => {
         setEditMemo(edit)
         setText((prev) => prev + edit?.desc + " ");
-      }
+    }
 
     // get all PreparedTexts from database 
     useEffect(() => {
@@ -158,10 +161,10 @@ export default function Memo({edit}) {
     }
 
     // clear edit memo
-  const eventCleanHandler = () => {
-    setEditMemo({})
-    setText("");
-  }
+    const eventCleanHandler = () => {
+        setEditMemo({})
+        setText("");
+    }
 
 
     // create prepared text in database 
@@ -268,12 +271,12 @@ export default function Memo({edit}) {
                         </div>
                     </div>
                     <button className="memoButton" type="submit">{editMemo._id === undefined ? "Leave Memo" : "Edit Memo"}
-                    {editMemo._id === undefined ? <DoneOutline />: <Edit />}
+                        {editMemo._id === undefined ? <DoneOutline /> : <Edit />}
                     </button>
                     {editMemo._id === undefined ? <>
-                    {hidePan && <div className="editBtn" onClick={() => editMemoGetHandler(edit)}>
-                        <Edit />
-                    </div>}
+                        {hidePan && <div className="editBtn" onClick={() => editMemoGetHandler(edit)}>
+                            <Edit />
+                        </div>}
                     </>
                         : <CleaningServices className="editEventsBtnClean" onClick={eventCleanHandler} />}
                 </form>

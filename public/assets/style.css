@@ -317,6 +317,7 @@ button .epr_3vd53t {
     width: 100%;
     height: 100%;
     filter: drop-shadow(3px 6px 4px  rgba(0, 0, 0, 0.8));
+    /* -webkit-text-stroke: 1px white; */
 }
 
 .loadingTextContainer {
@@ -335,6 +336,7 @@ button .epr_3vd53t {
     margin-top: 10px;
     margin-right: 5px;
     text-shadow: 3px 6px 4px  rgba(0, 0, 0, 0.8);
+    /* filter: drop-shadow(3px 6px 4px  rgba(0, 0, 0, 0.8)); */
 }
 
 .loadingTextThreeDots {

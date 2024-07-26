@@ -77,7 +77,7 @@ export default function NMemo() {
 
   allMemos = Object.values(allMemos).filter(memo => memo.title === `nMemo ${new Date().toLocaleDateString('nl-NL')}`);
 
-  const edit = allMemos[0];
+  const edit = allMemos;
   // console.log('memo test222 >>>', edit);
 
   return (

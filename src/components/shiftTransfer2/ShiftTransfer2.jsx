@@ -162,6 +162,9 @@ export default function ShiftTransfer2(shiftTransfer) {
         if (e.key === 'Enter') {
             // call action
             submitHandler(e);
+            document.getElementById(`transfer`).style.display = "none";
+            document.getElementById(`personnelnumber`).style.display = "none";
+            document.getElementById(`personnelnumberText`).style.display = "none";
         }
     }
 
@@ -190,6 +193,9 @@ export default function ShiftTransfer2(shiftTransfer) {
             // console.log(shiftTransfer);
             axios.post(`${API}/shiftTransfers`, shiftTransfer);
             console.log("shift transfer has been successfully posted");
+            document.getElementById(`transfer`).style.display = "none";
+            document.getElementById(`personnelnumber`).style.display = "none";
+            document.getElementById(`personnelnumberText`).style.display = "none";
             setTimeout(() => {
                 deleteAll();
                 window.location.reload();
@@ -327,10 +333,10 @@ export default function ShiftTransfer2(shiftTransfer) {
                 </div>
                 <div className="shiftTransferContainer">
                     <label className="shiftTransferLabelPersonnelnumber" htmlFor="personnelnumber">
-                        <p className="shiftTransferTextPersonnelnumber">Operator</p>
+                        <p className="shiftTransferTextPersonnelnumber" id="personnelnumberText">Operator</p>
                         <input className="shiftTransferInputPersonnelnumber" id="personnelnumber" ref={operator} type="text" placeholder="0000" minLength={4} maxLength={4} onKeyDown={handleKeyDown} required />
                     </label>
-                    <button className="shiftTransferButton" type="submit">Make a shift transfer</button>
+                    <button className="shiftTransferButton" id="transfer" type="submit">Make a shift transfer</button>
                 </div>
             </form>
         </div>

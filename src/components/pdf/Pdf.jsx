@@ -16,7 +16,9 @@ export default function Pdf() {
             reader.readAsArrayBuffer(file);
         }
     };
-
+    
+    // console.log(selectedFile);
+    
     const onDocumentLoadSuccess = ({ numPages }) => {
         setNumPages(numPages);
     };
@@ -26,9 +28,11 @@ export default function Pdf() {
             <input type="file" accept=".pdf" onChange={onFileLoad} />
 
             {selectedFile && (
+                <>
                 <Document file={selectedFile} onLoadSuccess={onDocumentLoadSuccess}>
                     <Page pageNumber={pageNumber} renderTextLayer={false} renderAnnotationLayer={false} />
                 </Document>
+                </>
             )}
 
             {numPages && (
