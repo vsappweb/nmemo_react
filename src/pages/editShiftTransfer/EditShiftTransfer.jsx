@@ -603,6 +603,13 @@ export default function EditShiftTransfer() {
                           </option>
                           <option
                             className="editShiftTransferRightSortingInput"
+                            id="day"
+                            value="Day"
+                          >
+                            Day
+                          </option>
+                          <option
+                            className="editShiftTransferRightSortingInput"
                             id="night"
                             value="Night"
                           >
@@ -610,7 +617,7 @@ export default function EditShiftTransfer() {
                           </option>
                         </select>
                       )}
-                      {!hideShiftSorting && (
+                      {hideShiftSorting === false && (
                         <input
                           className="editShiftTransferRightSortingInput"
                           type="text"
