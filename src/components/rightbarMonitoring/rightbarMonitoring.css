@@ -67,8 +67,8 @@
     font-size: 12px;
     color: white;
     border: var(--main);
-    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
-    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
+    -webkit-box-shadow: 0px 0px 16px -8px var(--shadowBlack);
+    box-shadow: 0px 0px 16px -8px var(--shadowBlack);
     z-index: 200;
     overflow: auto;
   }
@@ -94,8 +94,8 @@
     border: 2px solid var(--bg);
     border-right: none;
     border-bottom: none;
-    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
-    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
+    -webkit-box-shadow: 0px 0px 16px -8px var(--shadowBlack);
+    box-shadow: 0px 0px 16px -8px var(--shadowBlack);
     transition: all 0.3s ease;
   }
   .rightbarMonitoringBurgerLineOne,

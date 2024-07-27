@@ -183,7 +183,7 @@ export default function EditShiftTransfer() {
     //     new Date(monthSort).toLocaleDateString("nl-NL").split("-")[2]
     // );
     const oldToNew = (a, b) => {
-      return new Date(a.createdAt) - new Date(b.createdAt);
+      return new Date(b.createdAt) - new Date(a.createdAt);
     };
     allShiftsTransfers = Object.values(allShiftsTransfers).sort(oldToNew);
     setAllShiftsTransfersSort(
@@ -227,7 +227,7 @@ export default function EditShiftTransfer() {
   const handleSortWeek = async () => {
     const weekSort = sortWeek.current.value.split("W")[1];
     const oldToNew = (a, b) => {
-      return new Date(b.weekNumber) - new Date(a.weekNumber);
+      return new Date(b.createdAt) - new Date(a.createdAt);
     };
     allShiftsTransfers = Object.values(allShiftsTransfers).sort(oldToNew);
     setAllShiftsTransfersSort(

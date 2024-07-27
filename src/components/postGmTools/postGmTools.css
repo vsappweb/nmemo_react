@@ -3,8 +3,8 @@
   border-radius: 2px;
   border-top: 2px dashed var(--cText);
   border-bottom: 2px dashed var(--cText);
-  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--shadowBlack);
+  box-shadow: 0px 0px 16px -8px var(--shadowBlack);
   margin: 10px 0;
 }
 

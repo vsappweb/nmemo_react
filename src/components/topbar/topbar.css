@@ -107,8 +107,8 @@
   padding: 10px 10px;
   width: 150px;
   z-index: 10;
-  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--shadowBlack);
+  box-shadow: 0px 0px 16px -8px var(--shadowBlack);
 }
 
 .topbarMenuDropdown::before {
@@ -211,8 +211,8 @@
   max-height: 300px;
   margin: 10% auto;
   overflow: auto;
-  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--shadowBlack);
+  box-shadow: 0px 0px 16px -8px var(--shadowBlack);
 }
 
 .changeWalsDropdown.active {

@@ -61,8 +61,6 @@ button {
   background-color: inherit;
   color: inherit;
   cursor: pointer;
-  /* -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68); */
   border-bottom: 2px solid var(--cText);
   background-color: transparent;
   box-shadow: 1px 1px 5px 1px var(--cText);
@@ -72,8 +70,8 @@ button:hover {
   filter: brightness(100%);
   background-color: rgba(0, 0, 0, 0.2);
   transform: scale(1.025);
-  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
-  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--shadowBlack);
+  box-shadow: 0px 0px 16px -8px var(--shadowBlack);
   color: inherit;
 }
 
@@ -135,6 +133,8 @@ h6 {
   --cMsg: white;
   --bgChat: rgb(204, 201, 201);
   --sandInClock: grey;
+  --shadowBlack: rgba(0, 0, 0, 0.68);
+  --shadowWhite: rgba(255, 255, 255, 0.68);
 }
 
 body {
@@ -285,8 +285,8 @@ button .epr_3vd53t {
   filter: brightness(100%);
   background-color: rgba(0, 0, 0, 0.2);
   transform: scale(1.025);
-  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
-  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--shadowBlack);
+  box-shadow: 0px 0px 16px -8px var(--shadowBlack);
   color: inherit;
 }
 
@@ -308,7 +308,7 @@ button .epr_3vd53t {
   justify-content: center;
   width: 100%;
   height: 100%;
-  filter: drop-shadow(3px 6px 4px rgba(0, 0, 0, 0.8));
+  filter: drop-shadow(3px 6px 4px var(--shadowBlack));
   /* -webkit-text-stroke: 1px white; */
 }
 
@@ -327,14 +327,14 @@ button .epr_3vd53t {
   letter-spacing: 2px;
   margin-top: 10px;
   margin-right: 5px;
-  text-shadow: 3px 6px 4px rgba(0, 0, 0, 0.8);
-  /* filter: drop-shadow(3px 6px 4px  rgba(0, 0, 0, 0.8)); */
+  text-shadow: 3px 6px 4px var(--shadowBlack);
+  /* filter: drop-shadow(3px 6px 4px  var(--shadowBlack)); */
 }
 
 .loadingTextThreeDots {
   display: flex;
   align-items: flex-end;
-  filter: drop-shadow(3px 6px 4px rgba(0, 0, 0, 0.8));
+  filter: drop-shadow(3px 6px 4px var(--shadowBlack));
 }
 
 .expandBtn {

@@ -79,10 +79,10 @@ export default function Orders() {
           <Sidebar />
         </div>
         <div className="ordersRight">
-          <div className="orderRightProductSubmit">
+          {user.role === 3 && <div className="orderRightProductSubmit">
             <ProductNumberGet />
-          </div>
-          {localStorage.getItem("product") && (
+          </div>}
+          {(localStorage.getItem("product") || user.role === 2) && (
             <>
               <Pdf />
               <div className="orderRightBtnContainer">

@@ -83,8 +83,8 @@ export default function Stempel() {
     try {
       console.log(newStempelsToProduct);
       console.log(id);
-      await axios.put(`${API}/stempels/${id}`, newStempelsToProduct);
-      window.location.reload();
+      // await axios.put(`${API}/stempels/${id}`, newStempelsToProduct);
+      // window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -171,6 +171,7 @@ export default function Stempel() {
                                         name="productName"
                                         type="text"
                                         id="productName"
+                                        ref={productName}
                                         placeholder={`Product name ${
                                           index + 1
                                         }`}
@@ -196,6 +197,7 @@ export default function Stempel() {
                                         name="stempel"
                                         type="text"
                                         id="stempel"
+                                        ref={stempel}
                                         placeholder={`Stempel ${index + 1}`}
                                         defaultValue={
                                           nameAndStempel.stempel || ""
@@ -245,9 +247,9 @@ export default function Stempel() {
                       </fieldset>
                     </div>
                     <div className="stempelFormBtn">
-                      {/* <div className="editBtn" onClick={() => showEditStempels()}>
+                      <div className="editBtn" onClick={() => showEditStempels()}>
                       <Edit />
-                    </div> */}
+                    </div>
                       {showEditStempel && stempel && (
                         <button
                           className="buttonBtn"
