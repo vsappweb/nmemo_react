@@ -570,6 +570,7 @@ export default function EditShiftTransfer() {
                           className="editShiftTransferRightSortingInput"
                           id="sortShifts"
                           value="shifts"
+                          onChange={() => chooseSortOfShift(sortType)}
                         >
                           Shift
                         </option>
