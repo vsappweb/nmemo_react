@@ -6,6 +6,7 @@ import GmToolsForm from "../../components/gmToolsForm/GmToolsForm";
 import PostGmTools from "../../components/postGmTools/PostGmTools";
 import ProductNumberGet from "../../components/productNumberGet/ProductNumberGet";
 import Stempel from "../../components/stempel/Stempel";
+import {ExpandCircleDownOutlined} from "@mui/icons-material";
 
 import axios from "axios";
 
@@ -19,6 +20,7 @@ export default function BmGm() {
       : false
   );
   const [showSort, setShowSort] = useState(false);
+  const [expandMore, setExpandMore] = useState(5);
 
   const tools = [];
 
@@ -190,9 +192,21 @@ export default function BmGm() {
           )}
           <div className="bmGmFormContainer">{showForm && <GmToolsForm />}</div>
           <div className="bmGmPostContainer">
-            {Object.values(allGmTool).map((gmTool) => (
+            {Object.values(allGmTool).slice(0, expandMore).map((gmTool) => (
               <PostGmTools key={gmTool._id} gmTool={gmTool} />
             ))}
+            {allGmTool.length === expandMore || allGmTool.length < expandMore ? (
+          <> </>
+        ) : (
+          <div className="expandBtn">
+            <div
+              className="editBtn"
+              onClick={() => setExpandMore(expandMore + 5)}
+            >
+              <ExpandCircleDownOutlined />
+            </div>
+          </div>
+        )}
           </div>
         </div>
       </div>

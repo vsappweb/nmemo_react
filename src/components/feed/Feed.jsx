@@ -13,26 +13,21 @@ import "./feed.css";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import DateTimeShift from "../dateTimeShift/DateTimeShift";
-// import { Edit, DoneOutline, EmojiEmotions } from "@mui/icons-material"
+import { ExpandCircleDownOutlined } from "@mui/icons-material";
 // import Picker from "emoji-picker-react";
 
 export default function Feed({ personnelnumber, shiftTransfer }) {
   const API = process.env.REACT_APP_SERVER_API;
-  // const PF = process.env.REACT_APP_PUBLIC_FOLDER
-  // const desc = useRef();
   let date = new Date();
   const [posts, setPosts] = useState([]);
-  // const [postTlToLines, setPostTlToLines] = useState([]);
   const [postsMemo, setPostsMemo] = useState([]);
   let [postsShiftTransfer, setPostsShiftTransfer] = useState([]);
   const { user } = useContext(AuthContext);
-  // let [allEvents, setEvents] = useState([]);
   let [allTlToLines, setTlToLines] = useState([]);
   let [allMemoToLines, setMemoToLines] = useState([]);
   const [hideShiftTransferForm, setHideShiftTransferForm] = useState(true);
-  // const [text, setText] = useState("");
-  // const [open, setOpen] = useState(false);
   const [openAnswer, setOpenAnswer] = useState(false);
+  const [expandMore, setExpandMore] = useState(5);
 
   // get all events from database
   const shiftNow = renderToString(<DateTimeShift />);
@@ -230,9 +225,21 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
         {postsMemo.slice(0, 1).map((m) => (
           <PostMemo key={m._id} memo={m} />
         ))}
-        {posts.map((p) => (
+        {posts.slice(0, expandMore).map((p) => (
           <Post key={p._id} post={p} />
         ))}
+        {posts.length === expandMore || posts.length < expandMore ? (
+          <> </>
+        ) : (
+          <div className="expandBtn">
+            <div
+              className="editBtn"
+              onClick={() => setExpandMore(expandMore + 5)}
+            >
+              <ExpandCircleDownOutlined />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

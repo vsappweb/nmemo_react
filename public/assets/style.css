@@ -127,7 +127,7 @@ h6 {
   --cBadgeOnl: rgb(28, 212, 4);
   --cBadgeNtf: rgb(245, 12, 12);
   --logoIcons: #fff;
-  --bgSendBtn: #04b4b4;
+  --bgSendBtn: rgb(109, 118, 126);
   --cSendBtn: white;
   --bgMsgOwn: green;
   --bgMsg: grey;
@@ -335,4 +335,11 @@ button .epr_3vd53t {
   display: flex;
   align-items: flex-end;
   filter: drop-shadow(3px 6px 4px rgba(0, 0, 0, 0.8));
+}
+
+.expandBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
