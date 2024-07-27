@@ -581,7 +581,7 @@ export default function EditShiftTransfer() {
                           Wals
                         </option>
                       </select>
-                      {hideShiftSorting && (
+                      {hideShiftSorting ? (
                         <select
                           className="editShiftTransferRightSortingInput"
                           defaultValue={shiftNow}
@@ -616,8 +616,7 @@ export default function EditShiftTransfer() {
                             Night
                           </option>
                         </select>
-                      )}
-                      {hideShiftSorting === false && (
+                      ) : (
                         <input
                           className="editShiftTransferRightSortingInput"
                           type="text"
