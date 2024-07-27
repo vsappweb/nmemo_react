@@ -49,13 +49,8 @@ export default function PostTlToLine2({
       answer: text,
     };
     try {
-      // console.log(newAnswer)
       await axios.put(`${API}/tlToLines/${toLines._id}`, newAnswer);
-
-      // document.getElementById("feedTlToLineInformationBtn").style.display = "none"
-
       setOpenAnswer(!openAnswer);
-      // console.log(openAnswer)
     } catch (err) {
       console.log(err);
     }

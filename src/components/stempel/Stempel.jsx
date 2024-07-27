@@ -38,8 +38,6 @@ export default function Stempel() {
     newUnitValues.splice(i, 1);
     setUnitValues(newUnitValues);
   };
-  //add unit https://sadam-bapunawar.medium.com/add-and-remove-form-fields-dynamically-using-react-and-react-hooks-3b033c3c0bf5
-  // add unit https://sadam-bapunawar.medium.com/add-and-remove-form-fields-dynamically-using-react-and-react-hooks-3b033c3c0bf5
   const [formValues, setFormValues] = useState([
     { productName: "", stempel: "" },
   ]);
@@ -102,7 +100,6 @@ export default function Stempel() {
     setdelBtn(!delBtn);
     setShowEditStempel(false);
     setshowStempel(true);
-    console.log(delBtn);
   };
 
   const handleDelete = async (id) => {

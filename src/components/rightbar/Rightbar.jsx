@@ -128,7 +128,7 @@ export default function Rightbar({ user }) {
         dispatch({ type: "FOLLOW", payload: user._id });
       }
     } catch (err) {
-      console.log(err + "haaa");
+      console.log(err);
     }
     setFollowed(!followed);
   };

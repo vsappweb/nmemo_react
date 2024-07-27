@@ -27,36 +27,11 @@ export default function GmToolsForm() {
       date: date.toLocaleDateString("nl-NL"),
     };
     try {
-      console.log(toolInfo);
       await axios.post(`${API}/gmTools`, toolInfo);
       window.location.reload();
     } catch (err) {}
   };
 
-  // // get all users from database
-  // useEffect(() => {
-  //     const getGmTools = async () => {
-  //         try {
-  //             const res = await axios.get(`${API}/gmTools/allGmTools`);
-  //             setAllGmTool(res.data);
-  //         } catch (err) {
-  //             console.log(err);
-  //         }
-  //     };
-  //     getGmTools()
-  // }, [API]);
-
-  // // sort users by role (operators and wals)
-  // const roles = (a, b) => {
-  //     return (b.role) - (a.role);
-  // }
-
-  // allUsers = Object.values(allUsers).sort(roles);
-
-  // // filter users by role (operators and wals)
-  // allUsers = Object.values(allUsers).filter((user) => {
-  //     return user.role === 3;
-  // });
 
   return (
     <div className="gmToolsForm">

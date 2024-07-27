@@ -10,6 +10,8 @@ export default function Online({ onlineUsers, currentId }) {
   const [onlineFriends, setOnlineFriends] = useState([]);
 
   //TODO Show all online friends, not just followers
+
+
   useEffect(() => {
     const getFriends = async () => {
       const res = await axios.get(`${API}/users/friends/` + currentId);

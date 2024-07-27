@@ -82,7 +82,6 @@ export default function NMemo() {
   );
 
   const edit = allMemos;
-  // console.log('memo test222 >>>', edit);
 
   return (
     <>

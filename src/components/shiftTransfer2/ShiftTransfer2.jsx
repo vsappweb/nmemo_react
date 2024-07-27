@@ -43,7 +43,6 @@ export default function ShiftTransfer2(shiftTransfer) {
       value: e.target.value,
       date: date.toLocaleDateString("nl-NL"),
     };
-    //console.log(values)
     if (e.target.value === "NotOk") {
       console.log("This is NotOk");
       document
@@ -162,7 +161,6 @@ export default function ShiftTransfer2(shiftTransfer) {
           `${API}/shiftTransfersItems/allShiftTransfersItems`
         );
         setAllShiftsTransfer(res.data);
-        // console.log(res.data);
       } catch (err) {
         console.log(err);
       }
@@ -201,9 +199,6 @@ export default function ShiftTransfer2(shiftTransfer) {
       message: message?.current.value ? message?.current.value : "",
     };
     try {
-      // console.log(newShiftTransfer);
-
-      // console.log(shiftTransfer);
       axios.post(`${API}/shiftTransfers`, shiftTransfer);
       console.log("shift transfer has been successfully posted");
       document.getElementById(`transfer`).style.display = "none";

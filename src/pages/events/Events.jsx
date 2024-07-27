@@ -59,7 +59,6 @@ export default function Events() {
     };
   });
 
-  console.log(events);
   return (
     <>
       <Topbar />

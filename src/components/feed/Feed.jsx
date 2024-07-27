@@ -37,25 +37,12 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
   // get all events from database
   const shiftNow = renderToString(<DateTimeShift />);
 
-  // function addZero(i) {
-  //     if (i < 10) { i = "0" + i }
-  //     return i;
-  // }
-
-  // let hh = addZero(date.getHours());
-  // let mm = addZero(date.getMinutes());
-  // let ss = addZero(date.getSeconds());
-
-  // //atention changed format of date to fr-CA not nl-NL
-  // let time = date.toLocaleDateString('fr-CA') + "T" + hh + ":" + mm + ":" + ss;
-
   useEffect(() => {
     let interval;
     const fetchData = async () => {
       try {
         const res = await axios.get(`${API}/tlToLines/allTlToLines`);
         setTlToLines(res.data);
-        // console.log("test refresh")
       } catch (err) {
         console.error(err);
       }
@@ -153,14 +140,12 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
     let interval;
     const whatShift = async () => {
       try {
-        // console.log(hideShiftTransferForm);
         if (postsShiftTransfer) {
           Object.values(postsShiftTransfer).forEach((postsShiftTransfer) => {
             if (
               postsShiftTransfer.shift === shiftNow &&
               postsShiftTransfer.date === date.toLocaleDateString("nl-NL")
             ) {
-              // console.log("hide shift transfer form");
               setHideShiftTransferForm(false);
             } else if (
               postsShiftTransfer.shift !== shiftNow &&

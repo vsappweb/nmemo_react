@@ -19,7 +19,6 @@ export default function PostMemo({ memo }) {
     const fetchUser = async () => {
       const res = await axios.get(`${API}/users?userId=${memo.userId}`);
       setUser(res.data);
-      // console.log(Object.values(res.data))
     };
     fetchUser();
   }, [memo.userId, API]);

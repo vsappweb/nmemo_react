@@ -29,7 +29,6 @@ export default function Share() {
       const data = new FormData();
       const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
       const fileName = uniqueSuffix + file.name;
-      console.log(fileName);
       data.append("name", fileName);
       data.append("file", file);
       newPost.img = fileName;

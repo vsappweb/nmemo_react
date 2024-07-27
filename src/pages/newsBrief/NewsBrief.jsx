@@ -5,7 +5,6 @@ import Sidebar from "../../components/sidebar/Sidebar";
 
 export default function newsBrief() {
   const NEWS_BRIEF = process.env.REACT_APP_NEWS_BRIEF;
-  console.log(NEWS_BRIEF);
   return (
     <>
       <Topbar />

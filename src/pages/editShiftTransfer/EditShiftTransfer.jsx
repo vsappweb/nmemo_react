@@ -57,7 +57,6 @@ export default function EditShiftTransfer() {
       try {
         const res = await axios.get(`${API}/shiftTransfers/allShiftTransfers`);
         setAllShiftsTransfers(res.data);
-        // console.log(res.data);
       } catch (err) {
         console.error(err);
       }
@@ -78,7 +77,6 @@ export default function EditShiftTransfer() {
           `${API}/shiftTransfersItems/allShiftTransfersItems`
         );
         setAllShiftTransferItems(res.data);
-        // console.log(res.data);
       } catch (err) {
         console.error(err);
       }
@@ -117,9 +115,7 @@ export default function EditShiftTransfer() {
 
   // get shift transfer item
   const handleShTrItemGet = (stItems) => {
-    console.log(getShTrItem);
     setGetShTrItem(stItems);
-    console.log(getShTrItem);
   };
 
   // delete shift transfer item
@@ -152,7 +148,6 @@ export default function EditShiftTransfer() {
       title: item.current.value,
     };
     try {
-      console.log(newItem);
       await axios.post(`${API}/shiftTransfersItems`, newItem);
       window.location.reload();
     } catch (err) {
@@ -182,11 +177,11 @@ export default function EditShiftTransfer() {
   // Sorting by month
   const handleSortMonth = async () => {
     const monthSort = sortMonth.current.value;
-    console.log(
-      new Date(monthSort).toLocaleDateString("nl-NL").split("-")[1] +
-        "-" +
-        new Date(monthSort).toLocaleDateString("nl-NL").split("-")[2]
-    );
+    // console.log(
+    //   new Date(monthSort).toLocaleDateString("nl-NL").split("-")[1] +
+    //     "-" +
+    //     new Date(monthSort).toLocaleDateString("nl-NL").split("-")[2]
+    // );
     const oldToNew = (a, b) => {
       return new Date(a.createdAt) - new Date(b.createdAt);
     };
@@ -200,7 +195,6 @@ export default function EditShiftTransfer() {
             new Date(monthSort).toLocaleDateString("nl-NL").split("-")[2]
       )
     );
-    console.log("test");
     document.getElementById("sortDay").value = "";
     document.getElementById("sortWeek").value = "";
   };
@@ -208,8 +202,6 @@ export default function EditShiftTransfer() {
   // Sorting by day
   const handleSortDay = async () => {
     const daySort = sortDay.current.value;
-    console.log(daySort);
-    console.log(new Date(daySort).toLocaleDateString("nl-NL"));
     const oldToNew = (a, b) => {
       return new Date(a.createdAt) - new Date(b.createdAt);
     };
@@ -233,9 +225,7 @@ export default function EditShiftTransfer() {
 
   // Sorting by week
   const handleSortWeek = async () => {
-    console.log(sortWeek.current.value.split("-W")[0]);
     const weekSort = sortWeek.current.value.split("W")[1];
-    console.log(weekSort);
     const oldToNew = (a, b) => {
       return new Date(b.weekNumber) - new Date(a.weekNumber);
     };
@@ -247,7 +237,6 @@ export default function EditShiftTransfer() {
           shift.date.split("-")[2] === sortWeek.current.value.split("-W")[0]
       )
     );
-    console.log(allShiftsTransfersSort);
     document.getElementById("sortMonth").value = "";
     document.getElementById("sortDay").value = "";
   };
@@ -263,7 +252,6 @@ export default function EditShiftTransfer() {
       lockDay === false
     ) {
       const wals = "Wals " + valueSort;
-      console.log(wals + " not lock");
       setAllShiftsTransfersSort(
         Object.values(allShiftsTransfers).filter((shift) => shift.line === wals)
       );
@@ -273,7 +261,6 @@ export default function EditShiftTransfer() {
       (lockMonth === true || lockWeek === true || lockDay === true)
     ) {
       const wals = "Wals " + valueSort;
-      console.log(wals + " lock");
       setAllShiftsTransfersSecondQuery(
         Object.values(allShiftsTransfersSort).filter(
           (shift) => shift.line === wals
@@ -289,7 +276,6 @@ export default function EditShiftTransfer() {
       lockDay === false
     ) {
       const operator = valueSort;
-      console.log(operator);
       setAllShiftsTransfersSort(
         Object.values(allShiftsTransfers).filter(
           (shift) => shift.operator === operator
@@ -301,7 +287,6 @@ export default function EditShiftTransfer() {
       (lockMonth === true || lockWeek === true || lockDay === true)
     ) {
       const operator = valueSort;
-      console.log(operator);
       setAllShiftsTransfersSecondQuery(
         Object.values(allShiftsTransfersSort).filter(
           (shift) => shift.operator === operator

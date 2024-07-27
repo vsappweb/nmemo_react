@@ -37,47 +37,11 @@ export default function Topbar() {
   let menuRef = useRef();
   let changeWalsRef = useRef();
 
-  // function addZero(i) {
-  //     if (i < 10) { i = "0" + i }
-  //     return i;
-  // }
-
-  // let hh = addZero(date.getHours());
-  // let mm = addZero(date.getMinutes());
-  // // let ss = addZero(date.getSeconds());
-
-  // //atention changed format of date to fr-CA not nl-NL
-  // let time = hh + ":" + mm;// + ":" + ss;
-
-  // console.log(time)
-
-  // useEffect(() => {
-  //     let interval;
-  //     const getTime = async () => {
-  //         if (time === "20:10") {
-  //             console.log("start")
-  //         } else if (time === "20:11") {
-  //             console.log("close")
-  //         }
-  //     }
-  //     let result = getTime()
-  //     if (!result) {
-  //         interval = setInterval(getTime, 60000);
-  //     }
-  //     interval = setInterval(getTime, 60000);
-  //     return () => clearInterval(interval);
-  // }, [time,])
-
+  
   const changeLanguage = (language) => {
     i18n.changeLanguage(language);
-    console.log(language);
-    // if (language === "ua") {
     setChooseLang(language);
     setChangeLang(!changeLang);
-    // } else {
-    //     setChooseLang(true);
-    //     setChangeLang(false);
-    // }
   };
 
   useEffect(() => {

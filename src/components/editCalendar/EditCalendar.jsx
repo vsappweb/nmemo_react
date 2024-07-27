@@ -43,9 +43,7 @@ export default function EditCalendar() {
       allDay: allDay.current.value,
     };
     try {
-      console.log(event);
-      console.log(getEvent._id);
-      console.log(allDay.current.value);
+
       await axios.post(`${API}/events`, event);
       window.location.reload();
     } catch (err) {
@@ -64,8 +62,6 @@ export default function EditCalendar() {
       allDay: allDay.current.value,
     };
     try {
-      console.log(event);
-      console.log(getEvent._id);
       await axios.put(`${API}/events/${getEvent._id}`, event);
       window.location.reload();
     } catch (err) {

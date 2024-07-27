@@ -25,7 +25,6 @@ export default function MemoToLine() {
     e.preventDefault();
     if (forWho.current.value === "empty") {
       desc.current.setCustomValidity("What line do you want to send it to?");
-      console.log("empty");
     } else {
       const newtlToLine = {
         userId: user._id,
@@ -37,7 +36,6 @@ export default function MemoToLine() {
         const data = new FormData();
         const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
         const fileName = uniqueSuffix + file.name;
-        console.log(fileName);
         data.append("name", fileName);
         data.append("file", file);
         newtlToLine.img = fileName;

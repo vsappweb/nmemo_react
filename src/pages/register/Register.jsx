@@ -37,10 +37,7 @@ export default function Register() {
         role: role.current.value,
       };
       try {
-        console.log("test start");
-        console.log(user);
         await axios.post(`${API}/auth/register`, user);
-        console.log("test end");
         history("/login"); //history.push("/login")
       } catch (err) {
         console.log(err);

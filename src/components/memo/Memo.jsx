@@ -33,7 +33,6 @@ export default function Memo({ edit }) {
   let hidePan = true;
 
   edit = Object.values(edit).filter((edit) => edit.userId === user._id);
-  console.log(edit[0]); // console.log(edit.userId)
   edit = edit[0];
 
   if (edit === undefined) {
@@ -84,7 +83,6 @@ export default function Memo({ edit }) {
 
   // preparedTexts text input
   const handlePreparedTextsText = (preparedText) => {
-    console.log(preparedText);
     setText((prev) => prev + " " + preparedText.title + " ");
   };
 
@@ -123,7 +121,6 @@ export default function Memo({ edit }) {
       const data = new FormData();
       const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
       const fileName = uniqueSuffix + file.name;
-      console.log(fileName);
       data.append("name", fileName);
       data.append("file", file);
       newMemo.img = fileName;
@@ -155,7 +152,6 @@ export default function Memo({ edit }) {
       const data = new FormData();
       const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
       const fileName = uniqueSuffix + file.name;
-      console.log(fileName);
       data.append("name", fileName);
       data.append("file", file);
       newMemo.img = fileName;
@@ -185,7 +181,6 @@ export default function Memo({ edit }) {
       title: title.current.value,
     };
     try {
-      console.log(preparedText);
       await axios.post(`${API}/preparedTexts`, preparedText);
       window.location.reload();
     } catch (err) {
@@ -200,8 +195,6 @@ export default function Memo({ edit }) {
       title: title.current.value,
     };
     try {
-      console.log(preparedText);
-      console.log(getPreparedText._id);
       await axios.put(
         `${API}/preparedTexts/${getPreparedText._id}`,
         preparedText

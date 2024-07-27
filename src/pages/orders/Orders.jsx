@@ -36,7 +36,6 @@ export default function Orders() {
       date: date.toLocaleDateString("nl-NL"),
     };
     try {
-      console.log(incompleet);
       window.print();
       await axios.post(`${API}/incompleetAantals`, incompleet);
       window.location.reload();

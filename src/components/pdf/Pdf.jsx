@@ -17,8 +17,6 @@ export default function Pdf() {
     }
   };
 
-  // console.log(selectedFile);
-
   const onDocumentLoadSuccess = ({ numPages }) => {
     setNumPages(numPages);
   };

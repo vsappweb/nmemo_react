@@ -29,7 +29,6 @@ export default function BmGm() {
       try {
         const res = await axios.get(`${API}/gmTools/allGmTool`);
         setAllGmTool(res.data);
-        console.log(res.data);
       } catch (err) {
         console.log(err);
       }
@@ -49,7 +48,6 @@ export default function BmGm() {
             tools.push(tool.toolNumber);
           }
         });
-        console.log(Object.values(tools));
       } catch (err) {
         console.error(err);
         throw err;
@@ -68,7 +66,6 @@ export default function BmGm() {
   };
 
   const showMyTool = () => {
-    console.log("sort.value >>>", sortValue.current.value);
     const outTools = getTool(sortValue.current.value, tools);
     const bmGmSortTool = document.querySelector(".bmGmSortTool");
 
