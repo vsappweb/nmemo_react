@@ -122,17 +122,16 @@
   height: 400px !important;
 }
 
-/* page {
-    background: white;
-    display: block;
-    margin: 0 auto;
-    margin-bottom: 15px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
-  }
-  page[size="A5"] {  
-    width: 148mm;
-    height: 210mm; 
-  } */
+.orderIncompleetAantalItems {
+  border-top: 2px solid var(--main);
+  border-bottom: 2px solid var(--main);
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
 
 @media screen and (max-width: 600px) {
   .orderRightBtnContainer {

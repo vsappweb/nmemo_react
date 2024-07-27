@@ -1,10 +1,10 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import "./orders.css";
 import Topbar from "../../components/topbar/Topbar";
 import Sidebar from "../../components/sidebar/Sidebar";
 import { AuthContext } from "../../context/AuthContext";
 import ProductNumberGet from "../../components/productNumberGet/ProductNumberGet";
-// import PDFcomp from '../../PDFcomp';
+import { HighlightOff } from "@mui/icons-material";
 import Pdf from "../../components/pdf/Pdf";
 
 import axios from "axios";
@@ -15,13 +15,40 @@ export default function Orders() {
   const { user } = useContext(AuthContext);
   const [showPrint, setShowPrint] = useState(false);
   const [operator, setOperator] = useState("");
+  const [incompleet, setIncompleet] = useState([]);
   const operatorUser = useRef();
 
-  // useEffect(() => {
-  //   if (localStorage.getItem('product')) {
-  //     setShowBtn(!showBtn)
-  //   }
-  // },);
+  useEffect(() => {
+    let interval;
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          `${API}/incompleetAantals/allIncompleetAantal`
+        );
+        if (res && res.data) {
+          setIncompleet(res.data);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    let result = fetchData();
+    if (!result) {
+      interval = setInterval(fetchData, 60000);
+    }
+    interval = setInterval(fetchData, 60000);
+    return () => clearInterval(interval);
+  }, [API]);
+
+  const handleDeleteIncompleetAntal = async (id) => {
+    try {
+      await axios.delete(`${API}/incompleetAantals/${id}`);
+      window.alert("Deleted");
+      window.location.reload();
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleShowPrint = () => {
     setShowPrint(!showPrint);
@@ -54,23 +81,10 @@ export default function Orders() {
         <div className="ordersRight">
           <div className="orderRightProductSubmit">
             <ProductNumberGet />
-            {/* <form className="orderRightProductForm" onSubmit={handleSubmit} >
-              <label className="orderRightProductFormLabel" htmlFor="productNumber">
-                <p className="orderRightProductFormText">Please enter your product:</p>
-                <input className="orderRightProductFormInput" type="text" id='productNumber' ref={productnumber} minLength={2} maxLength={4} placeholder="0000" defaultValue={JSON.parse(localStorage.getItem('product'))} required />
-              </label>
-              <button className="orderRightProductFormBtn ordersButton" type="submit" >Get product</button>
-            </form> */}
           </div>
           {localStorage.getItem("product") && (
             <>
-              {/* <object data={`file:///D:/ARTIKELMAP/50/5068/KD_Informatie/50.. kozijnprofielen klachten.pdf`} type="application/pdf">
-                <iframe src="file:///D://ARTIKELMAP/50/5068/KD_Informatie/50.. kozijnprofielen klachten.pdf" title="PDF Document"></iframe>
-              </object> */}
-              {/* <PDFcomp /> */}
-
               <Pdf />
-
               <div className="orderRightBtnContainer">
                 <button className="ordersButton" type="submit">
                   Add quality warnings
@@ -89,62 +103,98 @@ export default function Orders() {
             </>
           )}
           {showPrint && (
-            <div className="orderIncompleetAantal" onSubmit={handlePrint}>
-              <h3 className="orderIncompleetAantalTitles">Incompleet aantal</h3>
-              <label className="orderRightProductFormLabel" htmlFor="operator">
-                <p className="orderRightProductFormText">Operator:</p>
-                <input
-                  className="orderRightProductFormInput"
-                  type="text"
-                  id="operator"
-                  ref={operatorUser}
-                  minLength={4}
-                  maxLength={4}
-                  placeholder="0000"
-                  onChange={() => setOperator(operatorUser.current.value)}
-                  required
-                />
-              </label>
-              <div className="incompleetAantalPaperForm">
-                <p className="orderIncompleetAantalTitle firstLine">
-                  melding incomplete aantallen
-                </p>
-                <p
-                  className="orderIncompleetAantalTitleBig secondLine"
-                  style={{
-                    fontSize: "44px",
-                    fontWeight: "bold",
-                    marginLeft: "120px",
-                  }}
-                >
-                  incompleet
-                  <br /> aantal
-                </p>
-                <p
-                  className="orderIncompleetAantalTitle thirdLine"
-                  style={{ borderBottom: "1px solid black", width: "80%" }}
-                >
-                  Datum: {date.toLocaleDateString("nl-NL")} /{" "}
-                  {user.personnelnumber} /{" "}
-                  {JSON.parse(localStorage.getItem("product"))} / {operator}
-                </p>
-                <div className="ordersFormAanmeldenColontitule">
-                  <p className="ordersFormAanmeldenColontituleText">
-                    G:\Kwaliteitsdienst\Formulieren\incomplete aantallen .xlsx
-                  </p>
-                  <p className="ordersFormAanmeldenColontituleDate">
-                    28-6-2016
-                  </p>
+            <>
+              {user.role === 3 ? (
+                <div className="orderIncompleetAantal" onSubmit={handlePrint}>
+                  <h3 className="orderIncompleetAantalTitles">
+                    Incompleet aantal
+                  </h3>
+                  <label
+                    className="orderRightProductFormLabel"
+                    htmlFor="operator"
+                  >
+                    <p className="orderRightProductFormText">Operator:</p>
+                    <input
+                      className="orderRightProductFormInput"
+                      type="text"
+                      id="operator"
+                      ref={operatorUser}
+                      minLength={4}
+                      maxLength={4}
+                      placeholder="0000"
+                      onChange={() => setOperator(operatorUser.current.value)}
+                      required
+                    />
+                  </label>
+                  <div className="incompleetAantalPaperForm">
+                    <p className="orderIncompleetAantalTitle firstLine">
+                      melding incomplete aantallen
+                    </p>
+                    <p
+                      className="orderIncompleetAantalTitleBig secondLine"
+                      style={{
+                        fontSize: "44px",
+                        fontWeight: "bold",
+                        marginLeft: "120px",
+                      }}
+                    >
+                      incompleet
+                      <br /> aantal
+                    </p>
+                    <p
+                      className="orderIncompleetAantalTitle thirdLine"
+                      style={{ borderBottom: "1px solid black", width: "80%" }}
+                    >
+                      Datum: {date.toLocaleDateString("nl-NL")} /{" "}
+                      {user.personnelnumber} /{" "}
+                      {JSON.parse(localStorage.getItem("product"))} / {operator}
+                    </p>
+                    <div className="ordersFormAanmeldenColontitule">
+                      <p className="ordersFormAanmeldenColontituleText">
+                        G:\Kwaliteitsdienst\Formulieren\incomplete aantallen
+                        .xlsx
+                      </p>
+                      <p className="ordersFormAanmeldenColontituleDate">
+                        28-6-2016
+                      </p>
+                    </div>
+                  </div>
+                  <button
+                    className="ordersButton"
+                    type="submit"
+                    onClick={() => handlePrint()}
+                  >
+                    afdruken/print
+                  </button>
                 </div>
-              </div>
-              <button
-                className="ordersButton"
-                type="submit"
-                onClick={() => handlePrint()}
-              >
-                afdruken/print
-              </button>
-            </div>
+              ) : (
+                <div className="orderIncompleetAantalItems">
+                  {Object.values(incompleet).map((incomplete) => (
+                    <>
+                      <div className="rightbarInfoItems" key={incomplete._id}>
+                        <div className="rightbarInfoBoxItem">
+                          <span className="rightbarInfoBoxItemKey">
+                            Line: {incomplete.lineId}
+                          </span>
+                          <br />
+                          <span className="rightbarInfoBoxItemKey">
+                            Product: {incomplete.productNumber}
+                          </span>
+                        </div>
+                        <div
+                          className="deleteBtn"
+                          onClick={() =>
+                            handleDeleteIncompleetAntal(incomplete._id)
+                          }
+                        >
+                          <HighlightOff />
+                        </div>
+                      </div>
+                    </>
+                  ))}
+                </div>
+              )}
+            </>
           )}
 
           {/* <div className="ordersProductionsFormulierenAanmelden">
