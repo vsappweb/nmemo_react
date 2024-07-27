@@ -78,12 +78,13 @@
 }
 
 .rightbarInfoItems {
-  border-top: 1px solid red;
+  /* border-top: 1px solid red;
   border-bottom: 1px solid red;
   border-left: 1px solid var(--main);
-  border-right: 1px solid var(--main);
+  border-right: 1px solid var(--main); */
   border-top-left-radius: 10px;
   border-bottom-right-radius: 10px;
+  box-shadow: 1px 1px 5px 1px var(--shadowBlack);
   padding-right: 5px;
   display: flex;
   align-items: center;
@@ -100,7 +101,7 @@
 }
 
 .rightbarInfoBoxItemKey {
-  color: brown;
+  color: var(--shadowBlack);
   font-weight: 500;
 }
 
