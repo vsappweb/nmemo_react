@@ -1,61 +1,59 @@
 .bmGm {
-    display: flex;
-    color: var(--cText);
+  display: flex;
+  color: var(--cText);
 }
 
 .bmGmRight {
-    flex: 9;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  flex: 9;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-
 .bmGmBtnContainer {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    gap: 10px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
 }
 
 .bmGmSortContainer {
-    padding: 10px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-    border-top: 2px solid var(--main);
-    border-bottom: 2px solid var(--main);
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  border-top: 2px solid var(--main);
+  border-bottom: 2px solid var(--main);
 }
 
-.bmGmSortLabel{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    position: relative;
-    flex-wrap: wrap;
-    margin-left: 10px;
-    margin-bottom: 10px;
+.bmGmSortLabel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  position: relative;
+  flex-wrap: wrap;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
-
-.bmGmSortTool{
-    position: absolute;
-    top: 0;
-    right: 0;
-    background-color: var(--bg);
-    padding: 5px;
-    border-radius: 5px;
-    border: 2px solid var(--cText);
+.bmGmSortTool {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--bg);
+  padding: 5px;
+  border-radius: 5px;
+  border: 2px solid var(--cText);
 }
 
 .bmGmSortHighlight {
-    color: red;
+  color: red;
 }
 
 .bmGmSortText {
-    font-weight: 500;
+  font-weight: 500;
 }

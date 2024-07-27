@@ -1,34 +1,34 @@
 .groups {
-    display: flex;
-    color: var(--cText);
+  display: flex;
+  color: var(--cText);
 }
-.groupsRight{
-    flex: 9;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: flex-start;
+.groupsRight {
+  flex: 9;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: flex-start;
 }
-.groupsUser{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 200px;
-    height: var(50dvh - 35px);
-    background-color: var(--bg);
-    padding: 10px;
-    border: 4px double var(--cText);
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-    overflow: auto;
+.groupsUser {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 200px;
+  height: var(50dvh - 35px);
+  background-color: var(--bg);
+  padding: 10px;
+  border: 4px double var(--cText);
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  overflow: auto;
 }
-.groupsTitle{
-    font-size: 16px;
-    font-weight: 800;
-    text-transform: uppercase;
-    font-weight: normal;
-    text-align: center;
-    margin-bottom: 15px;
+.groupsTitle {
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  font-weight: normal;
+  text-align: center;
+  margin-bottom: 15px;
 }

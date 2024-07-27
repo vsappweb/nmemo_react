@@ -1,264 +1,260 @@
 .memo {
-    width: 100%;
-    border-radius: 10px;
-    border: 3px double var(--cText);
-    -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
-    box-shadow: 0px 0px 16px -8px var(--cText);
-    /* margin-bottom: 25px; */
+  width: 100%;
+  border-radius: 10px;
+  border: 3px double var(--cText);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
+  box-shadow: 0px 0px 16px -8px var(--cText);
+  /* margin-bottom: 25px; */
 }
 
 .memoWrapper {
-    padding: 10px;
+  padding: 10px;
 }
 
 .memoTitle {
-    font-size: 16px;
-    font-weight: 500;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .memoTop {
-    display: flex;
+  display: flex;
 }
 
 .memoTopMiniSidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 15px;
-    padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  padding-bottom: 10px;
 }
 
-
 .memoInput {
-    border: none;
-    width: 100%;
-    padding: 10px;
-    height: 100px;
-    resize: none;
-    border-radius: 10px 10px 10px 0;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  height: 100px;
+  resize: none;
+  border-radius: 10px 10px 10px 0;
 }
 
 .memoInput:focus {
-    outline: none;
+  outline: none;
 }
 
 .memoHr {
-    margin: 5px;
-    border: 1px solid var(--cText);
+  margin: 5px;
+  border: 1px solid var(--cText);
 }
 
 .memoBottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .memoOptions {
-    display: flex;
-    margin-left: 20px;
+  display: flex;
+  margin-left: 20px;
 }
 
 .memoOption {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  cursor: pointer;
 }
 
 .memoIcon {
-    font-size: 18px;
-    margin-right: 10px;
-    color: var(--bgMsg);
-    cursor: pointer;
+  font-size: 18px;
+  margin-right: 10px;
+  color: var(--bgMsg);
+  cursor: pointer;
 }
-.memoIcon:hover{
-    color: var(--cText);
-    transform: scale(1.1);
-}
-
-.memoIcon:active{
-    transform: scale(0.9);
+.memoIcon:hover {
+  color: var(--cText);
+  transform: scale(1.1);
 }
 
-.memoEmoji{
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-.memoEmojiPicker{
-    margin-top: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.memoIcon:active {
+  transform: scale(0.9);
 }
 
+.memoEmoji {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.memoEmojiPicker {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .memoOptionText {
-    font-size: 14px;
-    font-weight: 500;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .memoButton {
-    border: none;
-    padding: 7px;
-    border-radius: 5px;
-    /* background-color: var(--bgSendBtn); */
-    font-weight: 500;
-    margin-right: 20px;
-    cursor: pointer;
-    color: var(--cText);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 2px groove var(--cText);
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  /* background-color: var(--bgSendBtn); */
+  font-weight: 500;
+  margin-right: 20px;
+  cursor: pointer;
+  color: var(--cText);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px groove var(--cText);
 }
 
-.memoImgContainer{
-    padding: 0 20px 10px 20px;
-    position: relative;
+.memoImgContainer {
+  padding: 0 20px 10px 20px;
+  position: relative;
 }
-.memoImg{
-    width: 100%;
-    object-fit: cover;
-    border-radius: 15px;
-}
-
-.memoCancel{
-    position: absolute;
-    top: 0;
-    right: 20px;
-    cursor: pointer;
-    opacity: 0.7;
-    border: 3px solid var(--cBadgeNtf);
-    border-radius: 50%;
-    color: var(--cSendBtn);
+.memoImg {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 15px;
 }
 
-.memoMultiSelect{
-    width: auto;
-}
-.memoInputContainer{
-    position: relative;
-    width: 100%;
-}
-
-.memoChoisePreparedText{
-    position: relative;
-    margin-top: 15px;
-    margin-bottom: 5px;
-    padding: 10px;
-    color: var(--cText);
-    width: 100%;
-    max-height: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    font-size: 20px;
-    /* background-color: greenyellow; */
-    border-radius: 3px;
-    border: 1px dashed var(--cText);
-    -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
-    box-shadow: 0px 0px 16px -8px var(--cText);
-    gap: 5px;
+.memoCancel {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  border: 3px solid var(--cBadgeNtf);
+  border-radius: 50%;
+  color: var(--cSendBtn);
 }
 
-.memoChoisePreparedTextScrollbar{
-    max-height: 200px;
-    overflow-x: none;
-    overflow-y: auto;
+.memoMultiSelect {
+  width: auto;
+}
+.memoInputContainer {
+  position: relative;
+  width: 100%;
 }
 
-.memoChoisePreparedTextCloseBtn{
-    position: absolute;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 3px;
-    right: 3px;
-    font-size: 12px;
-    color: var(--cText);
-    padding: 5px;
-    width: 50px;
-    height: 20px;
-    background-color: var(--bgMsg);
-    border-radius: 10px;
-    border: 3px double var(--cText);
-    -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
-    box-shadow: 0px 0px 16px -8px var(--cText);
+.memoChoisePreparedText {
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  padding: 10px;
+  color: var(--cText);
+  width: 100%;
+  max-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 20px;
+  /* background-color: greenyellow; */
+  border-radius: 3px;
+  border: 1px dashed var(--cText);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
+  box-shadow: 0px 0px 16px -8px var(--cText);
+  gap: 5px;
 }
 
-.memoChoisePreparedTextItemTitle{
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--bgMsg);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    line-height: normal;
-}
-.memoChoisePreparedTextItemTitle:hover{
-    transform: scale(1.1);
-    font-weight: bold;
-    line-height: normal;
-    color: var(--cText);
+.memoChoisePreparedTextScrollbar {
+  max-height: 200px;
+  overflow-x: none;
+  overflow-y: auto;
 }
 
-.memoChoisePreparedTextItemTitle:active{
-    transform: scale(0.9);
+.memoChoisePreparedTextCloseBtn {
+  position: absolute;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 3px;
+  right: 3px;
+  font-size: 12px;
+  color: var(--cText);
+  padding: 5px;
+  width: 50px;
+  height: 20px;
+  background-color: var(--bgMsg);
+  border-radius: 10px;
+  border: 3px double var(--cText);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
+  box-shadow: 0px 0px 16px -8px var(--cText);
 }
 
-.memoChoisePreparedTextItem{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.memoChoisePreparedTextItemTitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--bgMsg);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  line-height: normal;
+}
+.memoChoisePreparedTextItemTitle:hover {
+  transform: scale(1.1);
+  font-weight: bold;
+  line-height: normal;
+  color: var(--cText);
 }
 
-.memoChoisePreparedTextItemDo{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding-left: 20px;
+.memoChoisePreparedTextItemTitle:active {
+  transform: scale(0.9);
 }
 
-
-.preparedTextForm{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 5px;
+.memoChoisePreparedTextItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.preparedTextFormBtn{
-    border-bottom: 2px groove var(--cText);
-    border-radius: 5px;
-    padding: 5px 5px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.preparedTextFormBtn:hover{
-    transform: scale(1.1);
-}
-.preparedTextFormBtn:active{
-    transform: scale(0.9);
+.memoChoisePreparedTextItemDo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-left: 20px;
 }
 
+.preparedTextForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 5px;
+}
+
+.preparedTextFormBtn {
+  border-bottom: 2px groove var(--cText);
+  border-radius: 5px;
+  padding: 5px 5px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.preparedTextFormBtn:hover {
+  transform: scale(1.1);
+}
+.preparedTextFormBtn:active {
+  transform: scale(0.9);
+}
 
 @media screen and (max-width: 530px) {
-    .memoBottom{
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-    }
+  .memoBottom {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
 }

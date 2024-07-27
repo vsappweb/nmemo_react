@@ -1,6 +1,6 @@
-.homeContainer{
-    display: flex;
-    width: 100%;
-    background-color: var(--bg);
-    color: var(--cText);
+.homeContainer {
+  display: flex;
+  width: 100%;
+  background-color: var(--bg);
+  color: var(--cText);
 }

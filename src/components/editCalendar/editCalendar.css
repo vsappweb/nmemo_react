@@ -1,205 +1,205 @@
-input, textarea {
-    border-bottom: .5px groove var(--cText);
-    padding: 5px 15px;
-    /* color: var(--cBadgeNtf); */
-    border-radius: 3px;
+input,
+textarea {
+  border-bottom: 0.5px groove var(--cText);
+  padding: 5px 15px;
+  /* color: var(--cBadgeNtf); */
+  border-radius: 3px;
 }
 
 .editEvents {
-    display: flex;
-    color: var(--cText);
-    flex-wrap: wrap;
+  display: flex;
+  color: var(--cText);
+  flex-wrap: wrap;
 }
 
 .editEventsLeft {
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin: 0 auto;
-    padding: 20px 20px;
-    gap: 15px;
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px 20px;
+  gap: 15px;
 }
 
-
 .editEventsTitle {
-    font-size: 16px;
-    font-weight: 500;
-    text-transform: uppercase;
-    font-weight: normal;
-    text-align: center;
-    margin: 5px 10px 10px 10px;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-weight: normal;
+  text-align: center;
+  margin: 5px 10px 10px 10px;
 }
 
 .editEventsForm {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: stretch;
-    gap: 25px;
-    max-width: 320px;
-    margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+  gap: 25px;
+  max-width: 320px;
+  margin: 10px;
 }
 
 .editEventsFormItem {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 10px;
 }
 .editEventsFormText {
-    font-size: 14px;
-    margin-right: 10px;
+  font-size: 14px;
+  margin-right: 10px;
 }
-
 
 .editEventsInput {
-    width: 250px;
-    border-bottom: 1px groove var(--cText);
-    padding: 5px 15px;
-    color: var(--cBadgeNtf);
-    border-radius: 3px;
+  width: 250px;
+  border-bottom: 1px groove var(--cText);
+  padding: 5px 15px;
+  color: var(--cBadgeNtf);
+  border-radius: 3px;
 }
 
-.editEventsBorder, .editEventsBorderRight {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0 auto;
-    padding: 20px 20px;
-    border: 1px groove var(--cText);
-    border-radius: 5px;
+.editEventsBorder,
+.editEventsBorderRight {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  padding: 20px 20px;
+  border: 1px groove var(--cText);
+  border-radius: 5px;
 }
 
-.editEventsDesc{
-    width: 75%;
-    height: 80px;
-    padding: 10px 10px;
-    border: 1px groove var(--cText);
-    border-radius: 5px;
-    resize: none;
+.editEventsDesc {
+  width: 75%;
+  height: 80px;
+  padding: 10px 10px;
+  border: 1px groove var(--cText);
+  border-radius: 5px;
+  resize: none;
 }
 
 .editEventsBtn {
-    padding: 15px;
-    width: 200px;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin: 0 auto;
-    border-bottom: 2px groove var(--cText);
+  padding: 15px;
+  width: 200px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 auto;
+  border-bottom: 2px groove var(--cText);
 }
 
-.editEventsRight{
-    flex: 3;
-    display: flex;
-    flex-direction: column;
+.editEventsRight {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
 }
 
-.editEventsBorderRight{
-    width:90%;
-    max-height: calc(100dvh - 80px);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px  auto 0;
-    padding: 20px 20px;
-    border: 1px groove var(--cText);
-    border-radius: 5px;
+.editEventsBorderRight {
+  width: 90%;
+  max-height: calc(100dvh - 80px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px auto 0;
+  padding: 20px 20px;
+  border: 1px groove var(--cText);
+  border-radius: 5px;
 }
 
-.editEventsRightTitle{
-    font-size: 16px;            
-    text-transform: uppercase;
-    font-weight: normal;
-    text-align: center;
-    margin: 20px 10px 10px 10px;
+.editEventsRightTitle {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: normal;
+  text-align: center;
+  margin: 20px 10px 10px 10px;
 }
 
-.editEventsBox{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    height: calc(100dvh - 140px);
-    overflow: auto;
+.editEventsBox {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  height: calc(100dvh - 140px);
+  overflow: auto;
 }
 
-.editEventsRightItem{
-    width: 100%;
-    padding: 5px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
-    margin: 5px 0;
-    display: flex;
-    align-items: center;
-    justify-content:space-between;
+.editEventsRightItem {
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.68);
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.editEventsRightItemContent{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;        
-    align-items: center;
-    gap: 5px;
+.editEventsRightItemContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 
-.editEventsBtnClean{
-    border-bottom: 2px groove var(--cText);
-    border-radius: 5px;
-    padding: 5px 5px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.editEventsBtnClean {
+  border-bottom: 2px groove var(--cText);
+  border-radius: 5px;
+  padding: 5px 5px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
-.editEventsBtnClean:hover{
-    transform: scale(1.1);
+.editEventsBtnClean:hover {
+  transform: scale(1.1);
 }
-.editEventsBtnClean:active{
-    transform: scale(0.9);
+.editEventsBtnClean:active {
+  transform: scale(0.9);
 }
 
-.editEventsTitleContainer{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.editEventsTitleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .rbc-button-link {
-    box-shadow: none;
+  box-shadow: none;
 }
 
 .rbc-event {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .rbc-event.rbc-selected {
-    background-color: transparent;
-    color: var(--cBadgeNtf);
+  background-color: transparent;
+  color: var(--cBadgeNtf);
 }
 
 .rbc-toolbar button {
-    box-shadow: none;
-    border: 1px solid var(--cText);
-    border-radius: 5px;
+  box-shadow: none;
+  border: 1px solid var(--cText);
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 500px) {
-    .editEventsLeft {
-        padding: 10px 0px;
-    }
+  .editEventsLeft {
+    padding: 10px 0px;
+  }
 
-    .rbc-toolbar .rbc-toolbar-label {
-        padding: 10px;
-    }
+  .rbc-toolbar .rbc-toolbar-label {
+    padding: 10px;
+  }
 
-    .rbc-toolbar {
-        margin-bottom: 15px;
-    }
+  .rbc-toolbar {
+    margin-bottom: 15px;
+  }
 }

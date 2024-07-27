@@ -1,352 +1,347 @@
 .safetyMeldingMilieu {
-    width: 100%;
-    border-radius: 10px;
-    border: 3px double var(--cText);
-    -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
-    box-shadow: 0px 0px 16px -8px var(--cText);
-    -webkit-box-shadow: inset 0px 0px 21px 1px #FF080C;
-    box-shadow: inset 0px 0px 21px 1px #FF080C;
-    margin-bottom: 25px;
-
+  width: 100%;
+  border-radius: 10px;
+  border: 3px double var(--cText);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
+  box-shadow: 0px 0px 16px -8px var(--cText);
+  -webkit-box-shadow: inset 0px 0px 21px 1px #ff080c;
+  box-shadow: inset 0px 0px 21px 1px #ff080c;
+  margin-bottom: 25px;
 }
 
 .safetyMeldingMilieuWrapper {
-    padding:20px 10px;
+  padding: 20px 10px;
 }
 
 .safetyMeldingMilieuOptionsWrapper {
-    padding: 10px;
-    width: 90%;
-    max-width: 500px;
+  padding: 10px;
+  width: 90%;
+  max-width: 500px;
 }
 
 .safetyMeldingMilieuchooseBoxCapton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .safetyMeldingMilieuTitle {
-    font-size: 16px;
-    font-weight: 500;
-    /* margin-bottom: 15px; */
-    text-transform: uppercase;
-    text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  /* margin-bottom: 15px; */
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .safetyMeldingMilieuchooseBox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: uppercase;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .safetyMeldingMilieuInner {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .safetyMeldingMilieuTopMiniSidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 15px;
-    padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  padding-bottom: 10px;
 }
 
-
 .safetyMeldingMilieuTextarea {
-    border: none;
+  border: none;
 
-    padding: 10px;
-    height: 100px;
-    resize: none;
-    border-radius: 10px 10px 10px 0;
+  padding: 10px;
+  height: 100px;
+  resize: none;
+  border-radius: 10px 10px 10px 0;
 }
 
 .safetyMeldingMilieuInput:focus {
-    outline: none;
+  outline: none;
 }
 
 .safetyMeldingMilieuHr {
-    margin: 5px;
-    border: 1px solid var(--cText);
+  margin: 5px;
+  border: 1px solid var(--cText);
 }
 
 .safetyMeldingMilieuForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .safetyMeldingMilieuOption {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    margin-left: 10px;
-    margin-bottom: 20px;
-    gap: 10px;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  gap: 10px;
+  cursor: pointer;
 }
 
 .photoAnchor {
-    position: relative;
+  position: relative;
 }
 
 .safetyMeldingMilieuPhoto {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .safetyMeldingMilieuIcon {
-    font-size: 18px;
-    margin-right: 10px;
-    color: var(--bgMsg);
-    cursor: pointer;
+  font-size: 18px;
+  margin-right: 10px;
+  color: var(--bgMsg);
+  cursor: pointer;
 }
 
 .safetyMeldingMilieuIcon:hover {
-    color: var(--cText);
-    transform: scale(1.1);
+  color: var(--cText);
+  transform: scale(1.1);
 }
 
 .safetyMeldingMilieuIcon:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .safetyMeldingMilieuEmoji {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .safetyMeldingMilieuEmojiPicker {
-    margin-top: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-
 .safetyMeldingMilieuOptionText {
-    font-size: 14px;
-    font-weight: 500;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .safetyMeldingMilieuButton {
-    border: none;
-    padding: 7px;
-    border-radius: 5px;
-    /* background-color: var(--bgSendBtn); */
-    font-weight: 500;
-    margin-right: 20px;
-    cursor: pointer;
-    color: var(--cText);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 2px groove var(--cText);
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  /* background-color: var(--bgSendBtn); */
+  font-weight: 500;
+  margin-right: 20px;
+  cursor: pointer;
+  color: var(--cText);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px groove var(--cText);
 }
 
 .safetyMeldingMilieuImgContainer {
-    padding: 0 20px 10px 20px;
-    position: relative;
+  padding: 0 20px 10px 20px;
+  position: relative;
 }
 
 .safetyMeldingMilieuImg {
-    width: 100%;
-    object-fit: cover;
-    border-radius: 15px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 15px;
 }
 
 .safetyMeldingMilieuCancel {
-    position: absolute;
-    top: 0;
-    right: 20px;
-    cursor: pointer;
-    opacity: 0.7;
-    border: 3px solid var(--cBadgeNtf);
-    border-radius: 50%;
-    color: var(--cSendBtn);
+  position: absolute;
+  top: 0;
+  right: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  border: 3px solid var(--cBadgeNtf);
+  border-radius: 50%;
+  color: var(--cSendBtn);
 }
 
 .safetyMeldingMilieuMultiSelect {
-    width: auto;
+  width: auto;
 }
 
 .safetyMeldingMilieuInputContainer {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
 }
 
 .safetyMeldingMilieuInput {
-    width: 70%;
-    max-width: 300px;
+  width: 70%;
+  max-width: 300px;
 }
 
 .safetyMeldingMilieuChoisePreparedText {
-    position: relative;
-    margin-top: 15px;
-    margin-bottom: 5px;
-    padding: 10px;
-    color: var(--cText);
-    width: 100%;
-    max-height: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    font-size: 20px;
-    /* background-color: greenyellow; */
-    border-radius: 3px;
-    border: 1px dashed var(--cText);
-    -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
-    box-shadow: 0px 0px 16px -8px var(--cText);
-    gap: 5px;
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  padding: 10px;
+  color: var(--cText);
+  width: 100%;
+  max-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 20px;
+  /* background-color: greenyellow; */
+  border-radius: 3px;
+  border: 1px dashed var(--cText);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
+  box-shadow: 0px 0px 16px -8px var(--cText);
+  gap: 5px;
 }
 
 .safetyMeldingMilieuChoisePreparedTextScrollbar {
-    max-height: 200px;
-    overflow-x: none;
-    overflow-y: auto;
+  max-height: 200px;
+  overflow-x: none;
+  overflow-y: auto;
 }
 
 .safetyMeldingMilieuChoisePreparedTextCloseBtn {
-    position: absolute;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 3px;
-    right: 3px;
-    font-size: 12px;
-    color: var(--cText);
-    padding: 5px;
-    width: 50px;
-    height: 20px;
-    background-color: var(--bgMsg);
-    border-radius: 10px;
-    border: 3px double var(--cText);
-    -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
-    box-shadow: 0px 0px 16px -8px var(--cText);
+  position: absolute;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 3px;
+  right: 3px;
+  font-size: 12px;
+  color: var(--cText);
+  padding: 5px;
+  width: 50px;
+  height: 20px;
+  background-color: var(--bgMsg);
+  border-radius: 10px;
+  border: 3px double var(--cText);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
+  box-shadow: 0px 0px 16px -8px var(--cText);
 }
 
 .safetyMeldingMilieuChoisePreparedTextItemTitle {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--bgMsg);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    line-height: normal;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--bgMsg);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  line-height: normal;
 }
 
 .safetyMeldingMilieuChoisePreparedTextItemTitle:hover {
-    transform: scale(1.1);
-    font-weight: bold;
-    line-height: normal;
-    color: var(--cText);
+  transform: scale(1.1);
+  font-weight: bold;
+  line-height: normal;
+  color: var(--cText);
 }
 
 .safetyMeldingMilieuChoisePreparedTextItemTitle:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .safetyMeldingMilieuChoisePreparedTextItem {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .safetyMeldingMilieuChoisePreparedTextItemDo {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-left: 20px;
 }
 
 .safetyMeldingMilieuChoisePrepatredTextItemEdit {
-    cursor: pointer;
-    color: var(--bgMsgOwn);
-    font-size: 12px;
-    transition: all 0.3s ease;
+  cursor: pointer;
+  color: var(--bgMsgOwn);
+  font-size: 12px;
+  transition: all 0.3s ease;
 }
 
 .safetyMeldingMilieuChoisePrepatredTextItemEdit:hover {
-    color: var(--bgMsgOwn);
-    transform: scale(1.1);
+  color: var(--bgMsgOwn);
+  transform: scale(1.1);
 }
 
 .safetyMeldingMilieuChoisePrepatredTextItemEdit:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
-
 .safetyMeldingMilieuChoisePrepatredTextItemDelete {
-    cursor: pointer;
-    color: var(--cBadgeNtf);
-    font-size: 12px;
-    transition: all 0.3s ease;
+  cursor: pointer;
+  color: var(--cBadgeNtf);
+  font-size: 12px;
+  transition: all 0.3s ease;
 }
 
 .safetyMeldingMilieuChoisePrepatredTextItemDelete:hover {
-    color: var(--cBadgeNtf);
-    transform: scale(1.1);
+  color: var(--cBadgeNtf);
+  transform: scale(1.1);
 }
 
 .safetyMeldingMilieuChoisePrepatredTextItemDelete:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .preparedTextForm {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 5px;
 }
 
 .preparedTextFormBtn {
-    border-bottom: 2px groove var(--cText);
-    border-radius: 5px;
-    padding: 5px 5px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  border-bottom: 2px groove var(--cText);
+  border-radius: 5px;
+  padding: 5px 5px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .preparedTextFormBtn:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .preparedTextFormBtn:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .safetyMeldingMilieuRadio {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
 }

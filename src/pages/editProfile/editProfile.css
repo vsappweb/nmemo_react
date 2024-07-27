@@ -1,142 +1,141 @@
-input{
-    border-bottom: .5px groove var(--cText);
-    padding: 5px 15px;
-    /* color: var(--cBadgeNtf); */
-    border-radius: 3px;
+input {
+  border-bottom: 0.5px groove var(--cText);
+  padding: 5px 15px;
+  /* color: var(--cBadgeNtf); */
+  border-radius: 3px;
 }
 
-.editProfile{
-    display: flex;
-    color: var(--cText);
+.editProfile {
+  display: flex;
+  color: var(--cText);
 }
-.editProfileRight{
-    flex: 9;
-    display: flex;
-    gap: 15px;
+.editProfileRight {
+  flex: 9;
+  display: flex;
+  gap: 15px;
 }
-.editProfileRight{
-    flex: 9;
-    display: flex;
-    gap: 15px;
-    
-        flex-wrap: nowrap;
-        justify-content: center;
- 
+.editProfileRight {
+  flex: 9;
+  display: flex;
+  gap: 15px;
+
+  flex-wrap: nowrap;
+  justify-content: center;
 }
 .editProfileRightEdit,
-.editProfileRightRegister{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.editProfileRightRegister {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.editProfileTitle{
-    font-size: 16px;
-    text-transform: uppercase;
-    font-weight: normal;
-    margin: 20px 10px 10px 10px;
-    text-align: center;
+.editProfileTitle {
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: normal;
+  margin: 20px 10px 10px 10px;
+  text-align: center;
 }
 
-.editProfileForm{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 25px;
-    max-width: 350px;
-    margin: 10px;
+.editProfileForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 25px;
+  max-width: 350px;
+  margin: 10px;
 }
 
-.editProfileFormItem{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.editProfileFormItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.editProfileButtonGet{
-    border-bottom: 2px groove var(--cText);
-    border-radius: 5px;
-    padding: 5px 5px;
+.editProfileButtonGet {
+  border-bottom: 2px groove var(--cText);
+  border-radius: 5px;
+  padding: 5px 5px;
 }
 
-.editProfileInput{
-    width: 200px;
-    border-bottom: 1px groove var(--cText);
-    padding: 5px 15px;
-    color: var(--cBadgeNtf);
-    border-radius: 3px;
+.editProfileInput {
+  width: 200px;
+  border-bottom: 1px groove var(--cText);
+  padding: 5px 15px;
+  color: var(--cBadgeNtf);
+  border-radius: 3px;
 }
 
-.editProfilePictures{
-    display: flex;
-    gap: 20px;
-    justify-content: space-between;
+.editProfilePictures {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
 }
-.editProfileBorderPicture{
-    position: relative;
-    min-width: 150px;
-    height: 80px;
-    display: flex;
-    align-items: center; 
-    justify-content: space-around;
-    border: 1px groove var(--cText);
-    border-radius: 5px;
-}
-
-.editProfileImgContainer{
-    position: absolute;
-    border-radius: 15px;
-    width: 55px;
-    height: 55px;
-    left: 50%;
-    transform: translateX(-50%);
+.editProfileBorderPicture {
+  position: relative;
+  min-width: 150px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px groove var(--cText);
+  border-radius: 5px;
 }
 
-.editProfileImg{
-    position: relative;
-    border-radius: 10px;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+.editProfileImgContainer {
+  position: absolute;
+  border-radius: 15px;
+  width: 55px;
+  height: 55px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.editProfileImgCancel{
-    position: absolute;
-    top: -15px;
-    right: -15px;
-    border: 2px solid whitesmoke;
-    border-radius: 50%;
+.editProfileImg {
+  position: relative;
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
-.editProfilePicture{
-    position: relative;
-    border: 1px solid blue;
-    width: 55px;
-    height: 55px;
+.editProfileImgCancel {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  border: 2px solid whitesmoke;
+  border-radius: 50%;
 }
 
-.editProfileBorder{
-    width: 65%;
-    margin: 0 auto;
-    padding: 20px 20px;
-    border: 1px groove var(--cText);
-    border-radius: 5px;
+.editProfilePicture {
+  position: relative;
+  border: 1px solid blue;
+  width: 55px;
+  height: 55px;
 }
 
-.editProfileBtn{
-    padding: 15px;
-    width: 200px;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin: 0 auto;
-    border-bottom: 2px groove var(--cText);
+.editProfileBorder {
+  width: 65%;
+  margin: 0 auto;
+  padding: 20px 20px;
+  border: 1px groove var(--cText);
+  border-radius: 5px;
+}
+
+.editProfileBtn {
+  padding: 15px;
+  width: 200px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 auto;
+  border-bottom: 2px groove var(--cText);
 }
 
 @media screen and (max-width: 900px) {
-    .editProfileRight{
-        flex-wrap: wrap;
-    }
+  .editProfileRight {
+    flex-wrap: wrap;
+  }
 }

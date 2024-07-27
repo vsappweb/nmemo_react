@@ -1,48 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Web site created using create-react-app" />
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale= 1.0, user-scalable=no">
-  <meta name="theme-color" content="#6c757d">
-  <meta name="apple-mobile-web-app-status-bar" content="#6c757d">
-  <meta name="description" content="Сalculator of the new corrector factor">
-  <meta name="robots" content="noindex">
-  <meta name="google" value="notranslate">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,500&display=swap"
-    rel="stylesheet">
-  <title>nMemo ά 0.2</title>
-  <!-- <link rel="icon" type="image/x-icon" href="http://localhost:3000/assets/favicon.png">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale= 1.0, user-scalable=no"
+    />
+    <meta name="theme-color" content="#6c757d" />
+    <meta name="apple-mobile-web-app-status-bar" content="#6c757d" />
+    <meta name="description" content="Сalculator of the new corrector factor" />
+    <meta name="robots" content="noindex" />
+    <meta name="google" value="notranslate" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,500&display=swap"
+      rel="stylesheet"
+    />
+    <title>nMemo ά 0.2</title>
+    <!-- <link rel="icon" type="image/x-icon" href="http://localhost:3000/assets/favicon.png">
   <link href="http://localhost:3000/assets/style.css" rel="stylesheet"> -->
-  <link rel="icon" type="image/x-icon" href="../assets/favicon.png">
-  <link rel="icon" href="../assets/ico/apple-touch-icon.png" sizes="any">
-  <link rel="apple-touch-icon" href="./ico/apple-touch-icon.png">
-  <link rel="apple-touch-icon" sizes="48x48" href="../assets/ico/apple-touch-icon-48x48.png">
-  <link rel="apple-touch-icon" sizes="64x64" href="../assets/ico/apple-touch-icon-64x64.png">
-  <link rel="apple-touch-icon" sizes="72x72" href="../assets/ico/apple-touch-icon-72x72.png">
-  <link rel="apple-touch-icon" sizes="96x96" href="../assets/ico/apple-touch-icon-96x96.png">
-  <link rel="apple-touch-icon" sizes="128x128" href="../assets/ico/apple-touch-icon-128x128.png">
-  <link rel="apple-touch-icon" sizes="144x144" href="../assets/ico/apple-touch-icon-144x144.png">
-  <link rel="apple-touch-icon" sizes="152x153" href="../assets/ico/apple-touch-icon-152x152.png">
-  <link rel="apple-touch-icon" sizes="192x192" href="../assets/ico/apple-touch-icon-192x192.png">
-  <link rel="apple-touch-icon" sizes="256x256" href="../assets/ico/apple-touch-icon-256x256.png">
-  <link rel="apple-touch-icon" sizes="512x512" href="../assets/ico/apple-touch-icon-512x512.png">
-  <link href="../assets/style.css" rel="stylesheet">
-  <link rel="manifest" href="../assets/manifest.webmanifest.json">
-</head>
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.png" />
+    <link rel="icon" href="../assets/ico/apple-touch-icon.png" sizes="any" />
+    <link rel="apple-touch-icon" href="./ico/apple-touch-icon.png" />
+    <link
+      rel="apple-touch-icon"
+      sizes="48x48"
+      href="../assets/ico/apple-touch-icon-48x48.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="64x64"
+      href="../assets/ico/apple-touch-icon-64x64.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="../assets/ico/apple-touch-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="96x96"
+      href="../assets/ico/apple-touch-icon-96x96.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="128x128"
+      href="../assets/ico/apple-touch-icon-128x128.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="../assets/ico/apple-touch-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x153"
+      href="../assets/ico/apple-touch-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="192x192"
+      href="../assets/ico/apple-touch-icon-192x192.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="256x256"
+      href="../assets/ico/apple-touch-icon-256x256.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="512x512"
+      href="../assets/ico/apple-touch-icon-512x512.png"
+    />
+    <link href="../assets/style.css" rel="stylesheet" />
+    <link rel="manifest" href="../assets/manifest.webmanifest.json" />
+  </head>
 
-<body>
-
+  <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div class="container">
       <div id="root"></div>
     </div>
-</body>
-
+  </body>
 </html>

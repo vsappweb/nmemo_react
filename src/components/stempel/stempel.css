@@ -1,70 +1,70 @@
 .stempel {
-    display: flex;
-    color: var(--cText);
+  display: flex;
+  color: var(--cText);
 }
 
 .stempelFormLabel {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-weight: bold;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .stempelFormBtn {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    margin-top: 10px;
-    margin-bottom: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-.stempelContainerItems{
-    display: flex;
-    /* flex-direction: column; */
-    /* align-items: stretch; */
-    justify-content: center;
-    flex-wrap: wrap;
+.stempelContainerItems {
+  display: flex;
+  /* flex-direction: column; */
+  /* align-items: stretch; */
+  justify-content: center;
+  flex-wrap: wrap;
 }
-.stempelContainerItem{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border-bottom: 1px dashed var(--bgMsg);
+.stempelContainerItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px dashed var(--bgMsg);
 }
-.stempelFormTitle{
-    font-size: 16px;
-    line-height: normal;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
-.stempelFormType{
-    position: relative;
-    /* min-width: 150px; */
-    /* height: 80px; */
-    display: flex;
-    flex-direction: column;
-    align-items: stretch; 
-    justify-content: space-around;
-    border: 1px groove var(--cText);
-    border-radius: 5px;
-    padding: 10px;
-margin: 10px;
+.stempelFormTitle {
+  font-size: 16px;
+  line-height: normal;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-.stempelFormTypeTitle{
-    display: flex;
-    align-items: center;
+.stempelFormType {
+  position: relative;
+  /* min-width: 150px; */
+  /* height: 80px; */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-around;
+  border: 1px groove var(--cText);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
 }
 
-.stempelFormText{
-    font-size: 14px;
-    line-height: normal;
-    font-weight: bold;
-    text-align: center;
-    margin-right: 15px;
+.stempelFormTypeTitle {
+  display: flex;
+  align-items: center;
+}
+
+.stempelFormText {
+  font-size: 14px;
+  line-height: normal;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 15px;
 }

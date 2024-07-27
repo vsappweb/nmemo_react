@@ -1,9 +1,9 @@
 .logistics {
-    display: flex;
-    color: var(--cText);
+  display: flex;
+  color: var(--cText);
 }
-.logisticsRight{
-    flex: 9;
-    display: flex;
-    gap: 15px;
+.logisticsRight {
+  flex: 9;
+  display: flex;
+  gap: 15px;
 }

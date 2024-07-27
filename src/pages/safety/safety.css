@@ -1,58 +1,57 @@
 .safety {
-    display: flex;
-    color: var(--cText);
+  display: flex;
+  color: var(--cText);
 }
-.safetyRight{
-    flex: 9;
-    display: flex;
-    gap: 15px;
+.safetyRight {
+  flex: 9;
+  display: flex;
+  gap: 15px;
 }
 
 .safetyInformLine {
-	width: 220px;
-	height: 2px;
-	margin: 30px auto 20px;
-	background-color: var(--cText);
+  width: 220px;
+  height: 2px;
+  margin: 30px auto 20px;
+  background-color: var(--cText);
 }
 
 .safetyInformTitle {
-	padding: 0 25px;
-	font-family: 'Roboto Mono', monospace;
-	font-size: 24px;
-	text-align: center;
-	margin-bottom: 15px;
-	color: rgb(138, 19, 19);
+  padding: 0 25px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 15px;
+  color: rgb(138, 19, 19);
 }
 
 .safetyInformText {
-	padding: 0 25px;
-	font-family: 'Roboto Mono', monospace;
-	font-size: 18px;
-	text-align: left;
-	color: var(--cText);
-	margin-bottom: 20px;
+  padding: 0 25px;
+  font-family: "Roboto Mono", monospace;
+  font-size: 18px;
+  text-align: left;
+  color: var(--cText);
+  margin-bottom: 20px;
 }
 
 .safetyInformText span {
-	font-weight: 700;
+  font-weight: 700;
 }
 
 .safetyInformBtn {
-	display: block;
-	margin: 0 auto 30px;
-	text-transform: uppercase;
-	font-family: 'Roboto Mono', monospace;
-	color: var(--cText);
-	font-size: 22px;
-	font-weight: 700;
-	text-align: center;
-	border: 3px solid var(--borderLine);
-	border-radius: 5px;
-	padding: 7px 25px;
-	width: 220px;
-	background-image: url(https://nmemo.vercel.app/assets/ico/alert-fill.svg);
-	background-repeat: no-repeat;
-	background-size: contain;
-	background-position: left;
-
+  display: block;
+  margin: 0 auto 30px;
+  text-transform: uppercase;
+  font-family: "Roboto Mono", monospace;
+  color: var(--cText);
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  border: 3px solid var(--borderLine);
+  border-radius: 5px;
+  padding: 7px 25px;
+  width: 220px;
+  background-image: url(https://nmemo.vercel.app/assets/ico/alert-fill.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: left;
 }

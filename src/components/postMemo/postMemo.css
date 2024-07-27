@@ -1,96 +1,97 @@
 .postMemo {
-    width: 100%;
-    border-radius: 10px;
-    border: 3px double var(--cText);
-    -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
-    box-shadow: 0px 0px 16px -8px var(--cText);
-    background-color: rgba(179, 179, 179, 0.8);
+  width: 100%;
+  border-radius: 10px;
+  border: 3px double var(--cText);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
+  box-shadow: 0px 0px 16px -8px var(--cText);
+  background-color: rgba(179, 179, 179, 0.8);
 }
 
 .postMemoWrapper {
-    padding: 10px;
+  padding: 10px;
 }
 
 .postMemoTop {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .postMemoTopLeft {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .postMemoProfileImg {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .postMemoPersonnelnumber {
-    font-size: 15px;
-    font-weight: 500;
-    margin: 0 10px;
-    text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0 10px;
+  text-align: center;
 }
 
 .postMemoTopRight {
-    display: flex;}
+  display: flex;
+}
 
 .postMemoTitle {
-    font-size: 16px;
-    font-weight: 800;
-    color: var(--cBadgeNtf);
-    margin: 0 10px;
-    text-align: center;
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--cBadgeNtf);
+  margin: 0 10px;
+  text-align: center;
 }
 
 .postMemoDate {
-    font-size: 12px;
-    text-align: center;
+  font-size: 12px;
+  text-align: center;
 }
 
-.postMemoDelete{
-    cursor: pointer;
+.postMemoDelete {
+  cursor: pointer;
 }
 
 .postMemoCenter {
-    margin: 20px 0 0 0;
+  margin: 20px 0 0 0;
 }
 
 .postMemoImg {
-    margin-top: 20px;
-    width: 100%;
-    max-height: 500px;
-    object-fit: contain;
+  margin-top: 20px;
+  width: 100%;
+  max-height: 500px;
+  object-fit: contain;
 }
 
 .postMemoBottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.postMemoBottomLeft{
-    display: flex;
-    align-items: center;
+.postMemoBottomLeft {
+  display: flex;
+  align-items: center;
 }
-.likeIcon{
-    width: 24px;
-    height: 24px;
-    margin-right: 5px;
-    cursor: pointer;
+.likeIcon {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+  cursor: pointer;
 }
 
-.postMemoLikeCounter{
-    font-size: 15px;
-    margin-left: 5px;
-    margin-right: 10px;
+.postMemoLikeCounter {
+  font-size: 15px;
+  margin-left: 5px;
+  margin-right: 10px;
 }
-.postMemoCommentText{
-    cursor: pointer;
-    border-bottom: 1px dashed gray;
-    font-size: 15px;
+.postMemoCommentText {
+  cursor: pointer;
+  border-bottom: 1px dashed gray;
+  font-size: 15px;
 }

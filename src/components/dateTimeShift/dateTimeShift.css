@@ -1,16 +1,16 @@
-.dateTimeContainer{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    font-size: 14px;
-    color: var(--cText);
-    padding: 10px;
-    gap: 10px;
-    text-align: center;
+.dateTimeContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 14px;
+  color: var(--cText);
+  padding: 10px;
+  gap: 10px;
+  text-align: center;
 }
 
-.dateTimeContainer p{
-    display: flex;
-    align-items: center;
-    gap: 5px;
+.dateTimeContainer p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }

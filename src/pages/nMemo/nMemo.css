@@ -1,88 +1,88 @@
 .nMemo {
-    display: flex;
-    color: var(--cText);
+  display: flex;
+  color: var(--cText);
 }
 
 .nMemoCenter {
-    flex: 5.5;
-    padding: 20px;
+  flex: 5.5;
+  padding: 20px;
 }
 
 .nMemoCenterWrapper {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-top: 2px solid var(--main);
-    border-bottom: 2px solid var(--main);
-    margin-bottom: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 2px solid var(--main);
+  border-bottom: 2px solid var(--main);
+  margin-bottom: 10px;
 }
 
 .nMemoMessageContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
-.nMemoPostsList{
-    width: 100%;
+.nMemoPostsList {
+  width: 100%;
 }
 .nMemoViev {
-    list-style: none;
-    position: relative;
-    width: 45%;
-    z-index: 99;
+  list-style: none;
+  position: relative;
+  width: 45%;
+  z-index: 99;
 }
 
 .nMemoViev .postMemo {
-    margin-top: 0;
-    margin-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .nMemoViev .postMemoTitle,
 .nMemoViev .postMemoPersonnelnumber {
-    font-size: 12px;
-    text-align: center;
+  font-size: 12px;
+  text-align: center;
 }
 
 .nMemoViev .postMemoWrapper {
-    overflow: hidden;
-    /* background-color: rgb(179, 179, 179); */
+  overflow: hidden;
+  /* background-color: rgb(179, 179, 179); */
 }
 
 .nMemoViev .postMemoDate {
-    display: none;
+  display: none;
 }
 
 .nMemoViev:active {
-    /* position: absolute; */
-    top: 0;
-    left: 0;    
-    background: var(--mainBg);
-    transform: scale(2);
-    z-index: 1000;
+  /* position: absolute; */
+  top: 0;
+  left: 0;
+  background: var(--mainBg);
+  transform: scale(2);
+  z-index: 1000;
 }
 
-.nMemoContainer{
-    display: flex;
-    justify-content: space-around;
+.nMemoContainer {
+  display: flex;
+  justify-content: space-around;
 }
 
 .nMemoContainerShowHideBtn {
-    padding: 15px;
-    width: 200px;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin: 0 auto;
-    border-bottom: 2px groove var(--cText);
-    margin-bottom: 10px;
-    cursor: pointer;
+  padding: 15px;
+  width: 200px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin: 0 auto;
+  border-bottom: 2px groove var(--cText);
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
-    .nMemoViev {
-        width: 100%;
-    }
+  .nMemoViev {
+    width: 100%;
+  }
 }

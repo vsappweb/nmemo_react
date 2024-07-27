@@ -1,40 +1,40 @@
 .safety {
-    display: flex;
-    color: var(--cText);
+  display: flex;
+  color: var(--cText);
 }
-.safetyRight{
-    flex: 9;
-    display: flex;
-    gap: 15px;
+.safetyRight {
+  flex: 9;
+  display: flex;
+  gap: 15px;
 }
 
 .License {
-	padding: 0 25px;
-	font-size: 16px;
-	text-align: left;
-	color: var(--cText);
+  padding: 0 25px;
+  font-size: 16px;
+  text-align: left;
+  color: var(--cText);
 }
 
 .LicenseTitle {
-	font-size: 18px;
-	font-weight: bold;
-	margin-bottom: 10px;
-	text-align: center;
-	font-style: oblique;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+  font-style: oblique;
 }
 
 .LicenseText {
-	margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .License-line {
-	width: 220px;
-	height: 2px;
-	margin: 10px auto 20px;
-	background-color: var(--cText);
+  width: 220px;
+  height: 2px;
+  margin: 10px auto 20px;
+  background-color: var(--cText);
 }
 
 .LicenseLogoReact {
-	width: 40px;
-	height: 40px;
+  width: 40px;
+  height: 40px;
 }

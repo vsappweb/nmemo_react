@@ -1,18 +1,18 @@
-import React from 'react'
-import './newsBrief.css'
-import Topbar from '../../components/topbar/Topbar'
-import Sidebar from '../../components/sidebar/Sidebar'
+import React from "react";
+import "./newsBrief.css";
+import Topbar from "../../components/topbar/Topbar";
+import Sidebar from "../../components/sidebar/Sidebar";
 
 export default function newsBrief() {
-  const NEWS_BRIEF = process.env.REACT_APP_NEWS_BRIEF
-  console.log(NEWS_BRIEF)
+  const NEWS_BRIEF = process.env.REACT_APP_NEWS_BRIEF;
+  console.log(NEWS_BRIEF);
   return (
     <>
       <Topbar />
       <div className="newsBrief">
         <Sidebar />
         <div className="newsBriefRight">
-          <iframe width="100%" height="100%" src={NEWS_BRIEF} ></iframe>
+          <iframe width="100%" height="100%" src={NEWS_BRIEF}></iframe>
           <p>Only and exclusively for internal use</p>
           {/* <div className="underDevelopmentContainer">
             <h2 className="underDevelopment">under development</h2>
@@ -22,5 +22,5 @@ export default function newsBrief() {
         </div>
       </div>
     </>
-  )
+  );
 }

@@ -61,8 +61,6 @@
   margin-right: 25px;
 }
 
-
-
 .topbarIcons {
   display: flex;
 }
@@ -88,18 +86,14 @@
   font-size: 10px;
 }
 
-
 .topbarUserItems {
   display: flex;
   align-items: center;
   gap: 5px;
 }
 
-
-
 .topbarMenuContainer {
   position: relative;
-
 }
 
 .topbarMenuDropdown {
@@ -118,7 +112,7 @@
 }
 
 .topbarMenuDropdown::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -13px;
   right: 20px;
@@ -150,7 +144,7 @@
 }
 
 .topbarMenuDropdownPersonnelnumber span {
-  opacity: .7;
+  opacity: 0.7;
   font-size: 14px;
 }
 
@@ -185,8 +179,6 @@
   transition: var(--speed);
 }
 
-
-
 .changeWals {
   /* width: 100vw; */
   width: 100%;
@@ -199,7 +191,7 @@
   right: 0;
   top: 0;
   z-index: 5;
-  background-color: rgba(99, 2, 2, .7);
+  background-color: rgba(99, 2, 2, 0.7);
   /* transform: translateX(-100%); */
   position: absolute;
 }
@@ -261,17 +253,16 @@
   align-items: center;
 }
 
-.topbarIconItems{
+.topbarIconItems {
   display: flex;
   align-items: center;
 }
 
-
-.topbarIconLang{
+.topbarIconLang {
   width: 30px;
 }
 
-.topbarCenterProducts{
+.topbarCenterProducts {
   display: flex;
   align-items: flex-end;
   gap: 5px;
@@ -280,38 +271,35 @@
   color: var(--bgChat);
 }
 
-.topbarCenterProductsText{
+.topbarCenterProductsText {
   font-style: oblique;
-
 }
-
 
 @media screen and (max-width: 600px) {
-    .logoText,
-    .logoIcon{
-       font-size: 18px;
-    }
+  .logoText,
+  .logoIcon {
+    font-size: 18px;
+  }
 }
 
-
 @media screen and (max-width: 500px) {
-    .topbarLogo{
-      margin-left: 5px;
-    }
-    .topbarRight{ 
-      margin-right: 0px;
-    }
-    .topbarMenuDropdown {
-      right: 5px;
-    }
-    .topbarMenuDropdown::before {
-      right: 12px;
-    }
+  .topbarLogo {
+    margin-left: 5px;
+  }
+  .topbarRight {
+    margin-right: 0px;
+  }
+  .topbarMenuDropdown {
+    right: 5px;
+  }
+  .topbarMenuDropdown::before {
+    right: 12px;
+  }
 }
 
 @media screen and (max-width: 460px) {
   .logoText,
-  .logoIcon{
-     font-size: 16px;
+  .logoIcon {
+    font-size: 16px;
   }
 }

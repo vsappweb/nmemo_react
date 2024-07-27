@@ -1,10 +1,10 @@
 .events {
-    display: flex;
-    color: var(--cText);
+  display: flex;
+  color: var(--cText);
 }
-.eventsRight{
-    flex: 9;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.eventsRight {
+  flex: 9;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }

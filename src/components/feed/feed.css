@@ -1,78 +1,76 @@
 .feed {
-    flex: 5.5;
+  flex: 5.5;
 }
 
 .feedWrapper {
-    padding: 20px;
+  padding: 20px;
 }
 
 .feedEventsInformationContent,
 .feedTlToLineInformationContent {
-    width: 100%;
-    padding: 5px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    font-size: 16px;
-    font-weight: 800;
-    /* color: yellow; */
-    border-radius: 5px;
-    background-color: green;
+  width: 100%;
+  padding: 5px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 800;
+  /* color: yellow; */
+  border-radius: 5px;
+  background-color: green;
 }
 
 .feedTlToLineInformationContent {
-    background-color: rgba(109, 63, 63, 0.192);
+  background-color: rgba(109, 63, 63, 0.192);
 }
 
 .feedTlToLineInformationAnswerContainer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .feedTlToLineInformationAnswer {
-    font-size: 16px;
-    font-weight: 400;
-    color: orangered;
-    font-style:oblique;
+  font-size: 16px;
+  font-weight: 400;
+  color: orangered;
+  font-style: oblique;
 }
 .feedTlToLineInformationAnswer span {
-    font-style:normal;
+  font-style: normal;
 }
 
 .feedTlToLineInformationEditContainer {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .feedTlToLineInformationBtn {
-    box-shadow: inset 0px 0px 7px 2px #FF080C;
-    -webkit-box-shadow: inset 0px 0px 7px 2px #FF080C;
-    -moz-box-shadow: inset 0px 0px 7px 2px #FF080C;
-    cursor: pointer;
+  box-shadow: inset 0px 0px 7px 2px #ff080c;
+  -webkit-box-shadow: inset 0px 0px 7px 2px #ff080c;
+  -moz-box-shadow: inset 0px 0px 7px 2px #ff080c;
+  cursor: pointer;
 }
 
 .feedProductNumberGet {
-    margin-top: 20px;
-    margin-bottom: 10px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid var(--cText);
-    
-  /* background: repeating-linear-gradient(-60deg, #555 0, #555 1px, transparent 1px, transparent 5px); */
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid var(--cText);
 }
 
 .feedProductNumberGet span {
-    font-style:normal;
+  font-style: normal;
 }
 
 @media screen and (max-width: 768px) {
-    .feedWrapper {
-        padding-left: 15px;
-        padding-right: 15px;
-        transition: all 0.3s ease;
-    }
+  .feedWrapper {
+    padding-left: 15px;
+    padding-right: 15px;
+    transition: all 0.3s ease;
+  }
 }
 /* @media screen and (max-width: 768px) {
     .feedWrapper {
@@ -82,12 +80,12 @@
 } */
 
 @media screen and (max-width: 460px) {
-    .feed{
-        overflow: hidden;
-    }
-    .feedWrapper {
-        padding-left: 10px;
-        padding-right: 10px;
-        transition: all 0.3s ease;
-    }
+  .feed {
+    overflow: hidden;
+  }
+  .feedWrapper {
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: all 0.3s ease;
+  }
 }

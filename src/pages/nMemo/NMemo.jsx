@@ -1,25 +1,23 @@
-import React, { useState, useEffect, useContext } from 'react'
-import './nMemo.css'
-import Topbar from '../../components/topbar/Topbar'
-import Sidebar from '../../components/sidebar/Sidebar'
-import Rightbar from '../../components/rightbar/Rightbar'
-import Memo from '../../components/memo/Memo'
-import MemoToLine from '../../components/memoToLine/MemoToLine'
+import React, { useState, useEffect, useContext } from "react";
+import "./nMemo.css";
+import Topbar from "../../components/topbar/Topbar";
+import Sidebar from "../../components/sidebar/Sidebar";
+import Rightbar from "../../components/rightbar/Rightbar";
+import Memo from "../../components/memo/Memo";
+import MemoToLine from "../../components/memoToLine/MemoToLine";
 import PostMemo from "../../components/postMemo/PostMemo";
-import axios from "axios"
+import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
-import RightbarMonitoring from '../../components/rightbarMonitoring/RightbarMonitoring'
-import { ExpandCircleDownOutlined } from "@mui/icons-material"
-
+import RightbarMonitoring from "../../components/rightbarMonitoring/RightbarMonitoring";
+import { ExpandCircleDownOutlined } from "@mui/icons-material";
 
 export default function NMemo() {
   const API = process.env.REACT_APP_SERVER_API;
   const [postsMemo, setPostsMemo] = useState([]);
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   let [allMemos, setAllMemos] = useState([]);
   const [hideMemos, setHideMemos] = useState(false);
   const [expandMore, setExpandMore] = useState(7);
-
 
   useEffect(() => {
     let interval;
@@ -32,7 +30,7 @@ export default function NMemo() {
       }
     };
 
-    let result = fetchData()
+    let result = fetchData();
 
     if (!result) {
       interval = setInterval(fetchData, 10000);
@@ -55,29 +53,33 @@ export default function NMemo() {
   //   return user.role === 1 || user.role === 3;
   // });
 
-
   const handleHideMemosForm = () => {
     setHideMemos(!hideMemos);
-  }
+  };
 
   useEffect(() => {
     const fetchPostsMemo = async () => {
-      const res = await axios.get(`${API}/memos/profile/` + user.personnelnumber)
-      setPostsMemo(res.data.sort((m1, m2) => {
-        return new Date(m2.createdAt) - new Date(m1.createdAt);
-      }));
+      const res = await axios.get(
+        `${API}/memos/profile/` + user.personnelnumber
+      );
+      setPostsMemo(
+        res.data.sort((m1, m2) => {
+          return new Date(m2.createdAt) - new Date(m1.createdAt);
+        })
+      );
     };
     fetchPostsMemo();
   }, [user.personnelnumber, API]);
 
-
   const compare = (a, b) => {
     return new Date(b.createdAt) - new Date(a.createdAt);
-  }
+  };
 
   allMemos = Object.values(allMemos).sort(compare);
 
-  allMemos = Object.values(allMemos).filter(memo => memo.title === `nMemo ${new Date().toLocaleDateString('nl-NL')}`);
+  allMemos = Object.values(allMemos).filter(
+    (memo) => memo.title === `nMemo ${new Date().toLocaleDateString("nl-NL")}`
+  );
 
   const edit = allMemos;
   // console.log('memo test222 >>>', edit);
@@ -85,7 +87,7 @@ export default function NMemo() {
   return (
     <>
       <Topbar />
-      <div className='nMemo'>
+      <div className="nMemo">
         <Sidebar />
         <div className="nMemoCenter">
           {(user && user.role === 0) || (user && user.isAdmin) ? (
@@ -129,33 +131,43 @@ export default function NMemo() {
           )}
           <div className="nMemoMessageContainer">
             {(user.role === 2 || user.role === 0) &&
-              (Object.values(allMemos).map((m) => (
+              Object.values(allMemos).map((m) => (
                 <li className="nMemoViev" key={m._id}>
                   <PostMemo memo={m} />
                 </li>
-              )))}
+              ))}
 
-            {(user.role === 3 || user.role === 1) &&
+            {(user.role === 3 || user.role === 1) && (
               <ul className="nMemoPostsList">
                 {postsMemo.slice(0, expandMore).map((m) => (
                   <li key={m._id} style={{ marginBottom: "15px" }}>
                     <PostMemo memo={m} />
-                    {user.role === 1 && <p style={{ fontSize: "10px" }}>Wals {m?.line}</p>}
+                    {user.role === 1 && (
+                      <p style={{ fontSize: "10px" }}>Wals {m?.line}</p>
+                    )}
                   </li>
                 ))}
               </ul>
-            }
-            {(postsMemo.length === expandMore || postsMemo.length < expandMore) ?
-              <>  </>
-              :
-              <div className="editBtn" onClick={() => setExpandMore(expandMore + 7)}>
+            )}
+            {postsMemo.length === expandMore ||
+            postsMemo.length < expandMore ? (
+              <> </>
+            ) : (
+              <div
+                className="editBtn"
+                onClick={() => setExpandMore(expandMore + 7)}
+              >
                 <ExpandCircleDownOutlined />
-              </div>}
-          
+              </div>
+            )}
           </div>
         </div>
-        {(user.role === 2 || user.role === 0) ? <RightbarMonitoring /> : <Rightbar />}
+        {user.role === 2 || user.role === 0 ? (
+          <RightbarMonitoring />
+        ) : (
+          <Rightbar />
+        )}
       </div>
     </>
-  )
+  );
 }

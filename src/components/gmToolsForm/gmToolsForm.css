@@ -1,355 +1,349 @@
 .gmToolsForm {
-    width: 100%;
-    border-radius: 2px;
-    border: 3px double var(--cText);
-    -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
-    box-shadow: 0px 0px 16px -8px var(--cText);
-    /* -webkit-box-shadow: inset 0px 0px 21px 1px var(--cText);
+  width: 100%;
+  border-radius: 2px;
+  border: 3px double var(--cText);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
+  box-shadow: 0px 0px 16px -8px var(--cText);
+  /* -webkit-box-shadow: inset 0px 0px 21px 1px var(--cText);
     box-shadow: inset 0px 0px 21px 1px var(--cText); */
-    margin-bottom: 25px;
-
+  margin-bottom: 25px;
 }
 
 .gmToolsFormWrapper {
-    padding:5px;
+  padding: 5px;
 }
 
 .gmToolsFormOptionsWrapper {
-    padding: 10px;
-    width: 95%;
-    /* max-width: 500px; */
+  padding: 10px;
+  width: 95%;
+  /* max-width: 500px; */
 }
 
 .gmToolsFormchooseBoxCapton {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .gmToolsFormTitle {
-    font-size: 16px;
-    font-weight: 500;
-    /* margin-bottom: 15px; */
-    text-transform: uppercase;
-    text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  /* margin-bottom: 15px; */
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .gmToolsFormchooseBox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: uppercase;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .gmToolsFormInner {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .gmToolsFormTopMiniSidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 15px;
-    padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  padding-bottom: 10px;
 }
 
-
 .gmToolsFormTextarea {
-    border-top: 1px dashed var(--bgMsg);
-    border-bottom: 1px dashed var(--bgMsg);
-    padding: 10px;
-    height: 90px;
-    resize: none;
+  border-top: 1px dashed var(--bgMsg);
+  border-bottom: 1px dashed var(--bgMsg);
+  padding: 10px;
+  height: 90px;
+  resize: none;
 }
 
 .gmToolsFormInput:focus {
-    outline: none;
+  outline: none;
 }
 
 .gmToolsFormHr {
-    margin: 5px;
-    border: 1px solid var(--cText);
+  margin: 5px;
+  border: 1px solid var(--cText);
 }
 
 .gmToolsFormForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .gmToolsFormOption {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    margin-left: 10px;
-    margin-bottom: 20px;
-    gap: 10px;
-    cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-left: 10px;
+  margin-bottom: 20px;
+  gap: 10px;
+  cursor: pointer;
 }
 
 .photoAnchor {
-    position: relative;
+  position: relative;
 }
 
 .gmToolsFormPhoto {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .gmToolsFormIcon {
-    font-size: 18px;
-    margin-right: 10px;
-    color: var(--bgMsg);
-    cursor: pointer;
+  font-size: 18px;
+  margin-right: 10px;
+  color: var(--bgMsg);
+  cursor: pointer;
 }
 
 .gmToolsFormIcon:hover {
-    color: var(--cText);
-    transform: scale(1.1);
+  color: var(--cText);
+  transform: scale(1.1);
 }
 
 .gmToolsFormIcon:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
-
-
 .gmToolsFormOptionText {
-    font-size: 14px;
-    font-weight: 500;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .gmToolsFormButton {
-    border: none;
-    padding: 7px;
-    border-radius: 5px;
-    /* background-color: var(--bgSendBtn); */
-    font-weight: 500;
-    margin-right: 20px;
-    cursor: pointer;
-    color: var(--cText);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 2px groove var(--cText);
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  /* background-color: var(--bgSendBtn); */
+  font-weight: 500;
+  margin-right: 20px;
+  cursor: pointer;
+  color: var(--cText);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px groove var(--cText);
 }
 
 .gmToolsFormImgContainer {
-    padding: 0 20px 10px 20px;
-    position: relative;
+  padding: 0 20px 10px 20px;
+  position: relative;
 }
 
 .gmToolsFormImg {
-    width: 100%;
-    object-fit: cover;
-    border-radius: 15px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 15px;
 }
 
 .gmToolsFormCancel {
-    position: absolute;
-    top: 0;
-    right: 20px;
-    cursor: pointer;
-    opacity: 0.7;
-    border: 3px solid var(--cBadgeNtf);
-    border-radius: 50%;
-    color: var(--cSendBtn);
+  position: absolute;
+  top: 0;
+  right: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  border: 3px solid var(--cBadgeNtf);
+  border-radius: 50%;
+  color: var(--cSendBtn);
 }
 
 .gmToolsFormMultiSelect {
-    width: auto;
+  width: auto;
 }
 
 .gmToolsFormInputContainer {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
 }
 
 .gmToolsFormInput {
-    width: 70%;
-    max-width: 300px;
+  width: 70%;
+  max-width: 300px;
 }
 
 .gmToolsFormChoisePreparedText {
-    position: relative;
-    margin-top: 15px;
-    margin-bottom: 5px;
-    padding: 10px;
-    color: var(--cText);
-    width: 100%;
-    max-height: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    font-size: 20px;
-    /* background-color: greenyellow; */
-    border-radius: 3px;
-    border: 1px dashed var(--cText);
-    -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
-    box-shadow: 0px 0px 16px -8px var(--cText);
-    gap: 5px;
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  padding: 10px;
+  color: var(--cText);
+  width: 100%;
+  max-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 20px;
+  /* background-color: greenyellow; */
+  border-radius: 3px;
+  border: 1px dashed var(--cText);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
+  box-shadow: 0px 0px 16px -8px var(--cText);
+  gap: 5px;
 }
 
 .gmToolsFormChoisePreparedTextScrollbar {
-    max-height: 200px;
-    overflow-x: none;
-    overflow-y: auto;
+  max-height: 200px;
+  overflow-x: none;
+  overflow-y: auto;
 }
 
 .gmToolsFormChoisePreparedTextCloseBtn {
-    position: absolute;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 3px;
-    right: 3px;
-    font-size: 12px;
-    color: var(--cText);
-    padding: 5px;
-    width: 50px;
-    height: 20px;
-    background-color: var(--bgMsg);
-    border-radius: 10px;
-    border: 3px double var(--cText);
-    -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
-    box-shadow: 0px 0px 16px -8px var(--cText);
+  position: absolute;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 3px;
+  right: 3px;
+  font-size: 12px;
+  color: var(--cText);
+  padding: 5px;
+  width: 50px;
+  height: 20px;
+  background-color: var(--bgMsg);
+  border-radius: 10px;
+  border: 3px double var(--cText);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
+  box-shadow: 0px 0px 16px -8px var(--cText);
 }
 
 .gmToolsFormChoisePreparedTextItemTitle {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--bgMsg);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    line-height: normal;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--bgMsg);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  line-height: normal;
 }
 
 .gmToolsFormChoisePreparedTextItemTitle:hover {
-    transform: scale(1.1);
-    font-weight: bold;
-    line-height: normal;
-    color: var(--cText);
+  transform: scale(1.1);
+  font-weight: bold;
+  line-height: normal;
+  color: var(--cText);
 }
 
 .gmToolsFormChoisePreparedTextItemTitle:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .gmToolsFormChoisePreparedTextItem {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .gmToolsFormChoisePreparedTextItemDo {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding-left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-left: 20px;
 }
 
 .gmToolsFormChoisePrepatredTextItemEdit {
-    cursor: pointer;
-    color: var(--bgMsgOwn);
-    font-size: 12px;
-    transition: all 0.3s ease;
+  cursor: pointer;
+  color: var(--bgMsgOwn);
+  font-size: 12px;
+  transition: all 0.3s ease;
 }
 
 .gmToolsFormChoisePrepatredTextItemEdit:hover {
-    color: var(--bgMsgOwn);
-    transform: scale(1.1);
+  color: var(--bgMsgOwn);
+  transform: scale(1.1);
 }
 
 .gmToolsFormChoisePrepatredTextItemEdit:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
-
 .gmToolsFormChoisePrepatredTextItemDelete {
-    cursor: pointer;
-    color: var(--cBadgeNtf);
-    font-size: 12px;
-    transition: all 0.3s ease;
+  cursor: pointer;
+  color: var(--cBadgeNtf);
+  font-size: 12px;
+  transition: all 0.3s ease;
 }
 
 .gmToolsFormChoisePrepatredTextItemDelete:hover {
-    color: var(--cBadgeNtf);
-    transform: scale(1.1);
+  color: var(--cBadgeNtf);
+  transform: scale(1.1);
 }
 
 .gmToolsFormChoisePrepatredTextItemDelete:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .preparedTextForm {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 5px;
 }
 
 .preparedTextFormBtn {
-    border-bottom: 2px groove var(--cText);
-    border-radius: 5px;
-    padding: 5px 5px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  border-bottom: 2px groove var(--cText);
+  border-radius: 5px;
+  padding: 5px 5px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .preparedTextFormBtn:hover {
-    transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .preparedTextFormBtn:active {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .gmToolsFormRadio {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px;
 }
 
-.gmToolsFormWrapper{
-    height: 30%;
+.gmToolsFormWrapper {
+  height: 30%;
 }
 
 .gmToolFormBox {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 5px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
 }
-.gmToolsFormItemTitle{
-    font-size: 16px;
-    font-weight: 500;
-    line-height: normal;
+.gmToolsFormItemTitle {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
 }

@@ -1,307 +1,303 @@
 .tlToLine {
-    width: 100%;
-    border-radius: 10px;
-    border: 3px double var(--cText);
-    -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
-    box-shadow: 0px 0px 16px -8px var(--cText);
-    margin-bottom: 25px;
-    
+  width: 100%;
+  border-radius: 10px;
+  border: 3px double var(--cText);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
+  box-shadow: 0px 0px 16px -8px var(--cText);
+  margin-bottom: 25px;
 }
 
 .tlToLineWrapper {
-    padding: 10px;
+  padding: 10px;
 }
 
 .tlToLinechooseBoxCapton {
-    display: flex;
-    align-items: center;
-    justify-content: center;    
-    gap: 5px;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 .tlToLineTitle {
-    font-size: 16px;
-    font-weight: 500;
-    /* margin-bottom: 15px; */
-    text-transform: uppercase;
-    text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  /* margin-bottom: 15px; */
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .tlToLinechooseBox {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px;
-    font-size: 14px;
-    font-weight: 500;
-    text-transform: uppercase;
-    text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-align: center;
 }
 
 .tlToLineTop {
-    display: flex;
+  display: flex;
 }
 
 .tlToLineTopMiniSidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 15px;
-    padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  padding-bottom: 10px;
 }
 
-
 .tlToLineInput {
-    border: none;
-    width: 100%;
-    padding: 10px;
-    height: 100px;
-    resize: none;
-    border-radius: 10px 10px 10px 0;
+  border: none;
+  width: 100%;
+  padding: 10px;
+  height: 100px;
+  resize: none;
+  border-radius: 10px 10px 10px 0;
 }
 
 .tlToLineInput:focus {
-    outline: none;
+  outline: none;
 }
 
 .tlToLineHr {
-    margin: 5px;
-    border: 1px solid var(--cText);
+  margin: 5px;
+  border: 1px solid var(--cText);
 }
 
 .tlToLineBottom {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .tlToLineOptions {
-    display: flex;
-    margin-left: 20px;
+  display: flex;
+  margin-left: 20px;
 }
 
 .tlToLineOption {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
+  cursor: pointer;
 }
 
 .tlToLineIcon {
-    font-size: 18px;
-    margin-right: 10px;
-    color: var(--bgMsg);
-    cursor: pointer;
+  font-size: 18px;
+  margin-right: 10px;
+  color: var(--bgMsg);
+  cursor: pointer;
 }
-.tlToLineIcon:hover{
-    color: var(--cText);
-    transform: scale(1.1);
-}
-
-.tlToLineIcon:active{
-    transform: scale(0.9);
+.tlToLineIcon:hover {
+  color: var(--cText);
+  transform: scale(1.1);
 }
 
-.tlToLineEmoji{
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-.tlToLineEmojiPicker{
-    margin-top: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.tlToLineIcon:active {
+  transform: scale(0.9);
 }
 
+.tlToLineEmoji {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.tlToLineEmojiPicker {
+  margin-top: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .tlToLineOptionText {
-    font-size: 14px;
-    font-weight: 500;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 .tlToLineButton {
-    border: none;
-    padding: 7px;
-    border-radius: 5px;
-    /* background-color: var(--bgSendBtn); */
-    font-weight: 500;
-    margin-right: 20px;
-    cursor: pointer;
-    color: var(--cText);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-bottom: 2px groove var(--cText);
+  border: none;
+  padding: 7px;
+  border-radius: 5px;
+  /* background-color: var(--bgSendBtn); */
+  font-weight: 500;
+  margin-right: 20px;
+  cursor: pointer;
+  color: var(--cText);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px groove var(--cText);
 }
 
-.tlToLineImgContainer{
-    padding: 0 20px 10px 20px;
-    position: relative;
+.tlToLineImgContainer {
+  padding: 0 20px 10px 20px;
+  position: relative;
 }
-.tlToLineImg{
-    width: 100%;
-    object-fit: cover;
-    border-radius: 15px;
-}
-
-.tlToLineCancel{
-    position: absolute;
-    top: 0;
-    right: 20px;
-    cursor: pointer;
-    opacity: 0.7;
-    border: 3px solid var(--cBadgeNtf);
-    border-radius: 50%;
-    color: var(--cSendBtn);
+.tlToLineImg {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 15px;
 }
 
-.tlToLineMultiSelect{
-    width: auto;
-}
-.tlToLineInputContainer{
-    position: relative;
-    width: 100%;
-}
-
-.tlToLineChoisePreparedText{
-    position: relative;
-    margin-top: 15px;
-    margin-bottom: 5px;
-    padding: 10px;
-    color: var(--cText);
-    width: 100%;
-    max-height: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    font-size: 20px;
-    /* background-color: greenyellow; */
-    border-radius: 3px;
-    border: 1px dashed var(--cText);
-    -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
-    box-shadow: 0px 0px 16px -8px var(--cText);
-    gap: 5px;
+.tlToLineCancel {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  border: 3px solid var(--cBadgeNtf);
+  border-radius: 50%;
+  color: var(--cSendBtn);
 }
 
-.tlToLineChoisePreparedTextScrollbar{
-    max-height: 200px;
-    overflow-x: none;
-    overflow-y: auto;
+.tlToLineMultiSelect {
+  width: auto;
+}
+.tlToLineInputContainer {
+  position: relative;
+  width: 100%;
 }
 
-.tlToLineChoisePreparedTextCloseBtn{
-    position: absolute;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 3px;
-    right: 3px;
-    font-size: 12px;
-    color: var(--cText);
-    padding: 5px;
-    width: 50px;
-    height: 20px;
-    background-color: var(--bgMsg);
-    border-radius: 10px;
-    border: 3px double var(--cText);
-    -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
-    box-shadow: 0px 0px 16px -8px var(--cText);
+.tlToLineChoisePreparedText {
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  padding: 10px;
+  color: var(--cText);
+  width: 100%;
+  max-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: 20px;
+  /* background-color: greenyellow; */
+  border-radius: 3px;
+  border: 1px dashed var(--cText);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
+  box-shadow: 0px 0px 16px -8px var(--cText);
+  gap: 5px;
 }
 
-.tlToLineChoisePreparedTextItemTitle{
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--bgMsg);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    line-height: normal;
-}
-.tlToLineChoisePreparedTextItemTitle:hover{
-    transform: scale(1.1);
-    font-weight: bold;
-    line-height: normal;
-    color: var(--cText);
+.tlToLineChoisePreparedTextScrollbar {
+  max-height: 200px;
+  overflow-x: none;
+  overflow-y: auto;
 }
 
-.tlToLineChoisePreparedTextItemTitle:active{
-    transform: scale(0.9);
+.tlToLineChoisePreparedTextCloseBtn {
+  position: absolute;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 3px;
+  right: 3px;
+  font-size: 12px;
+  color: var(--cText);
+  padding: 5px;
+  width: 50px;
+  height: 20px;
+  background-color: var(--bgMsg);
+  border-radius: 10px;
+  border: 3px double var(--cText);
+  -webkit-box-shadow: 0px 0px 16px -8px var(--cText);
+  box-shadow: 0px 0px 16px -8px var(--cText);
 }
 
-.tlToLineChoisePreparedTextItem{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding: 5px;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.tlToLineChoisePreparedTextItemTitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--bgMsg);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  line-height: normal;
+}
+.tlToLineChoisePreparedTextItemTitle:hover {
+  transform: scale(1.1);
+  font-weight: bold;
+  line-height: normal;
+  color: var(--cText);
 }
 
-.tlToLineChoisePreparedTextItemDo{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    padding-left: 20px;
+.tlToLineChoisePreparedTextItemTitle:active {
+  transform: scale(0.9);
 }
 
-.tlToLineChoisePrepatredTextItemEdit{
-    cursor: pointer;
-    color: var(--bgMsgOwn);
-    font-size: 12px;
-    transition: all 0.3s ease;
-}
-.tlToLineChoisePrepatredTextItemEdit:hover{
-    color: var(--bgMsgOwn);
-    transform: scale(1.1);
-}
-.tlToLineChoisePrepatredTextItemEdit:active{
-    transform: scale(0.9);
+.tlToLineChoisePreparedTextItem {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-        
-.tlToLineChoisePrepatredTextItemDelete{
-    cursor: pointer;
-    color: var(--cBadgeNtf);
-    font-size: 12px;
-    transition: all 0.3s ease;
-}
-.tlToLineChoisePrepatredTextItemDelete:hover{
-    color: var(--cBadgeNtf);
-    transform: scale(1.1);
-}
-.tlToLineChoisePrepatredTextItemDelete:active{
-    transform: scale(0.9);
+.tlToLineChoisePreparedTextItemDo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding-left: 20px;
 }
 
-.preparedTextForm{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    padding: 5px;
+.tlToLineChoisePrepatredTextItemEdit {
+  cursor: pointer;
+  color: var(--bgMsgOwn);
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+.tlToLineChoisePrepatredTextItemEdit:hover {
+  color: var(--bgMsgOwn);
+  transform: scale(1.1);
+}
+.tlToLineChoisePrepatredTextItemEdit:active {
+  transform: scale(0.9);
 }
 
-.preparedTextFormBtn{
-    border-bottom: 2px groove var(--cText);
-    border-radius: 5px;
-    padding: 5px 5px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.tlToLineChoisePrepatredTextItemDelete {
+  cursor: pointer;
+  color: var(--cBadgeNtf);
+  font-size: 12px;
+  transition: all 0.3s ease;
 }
-.preparedTextFormBtn:hover{
-    transform: scale(1.1);
+.tlToLineChoisePrepatredTextItemDelete:hover {
+  color: var(--cBadgeNtf);
+  transform: scale(1.1);
 }
-.preparedTextFormBtn:active{
-    transform: scale(0.9);
+.tlToLineChoisePrepatredTextItemDelete:active {
+  transform: scale(0.9);
+}
+
+.preparedTextForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 5px;
+}
+
+.preparedTextFormBtn {
+  border-bottom: 2px groove var(--cText);
+  border-radius: 5px;
+  padding: 5px 5px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.preparedTextFormBtn:hover {
+  transform: scale(1.1);
+}
+.preparedTextFormBtn:active {
+  transform: scale(0.9);
 }

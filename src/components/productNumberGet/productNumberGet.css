@@ -1,9 +1,9 @@
 .safety {
-    display: flex;
-    color: var(--cText);
+  display: flex;
+  color: var(--cText);
 }
-.safetyRight{
-    flex: 9;
-    display: flex;
-    gap: 15px;
+.safetyRight {
+  flex: 9;
+  display: flex;
+  gap: 15px;
 }

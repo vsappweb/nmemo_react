@@ -1,42 +1,41 @@
 .sendTlToLine {
-    display: flex;
-    color: var(--cText);
+  display: flex;
+  color: var(--cText);
 }
-.sendTlToLineRight{
-    flex: 5.5;
-    padding: 20px;
+.sendTlToLineRight {
+  flex: 5.5;
+  padding: 20px;
 }
 
-
-.feedTlToLineInformation{
-    width: 100%;
-    padding: 5px;
-    border-radius: 10px;
-    -webkit-box-shadow: 0px 0px 16px -8px red;
-    box-shadow: 0px 0px 16px -8px red;
-    margin: 5px 0;
-    display: flex;
-    align-items: center;
-    justify-content:space-between;
+.feedTlToLineInformation {
+  width: 100%;
+  padding: 5px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px red;
+  box-shadow: 0px 0px 16px -8px red;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .feedTlToLineInformationContent,
-.feedTlToLineInformationDesc{
-    display: flex;
-    color: rgb(41, 41, 6);
-    text-align: justify;
-    flex-direction: column;
+.feedTlToLineInformationDesc {
+  display: flex;
+  color: rgb(41, 41, 6);
+  text-align: justify;
+  flex-direction: column;
 }
 
-.sendTlToLineInformationBox{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    justify-content: space-between;
+.sendTlToLineInformationBox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 550px) {
-    .sendTlToLineRight{
-        padding: 20px 10px;
-    }
+  .sendTlToLineRight {
+    padding: 20px 10px;
+  }
 }

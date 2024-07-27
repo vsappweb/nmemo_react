@@ -18,16 +18,18 @@ import License from "./pages/license/License";
 
 // import { useTranslation } from "react-i18next";
 
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Messenger from "./pages/messenger/Messenger";
 
-
-import { pdfjs } from 'react-pdf';
+import { pdfjs } from "react-pdf";
 pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
-
-
 
 function App() {
   // const { t, i18n } = useTranslation();
@@ -36,31 +38,49 @@ function App() {
   //   i18n.changeLanguage(language);
   // };
 
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   return (
-      <Router>
-        <Routes>
-          <Route path='*' element={<ErrorPage />} />
-          <Route path="/" element={user ? <Home /> : <Login />} />
-          <Route path="login/*" element={user ? <Navigate to="/" /> : <Login />} />
-          <Route path="register/*" element={user ? <Navigate to="/" /> : <Register />} />
-          <Route path="messenger/*" element={!user ? <Navigate to="/" /> : <Messenger />} />
-          <Route path="profile/:personnelnumber/*" element={<Profile />} />
-          <Route path="editProfile/:personnelnumber/*" element={<EditProfile />} />
-          <Route path="editEvents/:personnelnumber/*" element={<EditEvents />} />
-          <Route path="editShiftTransfer/:personnelnumber/*" element={<EditShiftTransfer />} />
-          <Route path="events/:personnelnumber/*" element={<Events />} />
-          <Route path="orders/:personnelnumber/*" element={<Orders />} />
-          <Route path="newsBrief/:personnelnumber/*" element={<NewsBrief />} />
-          <Route path="safety/*" element={<Safety />} />
-          <Route path="bmGm/:personnelnumber/*" element={<BmGm />} />
-          <Route path="groups/:personnelnumber/*" element={<Groups />} />
-          <Route path="nMemo/:personnelnumber/*" element={<NMemo />} />
-          <Route path="sendTlToLine/:personnelnumber/*" element={<SendTlToLine />} />
-          <Route path="license/*" element={<License />} />
-        </Routes>
-      </Router>
-  )
+    <Router>
+      <Routes>
+        <Route path="*" element={<ErrorPage />} />
+        <Route path="/" element={user ? <Home /> : <Login />} />
+        <Route
+          path="login/*"
+          element={user ? <Navigate to="/" /> : <Login />}
+        />
+        <Route
+          path="register/*"
+          element={user ? <Navigate to="/" /> : <Register />}
+        />
+        <Route
+          path="messenger/*"
+          element={!user ? <Navigate to="/" /> : <Messenger />}
+        />
+        <Route path="profile/:personnelnumber/*" element={<Profile />} />
+        <Route
+          path="editProfile/:personnelnumber/*"
+          element={<EditProfile />}
+        />
+        <Route path="editEvents/:personnelnumber/*" element={<EditEvents />} />
+        <Route
+          path="editShiftTransfer/:personnelnumber/*"
+          element={<EditShiftTransfer />}
+        />
+        <Route path="events/:personnelnumber/*" element={<Events />} />
+        <Route path="orders/:personnelnumber/*" element={<Orders />} />
+        <Route path="newsBrief/:personnelnumber/*" element={<NewsBrief />} />
+        <Route path="safety/*" element={<Safety />} />
+        <Route path="bmGm/:personnelnumber/*" element={<BmGm />} />
+        <Route path="groups/:personnelnumber/*" element={<Groups />} />
+        <Route path="nMemo/:personnelnumber/*" element={<NMemo />} />
+        <Route
+          path="sendTlToLine/:personnelnumber/*"
+          element={<SendTlToLine />}
+        />
+        <Route path="license/*" element={<License />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

@@ -1,30 +1,30 @@
 .events {
-    display: flex;
-    color: var(--cText);
+  display: flex;
+  color: var(--cText);
 }
-.eventsRight{
-    flex: 9;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.eventsRight {
+  flex: 9;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.rbc-event{
+.rbc-event {
   cursor: pointer;
   border-radius: 3px;
   border: 1px solid var(--cText);
   background-color: transparent;
 }
-.rbc-event:hover{
+.rbc-event:hover {
   transform: scale(1.3);
 }
-  
-  .rbc-row-segment .rbc-event-content{
-    white-space: wrap;
-    background-color: transparent;
-    color: var(--cText);
-    font-size: 12px;
-    font-weight: 500;
+
+.rbc-row-segment .rbc-event-content {
+  white-space: wrap;
+  background-color: transparent;
+  color: var(--cText);
+  font-size: 12px;
+  font-weight: 500;
 }
 
 /* Remove weekends in month view

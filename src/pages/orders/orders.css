@@ -1,126 +1,125 @@
 .orders {
-    display: flex;
-    color: var(--cText);
+  display: flex;
+  color: var(--cText);
 }
 
 .ordersRight {
-    flex: 9;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    align-items: center;
-    padding: 10px 0 0 0;
+  flex: 9;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+  padding: 10px 0 0 0;
 }
 
 .ordersProductionsFormulierenAanmelden {
-    padding: 0 10px;
-    margin: 0 10px;
+  padding: 0 10px;
+  margin: 0 10px;
 }
 
 .ordersFormAanmelden {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .ordersFormAanmeldenTitle {
-    font-size: 20px;
-    line-height: normal;
-    font-weight: bold;
-    text-align: center;
-    width: 100%;
+  font-size: 20px;
+  line-height: normal;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
 }
 
 .ordersFormAanmeldenLabel {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
 }
 
 .ordersFormAanmeldenColontitule {
-    display: none;
+  display: none;
 }
 
 .ordersButton {
-    padding: 10px 20px;
-    max-width: 200px;
-    border-radius: 5px;
-    font-size: 12px;
-    font-weight: bold;
-    text-transform: uppercase;
-    /* margin: 0 auto; */
-    border-bottom: 2px groove var(--cText);
+  padding: 10px 20px;
+  max-width: 200px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: uppercase;
+  /* margin: 0 auto; */
+  border-bottom: 2px groove var(--cText);
 }
 
-
 .orderRightProductForm {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .orderRightProductFormLabel {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .orderRightProductFormText {
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
 }
 
 .orderRightProductFormInput {
-    max-width: 90px;
-    text-align: center;
+  max-width: 90px;
+  text-align: center;
 }
 
 .orderRightBtnContainer {
-    display: flex;
-    align-items: stretch;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: 10px;
+  display: flex;
+  align-items: stretch;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px;
 }
 
 .orderIncompleetAantal {
-    border-top: 2px solid var(--main);
-    border-bottom: 2px solid var(--main);
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+  border-top: 2px solid var(--main);
+  border-bottom: 2px solid var(--main);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
 
 .orderIncompleetAantalTitle {
-    font-size: 16px;
-    font-weight: bold;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .incompleetAantalPaperForm {
-    background-color: aliceblue;
-    color: #000000;
-    width: 450px;
-    height: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 50px 40px 50px 40px;
-    gap: 10px;
+  background-color: aliceblue;
+  color: #000000;
+  width: 450px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 50px 40px 50px 40px;
+  gap: 10px;
 }
 
-.react-pdf__Page__canvas{
-    width: 600px !important;
-    height: 400px !important;
+.react-pdf__Page__canvas {
+  width: 600px !important;
+  height: 400px !important;
 }
 
 /* page {
@@ -135,31 +134,31 @@
     height: 210mm; 
   } */
 
-  @media screen and (max-width: 600px) {
-    .orderRightBtnContainer {
-        flex-direction: column;
-    }
+@media screen and (max-width: 600px) {
+  .orderRightBtnContainer {
+    flex-direction: column;
   }
+}
 
 @media print {
-    @page {
-        size: A5 landscape;
-        margin: 0;
-    }
+  @page {
+    size: A5 landscape;
+    margin: 0;
+  }
 
-    .ordersSidebar,
-    .ordersTopbar,
-    .ordersFormAanmeldenButton,
-    .orderRightProductSubmit,
-    .orderRightBtnContainer,
-    .orderRightProductFormText,
-    .orderIncompleetAantalTitles,
-    .orderRightProductFormInput,
-    .ordersButton {
-        display: none;
-    }
+  .ordersSidebar,
+  .ordersTopbar,
+  .ordersFormAanmeldenButton,
+  .orderRightProductSubmit,
+  .orderRightBtnContainer,
+  .orderRightProductFormText,
+  .orderIncompleetAantalTitles,
+  .orderRightProductFormInput,
+  .ordersButton {
+    display: none;
+  }
 
-    /* .ordersFormAanmelden {
+  /* .ordersFormAanmelden {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -198,66 +197,63 @@
         border: none;
     } */
 
-    .ordersFormAanmeldenColontitule {
-        display: flex;
-        justify-content: space-between;
-    }
+  .ordersFormAanmeldenColontitule {
+    display: flex;
+    justify-content: space-between;
+  }
 
-    .ordersFormAanmeldenColontituleText {
-        font-size: 10px;
-        line-height: normal;
-        font-weight: normal
-    }
+  .ordersFormAanmeldenColontituleText {
+    font-size: 10px;
+    line-height: normal;
+    font-weight: normal;
+  }
 
-    .orders {
-        position: relative;
-        
-    }
+  .orders {
+    position: relative;
+  }
 
-    .ordersFormAanmeldenColontituleDate {
-        margin-left: 90mm;
-        font-size: 10px;
-        line-height: normal;
-        font-weight: normal
-    }
+  .ordersFormAanmeldenColontituleDate {
+    margin-left: 90mm;
+    font-size: 10px;
+    line-height: normal;
+    font-weight: normal;
+  }
 
+  .orderIncompleetAantal {
+    border-top: none;
+    border-bottom: none;
+  }
 
-
-    .orderIncompleetAantal {
-        border-top: none;
-        border-bottom: none;
-    }
-
-    .incompleetAantalPaperForm {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        color: #000000;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        margin-left: 15mm;
-        margin-right: 20mm;
-        margin-top: 17mm;
-        margin-bottom: 10mm;
-    }
-    .orderIncompleetAantalTitle{
-        font-size: 24px;
-        line-height: normal;
-        font-weight: bold;
-        text-align: left;
-        width: 100%;        
-    }
-    .firstLine{
-        margin-bottom: 25mm;
-    }
-    .secondLine{
-        font-size: larger;
-        margin-bottom: 30mm;
-    }
-    .thirdLine{
-        margin-bottom: 15mm;
-    }
+  .incompleetAantalPaperForm {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: #000000;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15mm;
+    margin-right: 20mm;
+    margin-top: 17mm;
+    margin-bottom: 10mm;
+  }
+  .orderIncompleetAantalTitle {
+    font-size: 24px;
+    line-height: normal;
+    font-weight: bold;
+    text-align: left;
+    width: 100%;
+  }
+  .firstLine {
+    margin-bottom: 25mm;
+  }
+  .secondLine {
+    font-size: larger;
+    margin-bottom: 30mm;
+  }
+  .thirdLine {
+    margin-bottom: 15mm;
+  }
 }

@@ -1,205 +1,203 @@
 .rightbar {
-    flex: 3;
+  flex: 3;
 }
 
 .rightbarBurger {
-    display: none;
+  display: none;
 }
 
 .rightbarWrapper {
-    padding: 20px 20px 0 0;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  padding: 20px 20px 0 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .birthdayContainer {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
-
 .rightbarTitle {
-    margin-bottom: 10px;
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
 }
 
 .rightbarFriendList {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+  padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .rightbarInfo {
-    margin-bottom: 30px;
+  margin-bottom: 30px;
 }
 
 .rightbarInfoItem {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .rightbarInfoKey {
-    font-weight: 500;
-    margin-right: 15px;
-    color: #555;
+  font-weight: 500;
+  margin-right: 15px;
+  color: #555;
 }
 
 .rightbarInfoValue {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 .rightbarFollowings {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  overflow: auto;
 }
 
 .rightbarFollow {
-    margin-top: 30px;
-    margin-bottom: 10px;
-    border: none;
-    background-color: var(--main);
-    color: white;
-    border-radius: 5px;
-    padding: 5px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  border: none;
+  background-color: var(--main);
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .rightbarFollow:focus {
-    outline: none;
+  outline: none;
 }
 
 .rightbarInfoItems {
-    border-top: 1px solid red;
-    border-bottom: 1px solid red;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    margin-bottom: 3px;
+  border-top: 1px solid red;
+  border-bottom: 1px solid red;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-bottom: 3px;
 }
 
 .rightbarInfoBoxItem {
-    font-size: 16px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin: 10px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 10px;
 }
 
 .rightbarInfoBoxItemKey {
-    color: brown;
-    font-weight: 500;
+  color: brown;
+  font-weight: 500;
 }
 
 .rightbarInfoBtn {
-    border: none;
-    background-color: var(--main);
-    color: white;
-    border-radius: 5px;
-    padding: 5px 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
+  border: none;
+  background-color: var(--main);
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
-    .rightbar {
-        display: none;
-        transition: all 0.3s ease;
-    }
+  .rightbar {
+    display: none;
+    transition: all 0.3s ease;
+  }
 
-    .rightbar.active {
-        display: block;
-        position: absolute;
-        width: 200px;
-        height: 80lvh;
-        right: 0px;
-        background-color: var(--main);
-        border-radius: 5px 0px 0px 5px;
-        margin: 50px 0px;
-        padding: 5px;
-        font-size: 12px;
-        color: white;
-        border: var(--main);
-        -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
-        box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
-        z-index: 200;
-        overflow: auto;
-    }
+  .rightbar.active {
+    display: block;
+    position: absolute;
+    width: 200px;
+    height: 80lvh;
+    right: 0px;
+    background-color: var(--main);
+    border-radius: 5px 0px 0px 5px;
+    margin: 50px 0px;
+    padding: 5px;
+    font-size: 12px;
+    color: white;
+    border: var(--main);
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
+    z-index: 200;
+    overflow: auto;
+  }
 
-    .rightbarBurger.active {
-        margin-top: 20px;
-        z-index: 300;
-    }
+  .rightbarBurger.active {
+    margin-top: 20px;
+    z-index: 300;
+  }
 
-    .rightbarBurger {
-        display: block;
-        position: absolute;
-        width: 35px;
-        height: 35px;
-        right: 0px;
-        background-color: var(--main);
-        border-radius: 50% 0px 0px 50%;
-        margin-top: 20px;
-        margin-bottom: 50px;
-        padding: 5px 3px 5px 8px;
-        font-size: 12px;
-        color: white;
-        border: 2px solid var(--bg);
-        border-right: none;
-        border-bottom: none;
-        -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
-        box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
-        transition: all 0.3s ease;
-    }
+  .rightbarBurger {
+    display: block;
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    right: 0px;
+    background-color: var(--main);
+    border-radius: 50% 0px 0px 50%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    padding: 5px 3px 5px 8px;
+    font-size: 12px;
+    color: white;
+    border: 2px solid var(--bg);
+    border-right: none;
+    border-bottom: none;
+    -webkit-box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 0px 16px -8px rgba(0, 0, 0, 0.8);
+    transition: all 0.3s ease;
+  }
 
-    .rightbarBurgerLineOne,
-    .rightbarBurgerLineTwo,
-    .rightbarBurgerLineThree {
-        width: 15px;
-        height: 2px;
-        background-color: white;
-        margin: 3px 0;
-        transition: 0.4s;
-        z-index: 300;
-    }
+  .rightbarBurgerLineOne,
+  .rightbarBurgerLineTwo,
+  .rightbarBurgerLineThree {
+    width: 15px;
+    height: 2px;
+    background-color: white;
+    margin: 3px 0;
+    transition: 0.4s;
+    z-index: 300;
+  }
 
-    .rightbarBurgerLineOne.active {
-        transform: translate(0, 5px) rotate(-45deg);
-    }
+  .rightbarBurgerLineOne.active {
+    transform: translate(0, 5px) rotate(-45deg);
+  }
 
-    .rightbarBurgerLineTwo.active {
-        opacity: 0;
-    }
+  .rightbarBurgerLineTwo.active {
+    opacity: 0;
+  }
 
-    .rightbarBurgerLineThree.active {
-        transform: translate(0, -5px) rotate(45deg);
-    }
+  .rightbarBurgerLineThree.active {
+    transform: translate(0, -5px) rotate(45deg);
+  }
 
-    .rightbarWrapper {
-        padding: 0;
-    }
+  .rightbarWrapper {
+    padding: 0;
+  }
 
-    .rightbarFollow {
-        margin-top: 10px;
-    }
+  .rightbarFollow {
+    margin-top: 10px;
+  }
 }
 
 @media screen and (max-width: 460px) {
-    .rightbarBurger {
-        width: 30px;
-    }
+  .rightbarBurger {
+    width: 30px;
+  }
 }
