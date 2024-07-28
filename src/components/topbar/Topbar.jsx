@@ -7,10 +7,7 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
-import {
-  ThreeDots,
-  BallTriangle,
-} from "react-loader-spinner";
+import { ThreeDots, BallTriangle } from "react-loader-spinner";
 import i18n from "i18next";
 
 export default function Topbar() {
@@ -26,11 +23,11 @@ export default function Topbar() {
   const [changeLang, setChangeLang] = useState(false);
   const [chooseLang, setChooseLang] = useState("en");
   const [isDataLoading, setIsDataLoading] = useState(false);
+  const [logoutWals, setLogoutWals] = useState(false);
 
   let menuRef = useRef();
   let changeWalsRef = useRef();
 
-  
   const changeLanguage = (language) => {
     i18n.changeLanguage(language);
     setChooseLang(language);
@@ -135,6 +132,26 @@ export default function Topbar() {
   // const handleLangSelect = (lang) => {
 
   // }
+
+  function addZero(i) {
+    if (i < 10) {
+      i = "0" + i;
+    }
+    return i;
+  }
+
+  let hh = addZero(date.getHours());
+  let mm = addZero(date.getMinutes());
+
+  //atention changed format of date to fr-CA not nl-NL
+  let time = hh + ":" + mm;
+
+  const handleLogoutWals = (e) => {
+    console.log(e)
+    if(e === time){
+      setLogoutWals(!logoutWals);
+    }
+  };
 
   return (
     <div className="topbarContainer">
@@ -378,7 +395,7 @@ export default function Topbar() {
                     >
                       <DropdownItem img={<Settings />} text={"Edit Profile"} />
                     </Link>
-                    {user.role === 0 || user?.isAdmin ? (
+                    {/* {user.role === 0 || user?.isAdmin ? (
                       <Link
                         to={`/editEvents/${user.personnelnumber}`}
                         style={{ textDecoration: "none" }}
@@ -387,8 +404,8 @@ export default function Topbar() {
                       </Link>
                     ) : (
                       <></>
-                    )}
-                    {user.role !== 1 && (
+                    )} */}
+                    {/* {user.role !== 1 && (
                       <Link
                         to={`/editShiftTransfer/${user.personnelnumber}`}
                         style={{ textDecoration: "none" }}
@@ -398,19 +415,44 @@ export default function Topbar() {
                           text={"Shift Transfer"}
                         />
                       </Link>
-                    )}
+                    )} */}
                     {/* {user.role === 1 ? <Link onClick={() => { setOpenWals(!openWals) }} style={{ textDecoration: "none" }}>
                                     <DropdownItem img={<Tune />} text={"Join the line"} style={{ textAlign: "center" }} />
                                 </Link>
                                     : <></>} */}
-                    <Link
-                      onClick={logout}
-                      reloadDocument
-                      to="/"
-                      style={{ textDecoration: "none" }}
-                    >
-                      <DropdownItem img={<Logout />} text={"Logout"} />
-                    </Link>
+                    {user.role === 3 ? (
+                      <>
+                        {logoutWals === false && (<div className="topbarLogoutContainer">
+                          <input
+                            className="topbarLogoutInput"
+                            type="password"
+                            placeholder="Logout:Code"
+                            minLength={5}
+                            maxLength={6}
+                            onChange={(e) => handleLogoutWals(e.target.value)}
+                          />
+                        </div>)}
+                        {logoutWals && (
+                          <Link
+                            onClick={logout}
+                            reloadDocument
+                            to="/"
+                            style={{ textDecoration: "none" }}
+                          >
+                            <DropdownItem img={<Logout />} text={"Logout"} />
+                          </Link>
+                        )}
+                      </>
+                    ) : (
+                      <Link
+                        onClick={logout}
+                        reloadDocument
+                        to="/"
+                        style={{ textDecoration: "none" }}
+                      >
+                        <DropdownItem img={<Logout />} text={"Logout"} />
+                      </Link>
+                    )}
                   </ul>
                 </div>
               </div>

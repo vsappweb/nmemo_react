@@ -118,7 +118,7 @@ export default function Sidebar() {
                 text={t("sidebar.Safety")}
               />
             </Link>
-            <Link
+            {user.role !== 1 && <Link
               to={`/orders/${user.personnelnumber}`}
               style={{ textDecoration: "none" }}
             >
@@ -126,8 +126,8 @@ export default function Sidebar() {
                 img={<WorkOutline />}
                 text={t("sidebar.Orders/Products")}
               />
-            </Link>
-            <Link
+            </Link>}
+            {user.role !== 1 && <Link
               to={`/bmGm/${user.personnelnumber}`}
               style={{ textDecoration: "none" }}
             >
@@ -135,7 +135,7 @@ export default function Sidebar() {
                 img={<Construction />}
                 text={t("sidebar.BM_GM")}
               />
-            </Link>
+            </Link>}
             <Link to={`https://orig.in.net`} style={{ textDecoration: "none" }}>
               <SidebarListItem
                 img={

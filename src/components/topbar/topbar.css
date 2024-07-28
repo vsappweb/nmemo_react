@@ -275,6 +275,21 @@
   font-style: oblique;
 }
 
+.topbarLogoutContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0;
+  border-top: 1px solid var(--cText);
+}
+
+.topbarLogoutInput {
+  width: 100px;
+  text-align: center;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 @media screen and (max-width: 600px) {
   .logoText,
   .logoIcon {

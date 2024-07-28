@@ -116,17 +116,17 @@ export default function Post({ post }) {
           <span className="postText">{post?.desc}</span>
           <img className="postImg" src={PF + post.img} alt="" />
         </div>
-        <div className="postBottom">
+        {/* <div className="postBottom">
           <div className="postBottomLeft">
             <ThumbUpOffAlt className="likeIcon" onClick={likeHandler} />
             <span className="postLikeCounter">{like} people like it</span>
-            {/* <FavoriteBorder className="likeIcon" onClick={loveHandler} />
-                        <span className="postLikeCounter">{love} people love it</span> */}
+            <FavoriteBorder className="likeIcon" onClick={loveHandler} />
+                        <span className="postLikeCounter">{love} people love it</span>
           </div>
-          {/* <div className="postBottomRight">
+          <div className="postBottomRight">
                         <span className="postCommentText">{post.comment} comments</span>
-                    </div> */}
-        </div>
+                    </div>
+        </div> */}
       </div>
     </div>
   );
