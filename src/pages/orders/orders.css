@@ -122,7 +122,8 @@
   height: 400px !important;
 }
 
-.orderIncompleetAantalItems {
+.orderItems {
+  width: 100%;
   border-top: 2px solid var(--main);
   border-bottom: 2px solid var(--main);
   padding: 10px;

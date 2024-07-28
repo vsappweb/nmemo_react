@@ -14,6 +14,9 @@ export default function Orders() {
   const date = new Date();
   const { user } = useContext(AuthContext);
   const [showPrint, setShowPrint] = useState(false);
+  const [showIncomleetAantal, setShowIncomleetAantal] = useState(false);
+  const [showQualityAlerts, setShowQualityAlerts] = useState(false);
+  const [showWerkinstruktie, setShowWerkinstruktie] = useState(false);
   const [operator, setOperator] = useState("");
   const [incompleet, setIncompleet] = useState([]);
   const operatorUser = useRef();
@@ -50,8 +53,22 @@ export default function Orders() {
     }
   };
 
-  const handleShowPrint = () => {
-    setShowPrint(!showPrint);
+  const handleShowQualityAlerts = () => {
+    setShowQualityAlerts(!showQualityAlerts);
+    setShowIncomleetAantal(false);
+    setShowWerkinstruktie(false);
+  };
+
+  const handleShowIncomleetAantal = () => {
+    setShowIncomleetAantal(!showIncomleetAantal);
+    setShowQualityAlerts(false);
+    setShowWerkinstruktie(false);
+  };
+
+  const handleShowWerkinstruktie = () => {
+    setShowWerkinstruktie(!showWerkinstruktie);
+    setShowIncomleetAantal(false);
+    setShowQualityAlerts(false);
   };
 
   const handlePrint = async () => {
@@ -79,30 +96,44 @@ export default function Orders() {
           <Sidebar />
         </div>
         <div className="ordersRight">
-          {user.role === 3 && <div className="orderRightProductSubmit">
-            <ProductNumberGet />
-          </div>}
+          {user.role === 3 && (
+            <div className="orderRightProductSubmit">
+              <ProductNumberGet />
+            </div>
+          )}
           {(localStorage.getItem("product") || user.role === 2) && (
             <>
-              <Pdf />
               <div className="orderRightBtnContainer">
-                <button className="ordersButton" type="submit">
+                <button
+                  className="ordersButton"
+                  type="submit"
+                  onClick={() => handleShowQualityAlerts()}
+                >
                   Add quality warnings
                 </button>
                 <button
                   className="ordersButton"
                   type="submit"
-                  onClick={() => handleShowPrint()}
+                  onClick={() => handleShowIncomleetAantal()}
                 >
                   incompleet aantal
                 </button>
-                <button className="ordersButton" type="submit">
+                <button
+                  className="ordersButton"
+                  type="submit"
+                  onClick={() => handleShowWerkinstruktie()}
+                >
                   werkinstruktie
                 </button>
               </div>
             </>
           )}
-          {showPrint && (
+          {showQualityAlerts && (
+            <div className="orderItems">
+              <Pdf />
+            </div>
+          )}
+          {showIncomleetAantal && (
             <>
               {user.role === 3 ? (
                 <div className="orderIncompleetAantal" onSubmit={handlePrint}>
@@ -168,7 +199,7 @@ export default function Orders() {
                   </button>
                 </div>
               ) : (
-                <div className="orderIncompleetAantalItems">
+                <div className="orderItems">
                   {Object.values(incompleet).map((incomplete) => (
                     <>
                       <div className="rightbarInfoItems" key={incomplete._id}>
@@ -195,6 +226,11 @@ export default function Orders() {
                 </div>
               )}
             </>
+          )}
+          {showWerkinstruktie && (
+            <div className="orderItems">
+              <p>instruktie</p>
+            </div>
           )}
 
           {/* <div className="ordersProductionsFormulierenAanmelden">

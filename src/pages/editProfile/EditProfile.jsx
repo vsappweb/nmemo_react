@@ -241,7 +241,6 @@ export default function EditProfile() {
 
   return (
     <>
-      {/* //TODO add language option to editProfile  */}
       <Topbar />
       <div className="editProfile">
         <Sidebar />
@@ -929,7 +928,6 @@ export default function EditProfile() {
               )}
 
               {/* Add admin role to user */}
-              {/* //TODO: Add admin role to user */}
               <h3 className="editProfileTitle" style={{ color: "red" }}>
                 Add admin role to user
               </h3>

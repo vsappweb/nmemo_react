@@ -43,6 +43,7 @@ input {
   flex-direction: column;
   justify-content: center;
   gap: 25px;
+  min-width: 310px;
   max-width: 350px;
   margin: 10px;
 }
@@ -60,11 +61,13 @@ input {
 }
 
 .editProfileInput {
+  min-width: 130px;
   width: 200px;
   border-bottom: 1px groove var(--cText);
   padding: 5px 15px;
-  color: var(--cBadgeNtf);
+  color: var(--cText);
   border-radius: 3px;
+  text-align: justify;
 }
 
 .editProfilePictures {
