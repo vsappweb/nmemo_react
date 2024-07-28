@@ -13,13 +13,10 @@ import {
 } from "@mui/icons-material";
 import AllUsers from "../allUsers/AllUsers";
 import { Link } from "react-router-dom";
-
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
-
 import SidebarSettings from "../sidebarSettings/SidebarSettings";
-
 import { useTranslation } from "react-i18next";
 
 export default function Sidebar() {
@@ -27,6 +24,8 @@ export default function Sidebar() {
   const NEWS_BRIEF = process.env.REACT_APP_NEWS_BRIEF;
   const [allUsers, setUsers] = useState([]);
   const { user } = useContext(AuthContext);
+  const [open, setOpen] = useState(false);
+  const menuSidebar = useRef();
 
   const { t } = useTranslation();
 
@@ -51,29 +50,47 @@ export default function Sidebar() {
     );
   }
 
-  const showSidebar = () => {
-    document.querySelector(".sidebar").classList.toggle("active");
-    document.querySelector(".sidebarBurger").classList.toggle("active");
-    document.querySelector(".sidebarBurgerLineOne").classList.toggle("active");
-    document.querySelector(".sidebarBurgerLineTwo").classList.toggle("active");
-    document
-      .querySelector(".sidebarBurgerLineThree")
-      .classList.toggle("active");
-  };
+  // const showSidebar = () => {
+  //   document.querySelector(".sidebar").classList.toggle("active");
+  //   document.querySelector(".sidebarBurger").classList.toggle("active");
+  //   document.querySelector(".sidebarBurgerLineOne").classList.toggle("active");
+  //   document.querySelector(".sidebarBurgerLineTwo").classList.toggle("active");
+  //   document
+  //     .querySelector(".sidebarBurgerLineThree")
+  //     .classList.toggle("active");
+  // };
+
+  useEffect(() => {
+    let handler = (e) => {
+      if (!menuSidebar.current.contains(e.target)) {
+        console.log('third>>>',open);
+        setOpen(false);
+
+      }
+    };
+    document.addEventListener("mousedown", handler);
+
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  });
 
   return (
     <>
       <div
-        className="sidebarBurger"
+        className={`sidebarBurger ${open ? " active" : ""}`}
+        // onClick={() => {
+        //   showSidebar();
+        // }}
         onClick={() => {
-          showSidebar();
+          setOpen(!open);
         }}
       >
-        <div className="sidebarBurgerLineOne"></div>
-        <div className="sidebarBurgerLineTwo"></div>
-        <div className="sidebarBurgerLineThree"></div>
+        <div className={`sidebarBurgerLineOne ${open ? "active" : ""}`}></div>
+        <div className={`sidebarBurgerLineTwo ${open ? "active" : ""}`}></div>
+        <div className={`sidebarBurgerLineThree ${open ? "active" : ""}`}></div>
       </div>
-      <div className="sidebar">
+      <div className={`sidebar ${open ? "active" : ""}`} ref={menuSidebar}>
         <div className="sidebarWrapper">
           <ul className="sidebarList">
             <Link

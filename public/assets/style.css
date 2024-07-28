@@ -178,7 +178,7 @@ button .epr_3vd53t {
   font-size: 22px;
   font-weight: bold;
   letter-spacing: 0.8;
-  text-shadow: 5px 5px 10px black;
+  text-shadow: 5px 5px 10px var(--shadowBlack);
 }
 
 .underDevelopmentTitle {
@@ -189,7 +189,7 @@ button .epr_3vd53t {
   font-size: 16px;
   font-weight: bold;
   letter-spacing: 0.8;
-  text-shadow: 5px 5px 10px black;
+  text-shadow: 5px 5px 10px var(--shadowBlack);
 }
 
 .underDevelopmentTitle span {
@@ -206,7 +206,7 @@ button .epr_3vd53t {
   font-size: 16px;
   font-weight: bold;
   letter-spacing: 0.8;
-  text-shadow: 5px 5px 10px black;
+  text-shadow: 5px 5px 10px var(--shadowBlack);
 }
 
 .editBtn {
