@@ -1,5 +1,5 @@
 import "./rightbarMonitoring.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 // import { AuthContext } from "../../context/AuthContext";
 import AllUsers from "../allUsers/AllUsers";
@@ -12,6 +12,8 @@ export default function RightbarMonitoring() {
   let [allUsers, setAllUsers] = useState([]);
   let [showConfirmationMemo, setShowConfirmationMemo] = useState(false);
   let [showConfirmationShift, setShowConfirmationShift] = useState(false);
+  const [open, setOpen] = useState(false);
+  const menuRightbarMonitoring = useRef();
 
   const shiftNow = renderToString(<DateTimeShift />);
 
@@ -164,35 +166,46 @@ export default function RightbarMonitoring() {
     );
   };
 
-  const showRightbarMonitoring = () => {
-    document.querySelector(".rightbarMonitoring").classList.toggle("active");
-    document
-      .querySelector(".rightbarMonitoringBurger")
-      .classList.toggle("active");
-    document
-      .querySelector(".rightbarMonitoringBurgerLineOne")
-      .classList.toggle("active");
-    document
-      .querySelector(".rightbarMonitoringBurgerLineTwo")
-      .classList.toggle("active");
-    document
-      .querySelector(".rightbarMonitoringBurgerLineThree")
-      .classList.toggle("active");
-  };
+  // const showRightbarMonitoring = () => {
+  //   document.querySelector(".rightbarMonitoring").classList.toggle("active");
+  //   document
+  //     .querySelector(".rightbarMonitoringBurger")
+  //     .classList.toggle("active");
+  //   document
+  //     .querySelector(".rightbarMonitoringBurgerLineOne")
+  //     .classList.toggle("active");
+  //   document
+  //     .querySelector(".rightbarMonitoringBurgerLineTwo")
+  //     .classList.toggle("active");
+  //   document
+  //     .querySelector(".rightbarMonitoringBurgerLineThree")
+  //     .classList.toggle("active");
+  // };
+  useEffect(() => {
+    let handler = (e) => {
+      if (!menuRightbarMonitoring.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  })
 
   return (
     <>
       <div
-        className="rightbarMonitoringBurger"
+        className={`rightbarMonitoringBurger ${open ? "active" : ""}`}
         onClick={() => {
-          showRightbarMonitoring();
+          setOpen(!open);
         }}
       >
-        <div className="rightbarMonitoringBurgerLineOne"></div>
-        <div className="rightbarMonitoringBurgerLineTwo"></div>
-        <div className="rightbarMonitoringBurgerLineThree"></div>
+        <div className={`rightbarMonitoringBurgerLineOne ${open ? "active" : ""}`}></div>
+        <div className={`rightbarMonitoringBurgerLineTwo ${open ? "active" : ""}`}></div>
+        <div className={`rightbarMonitoringBurgerLineThree ${open ? "active" : ""}`}></div>
       </div>
-      <div className="rightbarMonitoring">
+      <div className={`rightbarMonitoring ${open ? "active" : ""}`} ref={menuRightbarMonitoring}>
         <div className="rightbarMonitoringWrapper">
           <MemoRightbar />
           <ShiftTransferRightbar />

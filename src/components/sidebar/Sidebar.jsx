@@ -53,23 +53,21 @@ export default function Sidebar() {
   // const showSidebar = () => {
   //   document.querySelector(".sidebar").classList.toggle("active");
   //   document.querySelector(".sidebarBurger").classList.toggle("active");
-  //   document.querySelector(".sidebarBurgerLineOne").classList.toggle("active");
-  //   document.querySelector(".sidebarBurgerLineTwo").classList.toggle("active");
-  //   document
-  //     .querySelector(".sidebarBurgerLineThree")
-  //     .classList.toggle("active");
-  // };
+  // document.querySelector(".sidebarBurgerLineOne").classList.toggle("active");
+  // document.querySelector(".sidebarBurgerLineTwo").classList.toggle("active");
+  // document
+  //   .querySelector(".sidebarBurgerLineThree")
+  //   .classList.toggle("active");
+  //  };
 
+  // this is for closing sidebar when clicking outside
   useEffect(() => {
     let handler = (e) => {
       if (!menuSidebar.current.contains(e.target)) {
-        console.log('third>>>',open);
         setOpen(false);
-
       }
     };
     document.addEventListener("mousedown", handler);
-
     return () => {
       document.removeEventListener("mousedown", handler);
     };
@@ -79,11 +77,9 @@ export default function Sidebar() {
     <>
       <div
         className={`sidebarBurger ${open ? " active" : ""}`}
-        // onClick={() => {
-        //   showSidebar();
-        // }}
         onClick={() => {
           setOpen(!open);
+          // showSidebar();
         }}
       >
         <div className={`sidebarBurgerLineOne ${open ? "active" : ""}`}></div>

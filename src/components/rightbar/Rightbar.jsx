@@ -25,7 +25,9 @@ export default function Rightbar({ user }) {
   const [onlineUsers, setOnlineUsers] = useState([]);
   let [allEvents, setEvents] = useState([]);
   let [incompleet, setIncompleet] = useState([]);
+  const [open, setOpen] = useState(false);
   const socket = useRef();
+  const menuRightbar = useRef();
 
   const { t } = useTranslation();
 
@@ -133,15 +135,27 @@ export default function Rightbar({ user }) {
     setFollowed(!followed);
   };
 
-  const showRightbar = () => {
-    document.querySelector(".rightbar").classList.toggle("active");
-    document.querySelector(".rightbarBurger").classList.toggle("active");
-    document.querySelector(".rightbarBurgerLineOne").classList.toggle("active");
-    document.querySelector(".rightbarBurgerLineTwo").classList.toggle("active");
-    document
-      .querySelector(".rightbarBurgerLineThree")
-      .classList.toggle("active");
-  };
+  // const showRightbar = () => {
+  //   document.querySelector(".rightbar").classList.toggle("active");
+  //   document.querySelector(".rightbarBurger").classList.toggle("active");
+  //   document.querySelector(".rightbarBurgerLineOne").classList.toggle("active");
+  //   document.querySelector(".rightbarBurgerLineTwo").classList.toggle("active");
+  //   document
+  //     .querySelector(".rightbarBurgerLineThree")
+  //     .classList.toggle("active");
+  // };
+
+  useEffect(() => {
+    let handler = (e) => {
+      if (!menuRightbar.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  });
 
   const HomeRightbar = () => {
     return (
@@ -310,16 +324,16 @@ export default function Rightbar({ user }) {
   return (
     <>
       <div
-        className="rightbarBurger"
+        className={`rightbarBurger ${open ? "active" : ""}`}
         onClick={() => {
-          showRightbar();
+          setOpen(!open);
         }}
       >
-        <div className="rightbarBurgerLineOne"></div>
-        <div className="rightbarBurgerLineTwo"></div>
-        <div className="rightbarBurgerLineThree"></div>
+        <div className={`rightbarBurgerLineOne ${open ? "active" : ""}`}></div>
+        <div className={`rightbarBurgerLineTwo ${open ? "active" : ""}`}></div>
+        <div className={`rightbarBurgerLineThree ${open ? "active" : ""}`}></div>
       </div>
-      <div className="rightbar">
+      <div className={`rightbar ${open ? "active" : ""}`} ref={menuRightbar}>
         <div className="rightbarWrapper">
           {user ? <ProfileRightbar /> : <HomeRightbar />}
         </div>
