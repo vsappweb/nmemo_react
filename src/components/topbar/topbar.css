@@ -260,6 +260,7 @@
 
 .topbarIconLang {
   width: 30px;
+  filter: drop-shadow(-2px 1px 0 var(--logoIcons));
 }
 
 .topbarCenterProducts {
@@ -288,6 +289,20 @@
   text-align: center;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.topbarRefresh {
+  position: absolute;
+  cursor: pointer;
+  top: 50px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--main);
+  padding: 5px 7px 4px;
+  border-radius: 50%;
+  z-index: 999;
+  color: var(--logoIcons);
+  border-bottom: 2px solid var(--logoIcons);
 }
 
 @media screen and (max-width: 600px) {

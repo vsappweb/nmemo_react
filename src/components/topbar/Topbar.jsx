@@ -2,7 +2,13 @@ import "./topbar.css";
 import AvatarUser from "../avatarUser/AvatarUser";
 import AllUsers from "../allUsers/AllUsers";
 import UserRole from "../userRole/UserRole";
-import { Person, Logout, Settings, WorkOutline } from "@mui/icons-material";
+import {
+  Person,
+  Logout,
+  Settings,
+  WorkOutline,
+  Refresh,
+} from "@mui/icons-material";
 import { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
@@ -147,14 +153,17 @@ export default function Topbar() {
   let time = hh + ":" + mm;
 
   const handleLogoutWals = (e) => {
-    console.log(e)
-    if(e === time){
+    console.log(e);
+    if (e === time) {
       setLogoutWals(!logoutWals);
     }
   };
 
   return (
     <div className="topbarContainer">
+      <div className="topbarRefresh" onClick={() => window.location.reload()}>
+        <Refresh titleAccess="Refresh" />
+      </div>
       {isDataLoading ? (
         <div className="loadingCover">
           <div className="loading">
@@ -389,12 +398,17 @@ export default function Topbar() {
                     >
                       <DropdownItem img={<Person />} text={"My Profile"} />
                     </Link>
-                   {user.role !== 3 && <Link
-                      to={`/editProfile/${user.personnelnumber}`}
-                      style={{ textDecoration: "none" }}
-                    >
-                      <DropdownItem img={<Settings />} text={"Edit Profile"} />
-                    </Link>}
+                    {user.role !== 3 && (
+                      <Link
+                        to={`/editProfile/${user.personnelnumber}`}
+                        style={{ textDecoration: "none" }}
+                      >
+                        <DropdownItem
+                          img={<Settings />}
+                          text={"Edit Profile"}
+                        />
+                      </Link>
+                    )}
                     {/* {user.role === 0 || user?.isAdmin ? (
                       <Link
                         to={`/editEvents/${user.personnelnumber}`}
@@ -422,16 +436,18 @@ export default function Topbar() {
                                     : <></>} */}
                     {user.role === 3 ? (
                       <>
-                        {logoutWals === false && (<div className="topbarLogoutContainer">
-                          <input
-                            className="topbarLogoutInput"
-                            type="password"
-                            placeholder="Logout:Code"
-                            minLength={5}
-                            maxLength={6}
-                            onChange={(e) => handleLogoutWals(e.target.value)}
-                          />
-                        </div>)}
+                        {logoutWals === false && (
+                          <div className="topbarLogoutContainer">
+                            <input
+                              className="topbarLogoutInput"
+                              type="password"
+                              placeholder="Logout:Code"
+                              minLength={5}
+                              maxLength={6}
+                              onChange={(e) => handleLogoutWals(e.target.value)}
+                            />
+                          </div>
+                        )}
                         {logoutWals && (
                           <Link
                             onClick={logout}
