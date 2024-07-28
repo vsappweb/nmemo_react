@@ -247,16 +247,19 @@ export default function Stempel() {
                       </fieldset>
                     </div>
                     <div className="stempelFormBtn">
-                      <div className="editBtn" onClick={() => showEditStempels()}>
-                      <Edit />
-                    </div>
+                      {/* <div
+                        className="editBtn"
+                        onClick={() => showEditStempels()}
+                      >
+                        <Edit />
+                      </div> */}
                       {showEditStempel && stempel && (
                         <button
                           className="buttonBtn"
                           type="submit"
                           onClick={() => handleEdit(stempel._id)}
                         >
-                          "Edit"
+                          Edit
                         </button>
                       )}
                       {delBtn && stempel && (
@@ -265,7 +268,7 @@ export default function Stempel() {
                           type="submit"
                           onClick={() => handleDelete(stempel._id)}
                         >
-                          "Delete"
+                          Delete
                         </button>
                       )}
                       <div
