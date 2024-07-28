@@ -15,6 +15,7 @@ import {
   Lock,
   LockOpen,
   ExpandCircleDownOutlined,
+  PrintOutlined,
 } from "@mui/icons-material";
 import { renderToString } from "react-dom/server";
 import DateTimeShift from "../../components/dateTimeShift/DateTimeShift";
@@ -634,6 +635,14 @@ export default function EditShiftTransfer() {
                       >
                         Sort
                       </button>
+                      {lockWeek && (
+                        <Link
+                          to={`/shiftTransferWeek/${user.personnelnumber}`}
+                          style={{ textDecoration: "none" }}
+                        >
+                          <PrintOutlined />
+                        </Link>
+                      )}
                     </div>
                   </div>
                 )}

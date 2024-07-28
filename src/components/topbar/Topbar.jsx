@@ -389,12 +389,12 @@ export default function Topbar() {
                     >
                       <DropdownItem img={<Person />} text={"My Profile"} />
                     </Link>
-                    <Link
+                   {user.role !== 3 && <Link
                       to={`/editProfile/${user.personnelnumber}`}
                       style={{ textDecoration: "none" }}
                     >
                       <DropdownItem img={<Settings />} text={"Edit Profile"} />
-                    </Link>
+                    </Link>}
                     {/* {user.role === 0 || user?.isAdmin ? (
                       <Link
                         to={`/editEvents/${user.personnelnumber}`}

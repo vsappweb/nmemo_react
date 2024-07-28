@@ -38,7 +38,7 @@ export default function ProductNumberGet() {
               ref={productnumber}
               minLength={2}
               maxLength={7}
-              placeholder=""
+              placeholder="_________"
               defaultValue={JSON.parse(localStorage.getItem("product"))}
               required
             />

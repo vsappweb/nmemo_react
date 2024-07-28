@@ -15,6 +15,7 @@ import NMemo from "./pages/nMemo/NMemo";
 import SendTlToLine from "./pages/sendTlToLine/SendTlToLine";
 import Groups from "./pages/groups/Groups";
 import License from "./pages/license/License";
+import ShiftTransferWeek from "./pages/shiftTransferWeek/ShiftTransferWeek";
 
 // import { useTranslation } from "react-i18next";
 
@@ -78,6 +79,7 @@ function App() {
           element={<SendTlToLine />}
         />
         <Route path="license/*" element={<License />} />
+        <Route path="shiftTransferWeek/:personnelnumber/*" element={<ShiftTransferWeek />} />
       </Routes>
     </Router>
   );

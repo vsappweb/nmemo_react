@@ -1,8 +1,8 @@
-.logistics {
+.shiftTransferWeek {
   display: flex;
   color: var(--cText);
 }
-.logisticsRight {
+.shiftTransferWeekRight {
   flex: 9;
   display: flex;
   gap: 15px;
