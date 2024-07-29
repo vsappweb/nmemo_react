@@ -10,6 +10,7 @@ import {
   HealthAndSafety,
   ForwardToInbox,
   Construction,
+  EmojiObjectsOutlined,
 } from "@mui/icons-material";
 import AllUsers from "../allUsers/AllUsers";
 import { Link } from "react-router-dom";
@@ -73,6 +74,39 @@ export default function Sidebar() {
     };
   });
 
+  // useEffect(() => {
+  //   let interval;
+  //   const whatShift = async () => {
+  //     try {
+  //       if (postsShiftTransfer) {
+  //         Object.values(postsShiftTransfer)
+  //           .slice(0, 1)
+  //           .forEach((postsShiftTransfer) => {
+  //             if (
+  //               postsShiftTransfer.shift === shiftNow &&
+  //               postsShiftTransfer.date === date.toLocaleDateString("nl-NL")
+  //             ) {
+  //               setHideShiftTransferForm(false);
+  //             } else if (
+  //               postsShiftTransfer.shift !== shiftNow &&
+  //               postsShiftTransfer.date === date.toLocaleDateString("nl-NL")
+  //             ) {
+  //               setHideShiftTransferForm(true);
+  //             }
+  //           });
+  //       }
+  //     } catch (err) {
+  //       console.error(err);
+  //     }
+  //   };
+  //   let result = whatShift();
+  //   if (!result) {
+  //     interval = setInterval(whatShift, 10000);
+  //   }
+  //   interval = setInterval(whatShift, 10000);
+  //   return () => clearInterval(interval);
+  // }, [postsShiftTransfer, shiftNow, date]);
+
   return (
     <>
       <div
@@ -118,24 +152,28 @@ export default function Sidebar() {
                 text={t("sidebar.Safety")}
               />
             </Link>
-            {user.role !== 1 && <Link
-              to={`/orders/${user.personnelnumber}`}
-              style={{ textDecoration: "none" }}
-            >
-              <SidebarListItem
-                img={<WorkOutline />}
-                text={t("sidebar.Orders/Products")}
-              />
-            </Link>}
-            {user.role !== 1 && <Link
-              to={`/bmGm/${user.personnelnumber}`}
-              style={{ textDecoration: "none" }}
-            >
-              <SidebarListItem
-                img={<Construction />}
-                text={t("sidebar.BM_GM")}
-              />
-            </Link>}
+            {user.role !== 1 && (
+              <Link
+                to={`/orders/${user.personnelnumber}`}
+                style={{ textDecoration: "none" }}
+              >
+                <SidebarListItem
+                  img={<WorkOutline />}
+                  text={t("sidebar.Orders/Products")}
+                />
+              </Link>
+            )}
+            {user.role !== 1 && (
+              <Link
+                to={`/bmGm/${user.personnelnumber}`}
+                style={{ textDecoration: "none" }}
+              >
+                <SidebarListItem
+                  img={<Construction />}
+                  text={t("sidebar.BM_GM")}
+                />
+              </Link>
+            )}
             <Link to={`https://orig.in.net`} style={{ textDecoration: "none" }}>
               <SidebarListItem
                 img={
@@ -182,6 +220,9 @@ export default function Sidebar() {
                   text={t("sidebar.Check_Shift_Transfer")}
                   imgSetting={<Settings />}
                 />
+                {/* <div className="blinkinLigth">
+                  <EmojiObjectsOutlined />
+                </div> */}
               </Link>
             )}
             <hr className="sidebarHr" />

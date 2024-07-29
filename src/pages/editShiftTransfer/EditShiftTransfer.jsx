@@ -16,6 +16,7 @@ import {
   LockOpen,
   ExpandCircleDownOutlined,
   PrintOutlined,
+  EmojiObjectsOutlined,
 } from "@mui/icons-material";
 import { renderToString } from "react-dom/server";
 import DateTimeShift from "../../components/dateTimeShift/DateTimeShift";
@@ -783,6 +784,9 @@ export default function EditShiftTransfer() {
                       <button className="editShiftTransferShowHideBtn">
                         {" "}
                         Make shiftTransfer now
+                        <div className="blinkinLigth">
+                          <EmojiObjectsOutlined />
+                        </div>
                       </button>
                     </Link>
                   )}
