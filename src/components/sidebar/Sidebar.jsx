@@ -19,6 +19,8 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import SidebarSettings from "../sidebarSettings/SidebarSettings";
 import { useTranslation } from "react-i18next";
+import { renderToString } from "react-dom/server";
+import DateTimeShift from "../../components/dateTimeShift/DateTimeShift";
 
 export default function Sidebar() {
   const API = process.env.REACT_APP_SERVER_API;
@@ -27,6 +29,11 @@ export default function Sidebar() {
   const { user } = useContext(AuthContext);
   const [open, setOpen] = useState(false);
   const menuSidebar = useRef();
+  const date = new Date();
+
+  let [postsShiftTransfer, setPostsShiftTransfer] = useState([]);
+  const [hideShiftTransferForm, setHideShiftTransferForm] = useState(true);
+  const shiftNow = renderToString(<DateTimeShift />);
 
   const { t } = useTranslation();
 
@@ -74,38 +81,54 @@ export default function Sidebar() {
     };
   });
 
-  // useEffect(() => {
-  //   let interval;
-  //   const whatShift = async () => {
-  //     try {
-  //       if (postsShiftTransfer) {
-  //         Object.values(postsShiftTransfer)
-  //           .slice(0, 1)
-  //           .forEach((postsShiftTransfer) => {
-  //             if (
-  //               postsShiftTransfer.shift === shiftNow &&
-  //               postsShiftTransfer.date === date.toLocaleDateString("nl-NL")
-  //             ) {
-  //               setHideShiftTransferForm(false);
-  //             } else if (
-  //               postsShiftTransfer.shift !== shiftNow &&
-  //               postsShiftTransfer.date === date.toLocaleDateString("nl-NL")
-  //             ) {
-  //               setHideShiftTransferForm(true);
-  //             }
-  //           });
-  //       }
-  //     } catch (err) {
-  //       console.error(err);
-  //     }
-  //   };
-  //   let result = whatShift();
-  //   if (!result) {
-  //     interval = setInterval(whatShift, 10000);
-  //   }
-  //   interval = setInterval(whatShift, 10000);
-  //   return () => clearInterval(interval);
-  // }, [postsShiftTransfer, shiftNow, date]);
+  useEffect(() => {
+    const fetchPostsShiftTransfer = async () => {
+      const res = await axios.get(
+        `${API}/shiftTransfers/profile/` + user.personnelnumber
+      );
+      setPostsShiftTransfer(
+        res.data.sort((st1, st2) => {
+          return new Date(st2.createdAt) - new Date(st1.createdAt);
+        })
+      );
+    };
+    fetchPostsShiftTransfer();
+  }, [user.personnelnumber, API]);
+
+  useEffect(() => {
+    let interval;
+    const whatShift = async () => {
+      try {
+        if (postsShiftTransfer) {
+          Object.values(postsShiftTransfer)
+            .slice(0, 1)
+            .forEach((postsShiftTransfer) => {
+              if (
+                (postsShiftTransfer.shift === shiftNow &&
+                  postsShiftTransfer.date ===
+                    date.toLocaleDateString("nl-NL")) ||
+                shiftNow === "outside"
+              ) {
+                setHideShiftTransferForm(false);
+              } else if (
+                postsShiftTransfer.shift !== shiftNow &&
+                postsShiftTransfer.date === date.toLocaleDateString("nl-NL")
+              ) {
+                setHideShiftTransferForm(true);
+              }
+            });
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    let result = whatShift();
+    if (!result) {
+      interval = setInterval(whatShift, 10000);
+    }
+    interval = setInterval(whatShift, 10000);
+    return () => clearInterval(interval);
+  }, [postsShiftTransfer, shiftNow, date]);
 
   return (
     <>
@@ -215,14 +238,18 @@ export default function Sidebar() {
                 to={`/editShiftTransfer/${user.personnelnumber}`}
                 style={{ textDecoration: "none" }}
               >
+                <div className="blinkinShadow">
                 <SidebarListItem
                   img={<Rule />}
                   text={t("sidebar.Check_Shift_Transfer")}
                   imgSetting={<Settings />}
-                />
-                {/* <div className="blinkinLigth">
-                  <EmojiObjectsOutlined />
-                </div> */}
+                  />
+                {hideShiftTransferForm && (
+                  <div className="blinkinLigth">
+                    <EmojiObjectsOutlined />
+                  </div>
+                )}
+                </div>
               </Link>
             )}
             <hr className="sidebarHr" />

@@ -138,8 +138,9 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
         if (postsShiftTransfer) {
           Object.values(postsShiftTransfer).forEach((postsShiftTransfer) => {
             if (
-              postsShiftTransfer.shift === shiftNow &&
-              postsShiftTransfer.date === date.toLocaleDateString("nl-NL")
+              (postsShiftTransfer.shift === shiftNow &&
+                postsShiftTransfer.date === date.toLocaleDateString("nl-NL")) ||
+              shiftNow === "outside"
             ) {
               setHideShiftTransferForm(false);
             } else if (

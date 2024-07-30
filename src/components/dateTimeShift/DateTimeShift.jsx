@@ -20,8 +20,8 @@ export default function DateTimeShift() {
 
   let time = hh + ":" + mm + ":" + ss;
 
-  if (weekNumber === "31" || weekNumber === "32") {
-    shiftNow = time > "07:30:00" && time < "16:15:00" ? "Day" : `T-${time}`;
+  if (weekNumber === "33" || weekNumber === "32") {
+    shiftNow = time > "07:30:00" && time < "16:15:00" ? "Day" : "outside";
   } else {
     shiftNow =
       time > "05:45:00" && time < "13:45:00"

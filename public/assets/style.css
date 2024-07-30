@@ -67,7 +67,7 @@ button {
 }
 
 button:hover {
-  filter: brightness(100%);
+  /* filter: brightness(100%); */
   background-color: rgba(0, 0, 0, 0.2);
   transform: scale(1.025);
   -webkit-box-shadow: 0px 0px 16px -8px var(--shadowBlack);
@@ -355,6 +355,12 @@ button .epr_3vd53t {
   animation: blinkin 2s linear infinite;
   box-shadow: 0px 0px 10px 10px rgba(255, 255, 0, 0.45);
   margin-left: 10px;
+}
+
+.blinkinShadow {
+  display: flex;
+  align-items: baseline;
+  /* filter: drop-shadow(4px 4px 2px var(--cBadgeNtf)); */
 }
 
 @keyframes blinkin {

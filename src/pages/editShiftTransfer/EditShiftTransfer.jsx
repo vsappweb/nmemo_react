@@ -415,8 +415,10 @@ export default function EditShiftTransfer() {
             .slice(0, 1)
             .forEach((postsShiftTransfer) => {
               if (
-                postsShiftTransfer.shift === shiftNow &&
-                postsShiftTransfer.date === date.toLocaleDateString("nl-NL")
+                (postsShiftTransfer.shift === shiftNow &&
+                  postsShiftTransfer.date ===
+                    date.toLocaleDateString("nl-NL")) ||
+                shiftNow === "outside"
               ) {
                 setHideShiftTransferForm(false);
               } else if (
