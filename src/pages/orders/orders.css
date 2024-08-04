@@ -53,6 +53,14 @@
   border-bottom: 2px groove var(--cText);
 }
 
+.ordersButtonsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
 .orderRightProductForm {
   display: flex;
   flex-wrap: wrap;

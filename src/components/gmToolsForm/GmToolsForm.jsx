@@ -5,7 +5,7 @@ import { DoneOutline } from "@mui/icons-material";
 // import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 
-export default function GmToolsForm() {
+export default function GmToolsForm({tool}) {
   const API = process.env.REACT_APP_SERVER_API;
   const [date] = useState(new Date());
   const toolNumber = useRef();
@@ -66,6 +66,7 @@ export default function GmToolsForm() {
                     type="text"
                     placeholder="00-000-a-z"
                     className="gmToolsFormInput"
+                    defaultValue={tool}
                     ref={toolNumber}
                   />
                 </label>

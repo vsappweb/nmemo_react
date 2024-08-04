@@ -15,6 +15,7 @@ import { AuthContext } from "../../context/AuthContext";
 import DateTimeShift from "../dateTimeShift/DateTimeShift";
 import { ExpandCircleDownOutlined } from "@mui/icons-material";
 // import Picker from "emoji-picker-react";
+import { format } from "timeago.js";
 
 export default function Feed({ personnelnumber, shiftTransfer }) {
   const API = process.env.REACT_APP_SERVER_API;
@@ -224,7 +225,29 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
         </ul>
 
         {postsMemo.slice(0, 1).map((m) => (
-          <PostMemo key={m._id} memo={m} />
+          <>
+            {/* {
+              m?.userId === user.personnelnumber &&
+              m?.createdAt.split("T")[0].split("-")[0] ===
+              date.toISOString().split("T")[0].split("-")[0] &&
+              m?.createdAt.split("T")[0].split("-")[1] ===
+              date.toISOString().split("T")[0].split("-")[1] &&
+              new Date(m.createdAt).getDate() + 1 >= date.getDate() ? (
+            <> */}
+            <PostMemo key={m._id} memo={m} />
+            {/* </>
+            ) : (
+              <>
+                <div className="postMemo">
+                <div className="postMemoWrapper">
+                  <p className="postMemoText" style={{ textAlign: "center" }}>
+                  Сheck the Memo in "Leave an IATF Memo".<br/><br/>  
+                  The last Memo was made nearly {format(m.createdAt)}</p>
+                </div>
+                </div>
+              </>
+            )} */}
+          </>
         ))}
         {posts.slice(0, expandMore).map((p) => (
           <Post key={p._id} post={p} />

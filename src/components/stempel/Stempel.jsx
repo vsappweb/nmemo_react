@@ -287,7 +287,7 @@ export default function Stempel() {
           ).length === 0 && (
             <>
               <p className="stempelFormTitle">No tools yet</p>
-              <form className="stempelForm" onSubmit={handleSubmit}>
+              <form className="stempelForm" autoComplete="off" onSubmit={handleSubmit}>
                 <label className="stempelFormLabel" htmlFor="productNumber">
                   <p className="stempelFormText">Profiel/Product:</p>
                   <input

@@ -14,8 +14,9 @@
   margin-top: 22px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  gap: 5px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .bmGmSortContainer {
@@ -42,7 +43,7 @@
 
 .bmGmSortTool {
   position: absolute;
-  top: 0;
+  bottom: 0;
   right: 0;
   background-color: var(--bg);
   padding: 5px;
