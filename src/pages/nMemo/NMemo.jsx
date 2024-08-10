@@ -10,13 +10,17 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import RightbarMonitoring from "../../components/rightbarMonitoring/RightbarMonitoring";
 import { ExpandCircleDownOutlined } from "@mui/icons-material";
+import AllUsers from "../../components/allUsers/AllUsers";
 
 export default function NMemo() {
   const API = process.env.REACT_APP_SERVER_API;
   const [postsMemo, setPostsMemo] = useState([]);
   const { user } = useContext(AuthContext);
+  let [allUsers, setAllUsers] = useState([]);
   let [allMemos, setAllMemos] = useState([]);
+  let [allMemosSort, setAllMemosSort] = useState([]);
   const [hideMemos, setHideMemos] = useState(false);
+  const [hideAllnMemos, setHideAllnMemos] = useState(false);
   const [expandMore, setExpandMore] = useState(7);
 
   useEffect(() => {
@@ -25,6 +29,7 @@ export default function NMemo() {
       try {
         const res = await axios.get(`${API}/memos/allMemos`);
         setAllMemos(res.data);
+        setAllMemosSort(res.data);
       } catch (err) {
         console.error(err);
       }
@@ -41,20 +46,26 @@ export default function NMemo() {
     return () => clearInterval(interval);
   }, [API]);
 
-  // // sort users by role (operators and wals)
-  // const sort = (a, b) => {
-  //   return (b.userId) - (a.userId);
-  // }
-
-  // allMemos = Object.values(allMemos).sort(sort);
-
-  // // filter users by role (operators and wals)
-  // allUsers = Object.values(allUsers).filter((user) => {
-  //   return user.role === 1 || user.role === 3;
-  // });
+  useEffect(() => {
+    const getUsrsers = async () => {
+      try {
+        const res = await axios.get(`${API}/users/usersList`);
+        setAllUsers(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getUsrsers();
+  }, [API]);
 
   const handleHideMemosForm = () => {
     setHideMemos(!hideMemos);
+    setHideAllnMemos(false);
+  };
+
+  const handleHideAllnMemosForm = () => {
+    setHideAllnMemos(!hideAllnMemos);
+    setHideMemos(false);
   };
 
   useEffect(() => {
@@ -83,6 +94,18 @@ export default function NMemo() {
 
   const edit = allMemos;
 
+  const compareMemoDate = (a, b) => {
+    return new Date(b.createdAt) - new Date(a.createdAt);
+  };
+
+  allMemosSort = Object.values(allMemosSort).sort(compareMemoDate);
+  
+  const compareUserRole = (a, b) => {
+    return new Date(a.role) - new Date(b.role);
+  };
+  allUsers = Object.values(allUsers).sort(compareUserRole);
+  allUsers = Object.values(allUsers).filter((user) => user.role === 3);
+
   return (
     <>
       <Topbar />
@@ -93,27 +116,18 @@ export default function NMemo() {
             <div className="nMemoContainer">
               <button
                 className="nMemoContainerShowHideBtn"
+                onClick={handleHideAllnMemosForm}
+              >
+                {hideAllnMemos ? "Hide all nMemos" : "Show all nMemos"}
+              </button>
+              <button
+                className="nMemoContainerShowHideBtn"
                 onClick={handleHideMemosForm}
               >
                 {hideMemos ? "Hide Edit Memo Text" : "Show Edit Memo Text"}
               </button>
             </div>
           ) : null}
-
-          {/* {user.role === 0 || user.isAdmin ? <>
-            {hideShiftTransferSorting && <div className="editShiftTransferRightSorting editShiftTransferListWrapper">
-              <h2 className="editShiftTransferRightSortingTitle">sort transfer shift</h2>
-              <input className="editShiftTransferRightSortingInput" type="date" placeholder="Date" />
-              <select className="editShiftTransferRightSortingInput" defaultValue="3" >
-                <option className="editShiftTransferRightSortingInput" value="1">Operator</option>
-                <option className="editShiftTransferRightSortingInput" value="2">Shift</option>
-                <option className="editShiftTransferRightSortingInput" value="3">Wals</option>
-                <option className="editShiftTransferRightSortingInput" value="4">Week</option>
-              </select>
-              <input className="editShiftTransferRightSortingInput" type="text" />
-              <button className="editProfileButtonGet" onClick={() => window.location.reload()} >sort</button>
-            </div>}
-          </> : <></>} */}
 
           {user.role === 1 && <MemoToLine />}
 
@@ -123,43 +137,78 @@ export default function NMemo() {
             </div>
           )}
 
+          {hideAllnMemos && (
+            <div className="nMemoCenterWrapper">
+              <h1>All nMemos</h1>
+              <ul>
+                {Object.values(allUsers).map((uSt) => (
+                  <li
+                    className=""
+                    style={{ marginBottom: "15px" }}
+                    key={uSt._id}
+                  >
+                    <AllUsers user={uSt} />
+                    <br />
+                    <div className="nMemoMessageContainer">
+                    {Object.values(allMemosSort).map(
+                      (memoSort) =>
+                        memoSort.userId === uSt._id && (
+                          <>
+                            <div
+                              className="nMemoViev"
+                              key={memoSort._id}
+                              >
+                              <PostMemo memo={memoSort} />
+                            </div>
+                          </>
+                        )
+                      )}
+                      </div>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {user.role === 3 && (
             <div className="nMemoCenterWrapper">
               <Memo edit={edit} />
             </div>
           )}
-          <div className="nMemoMessageContainer">
-            {(user.role === 2 || user.role === 0) &&
-              Object.values(allMemos).map((m) => (
-                <li className="nMemoViev" key={m._id}>
-                  <PostMemo memo={m} />
-                </li>
-              ))}
-
-            {(user.role === 3 || user.role === 1) && (
-              <ul className="nMemoPostsList">
-                {postsMemo.slice(0, expandMore).map((m) => (
-                  <li key={m._id} style={{ marginBottom: "15px" }}>
+          {hideAllnMemos === false && (
+            <div className="nMemoMessageContainer">
+              {(user.role === 2 || user.role === 0) &&
+                Object.values(allMemos).map((m) => (
+                  <li className="nMemoViev" key={m._id}>
                     <PostMemo memo={m} />
-                    {user.role === 1 && (
-                      <p style={{ fontSize: "10px" }}>Wals {m?.line}</p>
-                    )}
                   </li>
                 ))}
-              </ul>
-            )}
-            {postsMemo.length === expandMore ||
-            postsMemo.length < expandMore ? (
-              <> </>
-            ) : (
-              <div
-                className="editBtn"
-                onClick={() => setExpandMore(expandMore + 7)}
-              >
-                <ExpandCircleDownOutlined />
-              </div>
-            )}
-          </div>
+
+              {(user.role === 3 || user.role === 1) && (
+                <ul className="nMemoPostsList">
+                  {postsMemo.slice(0, expandMore).map((m) => (
+                    <li key={m._id} style={{ marginBottom: "15px" }}>
+                      <PostMemo memo={m} />
+                      {user.role === 1 && (
+                        <p style={{ fontSize: "10px" }}>Wals {m?.line}</p>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {postsMemo.length === expandMore ||
+              postsMemo.length < expandMore ? (
+                <> </>
+              ) : (
+                <div
+                  className="editBtn"
+                  onClick={() => setExpandMore(expandMore + 7)}
+                >
+                  <ExpandCircleDownOutlined />
+                </div>
+              )}
+            </div>
+          )}
         </div>
         {user.role === 2 || user.role === 0 ? (
           <RightbarMonitoring />

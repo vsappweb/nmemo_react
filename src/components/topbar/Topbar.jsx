@@ -8,6 +8,8 @@ import {
   Settings,
   WorkOutline,
   Refresh,
+  Reply,
+  Forward,
 } from "@mui/icons-material";
 import { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,7 +23,7 @@ export default function Topbar() {
   const date = new Date();
   const { user, dispatch } = useContext(AuthContext);
   // const { user: currentUser, dispatch } = useContext(AuthContext);
-  const navigate = useNavigate();
+  let navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [openWals, setOpenWals] = useState(false);
   const [allUsers, setUsers] = useState([]);
@@ -30,6 +32,7 @@ export default function Topbar() {
   const [chooseLang, setChooseLang] = useState("en");
   const [isDataLoading, setIsDataLoading] = useState(false);
   const [logoutWals, setLogoutWals] = useState(false);
+  let [lengthHistory, setLengthHistory] = useState(window.history.length);
 
   let menuRef = useRef();
   let changeWalsRef = useRef();
@@ -39,6 +42,13 @@ export default function Topbar() {
     setChooseLang(language);
     setChangeLang(!changeLang);
   };
+ 
+  console.log('lengthHistoryBefore >>>', lengthHistory);
+  const handleBack = () => {
+    navigate(-1);
+    setLengthHistory(window.history.length - 1);
+    console.log('lengthHistoryAfter >>>', lengthHistory);
+}
 
   useEffect(() => {
     let handler = (e) => {
@@ -164,6 +174,12 @@ export default function Topbar() {
       <div className="topbarRefresh" onClick={() => window.location.reload()}>
         <Refresh titleAccess="Refresh" />
       </div>
+      {lengthHistory > 2 && <div className="topbarReply" onClick={() => handleBack()}>
+        <Reply titleAccess="Reply" />
+      </div>}
+      {lengthHistory > 1 && <div className="topbarForward" onClick={() => navigate(1)} style={{ display: "none" }}>
+        <Forward titleAccess="Forward" />
+      </div>}
       {isDataLoading ? (
         <div className="loadingCover">
           <div className="loading">
