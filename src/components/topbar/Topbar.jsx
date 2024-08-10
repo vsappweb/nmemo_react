@@ -9,7 +9,8 @@ import {
   WorkOutline,
   Refresh,
   Reply,
-  Forward,
+  ArrowBack,
+  KeyboardBackspace,
 } from "@mui/icons-material";
 import { useContext, useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -174,11 +175,11 @@ export default function Topbar() {
       <div className="topbarRefresh" onClick={() => window.location.reload()}>
         <Refresh titleAccess="Refresh" />
       </div>
-      {lengthHistory > 2 && <div className="topbarReply" onClick={() => handleBack()}>
-        <Reply titleAccess="Reply" />
+      {lengthHistory >= 2 && <div className="topbarReply" onClick={() => handleBack()}>
+        <KeyboardBackspace titleAccess="Reply" />
       </div>}
-      {lengthHistory > 1 && <div className="topbarForward" onClick={() => navigate(1)} style={{ display: "none" }}>
-        <Forward titleAccess="Forward" />
+      {lengthHistory >= 2 && <div className="topbarForward" onClick={() => navigate(1)}>
+        <KeyboardBackspace titleAccess="Forward" style={{ transform: "scaleX(-1)" }} />
       </div>}
       {isDataLoading ? (
         <div className="loadingCover">

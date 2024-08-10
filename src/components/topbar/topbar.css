@@ -52,6 +52,7 @@
   justify-content: center;
   text-transform: uppercase;
   color: var(--logoIcons);
+  z-index: 999;
 }
 
 .topbarRight {
@@ -91,6 +92,7 @@
   display: flex;
   align-items: center;
   gap: 5px;
+  z-index: 999;
 }
 
 .topbarMenuContainer {
@@ -301,7 +303,7 @@
   background-color: var(--main);
   padding: 5px 7px 4px;
   border-radius: 50%;
-  z-index: 999;
+  z-index: 900;
   color: var(--logoIcons);
   border-bottom: 2px solid var(--logoIcons);
 }
@@ -315,7 +317,7 @@
   background-color: var(--main); 
   padding: 7px 7px 2px 4px;
   border-bottom-right-radius: 50%;
-  z-index: 999;
+  z-index: 900;
   color: var(--logoIcons);
   border-bottom: 2px solid var(--logoIcons);
   border-left: 2px solid var(--main);
@@ -328,13 +330,13 @@
   right: 17px;
   transform: translate(-50%, -50%);
   background-color: var(--main); 
-  padding: 7px 7px 2px 4px;
+  padding: 7px 4px 2px 7px;
   border-bottom-left-radius: 50%;
-  z-index: 999;
+  z-index: 900;
   color: var(--logoIcons);
   border-bottom: 2px solid var(--logoIcons);
   border-right: 2px solid var(--main);
-  transform: rotate(180deg) translate(-50%, -50%);
+  transform: translate(50%, -50%);
 }
 
 
