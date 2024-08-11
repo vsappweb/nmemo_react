@@ -1,0 +1,43 @@
+.maintenanceOrdersContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90%;
+  margin: 0 auto;
+  gap: 10px;
+  -webkit-box-shadow: 0px 0px 16px -8px var(--shadowBlack);
+  box-shadow: 0px 0px 16px -8px var(--shadowBlack);
+  padding: 10px;
+  border-radius: 10px;
+  border: 3px solid var(--main);
+  background-color: rgb(179, 179, 179);
+}
+
+.maintenanceOrdersContainer span {
+  font-size: 14px;
+  font-weight: 500;
+  font-style: italic;
+  color: var(--main);
+  padding: 0 10px;
+}
+
+.maintenanceOrdersData {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.maintenanceOrdersBox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.maintenanceProductText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}

@@ -8,8 +8,6 @@ import {
   Settings,
   WorkOutline,
   Refresh,
-  Reply,
-  ArrowBack,
   KeyboardBackspace,
 } from "@mui/icons-material";
 import { useContext, useState, useEffect, useRef } from "react";
@@ -34,6 +32,7 @@ export default function Topbar() {
   const [isDataLoading, setIsDataLoading] = useState(false);
   const [logoutWals, setLogoutWals] = useState(false);
   let [lengthHistory, setLengthHistory] = useState(window.history.length);
+  // const [isBack, setIsBack] = useState();
 
   let menuRef = useRef();
   let changeWalsRef = useRef();
@@ -43,13 +42,14 @@ export default function Topbar() {
     setChooseLang(language);
     setChangeLang(!changeLang);
   };
- 
-  console.log('lengthHistoryBefore >>>', lengthHistory);
+
+  // console.log('lengthHistoryBefore >>>', lengthHistory);
   const handleBack = () => {
     navigate(-1);
     setLengthHistory(window.history.length - 1);
-    console.log('lengthHistoryAfter >>>', lengthHistory);
-}
+    // setIsBack(true);
+    // console.log('lengthHistoryAfter >>>', lengthHistory);
+  };
 
   useEffect(() => {
     let handler = (e) => {
@@ -175,12 +175,19 @@ export default function Topbar() {
       <div className="topbarRefresh" onClick={() => window.location.reload()}>
         <Refresh titleAccess="Refresh" />
       </div>
-      {lengthHistory >= 2 && <div className="topbarReply" onClick={() => handleBack()}>
-        <KeyboardBackspace titleAccess="Reply" />
-      </div>}
-      {lengthHistory >= 2 && <div className="topbarForward" onClick={() => navigate(1)}>
-        <KeyboardBackspace titleAccess="Forward" style={{ transform: "scaleX(-1)" }} />
-      </div>}
+      {lengthHistory >= 1 && (
+        <div className="topbarReply" onClick={() => handleBack()}>
+          <KeyboardBackspace titleAccess="Reply" />
+        </div>
+      )}
+      {lengthHistory >= 1 && (
+        <div className="topbarForward" onClick={() => navigate(1)}>
+          <KeyboardBackspace
+            titleAccess="Forward"
+            style={{ transform: "scaleX(-1)" }}
+          />
+        </div>
+      )}
       {isDataLoading ? (
         <div className="loadingCover">
           <div className="loading">

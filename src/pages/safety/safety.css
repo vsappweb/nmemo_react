@@ -8,6 +8,14 @@
   gap: 15px;
 }
 
+.safetyInform {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
 .safetyInformLine {
   width: 220px;
   height: 2px;

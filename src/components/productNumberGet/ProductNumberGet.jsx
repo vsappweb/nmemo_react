@@ -1,8 +1,43 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import "./productNumberGet.css";
+import { AuthContext } from "../../context/AuthContext";
+import axios from "axios";
 
 export default function ProductNumberGet() {
+  const API = process.env.REACT_APP_SERVER_API;
   const productnumber = useRef();
+  const posnumber = useRef();
+  const ordernumber = useRef();
+  const amountnumber = useRef();
+  const { user } = useContext(AuthContext);
+  let [allActualOrders, setAllActualOrders] = useState([]);
+  const date = new Date();
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await axios.get(`${API}/actualOrders/allActualOrders`);
+        setAllActualOrders(res.data);
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProduct();
+  }, [API]);
+
+  const sortByDate = (a, b) => {
+    return new Date(b.dateStart) - new Date(a.dateStart);
+  };
+
+  const sortedActualOrders = Object.values(allActualOrders).sort(sortByDate);
+  allActualOrders = sortedActualOrders.filter(
+    (actualOrder) =>
+      actualOrder.show === true && actualOrder.userId === user._id
+  );
+  const actualOrderIds = Object.values(allActualOrders).map(
+    (actualOrder) => actualOrder._id
+  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -10,14 +45,58 @@ export default function ProductNumberGet() {
       "product",
       JSON.stringify(productnumber.current.value)
     );
-    window.location.reload();
+    const actualProduct = {
+      productNumber: productnumber.current.value,
+      userId: user._id,
+      dateStart: date.toLocaleDateString("nl-NL"),
+      status: "in progress",
+      posNumber: posnumber.current.value,
+    };
+    try {
+      axios.post(`${API}/actualOrders`, actualProduct);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleAddActualOrder = (e) => {
+    e.preventDefault();
+    localStorage.setItem("order", true);
+    const actualOrder = {
+      orderNumber: ordernumber.current.value,
+      amount: amountnumber.current.value,
+    };
+    try {
+      axios.put(`${API}/actualOrders/${actualOrderIds}`, actualOrder);
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleChange = (e) => {
     e.preventDefault();
     localStorage.removeItem("product");
-    window.location.reload();
+    localStorage.removeItem("order");
+    const actualProductId = actualOrderIds;
+    const actualProduct = {
+      dateEnd: date.toLocaleDateString("nl-NL"),
+      status: "finished",
+      show: false,
+    };
+    try {
+      console.log("start >>>");
+      console.log(actualProductId);
+      axios.put(`${API}/actualOrders/${actualProductId}`, actualProduct);
+      console.log("end >>>");
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
   };
+
+  console.log("test >>>", allActualOrders);
 
   return (
     <>
@@ -42,6 +121,17 @@ export default function ProductNumberGet() {
               defaultValue={JSON.parse(localStorage.getItem("product"))}
               required
             />
+            <input
+              className="orderRightProductFormInput"
+              type="text"
+              id="posNumber"
+              ref={posnumber}
+              minLength={2}
+              maxLength={7}
+              placeholder="POS"
+              defaultValue=""
+              required
+            />
           </label>
           <button
             className="orderRightProductFormBtn ordersButton"
@@ -51,21 +141,112 @@ export default function ProductNumberGet() {
           </button>
         </form>
       ) : (
-        <form
-          className="orderRightProductForm"
-          autoComplete="off"
-          onSubmit={handleChange}
-        >
-          <p className="orderRightProductFormText">
-            {JSON.parse(localStorage.getItem("product"))}
-          </p>
-          <button
-            className="orderRightProductFormBtn ordersButton"
-            type="submit"
+        <div className="productOrdersContainer">
+          <form
+            className="orderRightProductForm"
+            autoComplete="off"
+            onSubmit={handleChange}
           >
-            Change product
-          </button>
-        </form>
+            <p className="orderRightProductFormText">
+              {JSON.parse(localStorage.getItem("product"))}
+            </p>
+            <button
+              className="orderRightProductFormBtn ordersButton"
+              type="submit"
+            >
+              Change
+            </button>
+          </form>
+          <br />
+          <br />
+
+          {localStorage.getItem("order") === null ? (
+            <div className="orderRightProductContainer">
+              <form
+                className="orderRightProductForm"
+                autoComplete="off"
+                onSubmit={handleAddActualOrder}
+              >
+                <label
+                  className="orderRightOrderFormLabel"
+                  htmlFor="orderNumber"
+                >
+                  <p className="orderRightProductFormText">Order:</p>
+                  <input
+                    className="orderRightProductFormInput"
+                    type="text"
+                    id="orderNumber"
+                    ref={ordernumber}
+                    minLength={2}
+                    maxLength={7}
+                    placeholder="_________"
+                    defaultValue=""
+                    required
+                  />
+                </label>
+                <label
+                  className="orderRightOrderFormLabel"
+                  htmlFor="amountNumber"
+                >
+                  <p className="orderRightProductFormText">Amount:</p>
+                  <input
+                    className="orderRightProductFormInput"
+                    type="text"
+                    id="amountNumber"
+                    ref={amountnumber}
+                    minLength={2}
+                    maxLength={9}
+                    placeholder="_________"
+                    defaultValue=""
+                    required
+                  />
+                </label>
+                <button
+                  className="orderRightProductFormBtn ordersButton"
+                  type="submit"
+                >
+                  add Order
+                </button>
+              </form>
+            </div>
+          ) : (
+            <div>
+              {Object.values(allActualOrders).map((actualOrder) => (
+                <div
+                  key={actualOrder._id}
+                  className="orderRightProductContainer"
+                >
+                  <p
+                    className="orderRightProductText"
+                    style={{ textAlign: "center" }}
+                  >
+                    <span>Order:</span>
+                    {actualOrder.orderNumber}
+                  </p>
+                  <div className="orderRightProductTextContainer">
+                    <p className="orderRightProductText">
+                      <span>Product:</span>
+                      {actualOrder.productNumber}
+                    </p>
+                    <p className="orderRightProductText">
+                      <span>pos:</span>
+                      {actualOrder.posNumber}
+                    </p>
+                  </div>
+                  <p className="orderRightProductText">
+                    <span>Quantity:</span>
+                    {actualOrder.amount}
+                    <span>st.</span>
+                  </p>
+                  <p className="orderRightProductText">
+                    <span>Status:</span>
+                    {actualOrder.status}
+                  </p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       )}
     </>
   );

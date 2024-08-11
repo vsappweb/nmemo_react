@@ -139,7 +139,6 @@ export default function NMemo() {
 
           {hideAllnMemos && (
             <div className="nMemoCenterWrapper">
-              <h1>All nMemos</h1>
               <ul>
                 {Object.values(allUsers).map((uSt) => (
                   <li

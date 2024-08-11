@@ -1,58 +1,71 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./maintenance.css";
+import { NewReleases } from "@mui/icons-material";
 import axios from "axios";
 
 export default function Maintenance() {
+  const API = process.env.REACT_APP_SERVER_API;
+  let [allActualOrders, setAllActualOrders] = useState([]);
   const maintenance = useRef();
-  const [number1, setNumber1] = useState();
-  const [number2, setNumber2] = useState();
-  const [addAmount, setAddAmount] = useState(0);
 
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const newMaintenance = {
-      maintenance: addAmount,
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await axios.get(`${API}/actualOrders/allActualOrders`);
+        setAllActualOrders(res.data);
+        console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
     };
-    try {
-      await axios
-        .post("/api/maintenance", newMaintenance)
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    } catch (err) {
-      console.error(err);
-    }
-  };
+    getProduct();
+  }, [API]);
 
   return (
     <div className="maintenance">
       <div className="bmGmSortContainer">
-        <p className="maintenanceText">{addAmount}</p>
-        <form autoComplete="off" onSubmit={(e) => handleSubmit(e)} className="maintenanceForm">
-          <label htmlFor="maintenance">
-            <h5 className="maintenanceDescription">
-              Add Amount actual order for product number{" "}
-              {JSON.parse(localStorage.getItem("product"))}
-            </h5>
-            <input
-              className="maintenanceInput"
-              type="text"
-              id="maintenance"
-              placeholder="Maintenance"
-              ref={maintenance}
-            />
-          </label>
-          <button className="ordersButton" onClick={() => setAddAmount(addAmount + maintenance.current.value)}>Add Amount</button>
-          <button
-            className="ordersButton"
-            type="submit">
-            Save
-          </button>
-        </form>
+        {Object.values(allActualOrders).map((actualOrder) => (
+          <div key={actualOrder._id} className="maintenanceOrdersContainer">
+            <div className="maintenanceOrdersAlarm">
+              <NewReleases />
+            </div>
+            <div className="maintenanceOrdersData">
+              <div className="maintenanceOrdersBox">
+                <p className="maintenanceProductText">
+                  <span>Wals:</span>
+                  {actualOrder.userId}
+                </p>
+                <p className="maintenanceProductText">
+                  <span>Order:</span>
+                  {actualOrder.orderNumber}
+                </p>
+                <p className="maintenanceProductText">
+                  <span>Status:</span>
+                  {actualOrder.status}
+                </p>
+                <p className="maintenanceProductText">
+                  <span>Start:</span>
+                  {actualOrder.dateStart}
+                </p>
+              </div>
+              <div className="maintenanceOrdersBox">
+                <p className="maintenanceProductText">
+                  <span>Product:</span>
+                  {actualOrder.productNumber}
+                </p>
+                <p className="maintenanceProductText">
+                  <span>pos:</span>
+                  {actualOrder.posNumber}
+                </p>
+                <p className="maintenanceProductText">
+                  <span>Quantity:</span>
+                  {actualOrder.amount}
+                  <span>st.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
