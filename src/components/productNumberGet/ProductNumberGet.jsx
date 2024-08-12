@@ -54,6 +54,7 @@ export default function ProductNumberGet() {
     };
     try {
       axios.post(`${API}/actualOrders`, actualProduct);
+      window.alert("Added");
       window.location.reload();
     } catch (err) {
       console.log(err);
@@ -69,6 +70,7 @@ export default function ProductNumberGet() {
     };
     try {
       axios.put(`${API}/actualOrders/${actualOrderIds}`, actualOrder);
+      window.alert("Added");
       window.location.reload();
     } catch (err) {
       console.log(err);
@@ -79,7 +81,6 @@ export default function ProductNumberGet() {
     e.preventDefault();
     localStorage.removeItem("product");
     localStorage.removeItem("order");
-    const actualProductId = actualOrderIds;
     const actualProduct = {
       dateEnd: date.toLocaleDateString("nl-NL"),
       status: "finished",
@@ -87,9 +88,9 @@ export default function ProductNumberGet() {
     };
     try {
       console.log("start >>>");
-      console.log(actualProductId);
-      axios.put(`${API}/actualOrders/${actualProductId}`, actualProduct);
-      console.log("end >>>");
+      console.log(actualOrderIds);
+      axios.put(`${API}/actualOrders/${actualOrderIds}`, actualProduct);
+      window.alert("Deleted");
       window.location.reload();
     } catch (err) {
       console.log(err);
