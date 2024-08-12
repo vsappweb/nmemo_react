@@ -147,9 +147,21 @@ export default function ProductNumberGet() {
             autoComplete="off"
             onSubmit={handleChange}
           >
-            <p className="orderRightProductFormText">
+            {/* <p className="orderRightProductFormText">
               {JSON.parse(localStorage.getItem("product"))}
-            </p>
+            </p> */}
+            {Object.values(allActualOrders).map((actualOrder) => (
+                <div
+                  key={actualOrder._id}
+                  // className="orderRightProductContainer"
+                >
+                  <p
+                    className="orderRightProductFormText"
+                  >
+                    {actualOrder.productNumber}
+                  </p>
+                  </div>
+            ))}
             <button
               className="orderRightProductFormBtn ordersButton"
               type="submit"
