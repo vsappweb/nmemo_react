@@ -353,7 +353,7 @@ button .epr_3vd53t {
   background-color: rgba(255, 255, 0, 0.8);
   border-radius: 50%;
   animation: blinkin 2s linear infinite;
-  box-shadow: 0px 0px 10px 10px rgba(255, 255, 0, 0.45);
+  box-shadow: 0px 0px 10px 10px rgba(255, 0, 0, 0.45);
   margin-left: 10px;
 }
 

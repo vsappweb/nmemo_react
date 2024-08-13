@@ -6,7 +6,20 @@ import axios from "axios";
 export default function Maintenance() {
   const API = process.env.REACT_APP_SERVER_API;
   let [allActualOrders, setAllActualOrders] = useState([]);
+  let [allUsers, setAllUsers] = useState([]);
   const maintenance = useRef();
+
+  useEffect(() => {
+    const getUsrsers = async () => {
+      try {
+        const res = await axios.get(`${API}/users/usersList`);
+        setAllUsers(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getUsrsers();
+  }, [API]);
 
   useEffect(() => {
     const getProduct = async () => {
