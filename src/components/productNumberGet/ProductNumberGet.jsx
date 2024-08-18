@@ -18,7 +18,7 @@ export default function ProductNumberGet() {
       try {
         const res = await axios.get(`${API}/actualOrders/allActualOrders`);
         setAllActualOrders(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       } catch (err) {
         console.log(err);
       }
@@ -87,8 +87,8 @@ export default function ProductNumberGet() {
       show: false,
     };
     try {
-      console.log("start >>>");
-      console.log(actualOrderIds);
+      // console.log("start >>>");
+      // console.log(actualOrderIds);
       axios.put(`${API}/actualOrders/${actualOrderIds}`, actualProduct);
       window.alert("Deleted");
       window.location.reload();
@@ -97,7 +97,7 @@ export default function ProductNumberGet() {
     }
   };
 
-  console.log("test >>>", allActualOrders);
+  // console.log("test >>>", allActualOrders);
 
   return (
     <>

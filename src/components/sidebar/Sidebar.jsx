@@ -253,9 +253,9 @@ export default function Sidebar() {
               </Link>
             )}
             <hr className="sidebarHr" />
-            <Link to={`/messenger`} style={{ textDecoration: "none" }}>
+            {/* <Link to={`/messenger`} style={{ textDecoration: "none" }}>
               <SidebarListItem img={<Chat />} text={t("sidebar.Chats")} />
-            </Link>
+            </Link> */}
             {/* <Link to={`/groups/${user.personnelnumber}`} style={{ textDecoration: "none" }}>
                         <SidebarListItem img={<Group />} text={t("sidebar.Groups")} />
                     </Link> */}

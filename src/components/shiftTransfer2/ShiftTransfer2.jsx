@@ -169,7 +169,7 @@ export default function ShiftTransfer2(shiftTransfer) {
   }, [API]);
 
   function handleKeyDown(e) {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && operator.current.value) {
       // call action
       submitHandler(e);
       document.getElementById(`transfer`).style.display = "none";
