@@ -78,7 +78,9 @@ export default function ProductNumberGet() {
       axios.put(`${API}/actualOrders/${actualOrderIds}`, actualOrder);
       window.alert(`Added order number: ${ordernumber.current.value}, amount: ${amountnumber.current.value}`);
       // console.log("end <<<");
-      window.location.reload();
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     } catch (err) {
       console.log(err);
     }
