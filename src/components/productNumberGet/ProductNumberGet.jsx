@@ -69,11 +69,16 @@ export default function ProductNumberGet() {
     const actualOrder = {
       orderNumber: ordernumber.current.value,
       amount: amountnumber.current.value,
+      orderAdded: true,
     };
     try {
+      console.log("start >>>");
+      console.log(actualOrderIds);
+      console.log(actualOrder);
       axios.put(`${API}/actualOrders/${actualOrderIds}`, actualOrder);
       window.alert("Added");
-      window.location.reload();
+      console.log("end <<<");
+      // window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -87,6 +92,7 @@ export default function ProductNumberGet() {
       dateEnd: date.toLocaleDateString("nl-NL"),
       status: "finished",
       show: false,
+      orderAdded: false,
     };
     try {
       // console.log("start >>>");
@@ -103,7 +109,12 @@ export default function ProductNumberGet() {
   const actualProductForLine = Object.values(allActualOrders).filter((actualOrder) => {
     return actualOrder.userId === user._id && actualOrder.show === true;
   })
-  // console.log('Actual product for line >>>', Object.values(actualProductForLine))
+
+  const actualOrderForLine = Object.values(allActualOrders).filter((actualOrder) => {
+    return actualOrder.userId === user._id && actualOrder.orderAdded === true;
+  })
+  console.log('Actual product for line >>>', Object.values(actualProductForLine))
+  console.log('Actual order for line >>>', Object.values(actualOrderForLine))
 
 
   return (
@@ -180,7 +191,7 @@ export default function ProductNumberGet() {
           <br />
           <br />
 
-          {localStorage.getItem("order") === null ? (
+          {actualOrderForLine.length === 0 ? (
             <div className="orderRightProductContainer">
               <form
                 className="orderRightProductForm"
