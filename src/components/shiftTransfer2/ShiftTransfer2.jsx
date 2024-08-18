@@ -7,6 +7,7 @@ import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import WeekNum from "../weekNum/WeekNum";
 import DateTimeShift from "../dateTimeShift/DateTimeShift";
+import { Triangle } from "react-loader-spinner";
 
 export default function ShiftTransfer2(shiftTransfer) {
   const API = process.env.REACT_APP_SERVER_API;
@@ -175,6 +176,7 @@ export default function ShiftTransfer2(shiftTransfer) {
       document.getElementById(`transfer`).style.display = "none";
       document.getElementById(`personnelnumber`).style.display = "none";
       document.getElementById(`personnelnumberText`).style.display = "none";
+      document.getElementById(`shiftTransferLoading`).style.display = "flex";
     }
   }
 
@@ -266,7 +268,18 @@ export default function ShiftTransfer2(shiftTransfer) {
   };
 
   return (
-    <div className="shiftTransfer">
+    <div className="shiftTransfer" style={{ border: "1px solid black" }}>
+      <div className="loadingTextContainer shiftTransferLoading" id="shiftTransferLoading" style={{ display: "none" }}>
+        <Triangle
+          visible={true}
+          height="180"
+          width="180"
+          color="var(--main)"
+          ariaLabel="triangle-loading"
+          wrapperStyle={{}}
+          wrapperClass="loadingTriangle"
+        />
+      </div>
       <div className="shiftTransferDateTime">
         <div className="shiftTransferDateTimeItem">
           Week:{" "}

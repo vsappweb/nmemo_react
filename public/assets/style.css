@@ -337,6 +337,12 @@ button .epr_3vd53t {
   filter: drop-shadow(3px 6px 4px var(--shadowBlack));
 }
 
+.loadingTriangle {
+  display: flex;
+  align-items: flex-end;
+  filter: drop-shadow(3px 6px 4px var(--shadowBlack));
+}
+
 .expandBtn {
   display: flex;
   align-items: center;

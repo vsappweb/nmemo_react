@@ -98,10 +98,15 @@ export default function ProductNumberGet() {
   };
 
   // console.log("test >>>", allActualOrders);
+  const actualProductForLine = Object.values(allActualOrders).filter((actualOrder) => {
+    return actualOrder.userId === user._id && actualOrder.show === true;
+  })
+  // console.log('Actual product for line >>>', Object.values(actualProductForLine))
+
 
   return (
     <>
-      {localStorage.getItem("product") === null ? (
+      {actualProductForLine.length === 0 ? (
         <form
           className="orderRightProductForm"
           autoComplete="off"
