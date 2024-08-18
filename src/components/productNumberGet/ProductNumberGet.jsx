@@ -31,7 +31,7 @@ export default function ProductNumberGet() {
   };
 
   const sortedActualOrders = Object.values(allActualOrders).sort(sortByDate);
-  allActualOrders = sortedActualOrders.filter(
+  allActualOrders = Object.values(sortedActualOrders).filter(
     (actualOrder) =>
       actualOrder.show === true && actualOrder.userId === user._id
   );
@@ -39,12 +39,14 @@ export default function ProductNumberGet() {
     (actualOrder) => actualOrder._id
   );
 
+  console.log(Object.values(actualOrderIds));
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem(
-      "product",
-      JSON.stringify(productnumber.current.value)
-    );
+    // localStorage.setItem(
+    //   "product",
+    //   JSON.stringify(productnumber.current.value)
+    // );
     const actualProduct = {
       productNumber: productnumber.current.value,
       userId: user._id,
@@ -63,7 +65,7 @@ export default function ProductNumberGet() {
 
   const handleAddActualOrder = (e) => {
     e.preventDefault();
-    localStorage.setItem("order", true);
+    // localStorage.setItem("order", true);
     const actualOrder = {
       orderNumber: ordernumber.current.value,
       amount: amountnumber.current.value,
@@ -79,8 +81,8 @@ export default function ProductNumberGet() {
 
   const handleChange = (e) => {
     e.preventDefault();
-    localStorage.removeItem("product");
-    localStorage.removeItem("order");
+    // localStorage.removeItem("product");
+    // localStorage.removeItem("order");
     const actualProduct = {
       dateEnd: date.toLocaleDateString("nl-NL"),
       status: "finished",
