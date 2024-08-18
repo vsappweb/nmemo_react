@@ -11,7 +11,7 @@ import {
   KeyboardBackspace,
 } from "@mui/icons-material";
 import { useContext, useState, useEffect, useRef } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { json, Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
 import { ThreeDots, BallTriangle } from "react-loader-spinner";
@@ -32,6 +32,7 @@ export default function Topbar() {
   const [isDataLoading, setIsDataLoading] = useState(false);
   const [logoutWals, setLogoutWals] = useState(false);
   let [lengthHistory, setLengthHistory] = useState(window.history.length);
+  let [allActualOrders, setAllActualOrders] = useState([]);
   // const [isBack, setIsBack] = useState();
 
   let menuRef = useRef();
@@ -50,6 +51,38 @@ export default function Topbar() {
     // setIsBack(true);
     // console.log('lengthHistoryAfter >>>', lengthHistory);
   };
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await axios.get(`${API}/actualOrders/allActualOrders`);
+        setAllActualOrders(res.data);
+        // console.log(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProduct();
+  }, [API]);
+
+  const sortByDate = (a, b) => {
+    return new Date(b.dateStart) - new Date(a.dateStart);
+  };
+
+  const sortedActualOrders = Object.values(allActualOrders).sort(sortByDate);
+  allActualOrders = Object.values(sortedActualOrders).filter(
+    (actualOrder) =>
+      actualOrder.show === true && actualOrder.userId === user._id
+  );
+  const actualProduct = Object.values(allActualOrders).map(
+    (actualOrder) => actualOrder.productNumber
+  );
+
+  console.log('ActualProduct >>>', Object.values(actualProduct));
+
+  // const actualProduct = Object.values(allActualOrders).filter((actualOrder) => {
+  //   return actualOrder.userId === user._id && actualOrder.show === true;
+  // })
 
   useEffect(() => {
     let handler = (e) => {
@@ -268,7 +301,7 @@ export default function Topbar() {
           </div>
           <div className="topbarCenter">
             {user.username || user.personnelnumber}
-            {JSON.parse(localStorage.getItem("product")) && (
+            {actualProduct.length > 0 && (
               <Link
                 to={`/orders/${user.personnelnumber}`}
                 style={{ textDecoration: "none" }}
@@ -276,7 +309,7 @@ export default function Topbar() {
                 <div className="topbarCenterProducts">
                   <WorkOutline />
                   <div className="topbarCenterProductsText">
-                    {JSON.parse(localStorage.getItem("product"))}
+                    {actualProduct}
                   </div>
                 </div>
               </Link>

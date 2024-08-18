@@ -56,7 +56,7 @@ export default function ProductNumberGet() {
     };
     try {
       axios.post(`${API}/actualOrders`, actualProduct);
-      window.alert("Added");
+      window.alert(`Added product number: ${productnumber.current.value}`);
       window.location.reload();
     } catch (err) {
       console.log(err);
@@ -72,13 +72,13 @@ export default function ProductNumberGet() {
       orderAdded: true,
     };
     try {
-      console.log("start >>>");
-      console.log(actualOrderIds);
-      console.log(actualOrder);
+      // console.log("start >>>");
+      // console.log(actualOrderIds);
+      // console.log(actualOrder);
       axios.put(`${API}/actualOrders/${actualOrderIds}`, actualOrder);
-      window.alert("Added");
-      console.log("end <<<");
-      // window.location.reload();
+      window.alert(`Added order number: ${ordernumber.current.value}, amount: ${amountnumber.current.value}`);
+      // console.log("end <<<");
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -98,7 +98,7 @@ export default function ProductNumberGet() {
       // console.log("start >>>");
       // console.log(actualOrderIds);
       axios.put(`${API}/actualOrders/${actualOrderIds}`, actualProduct);
-      window.alert("Deleted");
+      window.alert(`Closed and removed product and order`);
       window.location.reload();
     } catch (err) {
       console.log(err);

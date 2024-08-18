@@ -45,8 +45,13 @@ export default function Maintenance() {
             <div className="maintenanceOrdersData">
               <div className="maintenanceOrdersBox">
                 <p className="maintenanceProductText">
-                  <span>Wals:</span>
-                  {actualOrder.userId}
+                  {Object.values(allUsers).map((user) => (
+                    user._id === actualOrder.userId && (
+                      <>  
+                      <p key={user._id}>{user.username || user.personnelnumber}</p>
+                      </>
+                    )
+                  ))}
                 </p>
                 <p className="maintenanceProductText">
                   <span>Order:</span>
@@ -54,12 +59,16 @@ export default function Maintenance() {
                 </p>
                 <p className="maintenanceProductText">
                   <span>Status:</span>
-                  {actualOrder.status}
+                  <span style={{ color: actualOrder.status  === "finished" ? "red" : "green" }}>{actualOrder.status}</span>
                 </p>
                 <p className="maintenanceProductText">
                   <span>Start:</span>
                   {actualOrder.dateStart}
                 </p>
+                {actualOrder.dateEnd && <p className="maintenanceProductText">
+                  <span>End:</span>
+                  {actualOrder.dateEnd}
+                </p>}
               </div>
               <div className="maintenanceOrdersBox">
                 <p className="maintenanceProductText">
