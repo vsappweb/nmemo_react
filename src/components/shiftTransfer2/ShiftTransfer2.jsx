@@ -206,6 +206,7 @@ export default function ShiftTransfer2(shiftTransfer) {
       document.getElementById(`transfer`).style.display = "none";
       document.getElementById(`personnelnumber`).style.display = "none";
       document.getElementById(`personnelnumberText`).style.display = "none";
+      document.getElementById(`shiftTransferLoading`).style.display = "flex";
       setTimeout(() => {
         deleteAll();
         window.location.reload();
