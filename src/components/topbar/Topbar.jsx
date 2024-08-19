@@ -14,7 +14,7 @@ import { useContext, useState, useEffect, useRef } from "react";
 import { json, Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import axios from "axios";
-import { ThreeDots, BallTriangle } from "react-loader-spinner";
+import { ThreeDots, BallTriangle, Triangle } from "react-loader-spinner";
 import i18n from "i18next";
 
 export default function Topbar() {
@@ -78,7 +78,7 @@ export default function Topbar() {
     (actualOrder) => actualOrder.productNumber
   );
 
-  console.log('ActualProduct >>>', Object.values(actualProduct));
+  console.log("ActualProduct >>>", Object.values(actualProduct));
 
   // const actualProduct = Object.values(allActualOrders).filter((actualOrder) => {
   //   return actualOrder.userId === user._id && actualOrder.show === true;
@@ -224,7 +224,7 @@ export default function Topbar() {
       {isDataLoading ? (
         <div className="loadingCover">
           <div className="loading">
-            <BallTriangle
+            {/* <BallTriangle
               height={196}
               width={196}
               radius={5}
@@ -233,6 +233,15 @@ export default function Topbar() {
               wrapperStyle={{}}
               wrapperClass="loadingHero"
               visible={true}
+            /> */}
+            <Triangle
+              visible={true}
+              height="180"
+              width="180"
+              color="var(--main)"
+              ariaLabel="triangle-loading"
+              wrapperStyle={{}}
+              wrapperClass="loadingHero"
             />
             <div className="loadingTextContainer">
               <p className="loadingText">Loading</p>
