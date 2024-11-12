@@ -198,9 +198,9 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
 
         {user.role === 3 && <>{hideShiftTransferForm && <ShiftTransfer2 />}</>}
 
-        {(!personnelnumber || personnelnumber === user.personnelnumber) && (
+        {/* {(!personnelnumber || personnelnumber === user.personnelnumber) && (
           <Share />
-        )}
+        )} test */}
 
         <ul className="feedTlToLineList">
           {Object.values(allMemoToLines).map((mTl) => (
@@ -249,9 +249,9 @@ export default function Feed({ personnelnumber, shiftTransfer }) {
             )} */}
           </>
         ))}
-        {posts.slice(0, expandMore).map((p) => (
+        {/* {posts.slice(0, expandMore).map((p) => (
           <Post key={p._id} post={p} />
-        ))}
+        ))} test */}
         {posts.length === expandMore || posts.length < expandMore ? (
           <> </>
         ) : (
